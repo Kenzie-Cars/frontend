@@ -1,10 +1,13 @@
+import { Footer } from "./components/Footer";
+import GlobalStyle from "./styles/GlobalStyle";
 
 function App() {
-
   return (
-    <div >
-    </div>
-  )
+    <>
+      <GlobalStyle />
+      <Footer />
+    </>
+  );
 }
 
-export default App
+export default App;
