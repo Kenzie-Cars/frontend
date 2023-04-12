@@ -1,7 +1,8 @@
+const ferrari = []
 export const carsInfo = [
   {
     brand: "Ferrari",
-    model: "Enzo",
+    model: "812",
     description:
       "lorem Ipsum Lorem Ipsumlorem Ipsum Lorem Ipsumlorem Ipsum Lorem Ipsum",
     km: "50000",
@@ -12,7 +13,7 @@ export const carsInfo = [
     FIPE_price: 5280000.0,
     is_good_sale: true,
     is_active: true,
-    images:["https://live.staticflickr.com/4811/32201118478_ccdf46f47a_o.jpg", "https://www.motortrend.com/uploads/sites/5/2018/06/2018-Ferrari-812-Superfast-front-three-quarter-in-motion.jpg?fit=around%7C875:492", "https://res.cloudinary.com/driveau/image/upload/v1644994566/cms/uploads/smzrl0hb6uwjgdweug7e.jpg"]
+    images:["https://media-server1.modenamotorsgmbh.com/41853-large_default/ferrari-812-gts.jpg", "https://ymimg1.b8cdn.com/resized/car_model/5879/pictures/4821475/mobile_listing_main_152M-1440.png", "https://res.cloudinary.com/driveau/image/upload/v1644994566/cms/uploads/smzrl0hb6uwjgdweug7e.jpg"]
   },
   {
     brand: "Lamborghini",
@@ -27,7 +28,7 @@ export const carsInfo = [
     FIPE_price: 7280000.0,
     is_good_sale: true,
     is_active: true,
-    images:["https://s2.glbimg.com/PGGBZWKN13_HQcDwph7dchYocxg=/0x0:1080x757/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_cf9d035bf26b4646b105bd958f32089d/internal_photos/bs/2022/N/M/CsIXsuTsKOAbijzGcMnQ/293751382-1157049234875890-2415616011868819596-n.jpg", "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjXdUWaPlHKnKgVQhl1tYWfsR1_6SWf-QPt7YXarKg-bjqAf9lzu157DE-NPiOcKLu1vGUFmgx_Kknh2sTRrAhfOlvEgqC2JYu0AscyUhXFeLQ_HrU2LhyTk4OEXftRf7XU4r51YXBPmV9v5E9ak0WkKg0aJr4gr1uUzr1f66ZUH_hNdfmo0F2DZ5b9/s1600/Aventador%20Ultimae%201.jpg", "https://www.hojeemdia.com.br/image/policy:1.860152.1638685478:1638685478/image.jpg?w=1280&"]
+    images:["https://images.squarespace-cdn.com/content/v1/61e45d5f7c98832b8cdcf8b2/1667249460015-QF8R5QYXI277UANIDVRT/Lamborghini-Aventador.png?format=1000w", "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjXdUWaPlHKnKgVQhl1tYWfsR1_6SWf-QPt7YXarKg-bjqAf9lzu157DE-NPiOcKLu1vGUFmgx_Kknh2sTRrAhfOlvEgqC2JYu0AscyUhXFeLQ_HrU2LhyTk4OEXftRf7XU4r51YXBPmV9v5E9ak0WkKg0aJr4gr1uUzr1f66ZUH_hNdfmo0F2DZ5b9/s1600/Aventador%20Ultimae%201.jpg", "https://www.hojeemdia.com.br/image/policy:1.860152.1638685478:1638685478/image.jpg?w=1280&"]
   },
   {
     brand: "Porsche",
@@ -42,13 +43,13 @@ export const carsInfo = [
     FIPE_price: 280000.0,
     is_good_sale: true,
     is_active: true,
-    images:["https://www.notateslaapp.com/images/news/2023/model-s-plaid.jpg", "https://www.motor24.pt/files/2023/02/1676042689923_.jpg", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2FonjnRhNUpI-PZ6PvA5GM5NVhA5OLa6bJktMWhq75x6COP0R-HT6QWcQ8a3L33p4s-8&usqp=CAU"]
-  },
-  {
+    images:["https://www.webmotors.com.br/imagens/prod/348967/PORSCHE_CAYENNE_3.0_V6_EHYBRID_COUPE_PLATINUM_EDITION_AWD_TIPTRONIC_S_34896715352744034.webp?s=fill&w=130&h=97&q=70&t=true)", "https://cdn.motor1.com/images/mgl/3WQ8q6/620:0:3711:2785/2024-porsche-cayenne-prototype.webp", "https://m.atcdn.co.uk/vms/media/w1024/9102326c3ad1486f9de82c69e78b1b3c.jpg"]
+},
+{
     brand: "Tesla",
     model: "Model S",
     description:
-      "lorem Ipsum Lorem Ipsumlorem Ipsum Lorem Ipsumlorem Ipsum Lorem Ipsum",
+    "lorem Ipsum Lorem Ipsumlorem Ipsum Lorem Ipsumlorem Ipsum Lorem Ipsum",
     km: "50000",
     year: 2015,
     price: 250000.0,
@@ -57,7 +58,7 @@ export const carsInfo = [
     FIPE_price: 280000.0,
     is_good_sale: true,
     is_active: true,
-    images:[]
+    images:["https://www.notateslaapp.com/images/news/2023/model-s-plaid.jpg", "https://www.motor24.pt/files/2023/02/1676042689923_.jpg", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2FonjnRhNUpI-PZ6PvA5GM5NVhA5OLa6bJktMWhq75x6COP0R-HT6QWcQ8a3L33p4s-8&usqp=CAU"]
   },
   {
     brand: "BMW",
