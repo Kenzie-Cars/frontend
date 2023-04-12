@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { carsInfo } from "../../data.mocks";
 import { StyledCarsContainer } from "../../styles/CarsContainer";
 import { CarCard } from "./CarCard";
 import { StyledBackgroundImg, StyledHomeContainer } from "./style";
+import { Filter } from "./Filter";
 
 export const HomePage = () => {
+ const [filter, setFilter] = useState(false)
   return (
     <StyledHomeContainer>
       <StyledBackgroundImg>
@@ -25,7 +28,8 @@ export const HomePage = () => {
           ))}
         </StyledCarsContainer>
       </div>
-      <button>Filtros</button>
+      {filter && <Filter carsInfo={carsInfo} setFilter={setFilter}/>}
+      <button onClick={()=> setFilter(!filter)}>Filtros</button>
     </StyledHomeContainer>
   );
 };
