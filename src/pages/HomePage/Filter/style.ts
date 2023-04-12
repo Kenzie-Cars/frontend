@@ -5,6 +5,7 @@ export const StyledFilter = styled.div`
   background-color: var(--whiteFixed);
   top: 0;
   width: 100vw;
+  max-width: 400px;
   padding: 1rem;
   .filterHeader {
     display: flex;
@@ -43,7 +44,7 @@ export const StyledFilter = styled.div`
     flex-direction: column;
     gap: 1rem;
     h3 {
-        margin-left: 1rem;
+      margin-left: 1rem;
       align-self: flex-start;
       font: var(--Heading-4-600);
     }
@@ -66,4 +67,14 @@ export const StyledFilter = styled.div`
       }
     }
   }
+
+  @media screen and (min-width: 400px) {
+    background-color: var(--whiteFixed);
+    position: inherit;
+    width: 300px;                                                                                                      : ;
+    padding: 1rem;
+      button {
+        display: none;
+      }
+    }
 `;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { carsInfo } from "../../data.mocks";
 import { StyledCarsContainer } from "../../styles/CarsContainer";
 import { CarCard } from "./CarCard";
@@ -6,7 +6,19 @@ import { StyledBackgroundImg, StyledHomeContainer } from "./style";
 import { Filter } from "./Filter";
 
 export const HomePage = () => {
- const [filter, setFilter] = useState(false)
+  const [filter, setFilter] = useState(false);
+  const [win, setWin] = useState(window.innerWidth <= 400 ? true : false);
+  useEffect(() => {
+    const handleResize = () => {
+      setWin(window.innerWidth <= 400 ? true : false);
+      setFilter(!win)
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [window.innerWidth]);
+
   return (
     <StyledHomeContainer>
       <StyledBackgroundImg>
@@ -21,15 +33,18 @@ export const HomePage = () => {
           alt="background cars"
         />
       </StyledBackgroundImg>
+
+
       <div className="cardContainer">
         <StyledCarsContainer>
           {carsInfo.map((car) => (
             <CarCard key={car.model} car={car} />
-          ))}
+            ))}
         </StyledCarsContainer>
       </div>
-      {filter && <Filter carsInfo={carsInfo} setFilter={setFilter}/>}
-      <button onClick={()=> setFilter(!filter)}>Filtros</button>
+      {filter && <Filter carsInfo={carsInfo} setFilter={setFilter} />}
+
+      {win && <button onClick={() => setFilter(!filter)}>Filtros</button>}
     </StyledHomeContainer>
   );
 };

@@ -67,7 +67,7 @@ export const Filter = ({ carsInfo, setFilter }: any) => {
           </div>
         </div>
       </div>
-      <button>Ver Anúncios</button>
+      <button onClick={() => setFilter(false)}>Ver Anúncios</button>
     </StyledFilter>
   );
 };
