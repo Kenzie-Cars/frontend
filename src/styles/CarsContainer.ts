@@ -4,8 +4,8 @@ export const StyledCarsContainer = styled.ul`
   display: flex;
   overflow-x: auto;
   gap: 10px;
-  height: 500px;
-  margin-bottom: 10px;
+  height: fit-content;
+  margin: 30px 0 50px 0;
 `;
 
 export const StyledCard = styled.li`
@@ -13,8 +13,8 @@ export const StyledCard = styled.li`
   flex-direction: column;
   min-width: 280px;
   margin: 10px;
-  height: 500px;
   h2 {
+    width: fit-content;
     margin: 10px 0;
     font: var(--Heading-7-600);
   }
@@ -30,6 +30,7 @@ export const StyledCard = styled.li`
     margin: 10px 0;
     max-width: 100%;
     font: var(--body-2-400);
+    text-align: left;
   }
   .advertiserInfo {
     display: flex;
