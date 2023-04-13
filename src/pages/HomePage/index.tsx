@@ -8,6 +8,7 @@ import { Filter } from "./Filter";
 export const HomePage = () => {
   const [filter, setFilter] = useState(true);
   const [win, setWin] = useState(window.innerWidth <= 400 ? true : false);
+
   useEffect(() => {
     const handleResize = () => {
       setWin(window.innerWidth <= 400 ? true : false);
