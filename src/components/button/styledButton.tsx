@@ -55,7 +55,6 @@ const StyledButton = styled.button`
     margin: 0 auto;
     border-radius: 4px;
     border: none;
-    margin-left: 16px;
 
     ${({ background }: IButtonStyled) => {
         return css` background-color: var(--${background});`

@@ -58,6 +58,7 @@ export const Select = ({ options, id }: ISelect) => {
             <div id={id} className={`select ${dropdown}`}>
                 <input onClick={() => openOption()} type="text" placeholder="Select an option" value={option} />
                 <div className={`options ${dropdown}`}>
+                    <div onClick={() => selectValue('')} id={''}>None</div>
                     {
                         options.map(value => {
                             return <div onClick={() => selectValue(value)} id={value.replaceAll(' ', '_').toLowerCase()}>{value}</div>
