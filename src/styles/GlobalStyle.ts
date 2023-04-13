@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
  
@@ -47,26 +47,26 @@ export default createGlobalStyle`
 
     /* Typography */
     
-    --Heading-1-700: 'Lexend' - 44px - 700;
-    --Heading-2-600: 'Lexend' - 36px - 600;
-    --Heading-3-600: 'Lexend' - 32px - 600;
-    --Heading-3-500: 'Lexend' - 32px - 500;
-    --Heading-4-600: 'Lexend' - 28px - 600;
-    --Heading-4-500: 'Lexend' - 28px - 500;
-    --Heading-5-600: 'Lexend' - 24px - 600;
-    --Heading-5-500: 'Lexend' - 24px - 500;
-    --Heading-6-600: 'Lexend' - 20px - 600;
-    --Heading-6-500: 'Lexend' - 20px - 500;
-    --Heading-7-600: 'Lexend' - 16px - 600;
-    --Heading-7-500: 'Lexend' - 16px - 500;
+    --Heading-1-700: 700 44px 'Lexend';
+    --Heading-2-600: 600 36px 'Lexend';
+    --Heading-3-600: 600 32px 'Lexend';
+    --Heading-3-500: 500 32px 'Lexend';
+    --Heading-4-600: 600 28px 'Lexend';
+    --Heading-4-500: 500 28px 'Lexend';
+    --Heading-5-600: 600 24px 'Lexend';
+    --Heading-5-500: 500 24px 'Lexend';
+    --Heading-6-600: 600 20px 'Lexend';
+    --Heading-6-500: 500 20px 'Lexend';
+    --Heading-7-600: 600 16px 'Lexend';
+    --Heading-7-500: 500 16px 'Lexend';
 
-    --body-1-400: 'Inter' - 16px - 400;
-    --body-1-600: 'Inter' - 16px - 600;
-    --body-2-400: 'Inter' - 14px - 400;
-    --body-2-500: 'Inter' - 14px - 500;
-    --button-big-text: 'Inter' - 14px - 400;
-    --button-medium-text: 'Inter' - 14px - 600;
-    --input-placeholder: 'Inter' - 16px - 400;
+    --body-1-400: 400 16px 'Inter';
+    --body-1-600: 600 16px 'Inter';
+    --body-2-400: 400 14px 'Inter';
+    --body-2-500: 500 14px 'Inter';
+    --button-big-text: 400 14px 'Inter';
+    --button-medium-text: 600 14px 'Inter';
+    --input-placeholder: 400 16px 'Inter';
 }
 
  * {
@@ -76,6 +76,7 @@ export default createGlobalStyle`
     box-sizing: border-box;
     font-family: 'Lexend', sans-serif;
     font-family: 'Inter', sans-serif;
+    list-style: none;
   }
   
   body,html{
@@ -96,4 +97,4 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
-`
+`;
