@@ -27,4 +27,5 @@ export interface ITextarea {
 
 export interface ISelect {
     options: Array<string>
+    id: string
 }
