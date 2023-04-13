@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const FooterStyle = styled.footer`
-  position: fixed;
+  position: inherit;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
