@@ -34,7 +34,7 @@ export const Textarea = ({ length, label, row, placeHolder, id }: ITextarea) => 
 }
 
 
-export const Select = ({ options, id }: ISelect) => {
+export const Select = ({ options, id, label }: ISelect) => {
 
     const [option, setOption] = useState<string>('')
     const [dropdown, setDropdown] = useState<string>('dropdownOff')
@@ -54,7 +54,7 @@ export const Select = ({ options, id }: ISelect) => {
 
     return (
         <StyledSelect>
-            <label htmlFor={id}>Label</label>
+            <label htmlFor={id}>{label}</label>
             <div id={id} className={`select ${dropdown}`}>
                 <input onClick={() => openOption()} type="text" placeholder="Select an option" value={option} />
                 <div className={`options ${dropdown}`}>
