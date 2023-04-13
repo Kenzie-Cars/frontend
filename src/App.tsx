@@ -1,10 +1,30 @@
-import { ProductCard } from "./components/ProductCard"
+import { ProductCard, AdvertiserProductCard } from "./components/ProductCard"
+import { Footer } from "./components/Footer";
+import GlobalStyle from "./styles/GlobalStyle";
 
 function App() {
+
+  const mockUser =  
+  {
+    id: '2',
+    name: 'String',
+    email: 'string',
+    cpf: 'string',
+    phone: 'string',
+    birthdate: new Date(),
+    description: 'string',
+    password: '1234',
+    is_adm: true,
+    is_active: true,
+    is_seller: true,
+    created_at: new Date(),
+    updated_at: new Date()
+  }
 
   const productDataArray = 
   [
     {
+    id: 'p1',
     images : 
       [
         {
@@ -18,8 +38,8 @@ function App() {
     description: 'teste',
     user: 
       {
-        id: 'string',
-        name: 'string',
+        id: '1',
+        name: 'String',
         email: 'string',
         cpf: 'string',
         phone: 'string',
@@ -34,9 +54,12 @@ function App() {
       },
       year: 2019,
       km: 80000,
-      price: 59999.00
+      price: 59999.00,
+      is_good_sale: true,
+      is_active: true
     },
     {
+      id: 'p2',
       images : 
         [
           {
@@ -47,11 +70,11 @@ function App() {
           }
         ],
       model: 'Teste2',
-      description: 'teste2',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       user: 
         {
-          id: 'string',
-          name: 'string',
+          id: '2',
+          name: 'String',
           email: 'string',
           cpf: 'string',
           phone: 'string',
@@ -66,29 +89,49 @@ function App() {
         },
         year: 2019,
         km: 80000,
-        price: 59999.00
+        price: 59999.00,
+        is_good_sale: true,
+        is_active: false
       }
   ]
   
-
   return (
-    <div >
+    <>
+      <GlobalStyle />
       {
         productDataArray.map((productData) => {
-          return <ProductCard 
-        images={productData.images} 
-        model={productData.model} 
-        description={productData.description}
-        year={productData.year} 
-        price={productData.price} 
-        user={productData.user} 
-        km={productData.km}
-      />
+          return mockUser.id === productData.user.id? 
+          <AdvertiserProductCard 
+            id={productData.id}
+            key={productData.id}
+            images={productData.images} 
+            model={productData.model} 
+            description={productData.description}
+            year={productData.year} 
+            price={productData.price} 
+            user={productData.user} 
+            km={productData.km}
+            is_good_sale={productData.is_good_sale}
+            is_active={productData.is_active}
+          /> :
+          <ProductCard 
+            id={productData.id}
+            key={productData.id}
+            images={productData.images} 
+            model={productData.model} 
+            description={productData.description}
+            year={productData.year} 
+            price={productData.price} 
+            user={productData.user} 
+            km={productData.km}
+            is_good_sale={productData.is_good_sale}
+            is_active={productData.is_active}
+          />
         })
       }
-      
-    </div>
+      <Footer />
+    </>
   )
 }
 
-export default App
+export default App;
