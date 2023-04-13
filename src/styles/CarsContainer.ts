@@ -6,12 +6,17 @@ export const StyledCarsContainer = styled.ul`
   gap: 10px;
   height: fit-content;
   margin: 30px 0 50px 0;
+
+  @media screen and (min-width: 400px) {
+    overflow-x: unset;
+    flex-wrap: wrap;
+  }
 `;
 
 export const StyledCard = styled.li`
   display: flex;
   flex-direction: column;
-  min-width: 280px;
+  width: 280px;
   margin: 10px;
   h2 {
     width: fit-content;
@@ -37,29 +42,29 @@ export const StyledCard = styled.li`
     gap: 5px;
     align-items: center;
     p {
-        background-color: var(--brand2);
-        padding: 4px;
-        color: var(--whiteFixed);
-        border-radius: 50%;
-        height: 30px;
-        width: 30px;
-        text-align: center;
+      background-color: var(--brand2);
+      padding: 4px;
+      color: var(--whiteFixed);
+      border-radius: 50%;
+      height: 30px;
+      width: 30px;
+      text-align: center;
     }
   }
-  .carInfo{
+  .carInfo {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    div{
-        display:flex ;
-        gap: 10px;
-        font: var(--body-2-500);
-        p{
-            padding: 4px 8px;
-            border-radius: 4px;
-            color: var(--brand1);
-            background-color: var(--brand4);
-        }
+    div {
+      display: flex;
+      gap: 10px;
+      font: var(--body-2-500);
+      p {
+        padding: 4px 8px;
+        border-radius: 4px;
+        color: var(--brand1);
+        background-color: var(--brand4);
+      }
     }
   }
 `;

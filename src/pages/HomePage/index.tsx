@@ -6,12 +6,12 @@ import { StyledBackgroundImg, StyledHomeContainer } from "./style";
 import { Filter } from "./Filter";
 
 export const HomePage = () => {
-  const [filter, setFilter] = useState(false);
+  const [filter, setFilter] = useState(true);
   const [win, setWin] = useState(window.innerWidth <= 400 ? true : false);
   useEffect(() => {
     const handleResize = () => {
       setWin(window.innerWidth <= 400 ? true : false);
-      setFilter(!win)
+      setFilter(!win);
     };
     window.addEventListener("resize", handleResize);
     return () => {
@@ -34,15 +34,16 @@ export const HomePage = () => {
         />
       </StyledBackgroundImg>
 
-
-      <div className="cardContainer">
-        <StyledCarsContainer>
-          {carsInfo.map((car) => (
-            <CarCard key={car.model} car={car} />
+      <div className="bodyContainer">
+        <div className="cardContainer">
+          <StyledCarsContainer>
+            {carsInfo.map((car) => (
+              <CarCard key={car.model} car={car} />
             ))}
-        </StyledCarsContainer>
+          </StyledCarsContainer>
+        </div>
+        {filter && <Filter carsInfo={carsInfo} setFilter={setFilter} />}
       </div>
-      {filter && <Filter carsInfo={carsInfo} setFilter={setFilter} />}
 
       {win && <button onClick={() => setFilter(!filter)}>Filtros</button>}
     </StyledHomeContainer>

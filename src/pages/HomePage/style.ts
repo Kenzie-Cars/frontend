@@ -12,6 +12,12 @@ margin-bottom: 50px;
     padding: 10px;
     border-radius: 4px;
   }
+  @media screen and (min-width: 400px){
+    .bodyContainer{
+      display: flex;
+      flex-direction: row-reverse;
+    }
+  }
 `;
 
 export const StyledBackgroundImg = styled.div`
