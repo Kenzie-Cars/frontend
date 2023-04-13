@@ -1,6 +1,4 @@
-import { Footer } from "./components/Footer";
 import { HomePage } from "./pages/HomePage";
-import { Navbar } from "./components/Navbar";
 import GlobalStyle from "./styles/GlobalStyle";
 
 function App() {
@@ -8,7 +6,6 @@ function App() {
     <>
       <GlobalStyle />
       <HomePage />
-      <Footer />
     </>
   );
 }

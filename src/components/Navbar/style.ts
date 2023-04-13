@@ -15,6 +15,7 @@ export const HeaderStyle = styled.header<IProps>`
   background-color: var(--grey10);
   border-bottom: ${(props) =>
     props.is_active ? "solid 2px var(--grey6)" : "solid 2px transparent"};
+  z-index: 4;
 
   & > div {
     position: fixed;
@@ -63,8 +64,9 @@ export const NavbarStyle = styled.nav<IProps>`
   height: 184px;
   width: 100vw;
   max-width: 100%;
-  margin-top: 85px;
+  margin-top: 78px;
   padding: 15px 0;
+  background-color: var(--grey10);
   border-bottom: solid 2px var(--grey6);
   gap: 1rem;
 
@@ -91,7 +93,7 @@ export const NavbarStyle = styled.nav<IProps>`
     margin-top: 0;
     height: 80px;
     width: fit-content;
-    border-bottom: none;
+    border-bottom: solid 1px var(--grey6);
     border-left: solid 2px var(--grey6);
     padding: 0 30px;
     gap: 2rem;

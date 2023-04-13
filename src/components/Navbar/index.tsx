@@ -12,7 +12,7 @@ export const Navbar = () => {
 
   return (
     <>
-      <HeaderStyle is_active={active}>
+      <HeaderStyle id="header" is_active={active}>
         <div>
           <img src="./src/assets/Logo Header.png" alt="Logo Motors Shop" />
           <GiHamburgerMenu
