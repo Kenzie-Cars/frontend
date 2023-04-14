@@ -18,7 +18,7 @@ export const CarCard = ({ car }: any) => {
           <p>{car.km} KM</p>
           <p>{car.year}</p>
         </div>
-        <h2>R$ {car.price}</h2>
+        <h3>R$ {car.price}</h3>
       </div>
     </StyledCard>
   );

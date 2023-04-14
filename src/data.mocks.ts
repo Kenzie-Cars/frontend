@@ -18,7 +18,9 @@ export const carsInfo = [
     brand: "Lamborghini",
     model: "Aventador",
     description:
-      "lorem Ipsum Lorem Ipsumlorem Ipsum Lorem Ipsumlorem Ipsum Lorem Ipsum",
+      `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam
+      et ipsa quam voluptates delectus rem error, iste at ducimus ab hic
+      fugit placeat a voluptatibus nihil temporibus provident odio ut.`,
     km: "50000",
     year: 2021,
     price: 250000.0,
@@ -27,7 +29,7 @@ export const carsInfo = [
     FIPE_price: 7280000.0,
     is_good_sale: true,
     is_active: true,
-    images:["https://images.squarespace-cdn.com/content/v1/61e45d5f7c98832b8cdcf8b2/1667249460015-QF8R5QYXI277UANIDVRT/Lamborghini-Aventador.png?format=1000w", "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjXdUWaPlHKnKgVQhl1tYWfsR1_6SWf-QPt7YXarKg-bjqAf9lzu157DE-NPiOcKLu1vGUFmgx_Kknh2sTRrAhfOlvEgqC2JYu0AscyUhXFeLQ_HrU2LhyTk4OEXftRf7XU4r51YXBPmV9v5E9ak0WkKg0aJr4gr1uUzr1f66ZUH_hNdfmo0F2DZ5b9/s1600/Aventador%20Ultimae%201.jpg", "https://www.hojeemdia.com.br/image/policy:1.860152.1638685478:1638685478/image.jpg?w=1280&"]
+    images:["https://www.pngall.com/wp-content/uploads/5/Lamborghini-Aventador-PNG-File-Download-Free.png", "https://www.pngmart.com/files/16/Lamborghini-Aventador-Convertible-PNG-Transparent-Image.png", "https://www.pngmart.com/files/16/Lamborghini-Aventador-PNG-Photos.png"]
   },
   {
     brand: "Porsche",
