@@ -17,26 +17,25 @@ export const AdvertiseContainer = styled.div`
   }
   .background {
     width: 100vw;
-    height: 370px;
+    height: 65%;
     background-color: var(--brand1);
-    display: flex;
+    position: absolute;
   }
   .container {
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 500px;
   }
 
   .imgContainer {
     display: flex;
-    position: absolute;
-    top: 50px;
-    left: 2.5%;
     justify-content: center;
     width: 95%;
     height: 80%;
     max-height: 270px;
-    margin: auto;
+    margin: 50px 0 30px 0;
     border-radius: 4px;
     padding: 30px 5px;
     background-color: var(--grey10);
