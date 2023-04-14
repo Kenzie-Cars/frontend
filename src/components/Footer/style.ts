@@ -6,7 +6,7 @@ export const FooterStyle = styled.footer`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 310px;
+  height: 260px;
   width: 100vw;
   background-color: var(--grey0);
   bottom: 0;
@@ -36,6 +36,6 @@ export const FooterStyle = styled.footer`
 
   @media (min-width: 768px) {
     flex-direction: row;
-    height: 140px;
+    height: 120px;
   }
 `;
