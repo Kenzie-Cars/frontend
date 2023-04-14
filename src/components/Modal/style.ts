@@ -77,13 +77,11 @@ export const Header = styled.div`
 
   @media (min-width: 768px) {
     height: 50px;
-    font-size: var(--title1);
+    font: var(--title1);
   }
 
   > h3 {
-    font-size: var(--Heading-7-500);
-    font-weight: var(--Heading-7-500);
-    font-family: var(--Heading-7-500);
+    font: var(--Heading-7-500);
     color: var(--grey1);
   }
 
@@ -92,9 +90,7 @@ export const Header = styled.div`
     border: none;
 
     color: var(--grey4);
-    font-size: var(--button-medium-text);
-    font-weight: var(--button-medium-text);
-
+    font: var(--button-medium-text);
   }
 `;
 
