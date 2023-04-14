@@ -20,21 +20,31 @@ export const AdvertiseContainer = styled.div`
     height: 370px;
     background-color: var(--brand1);
     display: flex;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .imgContainer {
-      display: flex;
-      justify-content: center;
-      width: 95%;
-      height: 80%;
-      margin: auto;
-      border-radius: 4px;
-      padding: 30px 5px;
-      background-color: var(--grey10);
-      img {
-        width: 90%;
-        max-width: 265px;
-        max-height: 235px;
-      }
+  .imgContainer {
+    display: flex;
+    position: absolute;
+    top: 50px;
+    left: 2.5%;
+    justify-content: center;
+    width: 95%;
+    height: 80%;
+    max-height: 270px;
+    margin: auto;
+    border-radius: 4px;
+    padding: 30px 5px;
+    background-color: var(--grey10);
+    img {
+      width: 90%;
+      max-width: 350px;
+      max-height: 235px;
+      align-self: center;
     }
   }
   .carAdvertiseInfo {
@@ -142,28 +152,50 @@ export const AdvertiseContainer = styled.div`
       font-size: 16px;
     }
   }
+  .comments {
+    h3 {
+      font: var(--Heading-6-600);
+      margin-bottom: 1rem;
+    }
+    .commentBody {
+      margin-bottom: 1.5rem;
+      text-align: justify;
+      font: var(--body-2-400);
+      color: var(--grey2);
+    }
+  }
+  .userInfo {
+    display: flex;
+    width: fit-content;
+    gap: 5px;
+    align-items: baseline;
+    margin-bottom: 1rem;
+    height: 20px;
+    p {
+      background-color: var(--brand2);
+      padding: 4px;
+      color: var(--whiteFixed);
+      border-radius: 50%;
+      height: 30px;
+      width: 30px;
+      text-align: center;
+    }
+    h3 {
+      font: var(--body-2-500);
+    }
+    span {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      color: var(--grey3);
+    }
+  }
   .newComment {
     display: flex;
     flex-direction: column;
     margin-bottom: 2.5rem;
-    .userInfo {
-      display: flex;
-      gap: 5px;
-      align-items: center;
-      margin-bottom: 1rem;
-      p {
-        background-color: var(--brand2);
-        padding: 4px;
-        color: var(--whiteFixed);
-        border-radius: 50%;
-        height: 30px;
-        width: 30px;
-        text-align: center;
-      }
-      h3 {
-        font: var(--body-2-500);
-      }
-    }
+
     textarea {
       height: fit-content;
       min-height: 120px;
@@ -185,12 +217,20 @@ export const AdvertiseContainer = styled.div`
       gap: 1rem;
       flex-wrap: wrap;
       span {
+        cursor: pointer;
         font: var(--body-2-500);
         border-radius: 24px;
         background-color: var(--grey7);
         padding: 4px 10px;
         color: var(--grey3);
       }
+    }
+  }
+
+  @media screen and (min-width: 950px) {
+    .background {
+      position: absolute;
+      height: 450px;
     }
   }
 `;
