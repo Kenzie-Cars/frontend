@@ -9,7 +9,7 @@ export const mockUser = {
   password: "1234",
   is_adm: true,
   is_active: true,
-  is_seller: true,
+  is_seller: false,
   created_at: new Date(),
   updated_at: new Date(),
 };

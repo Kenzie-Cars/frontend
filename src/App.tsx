@@ -1,16 +1,13 @@
-import { Advertise } from "./pages/Advertise";
-import { HomePage } from "./pages/HomePage";
+import { AllRoutes } from "./routes";
 import GlobalStyle from "./styles/GlobalStyle";
 
 function App() {
-  
   return (
     <>
       <GlobalStyle />
-      <Advertise/>
-      <HomePage />
+      <AllRoutes />
     </>
-  )
+  );
 }
 
 export default App;
