@@ -8,7 +8,10 @@ function App() {
     <>
       <GlobalStyle />
       <HomePage />
+<<<<<<< HEAD
       <Advertise/>
+=======
+>>>>>>> c8b498f10ff4a256877beffdd9403c2b443cf1e7
     </>
   )
 }
