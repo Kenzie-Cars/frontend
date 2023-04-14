@@ -6,6 +6,7 @@ import { StyledBackgroundImg, StyledHomeContainer } from "./style";
 import { Filter } from "./Filter";
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
+import { createProductCard } from "../../components/ProductCard";
 
 export const HomePage = () => {
   const [filter, setFilter] = useState(true);

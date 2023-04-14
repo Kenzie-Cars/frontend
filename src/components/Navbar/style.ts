@@ -1,10 +1,19 @@
 import styled from "styled-components";
 
-interface IProps {
+interface IHeaderProps {
   is_active: boolean;
 }
 
-export const HeaderStyle = styled.header<IProps>`
+interface INavbarProps {
+  is_active: boolean;
+  is_token: boolean;
+}
+
+interface IUlProps {
+  is_open: boolean;
+}
+
+export const HeaderStyle = styled.header<IHeaderProps>`
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -58,9 +67,9 @@ export const HeaderStyle = styled.header<IProps>`
   }
 `;
 
-export const NavbarStyle = styled.nav<IProps>`
+export const NavbarStyle = styled.nav<INavbarProps>`
   display: ${(props) => (props.is_active ? "none" : "flex")};
-  flex-direction: column;
+  flex-direction: ${(props) => (props.is_token ? "row-reverse" : "column")};
   height: 184px;
   width: 100vw;
   max-width: 100%;
@@ -70,37 +79,76 @@ export const NavbarStyle = styled.nav<IProps>`
   border-bottom: solid 2px var(--grey6);
   gap: 1rem;
 
-  & > p {
+  & > :nth-child(1) {
     font: var(--body-1-600);
     color: var(--grey2);
     padding-left: 18px;
     min-width: 108px;
   }
 
+  .logged {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: fit-content;
+    padding-right: 18px;
+    cursor: pointer;
+
+    & > p {
+      color: var(--grey2);
+      font: var(--body-1-400);
+    }
+  }
+
+  .acronym {
+    background-color: var(--brand2);
+    padding: 10px;
+    border-radius: 200px;
+
+    & > p {
+      color: var(--grey10);
+      width: max-content;
+      font: 700 14px "Inter";
+    }
+  }
+
   @media (min-width: 425px) {
     display: ${(props) => (props.is_active ? "none" : "flex")};
-    flex-direction: row;
+    flex-direction: ${(props) => (props.is_token ? "row-reverse" : "row")};
     justify-content: space-between;
     align-items: center;
-    padding-right: 18px;
+    padding-right: ${(props) => (props.is_token ? "0" : "18px")};
   }
 
   @media (min-width: 768px) {
     position: fixed;
     right: 0;
+    top: 0;
     display: flex;
     flex-direction: row;
+    justify-content: center;
     margin-top: 0;
-    height: 80px;
+    height: 79px;
     width: fit-content;
     border-bottom: solid 1px var(--grey6);
     border-left: solid 2px var(--grey6);
     padding: 0 30px;
     gap: 2rem;
+
+    & > :nth-child(1) {
+      cursor: pointer;
+    }
+
+    .logged {
+      cursor: pointer;
+    }
   }
 `;
 
-export const ButtonStyle = styled.button`
+export const LinkStyle = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 48px;
   width: 90%;
   max-width: 333px;
@@ -112,5 +160,45 @@ export const ButtonStyle = styled.button`
   @media (min-width: 425px) {
     width: 133px;
     margin: 0;
+
+    @media (min-width: 768px) {
+      :hover {
+        background-color: var(--grey7);
+        cursor: pointer;
+      }
+    }
+  }
+`;
+
+export const UlStyle = styled.ul<IUlProps>`
+  position: fixed;
+  display: ${(props) => (props.is_open ? "flex" : "none")};
+  flex-direction: column;
+  top: 145px;
+  width: max-content;
+  border-left: solid 2px var(--grey6);
+  border-bottom: solid 2px var(--grey6);
+  background-color: var(--grey10);
+  z-index: 4;
+
+  & > li {
+    display: flex;
+    align-items: center;
+    padding: 15px 30px;
+    color: var(--grey2);
+    font: var(--body-1-400);
+  }
+
+  @media (min-width: 768px) {
+    top: 75px;
+
+    & > li {
+      width: 230px;
+      cursor: pointer;
+
+      :hover {
+        background-color: var(--grey7);
+      }
+    }
   }
 `;

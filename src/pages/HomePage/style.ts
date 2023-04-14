@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const StyledHomeContainer = styled.div`
-text-align: center;
-margin-bottom: 50px;
+  text-align: center;
+  margin-bottom: 50px;
   button {
     font: var(--button-big-text);
     color: var(--whiteFixed);
@@ -12,8 +12,8 @@ margin-bottom: 50px;
     padding: 10px;
     border-radius: 4px;
   }
-  @media screen and (min-width: 400px){
-    .bodyContainer{
+  @media screen and (min-width: 400px) {
+    .bodyContainer {
       display: flex;
       flex-direction: row-reverse;
     }
@@ -21,6 +21,7 @@ margin-bottom: 50px;
 `;
 
 export const StyledBackgroundImg = styled.div`
+  padding-top: 80px;
   width: 100vw;
   height: fit-content;
   max-height: 350px;
