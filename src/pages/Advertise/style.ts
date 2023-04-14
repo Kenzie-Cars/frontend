@@ -227,9 +227,5 @@ export const AdvertiseContainer = styled.div`
   }
 
   @media screen and (min-width: 950px) {
-    .background {
-      position: absolute;
-      height: 450px;
-    }
   }
 `;
