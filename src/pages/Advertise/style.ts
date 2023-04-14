@@ -226,6 +226,22 @@ export const AdvertiseContainer = styled.div`
     }
   }
 
-  @media screen and (min-width: 950px) {
+  @media screen and (min-width: 768px) {
+    .container {
+      display: grid;
+      max-width: 850px;
+      grid-template-columns: 5fr 3fr;
+      column-gap: 25px;
+    }
+    .carGallery{
+      grid-column: 2;
+      grid-row: 1;
+    }
+    .advertiserInfo{
+      grid-column: 2;
+    }
+    .carAdvertiseInfo, .carDescription, .newComment{
+      grid-column: 1;
+    }
   }
 `;
