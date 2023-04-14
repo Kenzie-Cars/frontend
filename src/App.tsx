@@ -1,17 +1,16 @@
-import { useState } from "react";
-import Modal from "./components/Modal";
+import { Advertise } from "./pages/Advertise";
+import { HomePage } from "./pages/HomePage";
 import GlobalStyle from "./styles/GlobalStyle";
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false)
-
+  
   return (
     <>
       <GlobalStyle />
-       <button onClick={()=>{setIsOpen(true)}}>Abrir modal</button>
-      {isOpen && <Modal setIsOpen={setIsOpen} children={undefined}/>}
+      <HomePage />
+      <Advertise/>
     </>
-  );
+  )
 }
 
 export default App;

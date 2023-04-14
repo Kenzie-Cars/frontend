@@ -1,6 +1,5 @@
 import styled, { keyframes } from "styled-components";
 
-import { IoClose } from "react-icons/io5";
 
 export const Overlay = styled.div`
   background-color: rgba(0,0,0,.7);
@@ -49,11 +48,8 @@ export const Container = styled.div`
   height: 300px;
   animation: ${modalAppear} 0.3s ease-in-out;
  
-
-
-
   @media (min-width: 768px) {
-    height: 420px;
+    min-height: 420px;
     max-width: 60%;
     border-radius: 4px;
     gap: 16px;
@@ -69,7 +65,6 @@ export const Header = styled.div`
 
   box-sizing: border-box;
 
-
   width: 100%;
   height: 40px;
 
@@ -77,20 +72,22 @@ export const Header = styled.div`
 
   @media (min-width: 768px) {
     height: 50px;
-    font: var(--title1);
+    font: var(--button-medium-text);
   }
 
-  > h3 {
-    font: var(--Heading-7-500);
+  > h3,
+  > HeaderTitle {
     color: var(--grey1);
   }
 
-  > button {
+  > div,
+  > CloseButton {
     background-color: transparent;
     border: none;
-
+    width: fit-content;
     color: var(--grey4);
     font: var(--button-medium-text);
+    cursor: pointer;
   }
 `;
 
@@ -100,28 +97,44 @@ export const MainContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 7px;
-
+  
   width: 100%;
   height: 90%;
   /* outline: 1px red solid; */
   margin: 0 auto;
   
-  div {
+  > div,
+  > CarImg {
     background-color: var(--grey7);
-    /* outline: 1px red solid; */
     display: flex;
     justify-content: center;
     align-items: center;
     width: 90%;
     height: 85%;
+    
+
+    img{
+      width: inherit;
+      max-height: 100%;
+      height: fit-content;
+    }
+
   }
 
   @media (min-width: 768px) {
     gap: 16px;
-    height: 354px;
+    width: 100%;
+    height: 100%;
   }
 `;
 
 
+export const HeaderTitle = styled.h3`
+  `;
 
-export const CloseIcon = styled(IoClose)``;
+export const CloseButton = styled.div`
+  `;
+
+//para usar no detalhamento do carro 
+export const CarImg = styled.div`
+  `;
