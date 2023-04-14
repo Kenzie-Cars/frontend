@@ -5,19 +5,27 @@ export const AdvertiseContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+
+  header {
+    background-color: var(--grey10);
+    height: 80px;
+    width: 100%;
+    z-index: 3;
+  }
   .default {
     margin-top: 1rem;
     border-radius: 4px;
     height: fit-content;
     padding: 30px 28px;
-    width: 95%;
+    /* width: 95%; */
     background-color: var(--grey10);
     display: flex;
     flex-direction: column;
   }
   .background {
     width: 100vw;
-    height: 65%;
+    /* height: 65%; */
+    height: 420px;
     background-color: var(--brand1);
     position: absolute;
   }
@@ -25,17 +33,18 @@ export const AdvertiseContainer = styled.div`
     z-index: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    width: 90%;
+    /* align-items: center; */
     max-width: 500px;
   }
 
   .imgContainer {
     display: flex;
     justify-content: center;
-    width: 95%;
+    /* width: 95%; */
     height: 80%;
     max-height: 270px;
-    margin: 50px 0 30px 0;
+    margin: 45px 0 30px 0;
     border-radius: 4px;
     padding: 30px 5px;
     background-color: var(--grey10);
@@ -229,19 +238,44 @@ export const AdvertiseContainer = styled.div`
   @media screen and (min-width: 768px) {
     .container {
       display: grid;
-      max-width: 850px;
+      width: 95%;
+      max-width: 1200px;
       grid-template-columns: 5fr 3fr;
       column-gap: 25px;
+      position: relative;
+      /* background-color: red; */
     }
+    .background {
+      height: 600px;
+    }
+
+    .imgContainer {
+      height: 350px;
+      max-height: 350px;
+      margin-top: 40px;
+    }
+
     .carGallery{
       grid-column: 2;
       grid-row: 1;
+      /* align-self: center; */
+      margin-top: 40px;
+      height: 350px;
     }
+    
     .advertiserInfo{
       grid-column: 2;
+      grid-row: 2;
+      position: absolute;
     }
+
+    .comments {
+      grid-column: 1;
+    }
+
     .carAdvertiseInfo, .carDescription, .newComment{
       grid-column: 1;
+      
     }
   }
 `;

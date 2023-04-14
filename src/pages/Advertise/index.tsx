@@ -5,6 +5,9 @@ import { AdvertiseContainer } from "./style";
 export const Advertise = () => {
   return (
     <AdvertiseContainer>
+      <header>
+
+      </header>
       <div className="background"></div>
       <div className="container">
         <div className="default imgContainer">
