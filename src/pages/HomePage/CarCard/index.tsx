@@ -6,11 +6,12 @@ import { useNavigate } from "react-router-dom";
 
 export const CarCard = ({ car }: any) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  
+
   const navigate = useNavigate();
 
   const openModal = () => {
     setIsOpen(true);
+  };
 
   const advertise = () => {
     navigate("/advertise");
