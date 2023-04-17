@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledFilter = styled.div`
   position: absolute;
   background-color: var(--whiteFixed);
-  top: 0;
+  top: 55px;
   width: 100vw;
   max-width: 400px;
   padding: 1rem;
@@ -76,5 +76,5 @@ export const StyledFilter = styled.div`
       button {
         display: none;
       }
-    }
+  }
 `;

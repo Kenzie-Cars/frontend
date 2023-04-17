@@ -3,6 +3,7 @@ import { HeaderStyle, LinkStyle, NavbarStyle, UlStyle } from "./style";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GrFormClose } from "react-icons/gr";
 import { mockUser } from "../../mocks/productCard";
+import { useNavigate } from "react-router-dom";
 
 interface INavbarProps {
   user?: string;
@@ -13,9 +14,14 @@ export const Navbar = ({ user, userAcronym }: INavbarProps) => {
   const [active, setActive] = useState(false);
   const [token, setToken] = useState(false);
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   const hidden = () => {
     setActive(!active);
+  };
+
+  const home = () => {
+    navigate("/");
   };
 
   const logout = () => {
@@ -27,7 +33,11 @@ export const Navbar = ({ user, userAcronym }: INavbarProps) => {
     <>
       <HeaderStyle id="header" is_active={active}>
         <div>
-          <img src="./src/assets/Logo Header.png" alt="Logo Motors Shop" />
+          <img
+            onClick={() => home()}
+            src="./src/assets/Logo Header.png"
+            alt="Logo Motors Shop"
+          />
           <GiHamburgerMenu
             className={active ? "open" : "close"}
             onClick={() => hidden()}

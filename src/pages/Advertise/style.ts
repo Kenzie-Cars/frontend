@@ -6,12 +6,6 @@ export const AdvertiseContainer = styled.div`
   align-items: center;
   flex-direction: column;
 
-  header {
-    background-color: var(--grey10);
-    height: 80px;
-    width: 100%;
-    z-index: 3;
-  }
   .default {
     margin-top: 1rem;
     border-radius: 4px;
@@ -31,6 +25,7 @@ export const AdvertiseContainer = styled.div`
   }
   .container {
     z-index: 1;
+    padding-top: 50px;
     display: flex;
     flex-direction: column;
     width: 90%;
@@ -255,15 +250,15 @@ export const AdvertiseContainer = styled.div`
       margin-top: 40px;
     }
 
-    .carGallery{
+    .carGallery {
       grid-column: 2;
       grid-row: 1;
       /* align-self: center; */
       margin-top: 40px;
       height: 350px;
     }
-    
-    .advertiserInfo{
+
+    .advertiserInfo {
       grid-column: 2;
       grid-row: 2;
       position: absolute;
@@ -273,9 +268,10 @@ export const AdvertiseContainer = styled.div`
       grid-column: 1;
     }
 
-    .carAdvertiseInfo, .carDescription, .newComment{
+    .carAdvertiseInfo,
+    .carDescription,
+    .newComment {
       grid-column: 1;
-      
     }
   }
 `;

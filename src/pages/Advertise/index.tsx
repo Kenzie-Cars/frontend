@@ -1,3 +1,5 @@
+import { Footer } from "../../components/Footer";
+import { Navbar } from "../../components/Navbar";
 import { carsInfo } from "../../data.mocks";
 import { Comments } from "./Comments";
 import { AdvertiseContainer } from "./style";
@@ -5,9 +7,7 @@ import { AdvertiseContainer } from "./style";
 export const Advertise = () => {
   return (
     <AdvertiseContainer>
-      <header>
-
-      </header>
+      <Navbar />
       <div className="background"></div>
       <div className="container">
         <div className="default imgContainer">
@@ -33,8 +33,8 @@ export const Advertise = () => {
         <div className="default carGallery">
           <h3>Fotos</h3>
           <ul>
-            {carsInfo[1].images.map((img) => (
-              <li>
+            {carsInfo[1].images.map((img, index) => (
+              <li key={index}>
                 <img src={img} alt="" />
               </li>
             ))}
@@ -75,6 +75,7 @@ export const Advertise = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </AdvertiseContainer>
   );
 };

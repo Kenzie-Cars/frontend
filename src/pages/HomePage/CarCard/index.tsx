@@ -2,16 +2,22 @@ import { useState } from "react";
 import Modal from "../../../components/Modal";
 import { CarImg } from "../../../components/Modal/style";
 import { StyledCard } from "../../../styles/CarsContainer";
+import { useNavigate } from "react-router-dom";
 
 export const CarCard = ({ car }: any) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  
+  const navigate = useNavigate();
 
   const openModal = () => {
     setIsOpen(true);
+
+  const advertise = () => {
+    navigate("/advertise");
   };
 
   return (
-    <StyledCard>
+    <StyledCard onClick={() => advertise()}>
       <div className="imgContainer">
         <img src={car.images[0]} alt={car.model} onClick={openModal} />
       </div>

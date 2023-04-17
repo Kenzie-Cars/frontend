@@ -19,6 +19,7 @@ export const HeaderStyle = styled.header<IHeaderProps>`
   flex-direction: column;
   height: 80px;
   width: 100vw;
+  max-width: 100%;
   align-items: center;
   justify-content: space-between;
   background-color: var(--grey10);
@@ -34,6 +35,10 @@ export const HeaderStyle = styled.header<IHeaderProps>`
     padding: 0 18px;
     height: 80px;
     width: 100%;
+
+    & > img {
+      cursor: pointer;
+    }
   }
 
   & > svg {
@@ -193,7 +198,7 @@ export const UlStyle = styled.ul<IUlProps>`
     top: 75px;
 
     & > li {
-      width: 230px;
+      width: 248px;
       cursor: pointer;
 
       :hover {
