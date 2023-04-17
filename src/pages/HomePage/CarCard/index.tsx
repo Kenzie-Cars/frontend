@@ -1,8 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import { StyledCard } from "../../../styles/CarsContainer";
 
 export const CarCard = ({ car }: any) => {
+  const navigate = useNavigate();
+
+  const advertise = () => {
+    navigate("/advertise");
+  };
+
   return (
-    <StyledCard>
+    <StyledCard onClick={() => advertise()}>
       <div className="imgContainer">
         <img src={car.images[0]} alt={car.model} />
       </div>
@@ -14,7 +21,7 @@ export const CarCard = ({ car }: any) => {
         <p>SL</p>Samuel Leão
       </div>
       <div className="carInfo">
-        <div >
+        <div>
           <p>{car.km} KM</p>
           <p>{car.year}</p>
         </div>

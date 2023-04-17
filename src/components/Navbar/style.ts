@@ -19,6 +19,7 @@ export const HeaderStyle = styled.header<IHeaderProps>`
   flex-direction: column;
   height: 80px;
   width: 100vw;
+  max-width: 100%;
   align-items: center;
   justify-content: space-between;
   background-color: var(--grey10);
