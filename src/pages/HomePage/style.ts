@@ -45,4 +45,9 @@ export const StyledBackgroundImg = styled.div`
   .coverTitle {
     font: var(--Heading-6-500);
   }
+
+  & > img {
+    padding-top: 30px;
+    max-height: 400px;
+  }
 `;
