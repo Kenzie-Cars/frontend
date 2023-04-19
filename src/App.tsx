@@ -1,17 +1,13 @@
-import { Footer } from "./components/Footer";
-import { HomePage } from "./pages/HomePage";
+import { AllRoutes } from "./routes";
 import GlobalStyle from "./styles/GlobalStyle";
 
-
 function App() {
-  
   return (
     <>
       <GlobalStyle />
-      <HomePage/>
-      <Footer />
+      <AllRoutes />
     </>
-  )
+  );
 }
 
 export default App;
