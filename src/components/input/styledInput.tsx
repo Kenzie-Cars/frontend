@@ -16,6 +16,7 @@ export const StyledInput = styled.div`
        font-size: 1rem;
        color: var(--grey1);
        font-weight: 600;
+       background-color: transparent;
        
     }
 
@@ -27,6 +28,7 @@ export const StyledInput = styled.div`
     
     input:hover{
         border-color: var(--brand2);
+        background-color: var(--grey8);
     }
 `
 

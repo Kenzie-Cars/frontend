@@ -1,18 +1,14 @@
 import StyledButton from './styledButton'
+import { IButton } from '../../interfaces/components'
 
-export interface IButton {
-    size: '1' | '2' | '3' | '4' | '5'
-    hover: string
-    background: string
-    text: string
-}
-
-const Button = ({ size, background, hover, text }: IButton) => {
+const Button = ({ size, background, hover, text, color, border }: IButton) => {
     return (
         <StyledButton
             size={size}
             background={background}
             hover={hover}
+            color={color}
+            border={border}
         >
             {text}
         </StyledButton>
