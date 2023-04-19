@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 import { IButtonStyled } from '../../interfaces/components'
 
-
 const typeHover: any = {
     hover1: {
         background: 'transparent',
@@ -67,6 +66,18 @@ const StyledButton = styled.button`
 
     }}
 
+    ${({ border }) => {
+        if (border) {
+            return css` border: ${border};`
+        }
+    }}
+
+${({ color }) => {
+        if (color) {
+            return css` color: var(--${color});`
+        }
+    }}
+
     
 
     ${({ size }: IButtonStyled) => {
@@ -94,7 +105,7 @@ const StyledButton = styled.button`
             case '5':
                 return css` 
                     height: 50px;
-                    width: 80%;
+                    width: 100%;
                 `
 
         }

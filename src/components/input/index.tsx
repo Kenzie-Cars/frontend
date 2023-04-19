@@ -3,15 +3,32 @@ import { StyledInput, StyledTextarea, StyledSelect } from "./styledInput";
 import { ISelect, ITextarea, InputInterface } from '../../interfaces/components'
 
 
-export const Input = ({ label, type, id }: InputInterface) => {
+export const Input = ({ label, type, id, register, errors, inputField }: InputInterface) => {
     return (
-        <StyledInput>
+        <StyledInput className="input">
             <label htmlFor={id}> {label} </label>
-            <input id={id} type={String(type)} />
+            {/* <p>{errors.email ? (<p>{errors.email.message}</p>) : (<p>Teste</p>)}</p> */}
+            <input id={id} type={String(type)}
+                {...register(`${inputField}`)} />
+            {errors && <span>{errors}</span>}
 
         </StyledInput>
     )
 }
+
+// export const Input = ({ label, type, id, placeholder, register, error }: InputInterface) => {
+//     return (
+//       <StyledInput>
+//         <label htmlFor={id}> {label} </label>
+//         <input
+//           id={id}
+//           type={String(type)}
+//           placeholder={String(placeholder)}
+//           {...register(id)}
+//         />
+
+//       </StyledInput>
+//     );
 
 
 export const Textarea = ({ length, label, row, placeHolder, id }: ITextarea) => {
