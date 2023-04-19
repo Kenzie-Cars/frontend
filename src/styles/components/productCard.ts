@@ -108,7 +108,8 @@ export const CardContainer = styled.div<{discount: boolean, is_active?: boolean}
         width: 15px;
         background-color: var(--random7);
         position: relative;
-        left: 29px;
+        left: 24px;
+        top: 7px;
         padding: 0px 2px;
     }
 `
@@ -128,7 +129,7 @@ export const AdvertiserCardContainer = styled(CardContainer)<{is_active?: boolea
     }
 
     .discount-badge{
-        left: ${props => props.is_active? '-35px': '-45px'};
+        left: ${props => props.is_active? '-40px': '-50px'};
         min-width: 15px;
     }
 
