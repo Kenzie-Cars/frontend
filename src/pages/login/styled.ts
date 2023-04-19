@@ -1,26 +1,39 @@
 import styled from "styled-components";
 
 export const PageLoginStyled = styled.main`
+    /* width: 100%; */
+    display: flex;
+    background-color: var(--grey7);
+    justify-content: center;
+    
 
     .container {
-        padding-top: 50px;
-        height: 90vh;
-        width: 100vw;
+        margin: 40px 0px 0px 0px; 
+        /* padding-top: 50px; */
+        height: 80vh;
+        width: 100%;
         background-color: var(--grey7);
-        border-radius: 4px;
-        min-height: 600px;
+        
+        /* min-height: 500px; */
         max-width: 450px;
         display: flex;
         justify-content: center;
         align-items: center;
         
+
+        @media (max-height: 800px) {
+            margin: 100px 0px 60px 0px; 
+
+        }
     }
 
     form {
         /* border: 2px solid red; */
+        border-radius: 8px;
         background-color: var(--grey10);
         width: 90%;
         height: 80%;
+        min-height: 500px;
         display: flex;
         flex-direction: column;
         gap: 24px;
