@@ -5,7 +5,7 @@ export interface IUserRequest {
     email: string
     cpf: string
     phone: string
-    birthdate: Date
+    birthDate: string
     description: string
     password: string
     confirmPassword: string
@@ -19,7 +19,7 @@ export interface IUserResponse {
     email: string
     cpf: string
     phone: string
-    birthdate: Date
+    birthDate: Date
     description: string
     password: string
     is_adm: boolean

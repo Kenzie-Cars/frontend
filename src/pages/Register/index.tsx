@@ -24,7 +24,7 @@ const Register = () => {
         name,
         email,
         cpf,
-        birthdate,
+        birthDate,
         phone,
         confirmPassword,
         password,
@@ -49,7 +49,6 @@ const Register = () => {
   const sendData = async (data: IUserRequest) => {
     data.is_seller = is_seller;
     console.log(data);
-    
     userRegister(data);
   };
 
@@ -97,10 +96,10 @@ const Register = () => {
             />
             <Input
               label={"data de nascimento:"}
-              type={"date"}
-              id={"birthdate"}
+              type={"text"}
+              id={"birthDate"}
               register={register}
-              error={birthdate?.message}
+              error={birthDate?.message}
             />
             <Textarea
               id="description"
@@ -158,6 +157,15 @@ const Register = () => {
               register={register}
               error={address?.number?.message}
             />
+
+            <Input
+              label={"complemento:"}
+              type={"text"}
+              id={"address.complement"}
+              placeholder="Digite o número"
+              register={register}
+              error={address?.complement?.message}
+            />
             <div className="div--buttons">
               <Button
                 size={"2"}
@@ -188,7 +196,7 @@ const Register = () => {
 
             <Input
               label={"senha:"}
-              type={"text"}
+              type={"password"}
               id={"password"}
               placeholder="Digitar senha"
               register={register}
@@ -197,7 +205,7 @@ const Register = () => {
 
             <Input
               label={"confirmar senha:"}
-              type={"text"}
+              type={"password"}
               id={"confirmPassword"}
               placeholder="Digitar senha"
               register={register}
