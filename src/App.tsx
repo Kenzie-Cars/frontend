@@ -1,11 +1,13 @@
-import { AllRoutes } from "./routes";
+import UserRegister from "./pages/Register";
 import GlobalStyle from "./styles/GlobalStyle";
+
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <AllRoutes />
+      {/* <AllRoutes /> */}
+      <UserRegister />
     </>
   );
 }

@@ -1,3 +1,5 @@
+import { IAddressResquest } from "../address"
+
 export interface IUserRequest {
     name: string
     email: string
@@ -6,9 +8,15 @@ export interface IUserRequest {
     birthdate: Date
     description: string
     password: string
-    is_adm?: boolean
-    is_active?: boolean
-    is_seller: boolean
+    confirmPassword: string
+    is_seller?: boolean
+    address: IAddressResquest
+    // cep: string
+    // state: string
+    // city: string
+    // street: string
+    // number: string
+    // complement: string
 }
 
 export interface IUserResponse {
@@ -20,6 +28,12 @@ export interface IUserResponse {
     birthdate: Date
     description: string
     password: string
+    cep: string
+    state: string
+    city: string
+    street: string
+    number: string
+    complement: string
     is_adm: boolean
     is_active: boolean
     is_seller: boolean

@@ -3,34 +3,42 @@ import { StyledInput, StyledTextarea, StyledSelect } from "./styledInput";
 import { ISelect, ITextarea, InputInterface } from '../../interfaces/components'
 
 
-export const Input = ({ label, type, id }: InputInterface) => {
+export const Input = ({ label, type, id, placeholder, register, error }: InputInterface) => {
     return (
-        <StyledInput>
-            <label htmlFor={id}> {label} </label>
-            <input id={id} type={String(type)} />
-
-        </StyledInput>
-    )
+      <StyledInput>
+        <label htmlFor={id}> {label} </label>
+        <input
+          id={id}
+          type={String(type)}
+          placeholder={String(placeholder)}
+          {...register(id)}
+        />
+        {error && <span>{error}</span>}
+      </StyledInput>
+    );
 }
 
 
-export const Textarea = ({ length, label, row, placeHolder, id }: ITextarea) => {
+export const Textarea = ({ length, label, row, placeHolder, id, register }: ITextarea) => {
 
     const [maxLength, setLength] = useState(0)
 
     return (
-        <StyledTextarea>
-            <label htmlFor={id}>{label}</label>
-            <textarea
-                onChange={(event) => setLength(event.target.textLength)}
-                id={id}
-                rows={row}
-                maxLength={length}
-                placeholder={placeHolder}
-            />
-            <p>{maxLength}/{length}</p>
-        </StyledTextarea>
-    )
+      <StyledTextarea>
+        <label htmlFor={id}>{label}</label>
+        <textarea
+          onChange={(event) => setLength(event.target.textLength)}
+          id={id}
+          rows={row}
+          maxLength={length}
+          placeholder={placeHolder}
+          {...register(id)}
+        />
+        <p>
+          {maxLength}/{length}
+        </p>
+      </StyledTextarea>
+    );
 }
 
 

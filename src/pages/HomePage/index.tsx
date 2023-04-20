@@ -7,6 +7,7 @@ import { Filter } from "./Filter";
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { useNavigate } from "react-router-dom";
+import UserRegister from "../Register";
 
 export const HomePage = () => {
   const [filter, setFilter] = useState(true);

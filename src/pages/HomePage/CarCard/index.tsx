@@ -11,7 +11,7 @@ export const CarCard = ({ car }: any) => {
 
   const openModal = () => {
     setIsOpen(true);
-
+  }
   const advertise = () => {
     navigate("/advertise");
   };
