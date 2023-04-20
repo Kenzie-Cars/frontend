@@ -38,6 +38,9 @@ export interface ISelect {
     options: Array<string>
     id: string
     label: string
+    register: UseFormRegister<any>
+    errors: string | undefined
+    inputField: string
 }
 
 export interface IUserLogin {
