@@ -72,7 +72,7 @@ export const StyledTextarea = styled.div`
 `
 
 export const StyledSelect = styled.div`
-    width: 80%;
+    width: 100%;
     max-width: 450px;
     display: flex;
     flex-direction: column;
@@ -97,7 +97,7 @@ export const StyledSelect = styled.div`
         border-radius: 4px;
         border: 2px solid var(--grey6);
         font-weight: 600;
-        position: absolute;
+        /* position: absolute; */
         top: 0;
         left: 0;
         width: 100%;
@@ -107,7 +107,7 @@ export const StyledSelect = styled.div`
 
         .options {
             position: absolute;
-            top: 70px;
+            top: 50px;
             width: 100%;
             /* background-color: brown; */
             overflow: hidden;

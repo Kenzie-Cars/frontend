@@ -16,19 +16,6 @@ export const Input = ({ label, type, id, register, errors, inputField }: InputIn
     )
 }
 
-// export const Input = ({ label, type, id, placeholder, register, error }: InputInterface) => {
-//     return (
-//       <StyledInput>
-//         <label htmlFor={id}> {label} </label>
-//         <input
-//           id={id}
-//           type={String(type)}
-//           placeholder={String(placeholder)}
-//           {...register(id)}
-//         />
-
-//       </StyledInput>
-//     );
 
 
 export const Textarea = ({ length, label, row, placeHolder, id }: ITextarea) => {

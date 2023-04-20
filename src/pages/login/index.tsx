@@ -8,6 +8,7 @@ import { Api } from "../../service"
 import { useNavigate } from "react-router-dom"
 import { Footer } from "../../components/Footer"
 import { Navbar } from "../../components/Navbar"
+import { Select } from "../../components/input"
 
 interface IUserLogin {
     email: string
@@ -71,6 +72,7 @@ export const Login = () => {
                             errors={password?.message}
                             inputField='password'
                         />
+
                         <p className="esqueci">Esqueci minha senha</p>
                         <Button
                             background="brand1"
