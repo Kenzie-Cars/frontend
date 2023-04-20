@@ -7,7 +7,8 @@ export const CardContainer = styled.div<{discount: boolean, is_active?: boolean}
 
     max-width: 312px;
 
-    margin: 10px;
+    min-width: 312px;
+
     box-sizing: border-box;
 
     img{
@@ -80,11 +81,15 @@ export const CardContainer = styled.div<{discount: boolean, is_active?: boolean}
     .advertiser-info p {
         display: flex;
         align-items: center;
+
+        margin-bottom: 0px;
     }
 
     .specifications-container{
         display: flex;
         justify-content: space-between;
+
+        margin-bottom: 18px;
     }
 
     .specifications-container div span{
