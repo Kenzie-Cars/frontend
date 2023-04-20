@@ -21,10 +21,11 @@ export interface InputInterface {
     label: string
     type: string
     id: string
-    register: UseFormRegister<any>
-    errors: string | undefined
-    inputField: string
+    placeholder?: string
+    register: any
+    error: any
 }
+
 
 export interface ITextarea {
     length: number
@@ -32,6 +33,7 @@ export interface ITextarea {
     row: number
     placeHolder: string
     id: string
+    register: any
 }
 
 export interface ISelect {
