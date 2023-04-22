@@ -8,7 +8,7 @@ export const PageRegisterStyled = styled.main`
   align-items: center;
 
   .container {
-    margin: 40px 0px 0px 0px;
+    margin: 60px 0px 0px 0px;
     padding-top: 50px;
     height: 80vh;
     width: 100%;
@@ -21,7 +21,7 @@ export const PageRegisterStyled = styled.main`
     align-items: center;
 
     @media (max-height: 800px) {
-      margin: 100px 0px 60px 0px;
+      margin: 70px 0px 60px 0px;
     }
   }
 
@@ -35,10 +35,21 @@ export const PageRegisterStyled = styled.main`
     width: 90%;
     height: 80%;
     overflow-y: auto;
-    min-height: 500px;
+    min-height: 430px;
     gap: 24px;
     justify-content: initial;
     padding: 0px 5%;
+
+    ::-webkit-scrollbar {
+      background-color: var(--whiteFixed);
+      border-radius: 20px;
+      width: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--grey3);
+      border-radius: 20px;
+    }
 
     .input {
       width: 100%;
