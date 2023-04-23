@@ -1,10 +1,6 @@
-import { ReactNode, SetStateAction, useState } from "react";
+import { useState } from "react";
 import { StyledInput, StyledTextarea, StyledSelect } from "./styledInput";
-import {
-  ISelect,
-  ITextarea,
-  InputInterface,
-} from "../../interfaces/components";
+import { ITextarea, InputInterface } from "../../interfaces/components";
 
 export const Input = ({
   label,
@@ -27,7 +23,7 @@ export const Input = ({
         placeholder={placeholder}
         disabled={disabled}
       />
-      <p>{errors}</p>
+      <span>{errors}</span>
     </StyledInput>
   );
 };
@@ -44,23 +40,20 @@ export const Textarea = ({
   const [maxLength, setLength] = useState(0);
 
   return (
-    <>
-      <StyledTextarea>
-        <label htmlFor={id}>{label}</label>
-        <textarea
-          {...register(id)}
-          onChange={(event) => setLength(event.target.textLength)}
-          id={id}
-          rows={row}
-          maxLength={length}
-          placeholder={placeHolder}
-        />
-        <p>
-          {maxLength}/{length}
-        </p>
-      </StyledTextarea>
-      <p>{errors}</p>
-    </>
+    <StyledTextarea>
+      <label htmlFor={id}>{label}</label>
+      <textarea
+        onChange={(event) => setLength(event.target.textLength)}
+        id={id}
+        rows={row}
+        maxLength={length}
+        placeholder={placeHolder}
+        {...register(id)}
+      />
+      <p>
+        {maxLength}/{length}
+      </p>
+    </StyledTextarea>
   );
 };
 
@@ -124,8 +117,6 @@ export const Textarea = ({
 
 // }
 
-import React from "react";
-
 interface iSelectProps {
   id: string;
   label: string;
@@ -166,7 +157,7 @@ export const Select = ({
             </option>
           ))}
       </select>
-      <p>{errors}</p>
+      <span>{errors}</span>
     </StyledSelect>
   );
 };

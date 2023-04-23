@@ -67,11 +67,22 @@ const StyledButton = styled.button`
     `;
   }}
 
-    ${({ color }: IButtonStyled) => {
-    return css`
-      color: var(--${color});
-    `;
+    /* ${({ border }) => {
+    if (border) {
+      return css`
+        border: ${border};
+      `;
+    }
+  }} */
+
+${({ color }) => {
+    if (color) {
+      return css`
+        color: var(--${color});
+      `;
+    }
   }}
+
     
 
     ${({ size }: IButtonStyled) => {

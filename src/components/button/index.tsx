@@ -1,15 +1,5 @@
 import StyledButton from "./styledButton";
 
-// export interface IButton {
-//   size: "1" | "2" | "3" | "4" | "5";
-//   type?: string;
-//   hover: string;
-//   background: string;
-//   text: string;
-//   color: string;
-//   onClick: Function;
-// }
-
 export interface IButton {
   size: "1" | "2" | "3" | "4" | "5";
   hover: string;
@@ -29,6 +19,7 @@ const Button = ({
   hover,
   text,
   color,
+  // border,
   onClick,
   disabled,
   type,
@@ -50,18 +41,4 @@ const Button = ({
     </StyledButton>
   );
 };
-
-// const Button = ({ size, background, hover, text, color }: IButton) => {
-//   return (
-//     <StyledButton
-//       size={size}
-//       background={background}
-//       hover={hover}
-//       color={color}
-//     >
-//       {text}
-//     </StyledButton>
-//   );
-// };
-
 export default Button;

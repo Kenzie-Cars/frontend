@@ -1,15 +1,20 @@
+import { FieldErrors, UseFormRegister } from "react-hook-form";
+
 export interface IButton {
   size: "1" | "2" | "3" | "4" | "5";
   hover: string;
   background: string;
   text: string;
+  color?: string;
+  border?: string;
 }
 
 export interface IButtonStyled {
   size: "1" | "2" | "3" | "4" | "5";
   hover: string;
   background: string;
-  color: string;
+  color?: string;
+  border?: string;
 }
 
 export interface InputInterface {
