@@ -3,7 +3,7 @@ import * as yup from "yup";
 const CreateUserSchema: any = yup.object().shape({
   name: yup.string().required("Nome é obrigatório"),
   email: yup.string().required("Email é obrigatório"),
-  cpf:yup.string().min(11).required("CPF é obrigatório"),
+  cpf: yup.string().min(11).required("CPF é obrigatório"),
   phone: yup.string().required("Telefone é obrigatório"),
   birthDate: yup.string().required("Data de nascimento é obrigatório"),
   description: yup.string().required("Descrição é obrigatório"),
@@ -19,6 +19,7 @@ const CreateUserSchema: any = yup.object().shape({
     .required("Confirmar senha obrigatório")
     .oneOf([yup.ref("password")], "Senha não confere"),
   is_seller: yup.boolean().required("Escolha uma opção").default(false),
+  is_adm: yup.boolean().optional().default(false),
   address: yup.object().shape({
     cep: yup.string().required("CEP obrigatório"),
     state: yup.string().required("obrigatório"),

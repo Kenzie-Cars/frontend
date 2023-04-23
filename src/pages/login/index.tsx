@@ -56,21 +56,22 @@ export const Login = () => {
                     <form onSubmit={handleSubmit(login)}>
                         <h1>Login</h1>
                         <Input
-                            id="name"
+                            id="email"
                             label="Usuário"
                             type="email"
                             register={register}
-                            errors={email?.message}
-                            inputField={'email'}
+                            error={email?.message}
+                            placeholder="Email"
+
                         />
 
                         <Input
-                            id="name"
+                            id="password"
                             label="Senha"
-                            type="text"
+                            type="password"
                             register={register}
-                            errors={password?.message}
-                            inputField='password'
+                            error={password?.message}
+                            placeholder="Password"
                         />
 
                         <p className="esqueci">Esqueci minha senha</p>
@@ -79,6 +80,9 @@ export const Login = () => {
                             size="5"
                             hover="hover1"
                             text="Entrar"
+                            border="none"
+                            color="grey8"
+
                         />
                         <p className="text2">Esqueci minha senha</p>
                         <Button
@@ -89,6 +93,7 @@ export const Login = () => {
                             border="solid 2px var(--grey5)"
                             color="grey2"
                         />
+
                     </form>
                 </section>
             </PageLoginStyled>

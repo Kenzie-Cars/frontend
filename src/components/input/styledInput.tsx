@@ -4,12 +4,12 @@ export const StyledInput = styled.div`
 
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 100%;
     max-width: 450px;
     gap: 6px;
     
     input {
-       height : 45px;
+       height : 50px;
        border-radius: 4px;
        border: solid 2px var(--grey6);
        padding: 5px 15px;
@@ -34,7 +34,7 @@ export const StyledInput = styled.div`
 
 export const StyledTextarea = styled.div`
     /* height: 200px; */
-    width: 80%;
+    width: 100%;
     max-width: 450px;
     /* background-color: brown; */
     display: flex;
