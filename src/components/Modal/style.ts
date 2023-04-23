@@ -1,8 +1,7 @@
 import styled, { keyframes } from "styled-components";
 
-
 export const Overlay = styled.div`
-  background-color: rgba(0,0,0,.7);
+  background-color: rgba(0, 0, 0, 0.7);
   position: fixed;
   top: 0;
   right: 0;
@@ -16,7 +15,6 @@ export const Overlay = styled.div`
 
   width: 100vw;
   height: 100vh;
-  
 `;
 
 const modalAppear = keyframes`
@@ -31,30 +29,31 @@ const modalAppear = keyframes`
   }
 `;
 
-
 export const Container = styled.div`
   background-color: var(--whiteFixed);
-  
+
   display: flex;
   flex-direction: column;
   align-items: center;
 
   gap: 7px;
-  
+
   margin: 0 auto;
-  
+  padding-bottom: 1rem;
+
   max-width: 345px;
   width: 90%;
-  height: 300px;
+  min-height: 300px;
+  max-height: fit-content;
   animation: ${modalAppear} 0.3s ease-in-out;
- 
+
   @media (min-width: 768px) {
-    min-height: 420px;
-    max-width: 60%;
+    height: max-content;
+    max-width: 520px;
+    padding-bottom: 1.5rem;
     border-radius: 4px;
     gap: 16px;
   }
-  
 `;
 
 export const Header = styled.div`
@@ -97,13 +96,13 @@ export const MainContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 7px;
-  
+
   width: 100%;
   height: 90%;
   /* outline: 1px red solid; */
   margin: 0 auto;
-  
-  > div,
+
+  /* > div, */
   > CarImg {
     background-color: var(--grey7);
     display: flex;
@@ -111,14 +110,12 @@ export const MainContainer = styled.div`
     align-items: center;
     width: 90%;
     height: 85%;
-    
 
-    img{
+    img {
       width: inherit;
       max-height: 100%;
       height: fit-content;
     }
-
   }
 
   @media (min-width: 768px) {
@@ -128,13 +125,9 @@ export const MainContainer = styled.div`
   }
 `;
 
+export const HeaderTitle = styled.h3``;
 
-export const HeaderTitle = styled.h3`
-  `;
+export const CloseButton = styled.div``;
 
-export const CloseButton = styled.div`
-  `;
-
-//para usar no detalhamento do carro 
-export const CarImg = styled.div`
-  `;
+//para usar no detalhamento do carro
+export const CarImg = styled.div``;
