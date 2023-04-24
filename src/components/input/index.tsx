@@ -19,7 +19,7 @@ export const Input = ({
       <label htmlFor={id}> {label} </label>
       <input
         id={id}
-        type={String(type)}
+        type={type}
         placeholder={String(placeholder)}
         {...register(id)}
       />

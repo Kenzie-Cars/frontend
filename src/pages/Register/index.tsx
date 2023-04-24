@@ -113,6 +113,7 @@ const Register = () => {
               register={register}
               placeholder={"00/00/00"}
               error={birthDate?.message}
+              placeholder="2000/12/30"
             />
             <Textarea
               id="description"
@@ -227,7 +228,7 @@ const Register = () => {
 
             <div className="div--buttonSubmit">
               <Button
-                size={"4"}
+                size={"5"}
                 hover={"hover1"}
                 background={""}
                 color={""}
