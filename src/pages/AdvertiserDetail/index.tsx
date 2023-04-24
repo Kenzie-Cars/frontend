@@ -7,6 +7,7 @@ import { createAdminProductCard } from "../../components/AdminProductCard";
 import { useParams } from "react-router-dom";
 
 import Button from "../../components/button";
+import Modal from "../../components/Modal";
 
 import { mockAdvertiser, AdvertiserProductsArray } from "../../mocks/AdvertiserDetailPage";
 
@@ -16,6 +17,10 @@ export const AdvertiserPage = () => {
     const [userProductsState, setUserProductsState] = useState(AdvertiserProductsArray)
 
     const { id } = useParams()
+
+    const test = () => {
+        console.log('abrir modal')
+    }
 
     return id !== userState['id']?(
         <>
@@ -66,7 +71,9 @@ export const AdvertiserPage = () => {
                             hover="hover2"
                             background="white"
                             border="2px solid var(--brand1)"
+                            onClick={() => test()}
                         />
+
                     </div>
 
                     <StyledAdvertisementsContainer className="Advertisements-container">

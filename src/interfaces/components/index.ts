@@ -7,6 +7,7 @@ export interface IButton {
     text: string
     color?: string
     border?: string
+    onClick?: any
 }
 
 export interface IButtonStyled {

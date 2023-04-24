@@ -5,7 +5,7 @@ export const mockAdvertiser = {
     cpf: "string",
     phone: "string",
     birthdate: new Date(),
-    description: "string",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tortor condimentum lacinia quis vel eros donec.",
     password: "1234",
     is_adm: true,
     is_active: true,

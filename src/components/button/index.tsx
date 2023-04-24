@@ -1,7 +1,7 @@
 import StyledButton from './styledButton'
 import { IButton } from '../../interfaces/components'
 
-const Button = ({ size, background, hover, text, color, border }: IButton) => {
+const Button = ({ size, background, hover, text, color, border, onClick }: IButton) => {
     return (
         <StyledButton
             size={size}
@@ -9,6 +9,7 @@ const Button = ({ size, background, hover, text, color, border }: IButton) => {
             hover={hover}
             color={color}
             border={border}
+            onClick={onClick}
         >
             {text}
         </StyledButton>
