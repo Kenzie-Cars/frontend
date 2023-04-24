@@ -4,8 +4,8 @@ export interface IButton {
   size: "1" | "2" | "3" | "4" | "5";
   hover: string;
   background: string;
-  color: string;
-  border: string;
+  color?: string;
+  border?: string;
   text: string;
   onClick?: () => void;
   disabled?: boolean;

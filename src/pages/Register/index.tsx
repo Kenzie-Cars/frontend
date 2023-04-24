@@ -1,21 +1,20 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { Footer } from "../../components/Footer";
 import { Navbar } from "../../components/Navbar";
 import Button from "../../components/button";
 import { Input, Textarea } from "../../components/input";
 import { IUserRequest } from "../../interfaces/user";
 import { CreateUserSchema } from "../../schema/Users";
-import { Api } from "../../service";
 import { PageRegisterStyled } from "./style";
+import { UserContext } from "../../context/UserContext";
 
 const Register = () => {
+
+  const {userRegister } = useContext(UserContext)
+
   const [is_seller, setIs_seller] = useState(false);
-  const navigate = useNavigate();
-  const [user, setUser] = useState<IUserRequest | null>(null);
   const [loading, setLoading] = useState(false);
 
   const {
@@ -36,27 +35,6 @@ const Register = () => {
   } = useForm<IUserRequest>({
     resolver: yupResolver(CreateUserSchema),
   });
-
-  const userRegister = async (
-    data: IUserRequest,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>
-  ) => {
-    try {
-      setLoading(true);
-      const res = await Api.post("/users", data);
-      toast.success("Usuário criado com sucesso!", {
-        autoClose: 1500,
-      }),
-        navigate("/login");
-      setUser(res.data);
-    } catch (error) {
-      toast.error("Usuário já cadastrado", {
-        autoClose: 1500,
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const sendData = async (data: IUserRequest) => {
     data.is_seller = is_seller;
