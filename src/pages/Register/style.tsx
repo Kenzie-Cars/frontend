@@ -9,7 +9,6 @@ export const PageRegisterStyled = styled.main`
     
     .container {
         margin: 40px 0px 0px 0px; 
-        /* height: 80vh; */
         width: 100%;
         background-color: var(--grey7);
         max-width: 450px;

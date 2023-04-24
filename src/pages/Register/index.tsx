@@ -2,6 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { Footer } from "../../components/Footer";
 import { Navbar } from "../../components/Navbar";
 import Button from "../../components/button";
@@ -15,6 +16,7 @@ const Register = () => {
   const [is_seller, setIs_seller] = useState(false);
   const navigate = useNavigate();
   const [user, setUser] = useState<IUserRequest | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -35,21 +37,31 @@ const Register = () => {
     resolver: yupResolver(CreateUserSchema),
   });
 
-  const userRegister = async (data: IUserRequest) => {
-    await Api.post("/users", data)
-      .then((response) => {
-        console.log(response.data);
-        setUser(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
+  const userRegister = async (
+    data: IUserRequest,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  ) => {
+    try {
+      setLoading(true);
+      const res = await Api.post("/users", data);
+      toast.success("Usuário criado com sucesso!", {
+        autoClose: 1500,
+      }),
+        navigate("/login");
+      setUser(res.data);
+    } catch (error) {
+      toast.error("Usuário já cadastrado", {
+        autoClose: 1500,
       });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const sendData = async (data: IUserRequest) => {
     data.is_seller = is_seller;
     console.log(data);
-    userRegister(data);
+    userRegister(data, setLoading);
   };
 
   return (
@@ -82,7 +94,7 @@ const Register = () => {
               label={"cpf:"}
               type={"text"}
               id={"cpf"}
-              placeholder="123.456.789-10"
+              placeholder="000.000.00-00"
               register={register}
               error={cpf?.message}
             />
@@ -99,6 +111,7 @@ const Register = () => {
               type={"text"}
               id={"birthDate"}
               register={register}
+              placeholder={"00/00/00"}
               error={birthDate?.message}
               placeholder="2000/12/30"
             />
@@ -220,8 +233,9 @@ const Register = () => {
                 background={""}
                 color={""}
                 border={""}
-                text={"Finalizar Cadastro"}
                 type={"submit"}
+                disabled={loading}
+                text={loading ? "Cadastrando..." : "Cadastrar"}
               />
             </div>
           </form>

@@ -22,10 +22,10 @@ const CreateUserSchema: any = yup.object().shape({
   is_adm: yup.boolean().optional().default(false),
   address: yup.object().shape({
     cep: yup.string().required("CEP obrigatório"),
-    state: yup.string().required("obrigatório"),
-    city: yup.string().required(),
-    street: yup.string().required(),
-    number: yup.string().required(),
+    state: yup.string().required("Estado obrigatório"),
+    city: yup.string().required("Cidade obrigatório"),
+    street: yup.string().required("Rua obrigatório"),
+    number: yup.string().required("Número obrigatório"),
     complement: yup.string().notRequired().default(null),
   }),
 });
