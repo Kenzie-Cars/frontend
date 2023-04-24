@@ -22,7 +22,7 @@ export const FooterStyle = styled.footer`
     color: var(--whiteFixed);
   }
 
-  a {
+  .btnTop {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,6 +32,7 @@ export const FooterStyle = styled.footer`
     color: var(--whiteFixed);
     border-radius: 4px;
     text-decoration: none;
+    border: none;
   }
 
   @media (min-width: 768px) {
