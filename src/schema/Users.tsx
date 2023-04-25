@@ -13,13 +13,13 @@ const CreateUserSchema: any = yup.object().shape({
     .matches(/[a-z]/, "Deve conter ao menos 1 letra minúscula ")
     .matches(/(\d)/, "Deve conter ao menos 1 número")
     .matches(/(\W)|_/, "Deve conter ao menos 1 caracater especial")
-    .matches(/.{8,}/, "Deve conter no minimo 8 caracateres"),
+    .matches(/.{8,}/, "Deve conter no minimo 8 caracteres"),
   confirmPassword: yup
     .string()
     .required("Confirmar senha obrigatório")
     .oneOf([yup.ref("password")], "Senha não confere"),
   is_seller: yup.boolean().required("Escolha uma opção").default(false),
-  is_adm: yup.boolean().optional().default(false),
+  is_adm: yup.boolean().notRequired().default(false),
   address: yup.object().shape({
     cep: yup.string().required("CEP obrigatório"),
     state: yup.string().required("Estado obrigatório"),

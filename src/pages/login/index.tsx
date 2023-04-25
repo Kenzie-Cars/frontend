@@ -37,7 +37,6 @@ export const Login = () => {
   });
 
   const onSubmit = async (data: IUserLogin) => {
-    console.log(data);
     userlogin(data, setLoading);
   };
 

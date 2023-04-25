@@ -9,6 +9,7 @@ import { UserContext } from "../../context/UserContext";
 import { IUserRequest } from "../../interfaces/user";
 import { CreateUserSchema } from "../../schema/Users";
 import { PageRegisterStyled } from "./style";
+import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
 
 const Register = () => {
   const { userRegister } = useContext(UserContext);
@@ -37,6 +38,7 @@ const Register = () => {
 
   const sendData = async (data: IUserRequest) => {
     data.is_seller = is_seller;
+    data.is_adm = false;
     console.log(data);
     userRegister(data, setLoading);
   };
@@ -55,7 +57,7 @@ const Register = () => {
               id={"name"}
               placeholder="Digite seu nome"
               register={register}
-              error={name?.message}
+              errors={name?.message}
             />
 
             <Input
@@ -64,7 +66,7 @@ const Register = () => {
               id={"email"}
               placeholder="Digite seu email"
               register={register}
-              error={email?.message}
+              errors={email?.message}
             />
 
             <Input
@@ -73,7 +75,7 @@ const Register = () => {
               id={"cpf"}
               placeholder="000.000.00-00"
               register={register}
-              error={cpf?.message}
+              errors={cpf?.message}
             />
             <Input
               label={"celular:"}
@@ -81,15 +83,15 @@ const Register = () => {
               id={"phone"}
               placeholder="(DDD) 90000-0000"
               register={register}
-              error={phone?.message}
+              errors={phone?.message}
             />
             <Input
               label={"data de nascimento:"}
               type={"text"}
               id={"birthDate"}
               register={register}
-              placeholder={"00/00/0000"}
-              error={birthDate?.message}
+              placeholder="20/12/2000"
+              errors={birthDate?.message}
             />
             <Textarea
               id="description"
@@ -109,7 +111,7 @@ const Register = () => {
               id={"address.cep"}
               placeholder={"12345-678"}
               register={register}
-              error={address?.cep?.message}
+              errors={address?.cep?.message}
             />
 
             <Input
@@ -118,7 +120,7 @@ const Register = () => {
               id={"address.state"}
               placeholder="Digite seu estado"
               register={register}
-              error={address?.state?.message}
+              errors={address?.state?.message}
             />
 
             <Input
@@ -127,7 +129,7 @@ const Register = () => {
               id={"address.city"}
               placeholder="Digite sua cidade"
               register={register}
-              error={address?.city?.message}
+              errors={address?.city?.message}
             />
 
             <Input
@@ -136,7 +138,7 @@ const Register = () => {
               id={"address.street"}
               placeholder="Digite o nome da rua"
               register={register}
-              error={address?.street?.message}
+              errors={address?.street?.message}
             />
 
             <Input
@@ -145,7 +147,7 @@ const Register = () => {
               id={"address.number"}
               placeholder="Digite o número"
               register={register}
-              error={address?.number?.message}
+              errors={address?.number?.message}
             />
 
             <Input
@@ -154,7 +156,7 @@ const Register = () => {
               id={"address.complement"}
               placeholder="Digite o número"
               register={register}
-              error={address?.complement?.message}
+              errors={address?.complement?.message}
             />
             <div className="div--buttons">
               <Button
@@ -190,7 +192,7 @@ const Register = () => {
               id={"password"}
               placeholder="Digitar senha"
               register={register}
-              error={password?.message}
+              errors={password?.message}
             />
 
             <Input
@@ -199,7 +201,7 @@ const Register = () => {
               id={"confirmPassword"}
               placeholder="Digitar senha"
               register={register}
-              error={confirmPassword?.message}
+              errors={confirmPassword?.message}
             />
 
             <div className="div--buttonSubmit">
