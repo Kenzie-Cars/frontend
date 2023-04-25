@@ -8,11 +8,7 @@ import Button from "../../components/button";
 import { Input } from "../../components/input";
 import { UserContext } from "../../context/UserContext";
 import { PageLoginStyled } from "./styled";
-
-interface IUserLogin {
-  email: string;
-  password: string;
-}
+import { IUserLogin } from "../../interfaces/user";
 
 const schema = yup.object({
   email: yup
@@ -52,7 +48,7 @@ export const Login = () => {
               label="Usuário"
               type="email"
               register={register}
-              error={email?.message}
+              errors={email?.message}
               placeholder="Digitar email"
             />
 
@@ -61,7 +57,7 @@ export const Login = () => {
               label="Senha"
               type="password"
               register={register}
-              error={password?.message}
+              errors={password?.message}
               placeholder="Digitar senha"
             />
 

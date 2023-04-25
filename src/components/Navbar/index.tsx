@@ -1,19 +1,30 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GrFormClose } from "react-icons/gr";
 import { Link, useNavigate } from "react-router-dom";
 import { mockUser } from "../../mocks/productCard";
 import { HeaderStyle, LinkStyle, NavbarStyle, UlStyle } from "./style";
+import { UserContext } from "../../context/UserContext";
 
-interface INavbarProps {
-  user?: string;
-  userAcronym?: string;
-}
-
-export const Navbar = ({ user, userAcronym }: INavbarProps) => {
+export const Navbar = () => {
   const [active, setActive] = useState(false);
-  const [token, setToken] = useState(false);
   const [open, setOpen] = useState(false);
+  const { user } = useContext(UserContext);
+
+  const acronym = user?.name.includes(" ")
+    ? (
+        user?.name.split(" ")[0][0] +
+        "" +
+        user?.name.split(" ")[1][0]
+      ).toUpperCase()
+    : (
+        user?.name.split(" ")[0][0] +
+        "" +
+        user?.name.split(" ")[0][1]
+      ).toUpperCase();
+
+  const token = localStorage.getItem("@userTokenKenzieKars");
+
   const navigate = useNavigate();
 
   const hidden = () => {
@@ -29,7 +40,8 @@ export const Navbar = ({ user, userAcronym }: INavbarProps) => {
   };
 
   const logout = () => {
-    setToken(!token);
+    localStorage.removeItem("@userTokenKenzieKars");
+    localStorage.removeItem("@userIdKenzieKars");
     setOpen(!open);
   };
 
@@ -56,9 +68,9 @@ export const Navbar = ({ user, userAcronym }: INavbarProps) => {
             <>
               <div className="logged" onClick={() => setOpen(!open)}>
                 <div className="acronym">
-                  <p>SL</p>
+                  <p>{acronym}</p>
                 </div>
-                <p>{mockUser.name}</p>
+                <p>{user?.name}</p>
               </div>
             </>
           ) : (
