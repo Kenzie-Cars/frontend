@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { HeaderStyle, LinkStyle, NavbarStyle, UlStyle } from "./style";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GrFormClose } from "react-icons/gr";
+import { Link, useNavigate } from "react-router-dom";
 import { mockUser } from "../../mocks/productCard";
-import { useNavigate } from "react-router-dom";
+import { HeaderStyle, LinkStyle, NavbarStyle, UlStyle } from "./style";
 
 interface INavbarProps {
   user?: string;
@@ -63,8 +63,18 @@ export const Navbar = ({ user, userAcronym }: INavbarProps) => {
             </>
           ) : (
             <>
-              <a onClick={() => setToken(!token)}>Fazer Login</a>
-              <LinkStyle>Cadastrar</LinkStyle>
+              <a>
+                {" "}
+                <Link to={"/login"} className="link1">
+                  Fazer login
+                </Link>{" "}
+              </a>
+              <LinkStyle>
+                {" "}
+                <Link to={"/register"} className="link">
+                  Cadastrar
+                </Link>{" "}
+              </LinkStyle>
             </>
           )}
           {open && mockUser.is_seller ? (

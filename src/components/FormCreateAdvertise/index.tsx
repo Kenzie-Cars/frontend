@@ -10,8 +10,12 @@ import { CreateAdvertiseSchema } from "../../schemas/Advertises/CreateAdvertiseS
 import { RequestApiFIPE } from "../../Requests/RequestApiFIPE";
 import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
 
-export const FormCreateAdvertise = () => {
-  const [isOpen, setIsOpen] = useState(false);
+interface Iprops {
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const FormCreateAdvertise = ({ setIsOpen, isOpen }: Iprops) => {
   const [brands, setBrands] = useState([""]);
   const [brandValue, setBrandValue] = useState("");
   const [models, setModels] = useState<string[]>([""]);
@@ -22,6 +26,7 @@ export const FormCreateAdvertise = () => {
   const [fuelValue, setFuelValue] = useState("");
   const [FIPE, setFIPE] = useState<number>();
   const [inputImage, setInputImage] = useState([1, 2]);
+  const [isActive, setIsActive] = useState(true);
 
   useEffect(() => {
     async function ApiFIPE() {
@@ -42,7 +47,6 @@ export const FormCreateAdvertise = () => {
           const { data } = await RequestApiFIPE.get(`cars?brand=${brandValue}`);
           const name = data.map((car: any) => car.name);
           setModels(name);
-          setFIPE(0);
         } catch (error) {
           console.log(error);
         }
@@ -64,8 +68,6 @@ export const FormCreateAdvertise = () => {
           });
 
           setYears(Array(model[0].year));
-
-          setFIPE(0);
 
           if (model[0].fuel === 1) {
             setFuel(["Flex"]);
@@ -99,7 +101,61 @@ export const FormCreateAdvertise = () => {
   };
 
   const submitForm = async (data: IAdvertisementRequest) => {
-    console.log(data);
+    const token = localStorage.getItem("@userTokenKenzieKars");
+    const userId = localStorage.getItem("@userIdKenzieKars");
+
+    let {
+      FIPE_price,
+      brand,
+      color,
+      description,
+      fuel,
+      km,
+      model,
+      price,
+      year,
+      is_active,
+      is_goodSale,
+      cover_img,
+      ...rest
+    } = data;
+
+    is_active = isActive;
+
+    if (FIPE_price > price) {
+      is_goodSale = true;
+    } else {
+      is_goodSale = false;
+    }
+
+    const images = Array(rest);
+
+    let advertisement = {
+      brand,
+      color,
+      description,
+      fuel,
+      km,
+      model,
+      price,
+      year,
+      cover_img,
+      images: images,
+      userId,
+      is_goodSale,
+      is_active,
+    };
+
+    try {
+      await RequestApiKenzieKars.post("advertisements", advertisement, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setIsOpen(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -197,6 +253,35 @@ export const FormCreateAdvertise = () => {
           errors={errors?.description?.message}
         />
 
+        <div className="div--buttons">
+          <h3>Publicado</h3>
+          <Button
+            size={"2"}
+            hover={"hover2"}
+            background={""}
+            color={""}
+            onClick={() => {
+              setIsActive(true);
+            }}
+            border={"none"}
+            type={"button"}
+            text="Sim"
+          />
+
+          <Button
+            size={"2"}
+            hover={"hover1"}
+            background={"whiteFixed"}
+            color={"grey0"}
+            border={"1px solid grey7"}
+            onClick={() => {
+              setIsActive(false);
+            }}
+            type={"button"}
+            text="Não"
+          />
+        </div>
+
         <Input
           register={register}
           id="cover_img"
@@ -210,7 +295,7 @@ export const FormCreateAdvertise = () => {
           <Input
             register={register}
             key={input}
-            id={`${input}ImagemGaleria`}
+            id={`image${input}`}
             label={`${input}ª Imagem da Galeria`}
             type="text"
             placeholder={"Ex.: https://image.com"}

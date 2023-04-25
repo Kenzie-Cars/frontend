@@ -2,19 +2,21 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { Footer } from "../../components/Footer";
 import { Navbar } from "../../components/Navbar";
 import Button from "../../components/button";
 import { Input, Textarea } from "../../components/input";
 import { IUserRequest } from "../../interfaces/user";
 import { CreateUserSchema } from "../../schema/Users";
-import { Api } from "../../service";
 import { PageRegisterStyled } from "./style";
+import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
 
 const Register = () => {
   const [is_seller, setIs_seller] = useState(false);
   const navigate = useNavigate();
   const [user, setUser] = useState<IUserRequest | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -35,21 +37,32 @@ const Register = () => {
     resolver: yupResolver(CreateUserSchema),
   });
 
-  const userRegister = async (data: IUserRequest) => {
-    await Api.post("/users", data)
-      .then((response) => {
-        console.log(response.data);
-        setUser(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
+  const userRegister = async (
+    data: IUserRequest,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  ) => {
+    try {
+      setLoading(true);
+      const res = await RequestApiKenzieKars.post("users", data);
+      toast.success("Usuário criado com sucesso!", {
+        autoClose: 1500,
+      }),
+        navigate("/login");
+      setUser(res.data);
+    } catch (error) {
+      toast.error("Usuário já cadastrado", {
+        autoClose: 1500,
       });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const sendData = async (data: IUserRequest) => {
     data.is_seller = is_seller;
+    data.is_adm = false;
     console.log(data);
-    userRegister(data);
+    userRegister(data, setLoading);
   };
 
   return (
@@ -66,7 +79,7 @@ const Register = () => {
               id={"name"}
               placeholder="Digite seu nome"
               register={register}
-              error={name?.message}
+              errors={name?.message}
             />
 
             <Input
@@ -75,16 +88,16 @@ const Register = () => {
               id={"email"}
               placeholder="Digite seu email"
               register={register}
-              error={email?.message}
+              errors={email?.message}
             />
 
             <Input
               label={"cpf:"}
               type={"text"}
               id={"cpf"}
-              placeholder="123.456.789-10"
+              placeholder="000.000.00-00"
               register={register}
-              error={cpf?.message}
+              errors={cpf?.message}
             />
             <Input
               label={"celular:"}
@@ -92,14 +105,15 @@ const Register = () => {
               id={"phone"}
               placeholder="(DDD) 99999-9999"
               register={register}
-              error={phone?.message}
+              errors={phone?.message}
             />
             <Input
               label={"data de nascimento:"}
               type={"text"}
               id={"birthDate"}
               register={register}
-              error={birthDate?.message}
+              placeholder={"00/00/00"}
+              errors={birthDate?.message}
             />
             <Textarea
               id="description"
@@ -111,7 +125,7 @@ const Register = () => {
               register={register}
             />
 
-            <p className="info">informações de ndereço</p>
+            <p className="info">informações de endereço</p>
 
             <Input
               label={"cep:"}
@@ -119,7 +133,7 @@ const Register = () => {
               id={"address.cep"}
               placeholder={"12345-678"}
               register={register}
-              error={address?.cep?.message}
+              errors={address?.cep?.message}
             />
 
             <Input
@@ -128,7 +142,7 @@ const Register = () => {
               id={"address.state"}
               placeholder="Digite seu estado"
               register={register}
-              error={address?.state?.message}
+              errors={address?.state?.message}
             />
 
             <Input
@@ -137,7 +151,7 @@ const Register = () => {
               id={"address.city"}
               placeholder="Digite sua cidade"
               register={register}
-              error={address?.city?.message}
+              errors={address?.city?.message}
             />
 
             <Input
@@ -146,7 +160,7 @@ const Register = () => {
               id={"address.street"}
               placeholder="Digite o nome da rua"
               register={register}
-              error={address?.street?.message}
+              errors={address?.street?.message}
             />
 
             <Input
@@ -155,7 +169,7 @@ const Register = () => {
               id={"address.number"}
               placeholder="Digite o número"
               register={register}
-              error={address?.number?.message}
+              errors={address?.number?.message}
             />
 
             <Input
@@ -164,7 +178,7 @@ const Register = () => {
               id={"address.complement"}
               placeholder="Digite o número"
               register={register}
-              error={address?.complement?.message}
+              errors={address?.complement?.message}
             />
             <div className="div--buttons">
               <Button
@@ -200,7 +214,7 @@ const Register = () => {
               id={"password"}
               placeholder="Digitar senha"
               register={register}
-              error={password?.message}
+              errors={password?.message}
             />
 
             <Input
@@ -209,7 +223,7 @@ const Register = () => {
               id={"confirmPassword"}
               placeholder="Digitar senha"
               register={register}
-              error={confirmPassword?.message}
+              errors={confirmPassword?.message}
             />
 
             <div className="div--buttonSubmit">
@@ -219,8 +233,9 @@ const Register = () => {
                 background={""}
                 color={""}
                 border={""}
-                text={"Finalizar Cadastro"}
                 type={"submit"}
+                disabled={loading}
+                text={loading ? "Cadastrando..." : "Cadastrar"}
               />
             </div>
           </form>

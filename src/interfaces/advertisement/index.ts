@@ -8,8 +8,8 @@ export interface IAdvertisementRequest {
   FIPE_price: number;
   price: number;
   description: string;
-  //   //   is_good_sale: boolean;
-  //   is_active: boolean;
+  is_goodSale: boolean;
+  is_active: boolean;
   cover_img: string;
   images?: string[];
 }
@@ -22,7 +22,6 @@ export interface advertisementResponse {
   fuel: string;
   km: number;
   color: string;
-  FIPE_price: number;
   price: number;
   description: string;
   is_good_sale: boolean;

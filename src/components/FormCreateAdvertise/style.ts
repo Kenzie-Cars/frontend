@@ -20,7 +20,6 @@ export const FormRegisterAdvertiseStyle = styled.form`
   }
 
   & > h3 {
-    position: fixed;
     top: 100px;
     color: var(--grey0);
     font: var(--body-2-500);
@@ -29,7 +28,12 @@ export const FormRegisterAdvertiseStyle = styled.form`
   & > .inputContainer {
     display: flex;
     justify-content: space-between;
+    width: 100%;
     gap: 1rem;
+
+    & > select {
+      width: 50%;
+    }
   }
 
   & > button {

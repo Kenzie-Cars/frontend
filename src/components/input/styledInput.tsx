@@ -28,6 +28,16 @@ export const StyledInput = styled.div`
     border-color: var(--brand2);
     background-color: var(--grey8);
   }
+
+  input::placeholder {
+    font: var(--input-placeholder);
+  }
+
+  span {
+    align-self: flex-start;
+    color: var(--grey3);
+    font: var(--body-2-400);
+  }
 `;
 
 export const StyledTextarea = styled.div`
@@ -48,6 +58,10 @@ export const StyledTextarea = styled.div`
     font-size: 1rem;
     color: var(--grey1);
     font-weight: 600;
+  }
+
+  textarea::placeholder {
+    font: var(--input-placeholder);
   }
 
   label {

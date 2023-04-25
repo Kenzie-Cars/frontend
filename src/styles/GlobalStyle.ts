@@ -77,6 +77,7 @@ export default createGlobalStyle`
     font-family: 'Lexend', sans-serif;
     font-family: 'Inter', sans-serif;
     list-style: none;
+    text-decoration: none;
   }
   
   body,html{

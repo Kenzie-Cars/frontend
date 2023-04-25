@@ -125,6 +125,7 @@ interface iSelectProps {
   setSelect?: any;
   optionValues: string[];
   disabled?: boolean;
+  value?: string;
 }
 
 export const Select = ({
@@ -135,6 +136,7 @@ export const Select = ({
   setSelect,
   optionValues,
   disabled,
+  value,
   ...rest
 }: iSelectProps) => {
   return (
@@ -150,12 +152,17 @@ export const Select = ({
         <option key={label} value="">
           Selecione uma das opções
         </option>
-        {optionValues.length > 0 &&
+        {optionValues.length > 0 ? (
           optionValues.map((value, index) => (
             <option key={index} value={value}>
               {value}
             </option>
-          ))}
+          ))
+        ) : (
+          <option key={label} value="">
+            Selecione uma das opções
+          </option>
+        )}
       </select>
       <span>{errors}</span>
     </StyledSelect>
