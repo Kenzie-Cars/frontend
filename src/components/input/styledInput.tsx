@@ -1,91 +1,98 @@
 import styled from "styled-components";
 
 export const StyledInput = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 450px;
+  gap: 6px;
 
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 450px;
-    gap: 6px;
-    
-    input {
-       height : 50px;
-       border-radius: 4px;
-       border: solid 2px var(--grey6);
-       padding: 5px 15px;
-       font-size: 1rem;
-       color: var(--grey1);
-       font-weight: 600;
-       background-color: transparent;
-       
-    }
+  input {
+    height: 50px;
+    border-radius: 4px;
+    border: solid 2px var(--grey6);
+    padding: 5px 15px;
+    font-size: 1rem;
+    color: var(--grey1);
+    font-weight: 600;
+    background-color: transparent;
+  }
 
-    label {
-        color: var(--grey1);
-        font-weight: 600;
-        font-size: 1.1rem;
-    }
-    
-    input:hover{
-        border-color: var(--brand2);
-        background-color: var(--grey8);
-    }
-`
+  label {
+    color: var(--grey1);
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  input:hover {
+    border-color: var(--brand2);
+    background-color: var(--grey8);
+  }
+
+  input::placeholder {
+    font: var(--input-placeholder);
+  }
+
+  span {
+    align-self: flex-start;
+    color: var(--grey3);
+    font: var(--body-2-400);
+  }
+`;
 
 export const StyledTextarea = styled.div`
-    /* height: 200px; */
-    width: 100%;
-    max-width: 450px;
-    /* background-color: brown; */
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    position: relative;
+  /* height: 200px; */
+  width: 100%;
+  max-width: 450px;
+  /* background-color: brown; */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
 
-    textarea {
-       /* height : 150px; */
-       border-radius: 4px;
-       border: solid 2px var(--grey6);
-       padding: 10px;
-       font-size: 1rem;
-       color: var(--grey1);
-       font-weight: 600;
-    }
+  textarea {
+    /* height : 150px; */
+    border-radius: 4px;
+    border: solid 2px var(--grey6);
+    padding: 10px;
+    font-size: 1rem;
+    color: var(--grey1);
+    font-weight: 600;
+  }
 
-    label {
-        color: var(--grey1);
-        font-weight: 600;
-        font-size: 1.1rem;
-    }
+  label {
+    color: var(--grey1);
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
 
-    textarea:hover{
-        border-color: var(--brand2);
-    }
+  textarea:hover {
+    border-color: var(--brand2);
+  }
 
-    p {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
-        color: var(--grey1);
-    }
-
-`
+  p {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: var(--grey1);
+  }
+`;
 
 export const StyledSelect = styled.div`
-    width: 100%;
-    max-width: 450px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  width: 100%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 
-    label {
-        color: var(--grey1);
-        font-weight: 600;
-        font-size: 1.1rem;
-        font-weight: 600;
-    }
+  label {
+    color: var(--grey1);
+    font-weight: 600;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
 
-    .select {
+  /* .select {
         display: flex;
         flex-direction: column;
         position: relative;
@@ -96,26 +103,26 @@ export const StyledSelect = styled.div`
         font-size: 1rem;
         border-radius: 4px;
         border: 2px solid var(--grey6);
-        font-weight: 600;
-        /* position: absolute; */
-        top: 0;
+        font-weight: 600; */
+  /* position: absolute; */
+  /* top: 0;
         left: 0;
         width: 100%;
         outline: none;
         cursor: pointer;
-        }
+        } */
 
-        .options {
+  /* .options {
             position: absolute;
             top: 50px;
-            width: 100%;
-            /* background-color: brown; */
-            overflow: hidden;
+            width: 100%; */
+  /* background-color: brown; */
+  /* overflow: hidden;
             display: none;
             z-index: 5;
-            background-color: var(--grey10);
+            background-color: var(--grey10); */
 
-            div {
+  /* div {
             font-size: 1rem;
             padding: 10px;
             border-radius: 4px;
@@ -151,18 +158,18 @@ export const StyledSelect = styled.div`
             top: 25px;
             transform: rotate(-225deg);
         }
-    }
+    } */
 
-    select {
-        height: 50px;
-        font-size: 1rem;
-        font-weight: 600;
-        padding: 10px;
-        border-radius: 4px;
-        border: solid 2px var(--grey6);
-    }
+  select {
+    height: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 4px;
+    border: solid 2px var(--grey6);
+  }
 
-    select:hover {
-        border-color: var(--brand2);
-    }
-`
+  select:hover {
+    border-color: var(--brand2);
+  }
+`;

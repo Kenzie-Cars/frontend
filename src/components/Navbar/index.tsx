@@ -24,6 +24,10 @@ export const Navbar = ({ user, userAcronym }: INavbarProps) => {
     navigate("/");
   };
 
+  const myAdvertises = () => {
+    navigate("/detail");
+  };
+
   const logout = () => {
     setToken(!token);
     setOpen(!open);
@@ -77,7 +81,7 @@ export const Navbar = ({ user, userAcronym }: INavbarProps) => {
             <UlStyle is_open={open}>
               <li>Editar Perfil</li>
               <li>Editar Endereço</li>
-              <li>Meus Anúncios</li>
+              <li onClick={() => myAdvertises()}>Meus Anúncios</li>
               <li onClick={() => logout()}>Sair</li>
             </UlStyle>
           ) : (
