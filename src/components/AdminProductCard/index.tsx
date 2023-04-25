@@ -1,4 +1,5 @@
 import { IProductCard } from "../../interfaces/components/ProductCardComponent";
+import { IUserResponse } from "../../interfaces/user";
 import {
   CardContainer,
   AdvertiserCardContainer,
@@ -10,16 +11,16 @@ export const AdminProductCard = ({
   images,
   model,
   description,
-  user,
   year,
   km,
+  user,
   price,
   is_good_sale,
 }: IProductCard) => {
   return (
     <CardContainer discount={is_good_sale}>
       <div className="img-container">
-        <img src={images[0]["url"]} alt={images[0]["title"]} />
+        <img src={images[0]["url"]} alt={model} />
       </div>
 
       <h3>{model}</h3>
@@ -73,10 +74,10 @@ export const createAdminProductCard = (productData: IProductCard) => {
       description={productData.description}
       year={productData.year}
       price={productData.price}
-      user={productData.user}
       km={productData.km}
       is_good_sale={productData.is_good_sale}
       is_active={productData.is_active}
+      user={productData.user}
     />
   )
 }

@@ -1,22 +1,33 @@
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { StyledAdvertiserPageContainer, StyledAdvertisementsContainer, StyledBackgroundTop, StyledBackgroundBottom } from './styles'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createProductCard } from "../../components/ProductCard";
 import { createAdminProductCard } from "../../components/AdminProductCard";
 import { useParams } from "react-router-dom";
+import { Api } from "../../service";
 
 import Button from "../../components/button";
 import Modal from "../../components/Modal";
 
 import { mockAdvertiser, AdvertiserProductsArray } from "../../mocks/AdvertiserDetailPage";
+import { IUserResponse } from "../../interfaces/user";
+import { IProductCard } from "../../interfaces/components/ProductCardComponent";
 
 export const AdvertiserPage = () => {
 
     const [userState, setUserState] = useState(mockAdvertiser)
-    const [userProductsState, setUserProductsState] = useState(AdvertiserProductsArray)
+    const [advertiser, setAdvertiser] = useState(mockAdvertiser)  
 
     const { id } = useParams()
+
+     useEffect(() => {
+         const fetchAdvertisements = async () => {
+             const response = await Api.get(`/users/${id}`)
+             setAdvertiser(response.data)
+         }
+         fetchAdvertisements()
+     }, [])
 
     const test = () => {
         console.log('abrir modal')
@@ -41,7 +52,7 @@ export const AdvertiserPage = () => {
 
                     <StyledAdvertisementsContainer className="Advertisements-container">
                         <h3>Anúncios</h3>
-                        <div className="ProductCard-container">{userProductsState.map((product) => createProductCard(product, userState.id))}</div>
+                        <div className="ProductCard-container">{advertiser.advertisements.map((product) => createProductCard(product, userState.id))}</div>
                     </StyledAdvertisementsContainer>
                 </StyledAdvertiserPageContainer>
             </StyledBackgroundBottom>
@@ -78,7 +89,7 @@ export const AdvertiserPage = () => {
 
                     <StyledAdvertisementsContainer className="Advertisements-container">
                         <h3>Anúncios</h3>
-                        <div className="ProductCard-container">{userProductsState.map((product) => createAdminProductCard(product))}</div>
+                        <div className="ProductCard-container">{advertiser.advertisements.map((product) => createAdminProductCard(product))}</div>
                     </StyledAdvertisementsContainer>
                 </StyledAdvertiserPageContainer>
             </StyledBackgroundBottom>

@@ -1,14 +1,17 @@
+import { IAddressResquest } from "../address"
+import { advertisementResponse } from "../advertisement"
+
 export interface IUserRequest {
     name: string
     email: string
     cpf: string
     phone: string
-    birthdate: Date
+    birthDate: string
     description: string
     password: string
-    is_adm?: boolean
-    is_active?: boolean
-    is_seller: boolean
+    confirmPassword: string
+    is_seller?: boolean
+    address: IAddressResquest
 }
 
 export interface IUserResponse {
@@ -17,7 +20,7 @@ export interface IUserResponse {
     email: string
     cpf: string
     phone: string
-    birthdate: Date
+    birthDate: Date
     description: string
     password: string
     is_adm: boolean
@@ -25,6 +28,7 @@ export interface IUserResponse {
     is_seller: boolean
     created_at: Date
     updated_at: Date
+    advertisements: advertisementResponse[]
 }
 
 

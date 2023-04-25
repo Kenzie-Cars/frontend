@@ -83,14 +83,30 @@ export const NavbarStyle = styled.nav<INavbarProps>`
   background-color: var(--grey10);
   border-bottom: solid 2px var(--grey6);
   gap: 1rem;
-
+  
+  
   & > :nth-child(1) {
     font: var(--body-1-600);
-    color: var(--grey2);
     padding-left: 18px;
     min-width: 108px;
+    width: 131px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+    .link1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: inherit;
+    height: inherit;
+    color: var(--brand2);
   }
 
+  }
+  
   .logged {
     display: flex;
     align-items: center;
@@ -98,25 +114,26 @@ export const NavbarStyle = styled.nav<INavbarProps>`
     width: fit-content;
     padding-right: 18px;
     cursor: pointer;
-
+    
     & > p {
       color: var(--grey2);
       font: var(--body-1-400);
     }
   }
-
+  
   .acronym {
     background-color: var(--brand2);
     padding: 10px;
     border-radius: 200px;
-
+    
     & > p {
       color: var(--grey10);
       width: max-content;
       font: 700 14px "Inter";
+      
     }
   }
-
+  
   @media (min-width: 425px) {
     display: ${(props) => (props.is_active ? "none" : "flex")};
     flex-direction: ${(props) => (props.is_token ? "row-reverse" : "row")};
@@ -139,16 +156,16 @@ export const NavbarStyle = styled.nav<INavbarProps>`
     border-left: solid 2px var(--grey6);
     padding: 0 30px;
     gap: 2rem;
-
+    
     & > :nth-child(1) {
       cursor: pointer;
     }
-
+    
     .logged {
       cursor: pointer;
     }
   }
-`;
+  `;
 
 export const LinkStyle = styled.a`
   display: flex;
@@ -161,11 +178,27 @@ export const LinkStyle = styled.a`
   border: 1.5px solid var(--grey4);
   border-radius: 4px;
   background-color: var(--whiteFixed);
-
+  text-decoration: none;
+  font: var(--button-medium-text);
+  
+  
+  .link{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--grey0);
+    width: inherit;
+    height: inherit;
+    
+  }
+ 
+  
+  
+  
   @media (min-width: 425px) {
     width: 133px;
     margin: 0;
-
+    
     @media (min-width: 768px) {
       :hover {
         background-color: var(--grey7);
@@ -173,7 +206,7 @@ export const LinkStyle = styled.a`
       }
     }
   }
-`;
+  `;
 
 export const UlStyle = styled.ul<IUlProps>`
   position: fixed;
@@ -185,7 +218,7 @@ export const UlStyle = styled.ul<IUlProps>`
   border-bottom: solid 2px var(--grey6);
   background-color: var(--grey10);
   z-index: 4;
-
+  
   & > li {
     display: flex;
     align-items: center;
@@ -193,17 +226,17 @@ export const UlStyle = styled.ul<IUlProps>`
     color: var(--grey2);
     font: var(--body-1-400);
   }
-
+  
   @media (min-width: 768px) {
     top: 75px;
-
+    
     & > li {
       width: 248px;
       cursor: pointer;
-
+      
       :hover {
         background-color: var(--grey7);
       }
     }
   }
-`;
+  `;
