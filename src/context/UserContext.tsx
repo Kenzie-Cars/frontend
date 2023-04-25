@@ -1,15 +1,15 @@
 import { ReactNode, createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { IUserLogin } from "../interfaces/user";
+import { IUserLogin, IUserResponse } from "../interfaces/user";
 import { IUserRequest } from "../interfaces/user";
 import { RequestApiKenzieKars } from "../Requests/RequestApiKenzieKars";
 
 export const UserContext = createContext({} as IUserContext);
 
 interface IUserContext {
-  user: IUserRequest | null;
-  setUser: React.Dispatch<React.SetStateAction<IUserRequest | null>>;
+  user: IUserResponse | null;
+  setUser: React.Dispatch<React.SetStateAction<IUserResponse | null>>;
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   userRegister: (
@@ -27,7 +27,7 @@ interface IUserProviderProps {
 }
 
 export const UserProvider = ({ children }: IUserProviderProps) => {
-  const [user, setUser] = useState<IUserRequest | null>(null);
+  const [user, setUser] = useState<IUserResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 

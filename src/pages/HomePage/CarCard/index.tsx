@@ -7,17 +7,17 @@ import { useNavigate } from "react-router-dom";
 export const CarCard = ({ advertisement }: any) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const acronym = advertisement.user.name.includes(" ")
-    ? (
-        advertisement.user.name.split(" ")[0][0] +
-        "" +
-        advertisement.user.name.split(" ")[1][0]
-      ).toUpperCase()
-    : (
-        advertisement.user.name.split(" ")[0][0] +
-        "" +
-        advertisement.user.name.split(" ")[0][1]
-      ).toUpperCase();
+  // const acronym = advertisement.user.name.includes(" ")
+  //   ? (
+  //       advertisement.user.name.split(" ")[0][0] +
+  //       "" +
+  //       advertisement.user.name.split(" ")[1][0]
+  //     ).toUpperCase()
+  //   : (
+  //       advertisement.user.name.split(" ")[0][0] +
+  //       "" +
+  //       advertisement.user.name.split(" ")[0][1]
+  //     ).toUpperCase();
 
   const navigate = useNavigate();
 

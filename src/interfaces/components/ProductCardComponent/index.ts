@@ -4,13 +4,19 @@ import {IUserResponse} from '../../user/index'
 
 export interface IProductCard {
     id: string
-    images: imagesResponse[]
+    images: {
+        id: string
+        url: string
+    }[]
+    user: {
+        name: string,
+        id: string
+    }
     model: string
     description: string
-    user: IUserResponse
-    year: number
+    year: string
     km: number
-    price: number
+    price: string
     is_good_sale: boolean
     is_active: boolean
 }

@@ -4,13 +4,14 @@ import {
   CardContainer,
   AdvertiserCardContainer,
 } from "../styles/components/productCard";
+import { IUserResponse } from "../interfaces/user";
 
 export const ProductCard = ({
   images,
   model,
   description,
-  user,
   year,
+  user,
   km,
   price,
   is_good_sale,
@@ -18,7 +19,7 @@ export const ProductCard = ({
   return (
     <CardContainer discount={is_good_sale}>
       <div className="img-container">
-        <img src={images[0]["url"]} alt={images[0]["title"]} />
+        <img src={images[0]["url"]} alt={model} />
         <small className="discount-badge">$</small>
       </div>
 
@@ -27,7 +28,7 @@ export const ProductCard = ({
       <p className="description">{description}</p>
 
       <div className="advertiser-info">
-        <span>{user.name[0]}</span>
+        <span>{user.name}</span>
         <p>{user["name"]}</p>
       </div>
 
@@ -47,9 +48,9 @@ export const AdvertiserProductCard = ({
   images,
   model,
   description,
-  user,
   year,
   km,
+  user,
   price,
   is_good_sale,
   is_active,
@@ -60,7 +61,7 @@ export const AdvertiserProductCard = ({
         <small className="active-badge">
           {is_active ? "Ativo" : "Inativo"}
         </small>
-        <img src={images[0]["url"]} alt={images[0]["title"]} />
+        <img src={images[0]["url"]} alt={model} />
         <small className="discount-badge">$</small>
       </div>
 
@@ -69,7 +70,7 @@ export const AdvertiserProductCard = ({
       <p className="description">{description}</p>
 
       <div className="advertiser-info">
-        <span>{user.name[0]}</span>
+        <span>{user.name}</span>
         <p>{user["name"]}</p>
       </div>
 
@@ -85,8 +86,8 @@ export const AdvertiserProductCard = ({
   );
 };
 
-export function createProductCard(productData: IProductCard, userId: string) {
-  return userId === productData.user.id ? (
+export function createProductCard(productData: IProductCard, currentUserId: string) {
+  return currentUserId === productData.user.id ? (
     <AdvertiserProductCard
       id={productData.id}
       key={productData.id}
