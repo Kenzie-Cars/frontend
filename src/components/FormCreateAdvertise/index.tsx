@@ -6,7 +6,7 @@ import Button from "../button";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { IAdvertisementRequest } from "../../interfaces/advertisement";
-import { CreateAdvertiseSchema } from "../../schemas/Advertises/CreateAdvertiseSchema";
+import { CreateAdvertiseSchema } from "../../schema/CreateAdvertiseSchema";
 import { RequestApiFIPE } from "../../Requests/RequestApiFIPE";
 import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
 

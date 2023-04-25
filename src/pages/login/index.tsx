@@ -68,6 +68,7 @@ export const Login = () => {
               type="email"
               register={register}
               errors={email?.message}
+              placeholder="Email"
             />
 
             <Input
@@ -76,10 +77,18 @@ export const Login = () => {
               type="password"
               register={register}
               errors={password?.message}
+              placeholder="Password"
             />
 
             <p className="esqueci">Esqueci minha senha</p>
-            <Button background="brand1" size="5" hover="hover1" text="Entrar" />
+            <Button
+              background="brand1"
+              size="5"
+              hover="hover1"
+              text="Entrar"
+              border="none"
+              color="grey8"
+            />
             <p className="text2">Esqueci minha senha</p>
             <Button
               background="grey8"

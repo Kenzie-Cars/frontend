@@ -9,26 +9,20 @@ export const PageLoginStyled = styled.main`
 
     .container {
         margin: 40px 0px 0px 0px; 
-        /* padding-top: 50px; */
         height: 80vh;
         width: 100%;
         background-color: var(--grey7);
-        
-        /* min-height: 500px; */
         max-width: 450px;
         display: flex;
         justify-content: center;
         align-items: center;
         
-
         @media (max-height: 800px) {
             margin: 100px 0px 60px 0px; 
-
         }
     }
 
     form {
-        /* border: 2px solid red; */
         border-radius: 8px;
         background-color: var(--grey10);
         width: 90%;
@@ -49,7 +43,6 @@ export const PageLoginStyled = styled.main`
         }
 
         .esqueci {
-            /* align-self: flex-end; */
             margin: -16px 32px 0px auto;
             color: var(--grey2);
             font-weight: 500;
@@ -64,7 +57,6 @@ export const PageLoginStyled = styled.main`
             color: var(--brand2);
         }
         
-
     }
 
 `
