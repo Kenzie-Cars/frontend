@@ -4,8 +4,20 @@ import { CarImg } from "../../../components/Modal/style";
 import { StyledCard } from "../../../styles/CarsContainer";
 import { useNavigate } from "react-router-dom";
 
-export const CarCard = ({ car }: any) => {
+export const CarCard = ({ advertisement }: any) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  // const acronym = advertisement.user.name.includes(" ")
+  //   ? (
+  //       advertisement.user.name.split(" ")[0][0] +
+  //       "" +
+  //       advertisement.user.name.split(" ")[1][0]
+  //     ).toUpperCase()
+  //   : (
+  //       advertisement.user.name.split(" ")[0][0] +
+  //       "" +
+  //       advertisement.user.name.split(" ")[0][1]
+  //     ).toUpperCase();
 
   const navigate = useNavigate();
 
@@ -20,21 +32,26 @@ export const CarCard = ({ car }: any) => {
   return (
     <StyledCard onClick={() => advertise()}>
       <div className="imgContainer">
-        <img src={car.images[0]} alt={car.model} onClick={openModal} />
+        <img
+          src={advertisement.images[0]}
+          alt={advertisement.model}
+          onClick={openModal}
+        />
       </div>
       <h2>
-        {car.brand} - {car.model}
+        {advertisement.brand} - {advertisement.model}
       </h2>
-      <p className="cardDescription">{car.description}</p>
+      <p className="cardDescription">{advertisement.description}</p>
       <div className="advertiserInfo">
-        <p>SL</p>Samuel Leão
+        <p>{acronym}</p>
+        {advertisement.user.name}
       </div>
       <div className="carInfo">
         <div>
-          <p>{car.km} KM</p>
-          <p>{car.year}</p>
+          <p>{advertisement.km} KM</p>
+          <p>{advertisement.year}</p>
         </div>
-        <h3>R$ {car.price}</h3>
+        <h3>R$ {advertisement.price}</h3>
       </div>
 
       {isOpen && (
@@ -44,7 +61,7 @@ export const CarCard = ({ car }: any) => {
           isOpen={false}
         >
           <CarImg>
-            <img src={car.images[0]} alt={car.model} />
+            <img src={advertisement.images[0]} alt={advertisement.model} />
           </CarImg>
         </Modal>
       )}

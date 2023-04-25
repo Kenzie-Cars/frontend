@@ -6,11 +6,12 @@ import { StyledBackgroundImg, StyledHomeContainer } from "./style";
 import { Filter } from "./Filter";
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
-import { useNavigate } from "react-router-dom";
+import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
 
 export const HomePage = () => {
   const [filter, setFilter] = useState(true);
   const [win, setWin] = useState(window.innerWidth <= 400 ? true : false);
+  const [advertisements, setAdvertisements] = useState([]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -22,6 +23,18 @@ export const HomePage = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [window.innerWidth]);
+
+  useEffect(() => {
+    const getAdvertisements = async () => {
+      try {
+        const { data } = await RequestApiKenzieKars.get("advertisements");
+        setAdvertisements(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getAdvertisements();
+  }, []);
 
   return (
     <>
@@ -43,8 +56,8 @@ export const HomePage = () => {
         <div className="bodyContainer">
           <div className="cardContainer">
             <StyledCarsContainer>
-              {carsInfo.map((car) => (
-                <CarCard key={car.model} car={car} />
+              {advertisements.map((advertisement, index) => (
+                <CarCard key={index} advertisement={advertisement} />
               ))}
             </StyledCarsContainer>
           </div>

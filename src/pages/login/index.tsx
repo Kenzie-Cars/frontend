@@ -1,98 +1,88 @@
-import { PageLoginStyled } from "./styled"
-import { Input } from "../../components/input"
-import Button from "../../components/button"
-import * as yup from 'yup'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { useForm } from "react-hook-form"
-import { Api } from "../../service"
-import { useNavigate } from "react-router-dom"
-import { Footer } from "../../components/Footer"
-import { Navbar } from "../../components/Navbar"
-import { Select } from "../../components/input"
-
-interface IUserLogin {
-    email: string
-    password: string
-}
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { Footer } from "../../components/Footer";
+import { Navbar } from "../../components/Navbar";
+import Button from "../../components/button";
+import { Input } from "../../components/input";
+import { UserContext } from "../../context/UserContext";
+import { PageLoginStyled } from "./styled";
+import { IUserLogin } from "../../interfaces/user";
 
 const schema = yup.object({
-    email: yup.string().email('Deve ser um email valido').required('Insira seu email'),
-    password: yup.string().required('Insira sua senha')
-})
-
+  email: yup
+    .string()
+    .email("Deve ser um email valido")
+    .required("Insira seu email"),
+  password: yup.string().required("Insira sua senha"),
+});
 
 export const Login = () => {
+  const { userlogin } = useContext(UserContext);
+  const [loading, setLoading] = useState(false);
 
-    const { register, handleSubmit, formState: { errors: { email, password } } } = useForm<IUserLogin>({
-        resolver: yupResolver(schema)
-    })
+  const {
+    register,
+    handleSubmit,
+    formState: {
+      errors: { email, password },
+    },
+  } = useForm<IUserLogin>({
+    resolver: yupResolver(schema),
+  });
 
-    const print = (data: IUserLogin) => {
-        console.log(data)
-    }
+  const onSubmit = async (data: IUserLogin) => {
+    userlogin(data, setLoading);
+  };
 
-    // Importa para o context
-    //============================\\
-    const navigate = useNavigate()
+  return (
+    <>
+      <Navbar />
+      <PageLoginStyled>
+        <section className="container">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <h1>Login</h1>
+            <Input
+              id="email"
+              label="Usuário"
+              type="email"
+              register={register}
+              errors={email?.message}
+              placeholder="Digitar email"
+            />
 
-    const login = async (userData: IUserLogin) => {
-        console.log(userData)
-        await Api.post('/login', userData)
-            .then((response) => {
-                localStorage.setItem('userToken', response.data.token)
-                navigate('/');
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-    }
-    // ===========================\\
+            <Input
+              id="password"
+              label="Senha"
+              type="password"
+              register={register}
+              errors={password?.message}
+              placeholder="Digitar senha"
+            />
 
-    return (
-        <>
-            <Navbar />
-            <PageLoginStyled>
-                <section className="container">
-                    <form onSubmit={handleSubmit(login)}>
-                        <h1>Login</h1>
-                        <Input
-                            id="name"
-                            label="Usuário"
-                            type="email"
-                            register={register}
-                            errors={email?.message}
-                            inputField={'email'}
-                        />
-
-                        <Input
-                            id="name"
-                            label="Senha"
-                            type="text"
-                            register={register}
-                            errors={password?.message}
-                            inputField='password'
-                        />
-
-                        <p className="esqueci">Esqueci minha senha</p>
-                        <Button
-                            background="brand1"
-                            size="5"
-                            hover="hover1"
-                            text="Entrar"
-                        />
-                        <p className="text2">Esqueci minha senha</p>
-                        <Button
-                            background="grey8"
-                            size="5"
-                            hover="hover2"
-                            text="Entrar"
-                            border="solid 2px var(--grey5)"
-                            color="grey2"
-                        />
-                    </form>
-                </section>
-            </PageLoginStyled>
-            <Footer />
-        </>
-    )
-}
+            <p className="esqueci">Esqueci minha senha</p>
+            <Button
+              background="brand1"
+              size="5"
+              hover="hover1"
+              text="Entrar"
+              border="none"
+              color="grey8"
+            />
+            <p className="text2">Esqueci minha senha</p>
+            <Button
+              background="grey8"
+              size="5"
+              hover="hover2"
+              text="Entrar"
+              border="solid 2px var(--grey5)"
+              color="grey2"
+            />
+          </form>
+        </section>
+      </PageLoginStyled>
+      <Footer />
+    </>
+  );
+};

@@ -1,11 +1,19 @@
 export interface imagesRequest {
-    url: string
-    title: string
+  image1?: string;
+  image2?: string;
+  image3?: string;
+  image4?: string;
+  image5?: string;
+  image6?: string;
 }
 
 export interface imagesResponse {
-    id: string
-    url: string
-    title: string
-    advertisement_id: string
+  id: string;
+  image1?: string;
+  image2?: string;
+  image3?: string;
+  image4?: string;
+  image5?: string;
+  image6?: string;
+  advertisement_id: string;
 }

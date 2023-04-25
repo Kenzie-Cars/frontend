@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Advertise } from "../pages/Advertise";
+import { DetailsAdvertise } from "../pages/DetailsAdvertise";
 import { HomePage } from "../pages/HomePage";
 import Register from "../pages/Register";
 import { Login } from "../pages/login";
@@ -13,6 +14,7 @@ export const AllRoutes = () => {
       <Route path="/profile/:id" element={<AdvertiserPage />} />
       {/* <Route path="/advertise" element={<Advertise />} /> */}
       <Route path="/register" element={<Register />} />
+      <Route path="/detail" element={<DetailsAdvertise />} />
     </Routes>
   );
 };
