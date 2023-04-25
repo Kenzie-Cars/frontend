@@ -19,6 +19,7 @@ const CreateUserSchema: any = yup.object().shape({
     .required("Confirmar senha obrigatório")
     .oneOf([yup.ref("password")], "Senha não confere"),
   is_seller: yup.boolean().required("Escolha uma opção").default(false),
+  is_adm: yup.boolean().optional().default(false),
   address: yup.object().shape({
     cep: yup.string().required("CEP obrigatório"),
     state: yup.string().required("Estado obrigatório"),

@@ -54,14 +54,16 @@ export const Login = () => {
               type="email"
               register={register}
               error={email?.message}
+              placeholder="Digitar email"
             />
 
             <Input
               id="password"
               label="Senha"
-              type="text"
+              type="password"
               register={register}
               error={password?.message}
+              placeholder="Digitar senha"
             />
 
             <p className="esqueci">Esqueci minha senha</p>
@@ -70,8 +72,8 @@ export const Login = () => {
               size="5"
               hover="hover1"
               text="Entrar"
-              color={""}
-              border={""}
+              border="none"
+              color="grey8"
             />
             <p className="text2">Esqueci minha senha</p>
             <Button

@@ -5,14 +5,13 @@ import { Footer } from "../../components/Footer";
 import { Navbar } from "../../components/Navbar";
 import Button from "../../components/button";
 import { Input, Textarea } from "../../components/input";
+import { UserContext } from "../../context/UserContext";
 import { IUserRequest } from "../../interfaces/user";
 import { CreateUserSchema } from "../../schema/Users";
 import { PageRegisterStyled } from "./style";
-import { UserContext } from "../../context/UserContext";
 
 const Register = () => {
-
-  const {userRegister } = useContext(UserContext)
+  const { userRegister } = useContext(UserContext);
 
   const [is_seller, setIs_seller] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -80,7 +79,7 @@ const Register = () => {
               label={"celular:"}
               type={"text"}
               id={"phone"}
-              placeholder="(DDD) 99999-9999"
+              placeholder="(DDD) 90000-0000"
               register={register}
               error={phone?.message}
             />
@@ -89,7 +88,7 @@ const Register = () => {
               type={"text"}
               id={"birthDate"}
               register={register}
-              placeholder={"00/00/00"}
+              placeholder={"00/00/0000"}
               error={birthDate?.message}
             />
             <Textarea
@@ -102,7 +101,7 @@ const Register = () => {
               register={register}
             />
 
-            <p className="info">informações de ndereço</p>
+            <p className="info">Informações de Endereço</p>
 
             <Input
               label={"cep:"}
@@ -205,7 +204,7 @@ const Register = () => {
 
             <div className="div--buttonSubmit">
               <Button
-                size={"4"}
+                size={"5"}
                 hover={"hover1"}
                 background={""}
                 color={""}
