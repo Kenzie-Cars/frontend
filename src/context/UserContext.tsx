@@ -1,9 +1,9 @@
 import { ReactNode, createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { IUserLogin } from "../interfaces/components";
+import { IUserLogin } from "../interfaces/user";
 import { IUserRequest } from "../interfaces/user";
-import { Api } from "../service";
+import { RequestApiKenzieKars } from "../Requests/RequestApiKenzieKars";
 
 export const UserContext = createContext({} as IUserContext);
 
@@ -14,11 +14,11 @@ interface IUserContext {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   userRegister: (
     data: IUserRequest,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
   ) => void;
   userlogin: (
     userData: IUserLogin,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
   ) => void;
 }
 
@@ -33,11 +33,11 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
 
   const userRegister = async (
     data: IUserRequest,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>
-  ) => {git 
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  ) => {
     try {
       setLoading(true);
-      const res = await Api.post("/users", data);
+      const res = await RequestApiKenzieKars.post("/users", data);
       toast.success("Usuário criado com sucesso!", {
         autoClose: 1500,
       }),
@@ -52,18 +52,17 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     }
   };
 
-  const userlogin = async (
-    userData: IUserLogin) => {
+  const userlogin = async (userData: IUserLogin) => {
     console.log(userData);
 
     try {
       setLoading(true);
-      const res = await Api.post("/login", userData);
+      const res = await RequestApiKenzieKars.post("/login", userData);
       toast.success("Login feito sucesso", {
         autoClose: 1500,
       });
-      localStorage.setItem("@TOKEN", res.data.token);
-      localStorage.setItem("@user_id", res.data.user.id);
+      localStorage.setItem("@userTokenKenzieKars", res.data.token);
+      localStorage.setItem("@userIdKenzieKars", res.data.user.id);
       setUser(res.data.user);
       navigate("/");
     } catch (error) {

@@ -14,40 +14,40 @@ export const Filter = ({ carsInfo, setFilter }: any) => {
           <li>
             <h3>Marca</h3>
             <ul className="lists">
-              {carsInfo.map((car: { brand: string }) => (
-                <li>{car.brand}</li>
+              {carsInfo.map((car: { brand: string }, index: number) => (
+                <li key={index}>{car.brand}</li>
               ))}
             </ul>
           </li>
           <li>
             <h3>Modelo</h3>
             <ul className="lists">
-              {carsInfo.map((car: { model: string }) => (
-                <li>{car.model}</li>
+              {carsInfo.map((car: { model: string }, index: number) => (
+                <li key={index}>{car.model}</li>
               ))}
             </ul>
           </li>
           <li>
             <h3>Cor</h3>
             <ul className="lists">
-              {carsInfo.map((car: { color: string }) => (
-                <li>{car.color}</li>
+              {carsInfo.map((car: { color: string }, index: number) => (
+                <li key={index}>{car.color}</li>
               ))}
             </ul>
           </li>
           <li>
             <h3>Ano</h3>
             <ul className="lists">
-              {carsInfo.map((car: { year: string }) => (
-                <li>{car.year}</li>
+              {carsInfo.map((car: { year: string }, index: number) => (
+                <li key={index}>{car.year}</li>
               ))}
             </ul>
           </li>
           <li>
             <h3>Combustivel</h3>
             <ul className="lists">
-              {carsInfo.map((car: { fuel: string }) => (
-                <li>{car.fuel}</li>
+              {carsInfo.map((car: { fuel: string }, index: number) => (
+                <li key={index}>{car.fuel}</li>
               ))}
             </ul>
           </li>

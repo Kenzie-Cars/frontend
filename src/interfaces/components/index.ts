@@ -1,5 +1,3 @@
-import { FieldErrors, UseFormRegister } from "react-hook-form";
-
 export interface IButton {
   size: "1" | "2" | "3" | "4" | "5";
   hover: string;
