@@ -1,13 +1,13 @@
-import { PageLoginStyled } from "./styled";
-import { Input } from "../../components/input";
-import Button from "../../components/button";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import * as yup from "yup";
 import { Footer } from "../../components/Footer";
 import { Navbar } from "../../components/Navbar";
-import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
+import Button from "../../components/button";
+import { Input } from "../../components/input";
+import { UserContext } from "../../context/UserContext";
+import { PageLoginStyled } from "./styled";
 
 interface IUserLogin {
   email: string;
@@ -23,6 +23,9 @@ const schema = yup.object({
 });
 
 export const Login = () => {
+  const { userlogin } = useContext(UserContext);
+  const [loading, setLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -33,42 +36,24 @@ export const Login = () => {
     resolver: yupResolver(schema),
   });
 
-  const print = (data: IUserLogin) => {
-    console.log(data);
+  const onSubmit = async (data: IUserLogin) => {
+    userlogin(data, setLoading);
   };
-
-  // Importa para o context
-  //============================\\
-  const navigate = useNavigate();
-
-  const login = async (userData: IUserLogin) => {
-    console.log(userData);
-    await RequestApiKenzieKars.post("login", userData)
-      .then((response) => {
-        localStorage.setItem("@userTokenKenzieKars", response.data.token);
-        localStorage.setItem("@userIdKenzieKars", response.data.user.id);
-        navigate("/");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-  // ===========================\\
 
   return (
     <>
       <Navbar />
       <PageLoginStyled>
         <section className="container">
-          <form onSubmit={handleSubmit(login)}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <h1>Login</h1>
             <Input
               id="email"
               label="Usuário"
               type="email"
               register={register}
-              errors={email?.message}
-              placeholder="Email"
+              error={email?.message}
+              placeholder="Digitar email"
             />
 
             <Input
@@ -76,8 +61,8 @@ export const Login = () => {
               label="Senha"
               type="password"
               register={register}
-              errors={password?.message}
-              placeholder="Password"
+              error={password?.message}
+              placeholder="Digitar senha"
             />
 
             <p className="esqueci">Esqueci minha senha</p>
