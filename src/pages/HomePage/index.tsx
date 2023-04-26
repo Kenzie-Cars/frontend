@@ -7,11 +7,13 @@ import { Filter } from "./Filter";
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
+import { FormUpdateAdress } from "../../components/FormUpdateAdress";
 
 export const HomePage = () => {
   const [filter, setFilter] = useState(true);
   const [win, setWin] = useState(window.innerWidth <= 400 ? true : false);
   const [advertisements, setAdvertisements] = useState([]);
+  const [isOpen, setIsOpen] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
@@ -39,6 +41,7 @@ export const HomePage = () => {
   return (
     <>
       <Navbar />
+      <FormUpdateAdress isOpen={isOpen} setIsOpen={setIsOpen} />
       <StyledHomeContainer>
         <StyledBackgroundImg>
           <div className="textBackgroundImg">

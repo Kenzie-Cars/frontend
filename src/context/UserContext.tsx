@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { IUserLogin, IUserResponse } from "../interfaces/user";
@@ -30,6 +30,28 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   const [user, setUser] = useState<IUserResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const loadUser = async () => {
+      const token = localStorage.getItem("@userTokenKenzieKars");
+      const id = localStorage.getItem("@userIdKenzieKars");
+      if (token) {
+        try {
+          setLoading(true);
+          RequestApiKenzieKars.defaults.headers.common.Authorization = `Bearer ${token}`;
+
+          const { data } = await RequestApiKenzieKars.get(`users/${id}`);
+          setUser(data);
+        } catch (error) {
+          console.log(error);
+          localStorage.removeItem("@userTokenKenzieKars");
+          localStorage.removeItem("@userIdKenzieKars");
+        }
+        setLoading(false);
+      }
+    };
+    loadUser();
+  }, []);
 
   const userRegister = async (
     data: IUserRequest,

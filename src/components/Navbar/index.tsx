@@ -5,10 +5,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { mockUser } from "../../mocks/productCard";
 import { HeaderStyle, LinkStyle, NavbarStyle, UlStyle } from "./style";
 import { UserContext } from "../../context/UserContext";
+import { FormUpdateAdress } from "../FormUpdateAdress";
 
 export const Navbar = () => {
   const [active, setActive] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const { user } = useContext(UserContext);
 
   const acronym = user?.name.includes(" ")
@@ -35,7 +36,11 @@ export const Navbar = () => {
     navigate("/");
   };
 
-  const userId = localStorage.getItem('@userIdKenzieKars')
+  const userId = localStorage.getItem("@userIdKenzieKars");
+
+  const editAdress = () => {
+    return <FormUpdateAdress isOpen={isOpen} setIsOpen={setIsOpen} />;
+  };
 
   const myAdvertises = () => {
     navigate(`/profile/${userId}`);
@@ -44,7 +49,7 @@ export const Navbar = () => {
   const logout = () => {
     localStorage.removeItem("@userTokenKenzieKars");
     localStorage.removeItem("@userIdKenzieKars");
-    setOpen(!open);
+    setIsOpen(!open);
   };
 
   return (
@@ -68,7 +73,7 @@ export const Navbar = () => {
         <NavbarStyle is_active={active} is_token={token}>
           {token ? (
             <>
-              <div className="logged" onClick={() => setOpen(!open)}>
+              <div className="logged" onClick={() => setIsOpen(!isOpen)}>
                 <div className="acronym">
                   <p>{acronym && acronym}</p>
                 </div>
@@ -91,17 +96,17 @@ export const Navbar = () => {
               </LinkStyle>
             </>
           )}
-          {open && mockUser.is_seller ? (
-            <UlStyle is_open={open}>
+          {isOpen && mockUser.is_seller ? (
+            <UlStyle is_open={isOpen}>
               <li>Editar Perfil</li>
               <li>Editar Endereço</li>
               <li onClick={() => myAdvertises()}>Meus Anúncios</li>
               <li onClick={() => logout()}>Sair</li>
             </UlStyle>
           ) : (
-            <UlStyle is_open={open}>
+            <UlStyle is_open={isOpen}>
               <li>Editar Perfil</li>
-              <li>Editar Endereço</li>
+              <li onClick={() => editAdress()}>Editar Endereço</li>
               <li onClick={() => logout()}>Sair</li>
             </UlStyle>
           )}
