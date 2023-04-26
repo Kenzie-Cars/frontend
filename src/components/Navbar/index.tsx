@@ -53,7 +53,7 @@ export const Navbar = () => {
         <div>
           <img
             onClick={() => home()}
-            src="./src/assets/Logo Header.png"
+            src="http://127.0.0.1:5173/src/assets/Logo%20Header.png"
             alt="Logo Motors Shop"
           />
           <GiHamburgerMenu

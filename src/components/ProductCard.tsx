@@ -6,6 +6,22 @@ import {
 } from "../styles/components/productCard";
 import { IUserResponse } from "../interfaces/user";
 
+export const defineAcronym = (username: string) => {
+  const acronym = username.includes(" ")
+    ? (
+        username.split(" ")[0][0] +
+        "" +
+        username.split(" ")[1][0]
+      ).toUpperCase()
+    : (
+        username.split(" ")[0][0] +
+        "" +
+        username.split(" ")[0][1]
+      ).toUpperCase();
+
+      return acronym
+}
+
 export const ProductCard = ({
   cover_img,
   model,
@@ -15,9 +31,10 @@ export const ProductCard = ({
   km,
   price,
   is_good_sale,
+  is_active
 }: IProductCard) => {
   return (
-    <CardContainer discount={is_good_sale}>
+    <CardContainer is_active={is_active} discount={is_good_sale}>
       <div className="img-container">
         <img src={cover_img} alt={model} />
         <small className="discount-badge">$</small>
@@ -28,7 +45,7 @@ export const ProductCard = ({
       <p className="description">{description}</p>
 
       <div className="advertiser-info">
-        <span>{user.name && user.name[0]}</span>
+        <span>{user.name && defineAcronym(user.name)}</span>
         <p>{user["name"]}</p>
       </div>
 
@@ -70,7 +87,7 @@ export const AdvertiserProductCard = ({
       <p className="description">{description}</p>
 
       <div className="advertiser-info">
-        <span>{user.name}</span>
+        <span>{user.name && defineAcronym(user.name)}</span>
         <p>{user["name"]}</p>
       </div>
 

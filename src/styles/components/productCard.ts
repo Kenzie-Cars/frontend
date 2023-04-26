@@ -159,7 +159,7 @@ export const AdvertiserCardContainer = styled(CardContainer)<{is_active?: boolea
     img {
         ${({is_active}: ICardContainer) => {
             return css`
-                left: ${is_active? '43px': '53px'} ;
+                left: ${is_active? '-37px': '-47px'} ;
             `;
         }}
     }

@@ -2,7 +2,7 @@ import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { StyledAdvertiserPageContainer, StyledAdvertisementsContainer, StyledBackgroundTop, StyledBackgroundBottom } from './styles'
 import { useState, useEffect, useContext } from "react";
-import { createProductCard } from "../../components/ProductCard";
+import { createProductCard, defineAcronym } from "../../components/ProductCard";
 import { createAdminProductCard } from "../../components/AdminProductCard";
 import { useParams } from "react-router-dom";
 import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
@@ -45,7 +45,7 @@ export const AdvertiserPage = () => {
             <StyledBackgroundBottom>
                 <StyledAdvertiserPageContainer>
                     <div className="AdvertiserInfo-container">
-                        <span className="AdvertiserIcon">{advertiser.name && advertiser.name[0]}</span>
+                        <span className="AdvertiserIcon">{advertiser.name && defineAcronym(advertiser.name)}</span>
 
                         <hgroup>
                             <h3>{advertiser.name}</h3>
@@ -73,7 +73,7 @@ export const AdvertiserPage = () => {
             <StyledBackgroundBottom>
                 <StyledAdvertiserPageContainer>
                     <div className="AdvertiserInfo-container">
-                        <span className="AdvertiserIcon">{advertiser.name && advertiser.name[0].toUpperCase()}</span>
+                        <span className="AdvertiserIcon">{advertiser.name && defineAcronym(advertiser.name)}</span>
 
                         <hgroup>
                             <h3>{advertiser.name}</h3>
