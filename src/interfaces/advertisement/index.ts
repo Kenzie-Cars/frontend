@@ -1,3 +1,5 @@
+import { IUserResponse } from "../user";
+
 export interface IAdvertisementRequest {
   brand: string;
   model: string;
@@ -22,11 +24,12 @@ export interface advertisementResponse {
   fuel: string;
   km: number;
   color: string;
-  price: number;
+  price: string;
   description: string;
   is_good_sale: boolean;
   is_active: boolean;
   created_at: Date;
   updated_at: Date;
-  user_id: string;
+  cover_img: string
+  user: IUserResponse
 }

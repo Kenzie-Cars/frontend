@@ -1,4 +1,5 @@
 import { IAddressResquest } from "../address";
+import { advertisementResponse } from "../advertisement";
 
 export interface IUserRequest {
   name: string;
@@ -28,6 +29,7 @@ export interface IUserResponse {
   is_seller: boolean;
   created_at: Date;
   updated_at: Date;
+  advertisements: advertisementResponse[]
 }
 
 export interface IUserLogin {

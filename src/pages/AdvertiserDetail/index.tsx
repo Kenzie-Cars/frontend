@@ -20,8 +20,7 @@ export const AdvertiserPage = () => {
 
     const {user} = useContext(UserContext)
     const [isOpen, setIsOpen] = useState(false);
-    const [userState, setUserState] = useState(mockAdvertiser)
-    const [advertiser, setAdvertiser] = useState(mockAdvertiser)  
+    const [advertiser, setAdvertiser] = useState({} as IUserResponse)  
 
     const { id } = useParams()
 
@@ -41,24 +40,25 @@ export const AdvertiserPage = () => {
 
     return id !== userId ?(
         <>
+            <Navbar/>
             <StyledBackgroundTop/>
             <StyledBackgroundBottom>
                 <StyledAdvertiserPageContainer>
                     <div className="AdvertiserInfo-container">
-                        <span className="AdvertiserIcon">SL</span>
+                        <span className="AdvertiserIcon">{advertiser.name && advertiser.name[0]}</span>
 
                         <hgroup>
-                            <h3>{userState.name}</h3>
+                            <h3>{advertiser.name}</h3>
 
                             <span>Anunciante</span>
                         </hgroup>
 
-                        <p>{userState.description}</p>
+                        <p>{advertiser?.description}</p>
                     </div>
 
                     <StyledAdvertisementsContainer className="Advertisements-container">
                         <h3>Anúncios</h3>
-                        <div className="ProductCard-container">{advertiser.advertisements.map((product) => createProductCard(product, userState.id))}</div>
+                        <div className="ProductCard-container">{userId && advertiser.advertisements?.map((product) => createProductCard(product, userId))}</div>
                     </StyledAdvertisementsContainer>
                 </StyledAdvertiserPageContainer>
             </StyledBackgroundBottom>
@@ -67,19 +67,21 @@ export const AdvertiserPage = () => {
         </>
     ) : (
         <>
+            
+            <Navbar/>
             <StyledBackgroundTop/>
             <StyledBackgroundBottom>
                 <StyledAdvertiserPageContainer>
                     <div className="AdvertiserInfo-container">
-                        <span className="AdvertiserIcon">SL</span>
+                        <span className="AdvertiserIcon">{advertiser.name && advertiser.name[0].toUpperCase()}</span>
 
                         <hgroup>
-                            <h3>{userState.name}</h3>
+                            <h3>{advertiser.name}</h3>
 
                             <span>Anunciante</span>
                         </hgroup>
 
-                        <p>{userState.description}</p>
+                        <p>{advertiser.description}</p>
 
                         <Button
                             size="2"
@@ -95,7 +97,7 @@ export const AdvertiserPage = () => {
 
                     <StyledAdvertisementsContainer className="Advertisements-container">
                         <h3>Anúncios</h3>
-                        <div className="ProductCard-container">{advertiser.advertisements.map((product) => createAdminProductCard(product))}</div>
+                        <div className="ProductCard-container">{advertiser.advertisements?.map((product) => createAdminProductCard(product))}</div>
                     </StyledAdvertisementsContainer>
                 </StyledAdvertiserPageContainer>
                 {isOpen && <FormCreateAdvertise setIsOpen={setIsOpen} isOpen={isOpen}/>}
