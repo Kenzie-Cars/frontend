@@ -35,8 +35,10 @@ export const Navbar = () => {
     navigate("/");
   };
 
+  const userId = localStorage.getItem('@userIdKenzieKars')
+
   const myAdvertises = () => {
-    navigate("/detail");
+    navigate(`/profile/${userId}`);
   };
 
   const logout = () => {
@@ -68,7 +70,7 @@ export const Navbar = () => {
             <>
               <div className="logged" onClick={() => setOpen(!open)}>
                 <div className="acronym">
-                  <p>{acronym}</p>
+                  <p>{acronym && acronym}</p>
                 </div>
                 <p>{user?.name}</p>
               </div>

@@ -43,7 +43,6 @@ export const CarCard = ({ advertisement }: any) => {
       </h2>
       <p className="cardDescription">{advertisement.description}</p>
       <div className="advertiserInfo">
-        <p>{acronym}</p>
         {advertisement.user.name}
       </div>
       <div className="carInfo">

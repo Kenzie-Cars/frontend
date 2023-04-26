@@ -8,7 +8,7 @@ import {
 import Button from "../button";
 
 export const AdminProductCard = ({
-  images,
+  cover_img,
   model,
   description,
   year,
@@ -20,7 +20,7 @@ export const AdminProductCard = ({
   return (
     <CardContainer discount={is_good_sale}>
       <div className="img-container">
-        <img src={images[0]["url"]} alt={model} />
+        <img src={cover_img} alt={model} />
       </div>
 
       <h3>{model}</h3>
@@ -69,7 +69,7 @@ export const createAdminProductCard = (productData: IProductCard) => {
     <AdminProductCard
       id={productData.id}
       key={productData.id}
-      images={productData.images}
+      cover_img={productData.cover_img}
       model={productData.model}
       description={productData.description}
       year={productData.year}

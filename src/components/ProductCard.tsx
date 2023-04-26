@@ -7,7 +7,7 @@ import {
 import { IUserResponse } from "../interfaces/user";
 
 export const ProductCard = ({
-  images,
+  cover_img,
   model,
   description,
   year,
@@ -19,7 +19,7 @@ export const ProductCard = ({
   return (
     <CardContainer discount={is_good_sale}>
       <div className="img-container">
-        <img src={images[0]["url"]} alt={model} />
+        <img src={cover_img} alt={model} />
         <small className="discount-badge">$</small>
       </div>
 
@@ -28,7 +28,7 @@ export const ProductCard = ({
       <p className="description">{description}</p>
 
       <div className="advertiser-info">
-        <span>{user.name}</span>
+        <span>{user.name && user.name[0]}</span>
         <p>{user["name"]}</p>
       </div>
 
@@ -45,7 +45,7 @@ export const ProductCard = ({
 };
 
 export const AdvertiserProductCard = ({
-  images,
+  cover_img,
   model,
   description,
   year,
@@ -61,7 +61,7 @@ export const AdvertiserProductCard = ({
         <small className="active-badge">
           {is_active ? "Ativo" : "Inativo"}
         </small>
-        <img src={images[0]["url"]} alt={model} />
+        <img src={cover_img} alt={model} />
         <small className="discount-badge">$</small>
       </div>
 
@@ -91,7 +91,7 @@ export function createProductCard(productData: IProductCard, currentUserId: stri
     <AdvertiserProductCard
       id={productData.id}
       key={productData.id}
-      images={productData.images}
+      cover_img={productData.cover_img}
       model={productData.model}
       description={productData.description}
       year={productData.year}
@@ -105,7 +105,7 @@ export function createProductCard(productData: IProductCard, currentUserId: stri
     <ProductCard
       id={productData.id}
       key={productData.id}
-      images={productData.images}
+      cover_img={productData.cover_img}
       model={productData.model}
       description={productData.description}
       year={productData.year}

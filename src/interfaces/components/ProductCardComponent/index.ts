@@ -4,10 +4,7 @@ import {IUserResponse} from '../../user/index'
 
 export interface IProductCard {
     id: string
-    images: {
-        id: string
-        url: string
-    }[]
+    cover_img: string
     user: {
         name: string,
         id: string
