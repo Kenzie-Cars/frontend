@@ -1,26 +1,10 @@
-import React from "react";
+import { useContext } from "react";
 import { IProductCard } from "../interfaces/components/ProductCardComponent";
 import {
   CardContainer,
   AdvertiserCardContainer,
 } from "../styles/components/productCard";
-import { IUserResponse } from "../interfaces/user";
-
-export const defineAcronym = (username: string) => {
-  const acronym = username.includes(" ")
-    ? (
-        username.split(" ")[0][0] +
-        "" +
-        username.split(" ")[1][0]
-      ).toUpperCase()
-    : (
-        username.split(" ")[0][0] +
-        "" +
-        username.split(" ")[0][1]
-      ).toUpperCase();
-
-      return acronym
-}
+import { UserContext } from "../context/UserContext";
 
 export const ProductCard = ({
   cover_img,
@@ -31,8 +15,9 @@ export const ProductCard = ({
   km,
   price,
   is_good_sale,
-  is_active
+  is_active,
 }: IProductCard) => {
+  const { defineAcronym } = useContext(UserContext);
   return (
     <CardContainer is_active={is_active} discount={is_good_sale}>
       <div className="img-container">
@@ -72,6 +57,8 @@ export const AdvertiserProductCard = ({
   is_good_sale,
   is_active,
 }: IProductCard) => {
+  const { defineAcronym } = useContext(UserContext);
+
   return (
     <AdvertiserCardContainer discount={is_good_sale} is_active={is_active}>
       <div className="img-container">
@@ -103,7 +90,10 @@ export const AdvertiserProductCard = ({
   );
 };
 
-export function createProductCard(productData: IProductCard, currentUserId: string) {
+export function createProductCard(
+  productData: IProductCard,
+  currentUserId: string,
+) {
   return currentUserId === productData.user.id ? (
     <AdvertiserProductCard
       id={productData.id}

@@ -9,7 +9,6 @@ import { UserContext } from "../../context/UserContext";
 import { IUserRequest } from "../../interfaces/user";
 import { CreateUserSchema } from "../../schema/Users";
 import { PageRegisterStyled } from "./style";
-import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
 
 const Register = () => {
   const { userRegister } = useContext(UserContext);

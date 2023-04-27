@@ -1,13 +1,9 @@
+import { useContext } from "react";
 import { IProductCard } from "../../interfaces/components/ProductCardComponent";
-import { IUserResponse } from "../../interfaces/user";
-import {
-  CardContainer,
-  AdvertiserCardContainer,
-} from "../../styles/components/productCard";
+import { AdvertiserCardContainer } from "../../styles/components/productCard";
 
 import Button from "../button";
-
-import { defineAcronym } from "../ProductCard";
+import { UserContext } from "../../context/UserContext";
 
 export const AdminProductCard = ({
   cover_img,
@@ -18,8 +14,9 @@ export const AdminProductCard = ({
   user,
   price,
   is_good_sale,
-  is_active
+  is_active,
 }: IProductCard) => {
+  const { defineAcronym } = useContext(UserContext);
   return (
     <AdvertiserCardContainer is_active={is_active} discount={is_good_sale}>
       <div className="img-container">
@@ -47,25 +44,25 @@ export const AdminProductCard = ({
         <h4>R$ {price}</h4>
       </section>
 
-     <div>
-      <Button
-        size="2"
-        text="Editar"
-        color="grey1"
-        hover="hover4"
-        background="white"
-        border="2px solid var(--grey1)"
-      />
+      <div>
+        <Button
+          size="2"
+          text="Editar"
+          color="grey1"
+          hover="hover4"
+          background="white"
+          border="2px solid var(--grey1)"
+        />
 
-      <Button
-        size="2"
-        text="Ver Detalhes"
-        color="grey1"
-        hover="hover4"
-        background="white"
-        border="2px solid var(--grey1)"
-      />
-     </div>
+        <Button
+          size="2"
+          text="Ver Detalhes"
+          color="grey1"
+          hover="hover4"
+          background="white"
+          border="2px solid var(--grey1)"
+        />
+      </div>
     </AdvertiserCardContainer>
   );
 };
@@ -85,5 +82,5 @@ export const createAdminProductCard = (productData: IProductCard) => {
       is_active={productData.is_active}
       user={productData.user}
     />
-  )
-}
+  );
+};

@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import {
@@ -18,11 +18,11 @@ interface IUserContext {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   userRegister: (
     data: IUserRequest,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
   ) => void;
   userlogin: (
     userData: IUserLogin,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
   ) => void;
   userUpdateProfile: (userData: IUserUpdateRequest) => Promise<void>;
   userDeleteProfile: () => Promise<void>;
@@ -30,6 +30,7 @@ interface IUserContext {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setIsOpenMenu: React.Dispatch<React.SetStateAction<boolean>>;
   isOpenMenu: boolean;
+  defineAcronym: (username: string) => string;
 }
 
 interface IUserProviderProps {
@@ -43,9 +44,47 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const loadUser = async () => {
+      const token = localStorage.getItem("@userTokenKenzieKars");
+      const id = localStorage.getItem("@userIdKenzieKars");
+      if (token) {
+        try {
+          setLoading(true);
+          RequestApiKenzieKars.defaults.headers.common.Authorization = `Bearer ${token}`;
+
+          const { data } = await RequestApiKenzieKars.get(`users/${id}`);
+          setUser(data);
+        } catch (error) {
+          console.log(error);
+          localStorage.removeItem("@userTokenKenzieKars");
+          localStorage.removeItem("@userIdKenzieKars");
+        }
+        setLoading(false);
+      }
+    };
+    loadUser();
+  }, []);
+
+  const defineAcronym = (username: string) => {
+    const acronym = username.includes(" ")
+      ? (
+          username.split(" ")[0][0] +
+          "" +
+          username.split(" ")[1][0]
+        ).toUpperCase()
+      : (
+          username.split(" ")[0][0] +
+          "" +
+          username.split(" ")[0][1]
+        ).toUpperCase();
+
+    return acronym;
+  };
+
   const userRegister = async (
     data: IUserRequest,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
   ) => {
     try {
       setLoading(true);
@@ -96,7 +135,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       toast.success("Usuário atualizado com sucesso", {
         autoClose: 1500,
@@ -142,6 +181,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         setUser,
         loading,
         setLoading,
+        defineAcronym,
         userRegister,
         userlogin,
         userUpdateProfile,
