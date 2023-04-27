@@ -30,4 +30,21 @@ const CreateUserSchema: any = yup.object().shape({
   }),
 });
 
-export { CreateUserSchema };
+const UpdateUserSchema: any = yup.object().shape({
+  name: yup.string().notRequired(),
+  email: yup.string().notRequired(),
+  cpf: yup.string().min(11).notRequired(),
+  phone: yup.string().notRequired(),
+  birthDate: yup.string().notRequired(),
+  description: yup.string().notRequired(),
+  address: yup.object().shape({
+    cep: yup.string().notRequired(),
+    state: yup.string().notRequired(),
+    city: yup.string().notRequired(),
+    street: yup.string().notRequired(),
+    number: yup.string().notRequired(),
+    complement: yup.string().notRequired().default(null),
+  }),
+});
+
+export { CreateUserSchema, UpdateUserSchema };

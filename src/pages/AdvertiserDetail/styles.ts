@@ -10,7 +10,7 @@ export const StyledAdvertiserPageContainer = styled.div`
 
     overflow-x: hidden;
 
-    @media (min-width: 767px) {
+    @media (min-width: 768px) {
         bottom: 150px;
     }
 
@@ -157,13 +157,13 @@ export const StyledAdvertisementsContainer = styled.section`
         }
     }
 
-
 `
 
 export const StyledBackgroundTop = styled.div`
     background-color: var(--brand1);
     height: 250px;
 `
+
 export const StyledBackgroundBottom = styled.div`
     background-color: var(--grey8);
     height: fit-content;

@@ -1,10 +1,10 @@
-import React from "react";
+import { useContext } from "react";
 import { IProductCard } from "../interfaces/components/ProductCardComponent";
 import {
   CardContainer,
   AdvertiserCardContainer,
 } from "../styles/components/productCard";
-import { IUserResponse } from "../interfaces/user";
+import { UserContext } from "../context/UserContext";
 
 export const ProductCard = ({
   cover_img,
@@ -15,9 +15,11 @@ export const ProductCard = ({
   km,
   price,
   is_good_sale,
+  is_active,
 }: IProductCard) => {
+  const { defineAcronym } = useContext(UserContext);
   return (
-    <CardContainer discount={is_good_sale}>
+    <CardContainer is_active={is_active} discount={is_good_sale}>
       <div className="img-container">
         <img src={cover_img} alt={model} />
         <small className="discount-badge">$</small>
@@ -28,7 +30,7 @@ export const ProductCard = ({
       <p className="description">{description}</p>
 
       <div className="advertiser-info">
-        <span>{user.name && user.name[0]}</span>
+        <span>{user.name && defineAcronym(user.name)}</span>
         <p>{user["name"]}</p>
       </div>
 
@@ -55,6 +57,8 @@ export const AdvertiserProductCard = ({
   is_good_sale,
   is_active,
 }: IProductCard) => {
+  const { defineAcronym } = useContext(UserContext);
+
   return (
     <AdvertiserCardContainer discount={is_good_sale} is_active={is_active}>
       <div className="img-container">
@@ -70,7 +74,7 @@ export const AdvertiserProductCard = ({
       <p className="description">{description}</p>
 
       <div className="advertiser-info">
-        <span>{user.name}</span>
+        <span>{user.name && defineAcronym(user.name)}</span>
         <p>{user["name"]}</p>
       </div>
 
@@ -86,7 +90,10 @@ export const AdvertiserProductCard = ({
   );
 };
 
-export function createProductCard(productData: IProductCard, currentUserId: string) {
+export function createProductCard(
+  productData: IProductCard,
+  currentUserId: string,
+) {
   return currentUserId === productData.user.id ? (
     <AdvertiserProductCard
       id={productData.id}

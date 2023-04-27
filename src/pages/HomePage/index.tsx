@@ -1,19 +1,17 @@
 import { useEffect, useState } from "react";
 import { carsInfo } from "../../data.mocks";
 import { StyledCarsContainer } from "../../styles/CarsContainer";
-import { CarCard } from "./CarCard";
 import { StyledBackgroundImg, StyledHomeContainer } from "./style";
 import { Filter } from "./Filter";
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
-import { FormUpdateAdress } from "../../components/FormUpdateAdress";
+import { createProductCard } from "../../components/ProductCard";
 
 export const HomePage = () => {
   const [filter, setFilter] = useState(true);
   const [win, setWin] = useState(window.innerWidth <= 400 ? true : false);
   const [advertisements, setAdvertisements] = useState([]);
-  const [isOpen, setIsOpen] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
@@ -38,10 +36,11 @@ export const HomePage = () => {
     getAdvertisements();
   }, []);
 
+  const userId = localStorage.getItem("@userIdKenzieKars");
+
   return (
     <>
       <Navbar />
-      <FormUpdateAdress isOpen={isOpen} setIsOpen={setIsOpen} />
       <StyledHomeContainer>
         <StyledBackgroundImg>
           <div className="textBackgroundImg">
@@ -59,9 +58,9 @@ export const HomePage = () => {
         <div className="bodyContainer">
           <div className="cardContainer">
             <StyledCarsContainer>
-              {advertisements.map((advertisement, index) => (
-                <CarCard key={index} advertisement={advertisement} />
-              ))}
+              {advertisements.map((product) =>
+                createProductCard(product, userId!),
+              )}
             </StyledCarsContainer>
           </div>
           {filter && <Filter carsInfo={carsInfo} setFilter={setFilter} />}

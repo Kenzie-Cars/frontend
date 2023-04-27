@@ -14,6 +14,19 @@ export interface IUserRequest {
   is_adm?: boolean;
   address: IAddressResquest;
 }
+export interface IUserUpdateRequest {
+  name?: string;
+  email?: string;
+  cpf?: string;
+  phone?: string;
+  birthDate?: string;
+  description?: string;
+  password?: string;
+  confirmPassword?: string;
+  is_seller?: boolean;
+  is_adm?: boolean;
+  address: IAddressResquest;
+}
 
 export interface IUserResponse {
   id: string;
@@ -21,7 +34,7 @@ export interface IUserResponse {
   email: string;
   cpf: string;
   phone: string;
-  birthDate: Date;
+  birthDate: string;
   description: string;
   password: string;
   is_adm: boolean;

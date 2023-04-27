@@ -1,7 +1,7 @@
 import Modal from "../Modal";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { UpdateAdressSchema } from "../../schema/UpdateAdressSchema";
+import { UpdateAddressSchema } from "../../schema/UpdateAddressSchema";
 import { IAddressUpdateResquest } from "../../interfaces/address";
 import { Input } from "../input";
 import { ButtonContainerStyle } from "../FormCreateAdvertise/style";
@@ -19,7 +19,7 @@ export const FormUpdateAdress = ({ isOpen, setIsOpen }: IProps) => {
     handleSubmit,
     formState: { errors },
   } = useForm<IAddressUpdateResquest>({
-    resolver: yupResolver(UpdateAdressSchema),
+    resolver: yupResolver(UpdateAddressSchema),
   });
 
   const sendData = async (data: IAddressUpdateResquest) => {

@@ -7,18 +7,6 @@ import { useNavigate } from "react-router-dom";
 export const CarCard = ({ advertisement }: any) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  // const acronym = advertisement.user.name.includes(" ")
-  //   ? (
-  //       advertisement.user.name.split(" ")[0][0] +
-  //       "" +
-  //       advertisement.user.name.split(" ")[1][0]
-  //     ).toUpperCase()
-  //   : (
-  //       advertisement.user.name.split(" ")[0][0] +
-  //       "" +
-  //       advertisement.user.name.split(" ")[0][1]
-  //     ).toUpperCase();
-
   const navigate = useNavigate();
 
   const openModal = () => {
@@ -42,9 +30,7 @@ export const CarCard = ({ advertisement }: any) => {
         {advertisement.brand} - {advertisement.model}
       </h2>
       <p className="cardDescription">{advertisement.description}</p>
-      <div className="advertiserInfo">
-        {advertisement.user.name}
-      </div>
+      <div className="advertiserInfo">{advertisement.user.name}</div>
       <div className="carInfo">
         <div>
           <p>{advertisement.km} KM</p>
