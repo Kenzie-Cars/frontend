@@ -7,6 +7,7 @@ import { Filter } from "./Filter";
 import { Navbar } from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
+import { createProductCard } from '../../components/ProductCard'
 
 export const HomePage = () => {
   const [filter, setFilter] = useState(true);
@@ -36,6 +37,8 @@ export const HomePage = () => {
     getAdvertisements();
   }, []);
 
+  const userId = localStorage.getItem('@userIdKenzieKars')
+
   return (
     <>
       <Navbar />
@@ -56,9 +59,7 @@ export const HomePage = () => {
         <div className="bodyContainer">
           <div className="cardContainer">
             <StyledCarsContainer>
-              {advertisements.map((advertisement, index) => (
-                <CarCard key={index} advertisement={advertisement} />
-              ))}
+              {userId && advertisements.map((product) => createProductCard(product, userId))}
             </StyledCarsContainer>
           </div>
           {filter && <Filter carsInfo={carsInfo} setFilter={setFilter} />}

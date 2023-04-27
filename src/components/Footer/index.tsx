@@ -10,7 +10,7 @@ export const Footer = () => {
 
   return (
     <FooterStyle>
-      <img src="./src/assets/Logo.png" alt="Logo Motors shop" />
+      <img src="http://127.0.0.1:5173/src/assets/Logo.png" alt="Logo Motors shop" />
       <p>© 2022 - Todos os direitos reservados.</p>
       <button onClick={scrollToTop} className="btnTop">
         <AiOutlineUp />

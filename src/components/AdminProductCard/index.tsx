@@ -7,6 +7,8 @@ import {
 
 import Button from "../button";
 
+import { defineAcronym } from "../ProductCard";
+
 export const AdminProductCard = ({
   cover_img,
   model,
@@ -16,10 +18,14 @@ export const AdminProductCard = ({
   user,
   price,
   is_good_sale,
+  is_active
 }: IProductCard) => {
   return (
-    <CardContainer discount={is_good_sale}>
+    <AdvertiserCardContainer is_active={is_active} discount={is_good_sale}>
       <div className="img-container">
+        <small className="active-badge">
+          {is_active ? "Ativo" : "Inativo"}
+        </small>
         <img src={cover_img} alt={model} />
       </div>
 
@@ -28,7 +34,7 @@ export const AdminProductCard = ({
       <p className="description">{description}</p>
 
       <div className="advertiser-info">
-        <span>{user.name[0]}</span>
+        <span>{user.name && defineAcronym(user.name)}</span>
         <p>{user["name"]}</p>
       </div>
 
@@ -60,7 +66,7 @@ export const AdminProductCard = ({
         border="2px solid var(--grey1)"
       />
      </div>
-    </CardContainer>
+    </AdvertiserCardContainer>
   );
 };
 
