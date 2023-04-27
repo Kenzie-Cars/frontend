@@ -1,7 +1,11 @@
 import { ReactNode, createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { IUserLogin, IUserResponse } from "../interfaces/user";
+import {
+  IUserLogin,
+  IUserResponse,
+  IUserUpdateRequest,
+} from "../interfaces/user";
 import { IUserRequest } from "../interfaces/user";
 import { RequestApiKenzieKars } from "../Requests/RequestApiKenzieKars";
 
@@ -14,12 +18,18 @@ interface IUserContext {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   userRegister: (
     data: IUserRequest,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
   ) => void;
   userlogin: (
     userData: IUserLogin,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
   ) => void;
+  userUpdateProfile: (userData: IUserUpdateRequest) => Promise<void>;
+  userDeleteProfile: () => Promise<void>;
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsOpenMenu: React.Dispatch<React.SetStateAction<boolean>>;
+  isOpenMenu: boolean;
 }
 
 interface IUserProviderProps {
@@ -29,15 +39,17 @@ interface IUserProviderProps {
 export const UserProvider = ({ children }: IUserProviderProps) => {
   const [user, setUser] = useState<IUserResponse | null>(null);
   const [loading, setLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
   const navigate = useNavigate();
 
   const userRegister = async (
     data: IUserRequest,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
     try {
       setLoading(true);
-      const res = await RequestApiKenzieKars.post("/users", data);
+      const res = await RequestApiKenzieKars.post("users", data);
       toast.success("Usuário criado com sucesso!", {
         autoClose: 1500,
       }),
@@ -53,11 +65,9 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   };
 
   const userlogin = async (userData: IUserLogin) => {
-    console.log(userData);
-
     try {
       setLoading(true);
-      const res = await RequestApiKenzieKars.post("/login", userData);
+      const res = await RequestApiKenzieKars.post("login", userData);
       toast.success("Login feito sucesso", {
         autoClose: 1500,
       });
@@ -74,6 +84,57 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     }
   };
 
+  const token = localStorage.getItem("@userTokenKenzieKars");
+  const userId = localStorage.getItem("@userIdKenzieKars");
+  const userUpdateProfile = async (userData: IUserUpdateRequest) => {
+    try {
+      setLoading(true);
+      const res = await RequestApiKenzieKars.patch(
+        `users/${userId}`,
+        userData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      toast.success("Usuário atualizado com sucesso", {
+        autoClose: 1500,
+      });
+      setUser(res.data.user);
+    } catch (error) {
+      toast.error("Não foi possível alterar os dados", {
+        autoClose: 1500,
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+  const userDeleteProfile = async () => {
+    try {
+      setLoading(true);
+      const res = await RequestApiKenzieKars.delete(`users/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      toast.success("Usuário deletado com sucesso", {
+        autoClose: 1500,
+      });
+      localStorage.removeItem("@userTokenKenzieKars");
+      localStorage.removeItem("@userIdKenzieKars");
+      setUser(null);
+      setIsOpen(false);
+      setIsOpenMenu(false);
+    } catch (error) {
+      toast.error("Não foi possível deletar o perfil", {
+        autoClose: 1500,
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -83,6 +144,12 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         setLoading,
         userRegister,
         userlogin,
+        userUpdateProfile,
+        userDeleteProfile,
+        isOpen,
+        setIsOpen,
+        setIsOpenMenu,
+        isOpenMenu,
       }}
     >
       {children}

@@ -35,6 +35,8 @@ export const Textarea = ({
   placeHolder,
   id,
   register,
+  value,
+  defaultValue,
   errors,
 }: ITextarea) => {
   const [maxLength, setLength] = useState(0);
@@ -48,6 +50,7 @@ export const Textarea = ({
         rows={row}
         maxLength={length}
         placeholder={placeHolder}
+        value={value}
         {...register(id)}
       />
       <p>

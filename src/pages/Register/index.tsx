@@ -39,7 +39,6 @@ const Register = () => {
   const sendData = async (data: IUserRequest) => {
     data.is_seller = is_seller;
     data.is_adm = false;
-    console.log(data);
     userRegister(data, setLoading);
   };
 

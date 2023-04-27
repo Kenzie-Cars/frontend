@@ -5,11 +5,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { mockUser } from "../../mocks/productCard";
 import { HeaderStyle, LinkStyle, NavbarStyle, UlStyle } from "./style";
 import { UserContext } from "../../context/UserContext";
+import { FormUpdateUser } from "../FormEditUser";
 
 export const Navbar = () => {
   const [active, setActive] = useState(false);
-  const [open, setOpen] = useState(false);
-  const { user } = useContext(UserContext);
+  
+  const { user, isOpen, setIsOpen, isOpenMenu, setIsOpenMenu } = useContext(UserContext);
 
   const acronym = user?.name.includes(" ")
     ? (
@@ -44,7 +45,7 @@ export const Navbar = () => {
   const logout = () => {
     localStorage.removeItem("@userTokenKenzieKars");
     localStorage.removeItem("@userIdKenzieKars");
-    setOpen(!open);
+    setIsOpenMenu(!isOpenMenu);
   };
 
   return (
@@ -68,7 +69,7 @@ export const Navbar = () => {
         <NavbarStyle is_active={active} is_token={token}>
           {token ? (
             <>
-              <div className="logged" onClick={() => setOpen(!open)}>
+              <div className="logged" onClick={() => setIsOpenMenu(!isOpenMenu)}>
                 <div className="acronym">
                   <p>{acronym && acronym}</p>
                 </div>
@@ -91,15 +92,15 @@ export const Navbar = () => {
               </LinkStyle>
             </>
           )}
-          {open && mockUser.is_seller ? (
-            <UlStyle is_open={open}>
-              <li>Editar Perfil</li>
+          {isOpenMenu && mockUser.is_seller ? (
+            <UlStyle is_open={isOpenMenu}>
+              <li onClick={() => setIsOpen(true)}>Editar Perfil</li>
               <li>Editar Endereço</li>
               <li onClick={() => myAdvertises()}>Meus Anúncios</li>
               <li onClick={() => logout()}>Sair</li>
             </UlStyle>
           ) : (
-            <UlStyle is_open={open}>
+            <UlStyle is_open={isOpenMenu}>
               <li>Editar Perfil</li>
               <li>Editar Endereço</li>
               <li onClick={() => logout()}>Sair</li>
@@ -107,6 +108,7 @@ export const Navbar = () => {
           )}
         </NavbarStyle>
       </HeaderStyle>
+      {isOpen && <FormUpdateUser setIsOpen={setIsOpen} isOpen={isOpen} />}
     </>
   );
 };
