@@ -40,13 +40,13 @@ export const HeaderStyle = styled.header<IHeaderProps>`
       cursor: pointer;
     }
   }
-
   & > svg {
     position: absolute;
     z-index: 4;
     top: 30px;
     right: 16px;
   }
+
 
   .close {
     display: none;

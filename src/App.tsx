@@ -1,25 +1,23 @@
+import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import { AdvProvider } from "./context/AdvertisementContext";
 import { UserProvider } from "./context/UserContext";
 import { AllRoutes } from "./routes";
 import GlobalStyle from "./styles/GlobalStyle";
-import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      
-        <BrowserRouter>
-
-          <UserProvider>
-
+      <BrowserRouter>
+        <UserProvider>
+          <AdvProvider>
             <AllRoutes />
+          </AdvProvider>
+        </UserProvider>
+      </BrowserRouter>
 
-          </UserProvider>
-          
-        </BrowserRouter> 
-      
       <ToastContainer />
     </>
   );

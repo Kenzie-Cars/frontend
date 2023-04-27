@@ -50,38 +50,38 @@ export const AdvertiseContainer = styled.div`
       align-self: center;
     }
   }
-  .carAdvertiseInfo {
-    margin-top: -1rem;
-    h3 {
-      font: var(--Heading-6-600);
-    }
-    .carInfo {
-      div {
-        margin: 30px auto;
-        display: flex;
-        gap: 10px;
-        font: var(--body-2-500);
-        p {
-          padding: 4px 8px;
-          border-radius: 4px;
-          color: var(--brand1);
-          background-color: var(--brand4);
+    .carAdvertiseInfo {
+      margin-top: -1rem;
+      h3 {
+        font: var(--Heading-6-600);
+      }
+      .carInfo {
+        div {
+          margin: 30px auto;
+          display: flex;
+          gap: 10px;
+          font: var(--body-2-500);
+          p {
+            padding: 4px 8px;
+            border-radius: 4px;
+            color: var(--brand1);
+            background-color: var(--brand4);
+          }
+        }
+        h3 {
+          font: var(--Heading-7-500);
         }
       }
-      h3 {
-        font: var(--Heading-7-500);
+      button {
+        margin-top: 30px;
+        color: var(--whiteFixed);
+        font: var(--button-medium-text);
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        background-color: var(--brand1);
       }
     }
-    button {
-      margin-top: 30px;
-      color: var(--whiteFixed);
-      font: var(--button-medium-text);
-      padding: 12px 20px;
-      border: none;
-      border-radius: 4px;
-      background-color: var(--brand1);
-    }
-  }
   .carDescription {
     h3 {
       font: var(--Heading-6-600);

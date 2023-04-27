@@ -1,23 +1,29 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Modal from "../../../components/Modal";
 import { CarImg } from "../../../components/Modal/style";
+import { IAdvertisementResponse } from "../../../interfaces/advertisement";
 import { StyledCard } from "../../../styles/CarsContainer";
-import { useNavigate } from "react-router-dom";
 
-export const CarCard = ({ advertisement }: any) => {
+interface CarCardProps {
+  index?: number;
+  advertisement: IAdvertisementResponse;
+}
+
+export const CarCard = ({index, advertisement}: CarCardProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  // const acronym = advertisement.user.name.includes(" ")
-  //   ? (
-  //       advertisement.user.name.split(" ")[0][0] +
-  //       "" +
-  //       advertisement.user.name.split(" ")[1][0]
-  //     ).toUpperCase()
-  //   : (
-  //       advertisement.user.name.split(" ")[0][0] +
-  //       "" +
-  //       advertisement.user.name.split(" ")[0][1]
-  //     ).toUpperCase();
+  const acronym = advertisement.user.name.includes(" ")
+    ? (
+        advertisement.user.name.split(" ")[0][0] +
+        "" +
+        advertisement.user.name.split(" ")[1][0]
+      ).toUpperCase()
+    : (
+        advertisement.user.name.split(" ")[0][0] +
+        "" +
+        advertisement.user.name.split(" ")[0][1]
+      ).toUpperCase();
 
   const navigate = useNavigate();
 
@@ -26,14 +32,14 @@ export const CarCard = ({ advertisement }: any) => {
   };
 
   const advertise = () => {
-    navigate("/advertise");
+    navigate(`/advertise/:${advertisement.id}`);
   };
 
   return (
     <StyledCard onClick={() => advertise()}>
       <div className="imgContainer">
         <img
-          src={advertisement.images[0]}
+          src={advertisement.cover_img}
           alt={advertisement.model}
           onClick={openModal}
         />
@@ -61,7 +67,7 @@ export const CarCard = ({ advertisement }: any) => {
           isOpen={false}
         >
           <CarImg>
-            <img src={advertisement.images[0]} alt={advertisement.model} />
+            <img src={advertisement.cover_img} alt={advertisement.model} />
           </CarImg>
         </Modal>
       )}
