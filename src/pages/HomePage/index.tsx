@@ -62,7 +62,7 @@ export const HomePage = () => {
               {userId && advertisements.map((product) => createProductCard(product, userId))}
             </StyledCarsContainer>
           </div>
-          {filter && <Filter carsInfo={carsInfo} setFilter={setFilter} />}
+          {filter && <Filter setAdvertisements={setAdvertisements} carsInfo={carsInfo} setFilter={setFilter} />}
         </div>
 
         {win && <button onClick={() => setFilter(!filter)}>Filtros</button>}

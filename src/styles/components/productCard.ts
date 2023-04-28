@@ -1,6 +1,6 @@
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 
-interface ICardContainer{
+interface ICardContainer {
     discount: boolean,
     is_active: boolean
 }
@@ -109,11 +109,11 @@ export const CardContainer = styled.div`
     }
 
     .discount-badge{
-        ${({discount}: ICardContainer) => {
-            return css`
-                display: ${discount? 'flex': 'none'};
+        ${({ discount }: ICardContainer) => {
+        return css`
+                display: ${discount ? 'flex' : 'none'};
             `;
-        }}
+    }}
         align-items: center;
         justify-content: center;
         font-size: 14px;
@@ -129,7 +129,7 @@ export const CardContainer = styled.div`
     }
 `
 
-export const AdvertiserCardContainer = styled(CardContainer)<{is_active?: boolean}>`
+export const AdvertiserCardContainer = styled(CardContainer) <{ is_active?: boolean }>`
     .active-badge{
         position: relative;
         height: 24px;
@@ -137,30 +137,31 @@ export const AdvertiserCardContainer = styled(CardContainer)<{is_active?: boolea
         display: flex;
         align-items: center;
         justify-content: center;
-        ${({is_active}: ICardContainer) => {
-            return css`
-                background-color: var(--${is_active? 'brand1': 'grey4'}) ;
+        z-index: 1;
+        ${({ is_active }: ICardContainer) => {
+        return css`
+                background-color: var(--${is_active ? 'brand1' : 'grey4'}) ;
             `;
-        }}
+    }}
         padding: 0px 8px;
         margin-left: 16px;
         margin-top: 12px;
     }
 
     .discount-badge{
-        ${({is_active}: ICardContainer) => {
-            return css`
-                left: ${is_active? '40px': '50px'} ;
+        ${({ is_active }: ICardContainer) => {
+        return css`
+                left: ${is_active ? '40px' : '50px'} ;
             `;
-        }}
+    }}
         min-width: 15px;
     }
 
     img {
-        ${({is_active}: ICardContainer) => {
-            return css`
-                left: ${is_active? '-37px': '-47px'} ;
+        ${({ is_active }: ICardContainer) => {
+        return css`
+                left: ${is_active ? '-37px' : '-47px'} ;
             `;
-        }}
+    }}
     }
 `
