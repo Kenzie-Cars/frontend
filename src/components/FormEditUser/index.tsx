@@ -13,12 +13,12 @@ interface Iprops {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export const FormUpdateUser = ({ setIsOpen, isOpen }: Iprops) => {
-  const { userUpdateProfile, userDeleteProfile, loading, user } = useContext(UserContext);
+  const { userUpdateProfile, userDeleteProfile, loading, user } =
+    useContext(UserContext);
 
-  const {
-    handleSubmit,
-    register,
-  } = useForm<IUserUpdateRequest>({ resolver: yupResolver(UpdateUserSchema) });
+  const { handleSubmit, register } = useForm<IUserUpdateRequest>({
+    resolver: yupResolver(UpdateUserSchema),
+  });
 
   return (
     <Modal headerTitle="Editar de perfil" setIsOpen={setIsOpen} isOpen={isOpen}>
