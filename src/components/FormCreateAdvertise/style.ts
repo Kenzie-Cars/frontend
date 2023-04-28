@@ -46,11 +46,18 @@ export const FormRegisterAdvertiseStyle = styled.form`
   & > button {
     margin: 1rem 0 0 0;
   }
+
+  .div--buttons {
+    & > h3 {
+      margin-bottom: 5px;
+      font: var(--body-2-500);
+    }
+  }
 `;
 
 export const ButtonContainerStyle = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: end;
   width: 100%;
   gap: 1rem;
   margin-top: 1rem;

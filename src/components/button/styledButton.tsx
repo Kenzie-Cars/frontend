@@ -42,6 +42,11 @@ const typeHover: any = {
     border: "none",
     color: "var(--grey10)",
   },
+  hover9: {
+    background: "var(--alert1)",
+    border: "none",
+    color: "var(--alert2)",
+  },
 };
 
 const StyledButton = styled.button`

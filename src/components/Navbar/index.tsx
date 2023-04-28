@@ -27,6 +27,11 @@ export const Navbar = () => {
     setIsOpenMenu(false);
   };
 
+  const editProfile = () => {
+    setIsOpen(true);
+    setIsOpenMenu(false);
+  };
+
   const userId = localStorage.getItem("@userIdKenzieKars");
 
   const myAdvertises = () => {
@@ -89,9 +94,9 @@ export const Navbar = () => {
             </>
           )}
           <UlStyle is_open={isOpenMenu}>
-            <li onClick={() => setIsOpen(true)}>Editar Perfil</li>
+            <li onClick={() => editProfile()}>Editar Perfil</li>
             <li onClick={() => setIsOpenAddress(true)}>Editar Endereço</li>
-            {isOpenMenu && user?.is_seller && (
+            {user?.is_seller && (
               <li onClick={() => myAdvertises()}>Meus Anúncios</li>
             )}
             <li onClick={() => logout()}>Sair</li>
