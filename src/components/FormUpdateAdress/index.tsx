@@ -1,86 +1,99 @@
 import Modal from "../Modal";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { UpdateAddressSchema } from "../../schema/UpdateAddressSchema";
-import { IAddressUpdateResquest } from "../../interfaces/address";
 import { Input } from "../input";
 import { ButtonContainerStyle } from "../FormCreateAdvertise/style";
 import Button from "../button";
 import { FormUpdate } from "./style";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
+import { IUserUpdateRequest } from "../../interfaces/user";
+import { UpdateUserSchema } from "../../schema/Users";
 
 interface IProps {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsOpenAddress: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const FormUpdateAdress = ({ isOpen, setIsOpen }: IProps) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IAddressUpdateResquest>({
-    resolver: yupResolver(UpdateAddressSchema),
+export const FormUpdateAdress = ({
+  isOpen,
+  setIsOpen,
+  setIsOpenAddress,
+}: IProps) => {
+  const { user, userUpdateProfile } = useContext(UserContext);
+
+  const { register, handleSubmit } = useForm<IUserUpdateRequest>({
+    resolver: yupResolver(UpdateUserSchema),
   });
 
-  const sendData = async (data: IAddressUpdateResquest) => {
-    console.log({ address: data });
+  const sendData = async (data: IUserUpdateRequest) => {
+    userUpdateProfile(data);
   };
 
   return (
-    <Modal headerTitle="Editar endereço" isOpen={isOpen} setIsOpen={setIsOpen}>
+    <Modal
+      headerTitle="Editar endereço"
+      isOpen={isOpen}
+      setIsOpen={setIsOpen}
+      setIsOpenAddress={setIsOpenAddress}
+    >
       <FormUpdate onSubmit={handleSubmit(sendData)}>
         <Input
           label={"CEP"}
           type={"text"}
-          id={"cep"}
+          id={"address.cep"}
           placeholder={"12345-678"}
           register={register}
-          errors={errors?.address?.cep?.message}
+          defaultValue={user?.address?.cep}
         />
+        <div className="inputContainer">
+          <Input
+            label={"Estado"}
+            type={"text"}
+            id={"address.state"}
+            placeholder="Digite seu estado"
+            register={register}
+            defaultValue={user?.address?.state}
+          />
 
-        <Input
-          label={"Estado"}
-          type={"text"}
-          id={"state"}
-          placeholder="Digite seu estado"
-          register={register}
-          errors={errors?.address?.state?.message}
-        />
+          <Input
+            label={"Cidade"}
+            type={"text"}
+            id={"address.city"}
+            placeholder="Digite sua cidade"
+            register={register}
+            defaultValue={user?.address?.city}
+          />
+        </div>
 
-        <Input
-          label={"Cidade"}
-          type={"text"}
-          id={"city"}
-          placeholder="Digite sua cidade"
-          register={register}
-          errors={errors?.address?.city?.message}
-        />
+        <div className="inputContainer">
+          <Input
+            label={"Rua"}
+            type={"text"}
+            id={"address.street"}
+            placeholder="Digite o nome da rua"
+            register={register}
+            defaultValue={user?.address?.street}
+          />
 
-        <Input
-          label={"Rua"}
-          type={"text"}
-          id={"street"}
-          placeholder="Digite o nome da rua"
-          register={register}
-          errors={errors?.address?.street?.message}
-        />
-
-        <Input
-          label={"Número"}
-          type={"text"}
-          id={"number"}
-          placeholder="Digite o número"
-          register={register}
-          errors={errors?.address?.number?.message}
-        />
+          <Input
+            label={"Número"}
+            type={"text"}
+            id={"address.number"}
+            placeholder="Digite o número"
+            register={register}
+            defaultValue={user?.address?.number}
+          />
+        </div>
 
         <Input
           label={"Complemento"}
           type={"text"}
-          id={"complement"}
+          id={"address.complement"}
           placeholder="Digite o complemento"
           register={register}
-          errors={errors?.address?.complement?.message}
+          defaultValue={user?.address?.complement}
         />
         <ButtonContainerStyle>
           <Button
@@ -90,14 +103,14 @@ export const FormUpdateAdress = ({ isOpen, setIsOpen }: IProps) => {
             text="Cancelar"
             color={"grey2"}
             onClick={() => {
-              setIsOpen(false);
+              setIsOpenAddress(false);
             }}
             type="button"
           />
 
           <Button
             type="submit"
-            size="3"
+            size="4"
             background="brand3"
             hover="hover2"
             text="Salvar alterações"

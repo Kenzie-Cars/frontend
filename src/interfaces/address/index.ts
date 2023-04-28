@@ -1,4 +1,4 @@
-export interface IAddressResquest {
+export interface IAddressRequest {
   cep: string;
   state: string;
   city: string;
@@ -27,6 +27,6 @@ export interface IAddressUpdate {
   complement?: string;
 }
 
-export interface IAddressUpdateResquest {
+export interface IAddressUpdateRequest {
   address: IAddressUpdate;
 }

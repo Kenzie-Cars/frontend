@@ -137,7 +137,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
           },
         }
       );
-      toast.success("Usuário atualizado com sucesso", {
+      toast.success("Dados atualizados com sucesso", {
         autoClose: 1500,
       });
       setUser(res.data.user);

@@ -30,6 +30,13 @@ export const FormRegisterAdvertiseStyle = styled.form`
     justify-content: space-between;
     width: 100%;
     gap: 1rem;
+  }
+
+  & > .selectContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 48%;
+    gap: 1rem;
 
     & > select {
       width: 50%;
@@ -37,15 +44,23 @@ export const FormRegisterAdvertiseStyle = styled.form`
   }
 
   & > button {
-    margin: 1rem 0;
+    margin: 1rem 0 0 0;
+  }
+
+  .div--buttons {
+    & > h3 {
+      margin-bottom: 5px;
+      font: var(--body-2-500);
+    }
   }
 `;
 
 export const ButtonContainerStyle = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: end;
   width: 100%;
   gap: 1rem;
+  margin-top: 1rem;
 
   & > button {
     margin: 0;
