@@ -1,34 +1,61 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
 import { IProductCard } from "../interfaces/components/ProductCardComponent";
 import {
-  CardContainer,
   AdvertiserCardContainer,
+  CardContainer,
 } from "../styles/components/productCard";
-import { IUserResponse } from "../interfaces/user";
+import { IAdvertisementResponse } from "../interfaces/advertisement";
+
+export const defineAcronym = (username: string) => {
+  const acronym = username.includes(" ")
+    ? (username.split(" ")[0][0] + "" + username.split(" ")[1][0]).toUpperCase()
+    : (
+        username.split(" ")[0][0] +
+        "" +
+        username.split(" ")[0][1]
+      ).toUpperCase();
+
+  return acronym;
+};
 
 export const ProductCard = ({
-  images,
+  id,
+  cover_img,
+  brand,
   model,
   description,
   year,
   user,
   km,
   price,
-  is_good_sale,
+  is_goodSale,
+  is_active,
 }: IProductCard) => {
+  const navigate = useNavigate();
+
+  const advertise = () => {
+    navigate(`/advertise/${id}`);
+  };
+
   return (
-    <CardContainer discount={is_good_sale}>
+    <CardContainer
+      is_active={is_active}
+      discount={is_goodSale}
+      onClick={() => advertise()}
+    >
       <div className="img-container">
-        <img src={images[0]["url"]} alt={model} />
+        <img src={cover_img} alt={model} />
         <small className="discount-badge">$</small>
       </div>
 
-      <h3>{model}</h3>
+      <h3>
+        {brand} - {model}
+      </h3>
 
       <p className="description">{description}</p>
 
       <div className="advertiser-info">
-        <span>{user.name}</span>
+        <span>{user.name && defineAcronym(user.name)}</span>
         <p>{user["name"]}</p>
       </div>
 
@@ -45,32 +72,46 @@ export const ProductCard = ({
 };
 
 export const AdvertiserProductCard = ({
-  images,
+  cover_img,
   model,
   description,
   year,
   km,
   user,
   price,
-  is_good_sale,
+  is_goodSale,
   is_active,
+  brand,
+  id,
 }: IProductCard) => {
+  const navigate = useNavigate();
+
+  const advertise = () => {
+    navigate(`/advertise/${id}`);
+  };
+
   return (
-    <AdvertiserCardContainer discount={is_good_sale} is_active={is_active}>
+    <AdvertiserCardContainer
+      discount={is_goodSale}
+      is_active={is_active}
+      onClick={() => advertise()}
+    >
       <div className="img-container">
         <small className="active-badge">
           {is_active ? "Ativo" : "Inativo"}
         </small>
-        <img src={images[0]["url"]} alt={model} />
+        <img src={cover_img} alt={model} />
         <small className="discount-badge">$</small>
       </div>
 
-      <h3>{model}</h3>
+      <h3>
+        {brand} - {model}
+      </h3>
 
       <p className="description">{description}</p>
 
       <div className="advertiser-info">
-        <span>{user.name}</span>
+        <span>{user.name && defineAcronym(user.name)}</span>
         <p>{user["name"]}</p>
       </div>
 
@@ -86,34 +127,41 @@ export const AdvertiserProductCard = ({
   );
 };
 
-export function createProductCard(productData: IProductCard, currentUserId: string) {
+export function createProductCard(
+  productData: IAdvertisementResponse,
+  currentUserId: string
+) {
   return currentUserId === productData.user.id ? (
-    <AdvertiserProductCard
-      id={productData.id}
-      key={productData.id}
-      images={productData.images}
-      model={productData.model}
-      description={productData.description}
-      year={productData.year}
-      price={productData.price}
-      user={productData.user}
-      km={productData.km}
-      is_good_sale={productData.is_good_sale}
-      is_active={productData.is_active}
-    />
-  ) : (
     <ProductCard
       id={productData.id}
       key={productData.id}
-      images={productData.images}
+      cover_img={productData.cover_img}
       model={productData.model}
       description={productData.description}
       year={productData.year}
       price={productData.price}
       user={productData.user}
       km={productData.km}
-      is_good_sale={productData.is_good_sale}
+      is_goodSale={productData.is_goodSale}
       is_active={productData.is_active}
+      brand={productData.brand}
+      images={productData.images}
+    />
+  ) : (
+    <AdvertiserProductCard
+      id={productData.id}
+      key={productData.id}
+      cover_img={productData.cover_img}
+      model={productData.model}
+      description={productData.description}
+      year={productData.year}
+      price={productData.price}
+      user={productData.user}
+      km={productData.km}
+      is_goodSale={productData.is_goodSale}
+      is_active={productData.is_active}
+      brand={productData.brand}
+      images={productData.images}
     />
   );
 }

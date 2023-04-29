@@ -1,34 +1,39 @@
-import { IProductCard } from "../../interfaces/components/ProductCardComponent";
-import { IUserResponse } from "../../interfaces/user";
-import {
-  CardContainer,
-  AdvertiserCardContainer,
-} from "../../styles/components/productCard";
+import { IAdvertisementResponse } from "../../interfaces/advertisement";
+import { AdvertiserCardContainer } from "../../styles/components/productCard";
 
 import Button from "../button";
 
+import { defineAcronym } from "../ProductCard";
+
 export const AdminProductCard = ({
-  images,
+  cover_img,
   model,
   description,
   year,
   km,
   user,
   price,
-  is_good_sale,
-}: IProductCard) => {
+  is_goodSale,
+  is_active,
+  brand,
+}: IAdvertisementResponse) => {
   return (
-    <CardContainer discount={is_good_sale}>
+    <AdvertiserCardContainer is_active={is_active} discount={is_goodSale}>
       <div className="img-container">
-        <img src={images[0]["url"]} alt={model} />
+        <small className="active-badge">
+          {is_active ? "Ativo" : "Inativo"}
+        </small>
+        <img src={cover_img} alt={model} />
       </div>
 
-      <h3>{model}</h3>
+      <h3>
+        {brand}-{model}
+      </h3>
 
       <p className="description">{description}</p>
 
       <div className="advertiser-info">
-        <span>{user.name[0]}</span>
+        <span>{user["name"] && defineAcronym(user.name)}</span>
         <p>{user["name"]}</p>
       </div>
 
@@ -41,43 +46,49 @@ export const AdminProductCard = ({
         <h4>R$ {price}</h4>
       </section>
 
-     <div>
-      <Button
-        size="2"
-        text="Editar"
-        color="grey1"
-        hover="hover4"
-        background="white"
-        border="2px solid var(--grey1)"
-      />
+      <div>
+        <Button
+          size="2"
+          text="Editar"
+          color="grey1"
+          hover="hover4"
+          background="white"
+          border="2px solid var(--grey1)"
+        />
 
-      <Button
-        size="2"
-        text="Ver Detalhes"
-        color="grey1"
-        hover="hover4"
-        background="white"
-        border="2px solid var(--grey1)"
-      />
-     </div>
-    </CardContainer>
+        <Button
+          size="2"
+          text="Ver Detalhes"
+          color="grey1"
+          hover="hover4"
+          background="white"
+          border="2px solid var(--grey1)"
+        />
+      </div>
+    </AdvertiserCardContainer>
   );
 };
 
-export const createAdminProductCard = (productData: IProductCard) => {
+export const createAdminProductCard = (productData: IAdvertisementResponse) => {
   return (
     <AdminProductCard
       id={productData.id}
       key={productData.id}
-      images={productData.images}
+      cover_img={productData.cover_img}
       model={productData.model}
       description={productData.description}
       year={productData.year}
       price={productData.price}
       km={productData.km}
-      is_good_sale={productData.is_good_sale}
+      is_goodSale={productData.is_goodSale}
       is_active={productData.is_active}
       user={productData.user}
+      brand={productData.brand}
+      color={productData.color}
+      created_at={productData.created_at}
+      fuel={productData.fuel}
+      images={productData.images}
+      updated_at={productData.updated_at}
     />
-  )
-}
+  );
+};

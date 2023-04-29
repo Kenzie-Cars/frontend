@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { StyledInput, StyledTextarea, StyledSelect } from "./styledInput";
 import { ITextarea, InputInterface } from "../../interfaces/components";
+import { StyledInput, StyledSelect, StyledTextarea } from "./styledInput";
 
 export const Input = ({
   label,
@@ -35,6 +35,8 @@ export const Textarea = ({
   placeHolder,
   id,
   register,
+  value,
+  defaultValue,
   errors,
 }: ITextarea) => {
   const [maxLength, setLength] = useState(0);
@@ -48,6 +50,7 @@ export const Textarea = ({
         rows={row}
         maxLength={length}
         placeholder={placeHolder}
+        value={value}
         {...register(id)}
       />
       <p>

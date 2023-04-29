@@ -30,4 +30,34 @@ const CreateUserSchema: any = yup.object().shape({
   }),
 });
 
-export { CreateUserSchema };
+const UpdateUserSchema: any = yup.object().shape({
+  name: yup.string().notRequired(),
+  email: yup.string().notRequired(),
+  cpf: yup.string().min(11).notRequired(),
+  phone: yup.string().notRequired(),
+  birthDate: yup.string().notRequired(),
+  description: yup.string().notRequired(),
+  password: yup
+    .string()
+    .notRequired()
+    .matches(/[a-z]/, "Deve conter ao menos 1 letra minúscula ")
+    .matches(/(\d)/, "Deve conter ao menos 1 número")
+    .matches(/(\W)|_/, "Deve conter ao menos 1 caracater especial")
+    .matches(/.{8,}/, "Deve conter no minimo 8 caracteres"),
+  confirmPassword: yup
+    .string()
+    .notRequired()
+    .oneOf([yup.ref("password")], "Senha não confere"),
+  is_seller: yup.boolean().notRequired().default(false),
+  is_adm: yup.boolean().notRequired().default(false),
+  address: yup.object().shape({
+    cep: yup.string().notRequired(),
+    state: yup.string().notRequired(),
+    city: yup.string().notRequired(),
+    street: yup.string().notRequired(),
+    number: yup.string().notRequired(),
+    complement: yup.string().notRequired().default(null),
+  }),
+});
+
+export { CreateUserSchema, UpdateUserSchema };

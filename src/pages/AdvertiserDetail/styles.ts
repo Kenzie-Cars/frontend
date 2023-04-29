@@ -6,9 +6,13 @@ export const StyledAdvertiserPageContainer = styled.div`
     flex-direction: column;
 
     position: relative;
-    bottom: 150px;
+    bottom: 50px;
 
     overflow-x: hidden;
+
+    @media (min-width: 768px) {
+        bottom: 150px;
+    }
 
     .AdvertiserIcon{
         height: 104px;
@@ -94,8 +98,6 @@ export const StyledAdvertisementsContainer = styled.section`
 
         display: flex;
 
-        align-items: flex-start;
-
         overflow-x: scroll;
 
         padding-bottom: 40px;
@@ -115,13 +117,16 @@ export const StyledAdvertisementsContainer = styled.section`
 
     @media (min-width:682px){
         .ProductCard-container{
-            overflow-x: auto;
 
-            flex-wrap: wrap;
+            display: grid;
+
+            grid-template-columns: 312px 312px;
+
+            grid-auto-rows: auto;
+
+            justify-content: space-around;
 
             height: fit-content;
-
-            justify-content: space-evenly;
 
         }
 
@@ -132,6 +137,25 @@ export const StyledAdvertisementsContainer = styled.section`
         }
     }
 
+    @media (min-width:1050px){
+        .ProductCard-container{
+            grid-template-columns: 312px 312px 312px;
+            grid-auto-rows: auto;
+
+            column-gap: 30px;
+            row-gap: 10px;               
+        }
+    }
+
+    @media (min-width:1420px){
+        .ProductCard-container{
+            grid-template-columns: 312px 312px 312px 312px;
+            grid-auto-rows: auto;
+
+            column-gap: 30px;
+            row-gap: 10px;               
+        }
+    }
 
 `
 
@@ -139,6 +163,7 @@ export const StyledBackgroundTop = styled.div`
     background-color: var(--brand1);
     height: 250px;
 `
+
 export const StyledBackgroundBottom = styled.div`
     background-color: var(--grey8);
     height: fit-content;

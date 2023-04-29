@@ -10,7 +10,7 @@ interface CarCardProps {
   advertisement: IAdvertisementResponse;
 }
 
-export const CarCard = ({index, advertisement}: CarCardProps) => {
+export const CarCard = ({ index, advertisement }: CarCardProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const acronym = advertisement.user.name.includes(" ")
@@ -32,7 +32,7 @@ export const CarCard = ({index, advertisement}: CarCardProps) => {
   };
 
   const advertise = () => {
-    navigate(`/advertise/:${advertisement.id}`);
+    navigate(`/advertise/${advertisement.id}`);
   };
 
   return (
@@ -48,10 +48,7 @@ export const CarCard = ({index, advertisement}: CarCardProps) => {
         {advertisement.brand} - {advertisement.model}
       </h2>
       <p className="cardDescription">{advertisement.description}</p>
-      <div className="advertiserInfo">
-        <p>{acronym}</p>
-        {advertisement.user.name}
-      </div>
+      <div className="advertiserInfo">{advertisement.user.name}</div>
       <div className="carInfo">
         <div>
           <p>{advertisement.km} KM</p>

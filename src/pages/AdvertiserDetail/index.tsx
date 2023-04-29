@@ -1,107 +1,133 @@
-import { Navbar } from "../../components/Navbar";
-import { Footer } from "../../components/Footer";
-import { StyledAdvertiserPageContainer, StyledAdvertisementsContainer, StyledBackgroundTop, StyledBackgroundBottom } from './styles'
-import { useState, useEffect, useContext } from "react";
-import { createProductCard } from "../../components/ProductCard";
-import { createAdminProductCard } from "../../components/AdminProductCard";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
+import { createAdminProductCard } from "../../components/AdminProductCard";
+import { Footer } from "../../components/Footer";
+import { Navbar } from "../../components/Navbar";
+import { createProductCard, defineAcronym } from "../../components/ProductCard";
+import {
+  StyledAdvertisementsContainer,
+  StyledAdvertiserPageContainer,
+  StyledBackgroundBottom,
+  StyledBackgroundTop,
+} from "./styles";
 
 import Button from "../../components/button";
-import Modal from "../../components/Modal";
 
-import { mockAdvertiser, AdvertiserProductsArray } from "../../mocks/AdvertiserDetailPage";
-import { IUserResponse } from "../../interfaces/user";
-import { IProductCard } from "../../interfaces/components/ProductCardComponent";
-import { UserContext } from "../../context/UserContext";
+import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
 import { FormCreateAdvertise } from "../../components/FormCreateAdvertise";
+import { UserContext } from "../../context/UserContext";
+import { IUserResponse } from "../../interfaces/user";
 
 export const AdvertiserPage = () => {
+  const [loading, setLoading] = useState(true);
+  const [advertiser, setAdvertiser] = useState({} as IUserResponse);
 
-    const {user} = useContext(UserContext)
-    const [isOpen, setIsOpen] = useState(false);
-    const [userState, setUserState] = useState(mockAdvertiser)
-    const [advertiser, setAdvertiser] = useState(mockAdvertiser)  
+  console.log(advertiser);
 
-    const { id } = useParams()
+  const [isOpen, setIsOpen] = useState(false);
 
-     useEffect(() => {
-         const fetchAdvertisements = async () => {
-             const response = await RequestApiKenzieKars.get(`users/${id}`)
-             setAdvertiser(response.data)
-         }
-         fetchAdvertisements()
-     }, [])
+  const { id } = useParams();
 
-    const test = () => {
-        setIsOpen(true)
+  useEffect(() => {
+    const fetchAdvertisements = async () => {
+      const response = await RequestApiKenzieKars.get(`users/${id}`);
+      setAdvertiser(response.data);
+    };
+    fetchAdvertisements();
+  }, []);
+
+  useEffect(() => {
+    setLoading(false);
+  }, [advertiser]);
+
+  const test = () => {
+    setIsOpen(true);
+  };
+
+  {
+    if (!loading) {
+      return id !== advertiser?.id ? (
+        <>
+          <Navbar />
+          <StyledBackgroundTop />
+          <StyledBackgroundBottom>
+            <StyledAdvertiserPageContainer>
+              <div className="AdvertiserInfo-container">
+                <span className="AdvertiserIcon">
+                  {advertiser?.name && defineAcronym(advertiser?.name)}
+                </span>
+
+                <hgroup>
+                  <h3>{advertiser?.name}</h3>
+
+                  <span>Anunciante</span>
+                </hgroup>
+
+                <p>{advertiser?.description}</p>
+              </div>
+
+              <StyledAdvertisementsContainer className="Advertisements-container">
+                <h3>Anúncios</h3>
+                <div className="ProductCard-container">
+                  {advertiser?.id &&
+                    advertiser?.advertisements?.map((product) =>
+                      createProductCard(product, advertiser?.id)
+                    )}
+                </div>
+              </StyledAdvertisementsContainer>
+            </StyledAdvertiserPageContainer>
+          </StyledBackgroundBottom>
+
+          <Footer />
+        </>
+      ) : (
+        <>
+          <Navbar />
+          <StyledBackgroundTop />
+          <StyledBackgroundBottom>
+            <StyledAdvertiserPageContainer>
+              <div className="AdvertiserInfo-container">
+                <span className="AdvertiserIcon">
+                  {advertiser?.name && defineAcronym(advertiser?.name)}
+                </span>
+
+                <hgroup>
+                  <h3>{advertiser?.name}</h3>
+
+                  <span>Anunciante</span>
+                </hgroup>
+
+                <p>{advertiser?.description}</p>
+
+                <Button
+                  size="2"
+                  text="Criar Anúncio"
+                  color="brand1"
+                  hover="hover2"
+                  background="white"
+                  border="2px solid var(--brand1)"
+                  onClick={() => test()}
+                />
+              </div>
+
+              <StyledAdvertisementsContainer className="Advertisements-container">
+                <h3>Anúncios</h3>
+                <div className="ProductCard-container">
+                  {advertiser?.advertisements?.map((product) =>
+                    createAdminProductCard(product)
+                  )}
+                </div>
+              </StyledAdvertisementsContainer>
+            </StyledAdvertiserPageContainer>
+            {isOpen && (
+              <FormCreateAdvertise setIsOpen={setIsOpen} isOpen={isOpen} />
+            )}
+          </StyledBackgroundBottom>
+
+          <Footer />
+        </>
+      );
     }
-
-    const userId = localStorage.getItem('@userIdKenzieKars')
-
-    return id !== userId ?(
-        <>
-            <StyledBackgroundTop/>
-            <StyledBackgroundBottom>
-                <StyledAdvertiserPageContainer>
-                    <div className="AdvertiserInfo-container">
-                        <span className="AdvertiserIcon">SL</span>
-
-                        <hgroup>
-                            <h3>{userState.name}</h3>
-
-                            <span>Anunciante</span>
-                        </hgroup>
-
-                        <p>{userState.description}</p>
-                    </div>
-
-                    <StyledAdvertisementsContainer className="Advertisements-container">
-                        <h3>Anúncios</h3>
-                        <div className="ProductCard-container">{advertiser.advertisements.map((product) => createProductCard(product, userState.id))}</div>
-                    </StyledAdvertisementsContainer>
-                </StyledAdvertiserPageContainer>
-            </StyledBackgroundBottom>
-            
-            <Footer/>
-        </>
-    ) : (
-        <>
-            <StyledBackgroundTop/>
-            <StyledBackgroundBottom>
-                <StyledAdvertiserPageContainer>
-                    <div className="AdvertiserInfo-container">
-                        <span className="AdvertiserIcon">SL</span>
-
-                        <hgroup>
-                            <h3>{userState.name}</h3>
-
-                            <span>Anunciante</span>
-                        </hgroup>
-
-                        <p>{userState.description}</p>
-
-                        <Button
-                            size="2"
-                            text="Criar Anúncio"
-                            color="brand1"
-                            hover="hover2"
-                            background="white"
-                            border="2px solid var(--brand1)"
-                            onClick={() => test()}
-                        />
-
-                    </div>
-
-                    <StyledAdvertisementsContainer className="Advertisements-container">
-                        <h3>Anúncios</h3>
-                        <div className="ProductCard-container">{advertiser.advertisements.map((product) => createAdminProductCard(product))}</div>
-                    </StyledAdvertisementsContainer>
-                </StyledAdvertiserPageContainer>
-                {isOpen && <FormCreateAdvertise setIsOpen={setIsOpen} isOpen={isOpen}/>}
-            </StyledBackgroundBottom>
-            
-            <Footer/>
-        </>
-    )
-}
+    return <h1>Loading...</h1>;
+  }
+};

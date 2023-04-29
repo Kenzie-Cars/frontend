@@ -1,4 +1,5 @@
 import { IAddressResquest } from "../address";
+import { IAdvertisementResponse } from "../advertisement";
 
 export interface IUserRequest {
   name: string;
@@ -13,14 +14,29 @@ export interface IUserRequest {
   is_adm?: boolean;
   address: IAddressResquest;
 }
+export interface IUserUpdateRequest {
+  name?: string;
+  email?: string;
+  cpf?: string;
+  phone?: string;
+  birthDate?: string;
+  description?: string;
+  password?: string;
+  confirmPassword?: string;
+  is_seller?: boolean;
+  is_adm?: boolean;
+  address: IAddressResquest;
+}
 
 export interface IUserResponse {
+  is_goodSale: boolean | undefined;
+  cover_img: string;
   id: string;
   name: string;
   email: string;
   cpf: string;
   phone: string;
-  birthDate: Date;
+  birthDate: string;
   description: string;
   password: string;
   is_adm: boolean;
@@ -28,6 +44,7 @@ export interface IUserResponse {
   is_seller: boolean;
   created_at: Date;
   updated_at: Date;
+  advertisements: IAdvertisementResponse[]
 }
 
 export interface IUserLogin {

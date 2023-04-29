@@ -1,6 +1,11 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const CardContainer = styled.div<{discount: boolean, is_active?: boolean}>`
+interface ICardContainer {
+    discount: boolean,
+    is_active: boolean
+}
+
+export const CardContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -49,6 +54,7 @@ export const CardContainer = styled.div<{discount: boolean, is_active?: boolean}
         width: 100%;
         background-color: var(--grey7);
         height: fit-content;
+        min-height: 156px;
         margin-bottom: 16px;
         display: flex;
         border: 3px solid transparent;
@@ -103,7 +109,13 @@ export const CardContainer = styled.div<{discount: boolean, is_active?: boolean}
     }
 
     .discount-badge{
-        display: ${props => props.discount? 'flex': 'none'};
+        ${({ discount }: ICardContainer) => {
+        return css`
+                display: ${discount ? 'flex' : 'none'};
+                z-index: 1;
+
+`;
+    }}
         align-items: center;
         justify-content: center;
         font-size: 14px;
@@ -119,7 +131,7 @@ export const CardContainer = styled.div<{discount: boolean, is_active?: boolean}
     }
 `
 
-export const AdvertiserCardContainer = styled(CardContainer)<{is_active?: boolean}>`
+export const AdvertiserCardContainer = styled(CardContainer) <{ is_active?: boolean }>`
     .active-badge{
         position: relative;
         height: 24px;
@@ -127,18 +139,33 @@ export const AdvertiserCardContainer = styled(CardContainer)<{is_active?: boolea
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: ${props => props.is_active? 'var(--brand1)': 'var(--grey4)'};
+        ${({ is_active }: ICardContainer) => {
+        return css`
+                background-color: var(--${is_active ? 'brand1' : 'grey4'}) ;
+                z-index: 1;
+            `;
+    }}
         padding: 0px 8px;
         margin-left: 16px;
         margin-top: 12px;
     }
 
     .discount-badge{
-        left: ${props => props.is_active? '-40px': '-50px'};
+        ${({ is_active }: ICardContainer) => {
+        return css`
+                left: ${is_active ? '40px' : '50px'} ;
+                z-index: 1;
+
+            `;
+    }}
         min-width: 15px;
     }
 
     img {
-        left: ${props => props.is_active? '-43px': '-53px'};
+        ${({ is_active }: ICardContainer) => {
+        return css`
+                left: ${is_active ? '-37px' : '-47px'} ;
+            `;
+    }}
     }
 `

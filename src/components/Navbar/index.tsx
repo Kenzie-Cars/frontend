@@ -2,14 +2,16 @@ import { useContext, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GrFormClose } from "react-icons/gr";
 import { Link, useNavigate } from "react-router-dom";
-import { mockUser } from "../../mocks/productCard";
-import { HeaderStyle, LinkStyle, NavbarStyle, UlStyle } from "./style";
 import { UserContext } from "../../context/UserContext";
+import { mockUser } from "../../mocks/productCard";
+import { FormUpdateUser } from "../FormEditUser";
+import { HeaderStyle, LinkStyle, NavbarStyle, UlStyle } from "./style";
 
 export const Navbar = () => {
   const [active, setActive] = useState(false);
-  const [open, setOpen] = useState(false);
-  const { user } = useContext(UserContext);
+
+  const { user, isOpen, setIsOpen, isOpenMenu, setIsOpenMenu } =
+    useContext(UserContext);
 
   const acronym = user?.name.includes(" ")
     ? (
@@ -35,23 +37,26 @@ export const Navbar = () => {
     navigate("/");
   };
 
+  const userId = localStorage.getItem("@userIdKenzieKars");
+
   const myAdvertises = () => {
-    navigate("/detail");
+    navigate(`/profile/${userId}`);
   };
 
   const logout = () => {
     localStorage.removeItem("@userTokenKenzieKars");
     localStorage.removeItem("@userIdKenzieKars");
-    setOpen(!open);
+    setIsOpenMenu(!isOpenMenu);
   };
 
   return (
     <>
       <HeaderStyle id="header" is_active={active}>
         <div>
-          <img className="navImage"
+          <img
+            className="navImage"
             onClick={() => home()}
-            src="./src/assets/Logo Header.png"
+            src="http://127.0.0.1:5173/src/assets/Logo%20Header.png"
             alt="Logo Motors Shop"
           />
           <GiHamburgerMenu
@@ -66,9 +71,12 @@ export const Navbar = () => {
         <NavbarStyle is_active={active} is_token={token}>
           {token ? (
             <>
-              <div className="logged" onClick={() => setOpen(!open)}>
+              <div
+                className="logged"
+                onClick={() => setIsOpenMenu(!isOpenMenu)}
+              >
                 <div className="acronym">
-                  <p>{acronym}</p>
+                  <p>{acronym && acronym}</p>
                 </div>
                 <p>{user?.name}</p>
               </div>
@@ -89,15 +97,15 @@ export const Navbar = () => {
               </LinkStyle>
             </>
           )}
-          {open && mockUser.is_seller ? (
-            <UlStyle is_open={open}>
-              <li>Editar Perfil</li>
+          {isOpenMenu && mockUser.is_seller ? (
+            <UlStyle is_open={isOpenMenu}>
+              <li onClick={() => setIsOpen(true)}>Editar Perfil</li>
               <li>Editar Endereço</li>
               <li onClick={() => myAdvertises()}>Meus Anúncios</li>
               <li onClick={() => logout()}>Sair</li>
             </UlStyle>
           ) : (
-            <UlStyle is_open={open}>
+            <UlStyle is_open={isOpenMenu}>
               <li>Editar Perfil</li>
               <li>Editar Endereço</li>
               <li onClick={() => logout()}>Sair</li>
@@ -105,6 +113,7 @@ export const Navbar = () => {
           )}
         </NavbarStyle>
       </HeaderStyle>
+      {isOpen && <FormUpdateUser setIsOpen={setIsOpen} isOpen={isOpen} />}
     </>
   );
 };
