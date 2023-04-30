@@ -12,7 +12,7 @@ export interface IProductCard {
     year: number
     km: number
     brand: string
-    price: string
+    price: number
     is_goodSale: boolean
     is_active: boolean
     images: string[]

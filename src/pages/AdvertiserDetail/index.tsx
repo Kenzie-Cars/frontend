@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { createAdminProductCard } from "../../components/AdminProductCard";
 import { Footer } from "../../components/Footer";
@@ -15,7 +15,6 @@ import Button from "../../components/button";
 
 import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
 import { FormCreateAdvertise } from "../../components/FormCreateAdvertise";
-import { UserContext } from "../../context/UserContext";
 import { IUserResponse } from "../../interfaces/user";
 
 export const AdvertiserPage = () => {

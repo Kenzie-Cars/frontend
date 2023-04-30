@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
+import { IAdvertisementResponse } from "../interfaces/advertisement";
 import { IProductCard } from "../interfaces/components/ProductCardComponent";
 import {
   AdvertiserCardContainer,
   CardContainer,
 } from "../styles/components/productCard";
-import { IAdvertisementResponse } from "../interfaces/advertisement";
 
 export const defineAcronym = (username: string) => {
   const acronym = username.includes(" ")
@@ -83,7 +83,7 @@ export const AdvertiserProductCard = ({
   is_active,
   brand,
   id,
-}: IProductCard) => {
+}: IAdvertisementResponse) => {
   const navigate = useNavigate();
 
   const advertise = () => {
@@ -162,6 +162,10 @@ export function createProductCard(
       is_active={productData.is_active}
       brand={productData.brand}
       images={productData.images}
+      fuel={""}
+      color={""}
+      created_at={productData.created_at}
+      updated_at={productData.updated_at}
     />
   );
 }
