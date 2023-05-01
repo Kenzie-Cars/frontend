@@ -1,19 +1,19 @@
-import { number } from 'yup'
-import {imagesResponse} from '../../images/index'
-import {IUserResponse} from '../../user/index'
 
 export interface IProductCard {
     id: string
     cover_img: string
     user: {
         name: string,
-        id: string
+        id: string,
+        description: string
     }
     model: string
     description: string
-    year: string
+    year: number
     km: number
+    brand: string
     price: string
-    is_good_sale: boolean
+    is_goodSale: boolean
     is_active: boolean
+    images: string[]
 }

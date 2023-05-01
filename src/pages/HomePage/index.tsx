@@ -1,17 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { Footer } from "../../components/Footer";
+import { Navbar } from "../../components/Navbar";
+import { createProductCard } from "../../components/ProductCard";
+import { AdvertisementContext } from "../../context/AdvertisementContext";
 import { carsInfo } from "../../data.mocks";
 import { StyledCarsContainer } from "../../styles/CarsContainer";
-import { StyledBackgroundImg, StyledHomeContainer } from "./style";
 import { Filter } from "./Filter";
-import { Navbar } from "../../components/Navbar";
-import { Footer } from "../../components/Footer";
+import { StyledBackgroundImg, StyledHomeContainer } from "./style";
 import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
-import { createProductCard } from "../../components/ProductCard";
 
 export const HomePage = () => {
   const [filter, setFilter] = useState(true);
   const [win, setWin] = useState(window.innerWidth <= 400 ? true : false);
-  const [advertisements, setAdvertisements] = useState([]);
+  const { advertisements } = useContext(AdvertisementContext);
+  const userId = localStorage.getItem("@userIdKenzieKars");
 
   useEffect(() => {
     const handleResize = () => {
@@ -23,20 +25,6 @@ export const HomePage = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [window.innerWidth]);
-
-  useEffect(() => {
-    const getAdvertisements = async () => {
-      try {
-        const { data } = await RequestApiKenzieKars.get("advertisements");
-        setAdvertisements(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getAdvertisements();
-  }, []);
-
-  const userId = localStorage.getItem("@userIdKenzieKars");
 
   return (
     <>
@@ -59,7 +47,7 @@ export const HomePage = () => {
           <div className="cardContainer">
             <StyledCarsContainer>
               {advertisements.map((product) =>
-                createProductCard(product, userId!),
+                createProductCard(product, userId)
               )}
             </StyledCarsContainer>
           </div>

@@ -1,6 +1,7 @@
 import { IUserResponse } from "../user";
 
 export interface IAdvertisementRequest {
+  user: any;
   brand: string;
   model: string;
   year: number;
@@ -16,20 +17,21 @@ export interface IAdvertisementRequest {
   images?: string[];
 }
 
-export interface advertisementResponse {
+export interface IAdvertisementResponse {
   id: string;
+  user: IUserResponse;
   brand: string;
   model: string;
-  year: string;
+  year: number;
   fuel: string;
   km: number;
   color: string;
-  price: string;
+  price: number;
   description: string;
-  is_good_sale: boolean;
+  cover_img: string;
+  is_goodSale: boolean;
+  images: string[];
   is_active: boolean;
   created_at: Date;
   updated_at: Date;
-  cover_img: string
-  user: IUserResponse
 }

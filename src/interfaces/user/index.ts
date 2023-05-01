@@ -3,7 +3,7 @@ import {
   IAddressRequest,
   IAddressUpdateRequest,
 } from "../address";
-import { advertisementResponse } from "../advertisement";
+import { IAdvertisementResponse } from "../advertisement";
 
 export interface IUserRequest {
   name: string;
@@ -33,6 +33,8 @@ export interface IUserUpdateRequest {
 }
 
 export interface IUserResponse {
+  is_goodSale: boolean | undefined;
+  cover_img: string;
   id: string;
   name: string;
   email: string;
@@ -46,8 +48,8 @@ export interface IUserResponse {
   is_seller: boolean;
   created_at: Date;
   updated_at: Date;
+  advertisements: IAdvertisementResponse[]
   address: IAddressResponse;
-  advertisements: advertisementResponse[];
 }
 
 export interface IUserLogin {
