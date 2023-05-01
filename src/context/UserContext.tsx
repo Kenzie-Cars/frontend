@@ -140,7 +140,8 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       toast.success("Dados atualizados com sucesso", {
         autoClose: 1500,
       });
-      setUser(res.data.user);
+      console.log(res.data)
+      setUser(res.data);
     } catch (error) {
       toast.error("Não foi possível alterar os dados", {
         autoClose: 1500,
