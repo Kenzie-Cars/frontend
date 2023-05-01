@@ -13,6 +13,7 @@ export interface IButtonStyled {
   background: string;
   color?: string;
   border?: string;
+  padding?: string;
 }
 
 export interface InputInterface {
@@ -23,17 +24,20 @@ export interface InputInterface {
   disabled?: boolean;
   register: Function;
   errors?: string | undefined;
-  value?: number;
+  value?: number | string;
+  defaultValue?: number | string;
 }
 
 export interface ITextarea {
   length: number;
   label: string;
   row: number;
-  placeHolder: string;
+  placeHolder?: string;
   id: string;
   register: Function;
   errors?: string | undefined;
+  value?: string;
+  defaultValue?: string;
 }
 
 export interface ISelect {

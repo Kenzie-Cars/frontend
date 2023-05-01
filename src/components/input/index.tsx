@@ -10,6 +10,7 @@ export const Input = ({
   disabled,
   register,
   value,
+  defaultValue,
   errors,
 }: InputInterface) => {
   return (
@@ -22,6 +23,7 @@ export const Input = ({
         type={String(type)}
         placeholder={placeholder}
         disabled={disabled}
+        defaultValue={defaultValue}
       />
       <span>{errors}</span>
     </StyledInput>
@@ -35,6 +37,8 @@ export const Textarea = ({
   placeHolder,
   id,
   register,
+  value,
+  defaultValue,
   errors,
 }: ITextarea) => {
   const [maxLength, setLength] = useState(0);
@@ -48,11 +52,14 @@ export const Textarea = ({
         rows={row}
         maxLength={length}
         placeholder={placeHolder}
+        value={value}
+        defaultValue={defaultValue}
         {...register(id)}
       />
       <p>
         {maxLength}/{length}
       </p>
+      <span>{errors}</span>
     </StyledTextarea>
   );
 };

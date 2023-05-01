@@ -70,15 +70,6 @@ export const Login = () => {
               border="none"
               color="grey8"
             />
-            <p className="text2">Esqueci minha senha</p>
-            <Button
-              background="grey8"
-              size="5"
-              hover="hover2"
-              text="Entrar"
-              border="solid 2px var(--grey5)"
-              color="grey2"
-            />
           </form>
         </section>
       </PageLoginStyled>
