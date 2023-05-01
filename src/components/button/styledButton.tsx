@@ -42,6 +42,11 @@ const typeHover: any = {
     border: "none",
     color: "var(--grey10)",
   },
+  hover9: {
+    background: "var(--alert1)",
+    border: "none",
+    color: "var(--alert2)",
+  },
 };
 
 const StyledButton = styled.button`
@@ -67,18 +72,26 @@ const StyledButton = styled.button`
     `;
   }}
 
-    /* ${({ border }) => {
+    ${({ border }) => {
     if (border) {
       return css`
         border: ${border};
       `;
     }
-  }} */
+  }}
 
 ${({ color }) => {
     if (color) {
       return css`
         color: var(--${color});
+      `;
+    }
+  }}
+
+${({ padding }) => {
+    if (padding) {
+      return css`
+        padding: "${padding}px";
       `;
     }
   }}
@@ -105,7 +118,7 @@ ${({ color }) => {
       case "4":
         return css`
           height: 50px;
-          width: 280px;
+          width: 200px;
         `;
       case "5":
         return css`

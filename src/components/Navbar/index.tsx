@@ -5,9 +5,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { HeaderStyle, LinkStyle, NavbarStyle, UlStyle } from "./style";
 import { UserContext } from "../../context/UserContext";
 import { FormUpdateUser } from "../FormEditUser";
+import { FormUpdateAdress } from "../FormUpdateAdress";
 
 export const Navbar = () => {
   const [active, setActive] = useState(false);
+  const [isOpenAddress, setIsOpenAddress] = useState(false);
 
   const { user, isOpen, setIsOpen, isOpenMenu, setIsOpenMenu, defineAcronym } =
     useContext(UserContext);
@@ -22,6 +24,11 @@ export const Navbar = () => {
 
   const home = () => {
     navigate("/");
+    setIsOpenMenu(false);
+  };
+
+  const editProfile = () => {
+    setIsOpen(true);
     setIsOpenMenu(false);
   };
 
@@ -87,9 +94,9 @@ export const Navbar = () => {
             </>
           )}
           <UlStyle is_open={isOpenMenu}>
-            <li onClick={() => setIsOpen(true)}>Editar Perfil</li>
-            <li>Editar Endereço</li>
-            {isOpenMenu && user?.is_seller && (
+            <li onClick={() => editProfile()}>Editar Perfil</li>
+            <li onClick={() => setIsOpenAddress(true)}>Editar Endereço</li>
+            {user?.is_seller && (
               <li onClick={() => myAdvertises()}>Meus Anúncios</li>
             )}
             <li onClick={() => logout()}>Sair</li>
@@ -97,6 +104,13 @@ export const Navbar = () => {
         </NavbarStyle>
       </HeaderStyle>
       {isOpen && <FormUpdateUser setIsOpen={setIsOpen} isOpen={isOpen} />}
+      {isOpenAddress && (
+        <FormUpdateAdress
+          setIsOpen={setIsOpen}
+          isOpen={isOpen}
+          setIsOpenAddress={setIsOpenAddress}
+        />
+      )}
     </>
   );
 };

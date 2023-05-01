@@ -1,4 +1,8 @@
-import { IAddressResquest } from "../address";
+import {
+  IAddressResponse,
+  IAddressRequest,
+  IAddressUpdateRequest,
+} from "../address";
 import { advertisementResponse } from "../advertisement";
 
 export interface IUserRequest {
@@ -12,7 +16,7 @@ export interface IUserRequest {
   confirmPassword: string;
   is_seller?: boolean;
   is_adm?: boolean;
-  address: IAddressResquest;
+  address: IAddressRequest;
 }
 export interface IUserUpdateRequest {
   name?: string;
@@ -25,7 +29,7 @@ export interface IUserUpdateRequest {
   confirmPassword?: string;
   is_seller?: boolean;
   is_adm?: boolean;
-  address: IAddressResquest;
+  address: IAddressUpdateRequest;
 }
 
 export interface IUserResponse {
@@ -42,7 +46,8 @@ export interface IUserResponse {
   is_seller: boolean;
   created_at: Date;
   updated_at: Date;
-  advertisements: advertisementResponse[]
+  address: IAddressResponse;
+  advertisements: advertisementResponse[];
 }
 
 export interface IUserLogin {

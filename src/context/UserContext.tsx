@@ -18,11 +18,11 @@ interface IUserContext {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   userRegister: (
     data: IUserRequest,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
   ) => void;
   userlogin: (
     userData: IUserLogin,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
   ) => void;
   userUpdateProfile: (userData: IUserUpdateRequest) => Promise<void>;
   userDeleteProfile: () => Promise<void>;
@@ -84,7 +84,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
 
   const userRegister = async (
     data: IUserRequest,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
     try {
       setLoading(true);
@@ -135,9 +135,9 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        },
+        }
       );
-      toast.success("Usuário atualizado com sucesso", {
+      toast.success("Dados atualizados com sucesso", {
         autoClose: 1500,
       });
       setUser(res.data.user);
@@ -147,12 +147,13 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       });
     } finally {
       setLoading(false);
+      setIsOpen(false);
     }
   };
   const userDeleteProfile = async () => {
     try {
       setLoading(true);
-      const res = await RequestApiKenzieKars.delete(`users/${userId}`, {
+      await RequestApiKenzieKars.delete(`users/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -164,7 +165,6 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       localStorage.removeItem("@userIdKenzieKars");
       setUser(null);
       setIsOpen(false);
-      setIsOpenMenu(false);
     } catch (error) {
       toast.error("Não foi possível deletar o perfil", {
         autoClose: 1500,
