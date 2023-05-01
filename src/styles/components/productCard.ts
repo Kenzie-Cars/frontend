@@ -109,10 +109,12 @@ export const CardContainer = styled.div`
 
     .discount-badge{
         ${({ discount }: ICardContainer) => {
-    return css`
+        return css`
                 display: ${discount ? 'flex' : 'none'};
-            `;
-  }}
+                z-index: 1;
+
+`;
+    }}
         align-items: center;
         justify-content: center;
         font-size: 14px;
@@ -137,10 +139,12 @@ export const AdvertiserCardContainer = styled(CardContainer) <{ is_active?: bool
         align-items: center;
         justify-content: center;
         ${({ is_active }: ICardContainer) => {
-    return css`
+        return css`
                 background-color: var(--${is_active ? 'brand1' : 'grey4'}) ;
+                z-index: 1;
             `;
-  }}
+    }}
+
         padding: 0px 8px;
         margin-left: 16px;
         margin-top: 12px;
@@ -148,18 +152,21 @@ export const AdvertiserCardContainer = styled(CardContainer) <{ is_active?: bool
 
     .discount-badge{
         ${({ is_active }: ICardContainer) => {
-    return css`
+        return css`
                 left: ${is_active ? '40px' : '50px'} ;
+                z-index: 1;
+
             `;
-  }}
+    }}
         min-width: 15px;
     }
 
     img {
         ${({ is_active }: ICardContainer) => {
-    return css`
+        return css`
                 left: ${is_active ? '-37px' : '-47px'} ;
             `;
-  }}
+    }}
+
     }
 `

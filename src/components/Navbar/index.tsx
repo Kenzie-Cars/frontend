@@ -2,14 +2,14 @@ import { useContext, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GrFormClose } from "react-icons/gr";
 import { Link, useNavigate } from "react-router-dom";
-import { HeaderStyle, LinkStyle, NavbarStyle, UlStyle } from "./style";
 import { UserContext } from "../../context/UserContext";
+import { mockUser } from "../../mocks/productCard";
 import { FormUpdateUser } from "../FormEditUser";
 import { FormUpdateAdress } from "../FormUpdateAdress";
+import { HeaderStyle, LinkStyle, NavbarStyle, UlStyle } from "./style";
 
 export const Navbar = () => {
   const [active, setActive] = useState(false);
-  const [isOpenAddress, setIsOpenAddress] = useState(false);
 
   const { user, isOpen, setIsOpen, isOpenMenu, setIsOpenMenu, defineAcronym } =
     useContext(UserContext);
@@ -51,6 +51,7 @@ export const Navbar = () => {
       <HeaderStyle id="header" is_active={active}>
         <div>
           <img
+            className="navImage"
             onClick={() => home()}
             src="http://127.0.0.1:5173/src/assets/Logo%20Header.png"
             alt="Logo Motors Shop"

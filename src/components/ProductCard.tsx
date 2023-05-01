@@ -1,31 +1,48 @@
+import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { IProductCard } from "../interfaces/components/ProductCardComponent";
 import {
-  CardContainer,
   AdvertiserCardContainer,
+  CardContainer,
 } from "../styles/components/productCard";
+import { IAdvertisementResponse } from "../interfaces/advertisement";
 import { UserContext } from "../context/UserContext";
 
 export const ProductCard = ({
+  id,
   cover_img,
+  brand,
   model,
   description,
   year,
   user,
   km,
   price,
-  is_good_sale,
+  is_goodSale,
   is_active,
 }: IProductCard) => {
+  const navigate = useNavigate();
+
+  const advertise = () => {
+    navigate(`/advertise/${id}`);
+  };
+
   const { defineAcronym } = useContext(UserContext);
+  
   return (
-    <CardContainer is_active={is_active} discount={is_good_sale}>
+    <CardContainer
+      is_active={is_active}
+      discount={is_goodSale}
+      onClick={() => advertise()}
+    >
       <div className="img-container">
         <img src={cover_img} alt={model} />
         <small className="discount-badge">$</small>
       </div>
 
-      <h3>{model}</h3>
+      <h3>
+        {brand} - {model}
+      </h3>
 
       <p className="description">{description}</p>
 
@@ -54,13 +71,24 @@ export const AdvertiserProductCard = ({
   km,
   user,
   price,
-  is_good_sale,
+  is_goodSale,
   is_active,
+  brand,
+  id,
 }: IProductCard) => {
+  const navigate = useNavigate();
+
+  const advertise = () => {
+    navigate(`/advertise/${id}`);
+  };
   const { defineAcronym } = useContext(UserContext);
 
   return (
-    <AdvertiserCardContainer discount={is_good_sale} is_active={is_active}>
+    <AdvertiserCardContainer
+      discount={is_goodSale}
+      is_active={is_active}
+      onClick={() => advertise()}
+    >
       <div className="img-container">
         <small className="active-badge">
           {is_active ? "Ativo" : "Inativo"}
@@ -69,7 +97,9 @@ export const AdvertiserProductCard = ({
         <small className="discount-badge">$</small>
       </div>
 
-      <h3>{model}</h3>
+      <h3>
+        {brand} - {model}
+      </h3>
 
       <p className="description">{description}</p>
 
@@ -91,24 +121,10 @@ export const AdvertiserProductCard = ({
 };
 
 export function createProductCard(
-  productData: IProductCard,
-  currentUserId: string,
+  productData: IAdvertisementResponse,
+  currentUserId: string
 ) {
   return currentUserId === productData.user.id ? (
-    <AdvertiserProductCard
-      id={productData.id}
-      key={productData.id}
-      cover_img={productData.cover_img}
-      model={productData.model}
-      description={productData.description}
-      year={productData.year}
-      price={productData.price}
-      user={productData.user}
-      km={productData.km}
-      is_good_sale={productData.is_good_sale}
-      is_active={productData.is_active}
-    />
-  ) : (
     <ProductCard
       id={productData.id}
       key={productData.id}
@@ -119,8 +135,26 @@ export function createProductCard(
       price={productData.price}
       user={productData.user}
       km={productData.km}
-      is_good_sale={productData.is_good_sale}
+      is_goodSale={productData.is_goodSale}
       is_active={productData.is_active}
+      brand={productData.brand}
+      images={productData.images}
+    />
+  ) : (
+    <AdvertiserProductCard
+      id={productData.id}
+      key={productData.id}
+      cover_img={productData.cover_img}
+      model={productData.model}
+      description={productData.description}
+      year={productData.year}
+      price={productData.price}
+      user={productData.user}
+      km={productData.km}
+      is_goodSale={productData.is_goodSale}
+      is_active={productData.is_active}
+      brand={productData.brand}
+      images={productData.images}
     />
   );
 }

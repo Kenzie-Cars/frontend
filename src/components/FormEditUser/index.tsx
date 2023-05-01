@@ -1,12 +1,12 @@
-import { useContext } from "react";
-import { UserContext } from "../../context/UserContext";
-import { useForm } from "react-hook-form";
-import { IUserUpdateRequest } from "../../interfaces/user";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext } from "react";
+import { useForm } from "react-hook-form";
+import { UserContext } from "../../context/UserContext";
+import { IUserUpdateRequest } from "../../interfaces/user";
 import { UpdateUserSchema } from "../../schema/Users";
 import Modal from "../Modal";
-import { Input, Textarea } from "../input";
 import Button from "../button";
+import { Input, Textarea } from "../input";
 import { ButtonContainerStyle } from "../FormCreateAdvertise/style";
 import { StyledUpdateUserContainer } from "./style";
 

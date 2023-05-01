@@ -1,5 +1,5 @@
+import { IAdvertisementResponse } from "../../interfaces/advertisement";
 import { useContext } from "react";
-import { IProductCard } from "../../interfaces/components/ProductCardComponent";
 import { AdvertiserCardContainer } from "../../styles/components/productCard";
 
 import Button from "../button";
@@ -13,12 +13,15 @@ export const AdminProductCard = ({
   km,
   user,
   price,
-  is_good_sale,
+  is_goodSale,
   is_active,
-}: IProductCard) => {
+  brand,
+}: IAdvertisementResponse) => {
+
   const { defineAcronym } = useContext(UserContext);
+
   return (
-    <AdvertiserCardContainer is_active={is_active} discount={is_good_sale}>
+    <AdvertiserCardContainer is_active={is_active} discount={is_goodSale}>
       <div className="img-container">
         <small className="active-badge">
           {is_active ? "Ativo" : "Inativo"}
@@ -26,12 +29,14 @@ export const AdminProductCard = ({
         <img src={cover_img} alt={model} />
       </div>
 
-      <h3>{model}</h3>
+      <h3>
+        {brand}-{model}
+      </h3>
 
       <p className="description">{description}</p>
 
       <div className="advertiser-info">
-        <span>{user.name && defineAcronym(user.name)}</span>
+        <span>{user["name"] && defineAcronym(user.name)}</span>
         <p>{user["name"]}</p>
       </div>
 
@@ -67,7 +72,7 @@ export const AdminProductCard = ({
   );
 };
 
-export const createAdminProductCard = (productData: IProductCard) => {
+export const createAdminProductCard = (productData: IAdvertisementResponse) => {
   return (
     <AdminProductCard
       id={productData.id}
@@ -78,9 +83,15 @@ export const createAdminProductCard = (productData: IProductCard) => {
       year={productData.year}
       price={productData.price}
       km={productData.km}
-      is_good_sale={productData.is_good_sale}
+      is_goodSale={productData.is_goodSale}
       is_active={productData.is_active}
       user={productData.user}
+      brand={productData.brand}
+      color={productData.color}
+      created_at={productData.created_at}
+      fuel={productData.fuel}
+      images={productData.images}
+      updated_at={productData.updated_at}
     />
   );
 };

@@ -1,13 +1,13 @@
 import { ReactNode, createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { RequestApiKenzieKars } from "../Requests/RequestApiKenzieKars";
 import {
   IUserLogin,
+  IUserRequest,
   IUserResponse,
   IUserUpdateRequest,
 } from "../interfaces/user";
-import { IUserRequest } from "../interfaces/user";
-import { RequestApiKenzieKars } from "../Requests/RequestApiKenzieKars";
 
 export const UserContext = createContext({} as IUserContext);
 
@@ -81,7 +81,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
 
     return acronym;
   };
-
+  
   const userRegister = async (
     data: IUserRequest,
     setLoading: React.Dispatch<React.SetStateAction<boolean>>

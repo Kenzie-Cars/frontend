@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { StyledInput, StyledTextarea, StyledSelect } from "./styledInput";
 import { ITextarea, InputInterface } from "../../interfaces/components";
+import { StyledInput, StyledSelect, StyledTextarea } from "./styledInput";
 
 export const Input = ({
   label,
