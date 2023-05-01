@@ -1,22 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 import { IProductCard } from "../interfaces/components/ProductCardComponent";
 import {
   AdvertiserCardContainer,
   CardContainer,
 } from "../styles/components/productCard";
 import { IAdvertisementResponse } from "../interfaces/advertisement";
-
-export const defineAcronym = (username: string) => {
-  const acronym = username.includes(" ")
-    ? (username.split(" ")[0][0] + "" + username.split(" ")[1][0]).toUpperCase()
-    : (
-        username.split(" ")[0][0] +
-        "" +
-        username.split(" ")[0][1]
-      ).toUpperCase();
-
-  return acronym;
-};
+import { UserContext } from "../context/UserContext";
 
 export const ProductCard = ({
   id,
@@ -37,6 +27,8 @@ export const ProductCard = ({
     navigate(`/advertise/${id}`);
   };
 
+  const { defineAcronym } = useContext(UserContext);
+  
   return (
     <CardContainer
       is_active={is_active}
@@ -89,6 +81,7 @@ export const AdvertiserProductCard = ({
   const advertise = () => {
     navigate(`/advertise/${id}`);
   };
+  const { defineAcronym } = useContext(UserContext);
 
   return (
     <AdvertiserCardContainer

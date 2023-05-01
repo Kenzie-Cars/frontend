@@ -7,6 +7,7 @@ import { carsInfo } from "../../data.mocks";
 import { StyledCarsContainer } from "../../styles/CarsContainer";
 import { Filter } from "./Filter";
 import { StyledBackgroundImg, StyledHomeContainer } from "./style";
+import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
 
 export const HomePage = () => {
   const [filter, setFilter] = useState(true);
@@ -24,7 +25,6 @@ export const HomePage = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [window.innerWidth]);
-  
 
   return (
     <>
@@ -51,7 +51,7 @@ export const HomePage = () => {
               )}
             </StyledCarsContainer>
           </div>
-          {filter && <Filter carsInfo={carsInfo} setFilter={setFilter} />}
+          {filter && <Filter advertisements={advertisements} setAdvertisements={setAdvertisements} carsInfo={carsInfo} setFilter={setFilter} />}
         </div>
 
         {win && <button onClick={() => setFilter(!filter)}>Filtros</button>}

@@ -1,9 +1,9 @@
 import { IAdvertisementResponse } from "../../interfaces/advertisement";
+import { useContext } from "react";
 import { AdvertiserCardContainer } from "../../styles/components/productCard";
 
 import Button from "../button";
-
-import { defineAcronym } from "../ProductCard";
+import { UserContext } from "../../context/UserContext";
 
 export const AdminProductCard = ({
   cover_img,
@@ -17,6 +17,9 @@ export const AdminProductCard = ({
   is_active,
   brand,
 }: IAdvertisementResponse) => {
+
+  const { defineAcronym } = useContext(UserContext);
+
   return (
     <AdvertiserCardContainer is_active={is_active} discount={is_goodSale}>
       <div className="img-container">

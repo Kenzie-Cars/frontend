@@ -11,6 +11,8 @@ export interface IButton {
   disabled?: boolean;
   type?: "button" | "submit" | "reset" | undefined;
   value?: any;
+  width?: string;
+  padding?: string;
 }
 
 const Button = ({
@@ -24,6 +26,8 @@ const Button = ({
   disabled,
   type,
   value,
+  width,
+  padding,
 }: IButton) => {
   return (
     <StyledButton

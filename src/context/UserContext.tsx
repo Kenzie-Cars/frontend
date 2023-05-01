@@ -30,6 +30,7 @@ interface IUserContext {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setIsOpenMenu: React.Dispatch<React.SetStateAction<boolean>>;
   isOpenMenu: boolean;
+  defineAcronym: (username: string) => string;
 }
 
 interface IUserProviderProps {
@@ -65,6 +66,22 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     loadUser();
   }, []);
 
+  const defineAcronym = (username: string) => {
+    const acronym = username.includes(" ")
+      ? (
+          username.split(" ")[0][0] +
+          "" +
+          username.split(" ")[1][0]
+        ).toUpperCase()
+      : (
+          username.split(" ")[0][0] +
+          "" +
+          username.split(" ")[0][1]
+        ).toUpperCase();
+
+    return acronym;
+  };
+  
   const userRegister = async (
     data: IUserRequest,
     setLoading: React.Dispatch<React.SetStateAction<boolean>>
@@ -120,22 +137,24 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
           },
         }
       );
-      toast.success("Usuário atualizado com sucesso", {
+      toast.success("Dados atualizados com sucesso", {
         autoClose: 1500,
       });
-      setUser(res.data.user);
+      console.log(res.data)
+      setUser(res.data);
     } catch (error) {
       toast.error("Não foi possível alterar os dados", {
         autoClose: 1500,
       });
     } finally {
       setLoading(false);
+      setIsOpen(false);
     }
   };
   const userDeleteProfile = async () => {
     try {
       setLoading(true);
-      const res = await RequestApiKenzieKars.delete(`users/${userId}`, {
+      await RequestApiKenzieKars.delete(`users/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -147,7 +166,6 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       localStorage.removeItem("@userIdKenzieKars");
       setUser(null);
       setIsOpen(false);
-      setIsOpenMenu(false);
     } catch (error) {
       toast.error("Não foi possível deletar o perfil", {
         autoClose: 1500,
@@ -164,6 +182,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         setUser,
         loading,
         setLoading,
+        defineAcronym,
         userRegister,
         userlogin,
         userUpdateProfile,

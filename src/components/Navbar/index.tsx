@@ -5,25 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import { mockUser } from "../../mocks/productCard";
 import { FormUpdateUser } from "../FormEditUser";
+import { FormUpdateAdress } from "../FormUpdateAdress";
 import { HeaderStyle, LinkStyle, NavbarStyle, UlStyle } from "./style";
 
 export const Navbar = () => {
   const [active, setActive] = useState(false);
 
-  const { user, isOpen, setIsOpen, isOpenMenu, setIsOpenMenu } =
+  const { user, isOpen, setIsOpen, isOpenMenu, setIsOpenMenu, defineAcronym } =
     useContext(UserContext);
-
-  const acronym = user?.name.includes(" ")
-    ? (
-        user?.name.split(" ")[0][0] +
-        "" +
-        user?.name.split(" ")[1][0]
-      ).toUpperCase()
-    : (
-        user?.name.split(" ")[0][0] +
-        "" +
-        user?.name.split(" ")[0][1]
-      ).toUpperCase();
 
   const token = localStorage.getItem("@userTokenKenzieKars");
 
@@ -35,18 +24,26 @@ export const Navbar = () => {
 
   const home = () => {
     navigate("/");
+    setIsOpenMenu(false);
+  };
+
+  const editProfile = () => {
+    setIsOpen(true);
+    setIsOpenMenu(false);
   };
 
   const userId = localStorage.getItem("@userIdKenzieKars");
 
   const myAdvertises = () => {
     navigate(`/profile/${userId}`);
+    setIsOpenMenu(!isOpenMenu);
   };
 
   const logout = () => {
     localStorage.removeItem("@userTokenKenzieKars");
     localStorage.removeItem("@userIdKenzieKars");
     setIsOpenMenu(!isOpenMenu);
+    navigate("/");
   };
 
   return (
@@ -76,7 +73,7 @@ export const Navbar = () => {
                 onClick={() => setIsOpenMenu(!isOpenMenu)}
               >
                 <div className="acronym">
-                  <p>{acronym && acronym}</p>
+                  <p>{user?.name && defineAcronym(user?.name)}</p>
                 </div>
                 <p>{user?.name}</p>
               </div>
@@ -97,23 +94,24 @@ export const Navbar = () => {
               </LinkStyle>
             </>
           )}
-          {isOpenMenu && mockUser.is_seller ? (
-            <UlStyle is_open={isOpenMenu}>
-              <li onClick={() => setIsOpen(true)}>Editar Perfil</li>
-              <li>Editar Endereço</li>
+          <UlStyle is_open={isOpenMenu}>
+            <li onClick={() => editProfile()}>Editar Perfil</li>
+            <li onClick={() => setIsOpenAddress(true)}>Editar Endereço</li>
+            {user?.is_seller && (
               <li onClick={() => myAdvertises()}>Meus Anúncios</li>
-              <li onClick={() => logout()}>Sair</li>
-            </UlStyle>
-          ) : (
-            <UlStyle is_open={isOpenMenu}>
-              <li>Editar Perfil</li>
-              <li>Editar Endereço</li>
-              <li onClick={() => logout()}>Sair</li>
-            </UlStyle>
-          )}
+            )}
+            <li onClick={() => logout()}>Sair</li>
+          </UlStyle>
         </NavbarStyle>
       </HeaderStyle>
       {isOpen && <FormUpdateUser setIsOpen={setIsOpen} isOpen={isOpen} />}
+      {isOpenAddress && (
+        <FormUpdateAdress
+          setIsOpen={setIsOpen}
+          isOpen={isOpen}
+          setIsOpenAddress={setIsOpenAddress}
+        />
+      )}
     </>
   );
 };

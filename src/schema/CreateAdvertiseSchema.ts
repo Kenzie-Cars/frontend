@@ -15,3 +15,10 @@ export const CreateAdvertiseSchema: any = yup.object().shape({
   cover_img: yup.string().required("Imagem de capa é obrigatória").trim(),
   images: yup.array().notRequired(),
 });
+
+export const FilterCars: any = yup.object().shape({
+  kmMin: yup.number().default(0),
+  kmMax: yup.number().default(100000),
+  yearMin: yup.number().default(1990),
+  yearMax: yup.number().default(2040)
+})

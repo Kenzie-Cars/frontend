@@ -10,9 +10,7 @@ import {
   StyledBackgroundBottom,
   StyledBackgroundTop,
 } from "./styles";
-
 import Button from "../../components/button";
-
 import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
 import { FormCreateAdvertise } from "../../components/FormCreateAdvertise";
 import { UserContext } from "../../context/UserContext";
@@ -21,10 +19,10 @@ import { IUserResponse } from "../../interfaces/user";
 export const AdvertiserPage = () => {
   const [loading, setLoading] = useState(true);
   const [advertiser, setAdvertiser] = useState({} as IUserResponse);
-
-  console.log(advertiser);
-
   const [isOpen, setIsOpen] = useState(false);
+  
+  const { defineAcronym } = useContext(UserContext);
+
 
   const { id } = useParams();
 
@@ -130,4 +128,3 @@ export const AdvertiserPage = () => {
     }
     return <h1>Loading...</h1>;
   }
-};
