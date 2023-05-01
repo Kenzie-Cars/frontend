@@ -39,7 +39,6 @@ export const StyledFilter = styled.div`
       flex-direction: column;
       gap: 5px;
       max-height: 600px;
-      /* background-color: aqua; */
       overflow-y: auto;
 
       li {
@@ -49,19 +48,18 @@ export const StyledFilter = styled.div`
         display: flex;
         justify-content: start;
         text-align: start;
-        /* border-bottom: 2px red solid; */
-        
       }
 
-    
-
-    ${({ brand, selectModel }: any) => {
+    ${({ brand, color, year }: { year: string, color: string, brand: string }) => {
     return css`
           #${brand}{
-            color: red;
+            color: var(--brand2);
           }
-          #${selectModel}{
-            color: red;
+          #${color}{
+            color: var(--brand2);
+          }
+          #${year}{
+            color: var(--brand2);
           }
         
         `}}
@@ -94,6 +92,10 @@ export const StyledFilter = styled.div`
         }
       }
     }
+  }
+
+  button {
+    margin-bottom: 10px;
   }
 
   @media screen and (min-width: 400px) {

@@ -63,7 +63,7 @@ export const HomePage = () => {
               )}
             </StyledCarsContainer>
           </div>
-          {filter && <Filter setAdvertisements={setAdvertisements} carsInfo={carsInfo} setFilter={setFilter} />}
+          {filter && <Filter advertisements={advertisements} setAdvertisements={setAdvertisements} carsInfo={carsInfo} setFilter={setFilter} />}
         </div>
 
         {win && <button onClick={() => setFilter(!filter)}>Filtros</button>}
