@@ -53,7 +53,7 @@ export const AdvertiserPage = () => {
                             <span>Anunciante</span>
                         </hgroup>
 
-                        <p>{advertiser?.description}</p>
+                        <p>{advertiser.description}</p>
                     </div>
 
                     <StyledAdvertisementsContainer className="Advertisements-container">
