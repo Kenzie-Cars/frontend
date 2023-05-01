@@ -16,6 +16,7 @@ export const StyledHomeContainer = styled.div`
     .bodyContainer {
       display: flex;
       flex-direction: row-reverse;
+      justify-content: start;
     }
   }
 `;

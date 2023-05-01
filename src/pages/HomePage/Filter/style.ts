@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const StyledFilter = styled.div`
   position: absolute;
@@ -21,6 +21,9 @@ export const StyledFilter = styled.div`
       color: var(--grey4);
     }
   }
+
+  
+
   .filterList {
     padding: 1rem;
     display: flex;
@@ -32,11 +35,34 @@ export const StyledFilter = styled.div`
     }
     .lists {
       margin: 20px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      max-height: 600px;
+      overflow-y: auto;
+
       li {
         cursor: pointer;
         font: var(--Heading-7-500);
         color: var(--grey4);
+        display: flex;
+        justify-content: start;
+        text-align: start;
       }
+
+    ${({ brand, color, year }: { year: string, color: string, brand: string }) => {
+    return css`
+          #${brand}{
+            color: var(--brand2);
+          }
+          #${color}{
+            color: var(--brand2);
+          }
+          #${year}{
+            color: var(--brand2);
+          }
+        
+        `}}
     }
   }
   .range {
@@ -68,12 +94,16 @@ export const StyledFilter = styled.div`
     }
   }
 
+  button {
+    margin-bottom: 10px;
+  }
+
   @media screen and (min-width: 400px) {
     background-color: var(--whiteFixed);
     position: inherit;
-    width: 300px;                                                                                                      : ;
+    width: 300px;
     padding: 1rem;
-      button {
+      .filterModal {
         display: none;
       }
   }

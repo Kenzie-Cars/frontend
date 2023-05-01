@@ -107,63 +107,59 @@ export const CardContainer = styled.div`
     margin-right: 12px;
   }
 
-  .discount-badge {
-    ${({ discount }: ICardContainer) => {
-      return css`
-        display: ${discount ? "flex" : "none"};
-      `;
-    }}
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    font-weight: 500;
-    color: white;
-    height: 27px;
-    width: 15px;
-    background-color: var(--random7);
-    position: relative;
-    left: 24px;
-    top: 7px;
-    padding: 0px 2px;
-  }
-`;
+    .discount-badge{
+        ${({ discount }: ICardContainer) => {
+    return css`
+                display: ${discount ? 'flex' : 'none'};
+            `;
+  }}
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 500;
+        color: white;
+        height: 27px;
+        width: 15px;
+        background-color: var(--random7);
+        position: relative;
+        left: 24px;
+        top: 7px;
+        padding: 0px 2px;
+    }
+`
 
-export const AdvertiserCardContainer = styled(CardContainer)<{
-  is_active?: boolean;
-}>`
-  .active-badge {
-    position: relative;
-    height: 24px;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    ${({ is_active }: ICardContainer) => {
-      return css`
-        background-color: var(--${is_active ? "brand1" : "grey4"});
-      `;
-    }}
-    padding: 0px 8px;
-    margin-left: 16px;
-    margin-top: 12px;
-    z-index: 4;
-  }
+export const AdvertiserCardContainer = styled(CardContainer) <{ is_active?: boolean }>`
+    .active-badge{
+        position: relative;
+        height: 24px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        ${({ is_active }: ICardContainer) => {
+    return css`
+                background-color: var(--${is_active ? 'brand1' : 'grey4'}) ;
+            `;
+  }}
+        padding: 0px 8px;
+        margin-left: 16px;
+        margin-top: 12px;
+    }
 
-  .discount-badge {
-    ${({ is_active }: ICardContainer) => {
-      return css`
-        left: ${is_active ? "40px" : "50px"};
-        z-index: 4;
-      `;
-    }}
-    min-width: 15px;
-  }
+    .discount-badge{
+        ${({ is_active }: ICardContainer) => {
+    return css`
+                left: ${is_active ? '40px' : '50px'} ;
+            `;
+  }}
+        min-width: 15px;
+    }
 
-  img {
-    ${({ is_active }: ICardContainer) => {
-      return css`
-        left: ${is_active ? "-37px" : "-47px"};
-      `;
-    }}
-  }
-`;
+    img {
+        ${({ is_active }: ICardContainer) => {
+    return css`
+                left: ${is_active ? '-37px' : '-47px'} ;
+            `;
+  }}
+    }
+`
