@@ -20,9 +20,8 @@ export const AdvertiserPage = () => {
   const [loading, setLoading] = useState(true);
   const [advertiser, setAdvertiser] = useState({} as IUserResponse);
   const [isOpen, setIsOpen] = useState(false);
-  
-  const { defineAcronym } = useContext(UserContext);
 
+  const { defineAcronym } = useContext(UserContext);
 
   const { id } = useParams();
 
@@ -69,7 +68,7 @@ export const AdvertiserPage = () => {
                 <div className="ProductCard-container">
                   {advertiser?.id &&
                     advertiser?.advertisements?.map((product) =>
-                      createProductCard(product, advertiser?.id)
+                      createProductCard(product, advertiser?.id),
                     )}
                 </div>
               </StyledAdvertisementsContainer>
@@ -112,7 +111,7 @@ export const AdvertiserPage = () => {
                 <h3>Anúncios</h3>
                 <div className="ProductCard-container">
                   {advertiser?.advertisements?.map((product) =>
-                    createAdminProductCard(product)
+                    createAdminProductCard(product),
                   )}
                 </div>
               </StyledAdvertisementsContainer>
@@ -127,4 +126,5 @@ export const AdvertiserPage = () => {
       );
     }
     return <h1>Loading...</h1>;
-}}
+  }
+};

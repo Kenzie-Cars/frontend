@@ -59,7 +59,7 @@ const RequestPasswordChange = yup.object().shape({
     .matches(/(\d)/, "Deve conter ao menos 1 número")
     .matches(/(\W)|_/, "Deve conter ao menos 1 caracater especial")
     .matches(/.{8,}/, "Deve conter no minimo 8 caracteres"),
-  confirmPassword: yup
+  passwordConfirmation: yup
     .string()
     .required("Confirmar senha obrigatório")
     .oneOf([yup.ref("password")], "Senha não confere"),

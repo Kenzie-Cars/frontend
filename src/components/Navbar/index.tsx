@@ -3,7 +3,6 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { GrFormClose } from "react-icons/gr";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
-import { mockUser } from "../../mocks/productCard";
 import { FormUpdateUser } from "../FormEditUser";
 import { FormUpdateAdress } from "../FormUpdateAdress";
 import { HeaderStyle, LinkStyle, NavbarStyle, UlStyle } from "./style";
@@ -11,8 +10,16 @@ import { HeaderStyle, LinkStyle, NavbarStyle, UlStyle } from "./style";
 export const Navbar = () => {
   const [active, setActive] = useState(false);
 
-  const { user, isOpen, setIsOpen, isOpenMenu, setIsOpenMenu, defineAcronym } =
-    useContext(UserContext);
+  const {
+    user,
+    isOpen,
+    setIsOpen,
+    isOpenMenu,
+    setIsOpenMenu,
+    isOpenAddress,
+    setIsOpenAddress,
+    defineAcronym,
+  } = useContext(UserContext);
 
   const token = localStorage.getItem("@userTokenKenzieKars");
 
@@ -29,6 +36,11 @@ export const Navbar = () => {
 
   const editProfile = () => {
     setIsOpen(true);
+    setIsOpenMenu(false);
+  };
+
+  const editAddress = () => {
+    setIsOpenAddress(true);
     setIsOpenMenu(false);
   };
 
@@ -96,7 +108,7 @@ export const Navbar = () => {
           )}
           <UlStyle is_open={isOpenMenu}>
             <li onClick={() => editProfile()}>Editar Perfil</li>
-            <li onClick={() => setIsOpenAddress(true)}>Editar Endereço</li>
+            <li onClick={() => editAddress()}>Editar Endereço</li>
             {user?.is_seller && (
               <li onClick={() => myAdvertises()}>Meus Anúncios</li>
             )}

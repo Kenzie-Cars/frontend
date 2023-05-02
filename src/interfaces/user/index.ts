@@ -63,5 +63,5 @@ export interface IPasswordRecovery {
 
 export interface IPasswordChange {
   password: string,
-  confirmPassword: string
+  passwordConfirmation: string
 }
