@@ -1,22 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { IAdvertisementResponse } from "../interfaces/advertisement";
+import { useContext } from "react";
 import { IProductCard } from "../interfaces/components/ProductCardComponent";
 import {
   AdvertiserCardContainer,
   CardContainer,
 } from "../styles/components/productCard";
-
-export const defineAcronym = (username: string) => {
-  const acronym = username.includes(" ")
-    ? (username.split(" ")[0][0] + "" + username.split(" ")[1][0]).toUpperCase()
-    : (
-        username.split(" ")[0][0] +
-        "" +
-        username.split(" ")[0][1]
-      ).toUpperCase();
-
-  return acronym;
-};
+import { UserContext } from "../context/UserContext";
 
 export const ProductCard = ({
   id,
@@ -36,6 +26,8 @@ export const ProductCard = ({
   const advertise = () => {
     navigate(`/advertise/${id}`);
   };
+
+  const { defineAcronym } = useContext(UserContext);
 
   return (
     <CardContainer
@@ -89,6 +81,7 @@ export const AdvertiserProductCard = ({
   const advertise = () => {
     navigate(`/advertise/${id}`);
   };
+  const { defineAcronym } = useContext(UserContext);
 
   return (
     <AdvertiserCardContainer
@@ -139,7 +132,7 @@ export function createProductCard(
       model={productData.model}
       description={productData.description}
       year={productData.year}
-      price={productData.price}
+      price={String(productData.price)}
       user={productData.user}
       km={productData.km}
       is_goodSale={productData.is_goodSale}
@@ -155,7 +148,7 @@ export function createProductCard(
       model={productData.model}
       description={productData.description}
       year={productData.year}
-      price={productData.price}
+      price={String(productData.price)}
       user={productData.user}
       km={productData.km}
       is_goodSale={productData.is_goodSale}

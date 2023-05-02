@@ -3,16 +3,14 @@ import { useParams } from "react-router-dom";
 import { createAdminProductCard } from "../../components/AdminProductCard";
 import { Footer } from "../../components/Footer";
 import { Navbar } from "../../components/Navbar";
-import { createProductCard, defineAcronym } from "../../components/ProductCard";
+import { createProductCard } from "../../components/ProductCard";
 import {
   StyledAdvertisementsContainer,
   StyledAdvertiserPageContainer,
   StyledBackgroundBottom,
   StyledBackgroundTop,
 } from "./styles";
-
 import Button from "../../components/button";
-
 import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
 import { FormCreateAdvertise } from "../../components/FormCreateAdvertise";
 import { IUserResponse } from "../../interfaces/user";
@@ -20,10 +18,9 @@ import { IUserResponse } from "../../interfaces/user";
 export const AdvertiserPage = () => {
   const [loading, setLoading] = useState(true);
   const [advertiser, setAdvertiser] = useState({} as IUserResponse);
-
-  console.log(advertiser);
-
   const [isOpen, setIsOpen] = useState(false);
+
+  const { defineAcronym } = useContext(UserContext);
 
   const { id } = useParams();
 
@@ -70,7 +67,7 @@ export const AdvertiserPage = () => {
                 <div className="ProductCard-container">
                   {advertiser?.id &&
                     advertiser?.advertisements?.map((product) =>
-                      createProductCard(product, advertiser?.id)
+                      createProductCard(product, advertiser?.id),
                     )}
                 </div>
               </StyledAdvertisementsContainer>
@@ -113,7 +110,7 @@ export const AdvertiserPage = () => {
                 <h3>Anúncios</h3>
                 <div className="ProductCard-container">
                   {advertiser?.advertisements?.map((product) =>
-                    createAdminProductCard(product)
+                    createAdminProductCard(product),
                   )}
                 </div>
               </StyledAdvertisementsContainer>

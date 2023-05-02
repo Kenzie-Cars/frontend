@@ -12,10 +12,25 @@ export const StyledHomeContainer = styled.div`
     padding: 10px;
     border-radius: 4px;
   }
+
+  .bodyContainer {
+      /* background-color: aqua; */
+      /* width: 95%; */
+      padding: 0px 20px;
+      gap: 100px;
+    }
+
+
   @media screen and (min-width: 400px) {
     .bodyContainer {
       display: flex;
       flex-direction: row-reverse;
+      justify-content: start;
+    }
+
+    .cardContainer {
+      display: flex;
+      gap: 20px;
     }
   }
 `;

@@ -37,19 +37,6 @@ const UpdateUserSchema: any = yup.object().shape({
   phone: yup.string().notRequired(),
   birthDate: yup.string().notRequired(),
   description: yup.string().notRequired(),
-  password: yup
-    .string()
-    .notRequired()
-    .matches(/[a-z]/, "Deve conter ao menos 1 letra minúscula ")
-    .matches(/(\d)/, "Deve conter ao menos 1 número")
-    .matches(/(\W)|_/, "Deve conter ao menos 1 caracater especial")
-    .matches(/.{8,}/, "Deve conter no minimo 8 caracteres"),
-  confirmPassword: yup
-    .string()
-    .notRequired()
-    .oneOf([yup.ref("password")], "Senha não confere"),
-  is_seller: yup.boolean().notRequired().default(false),
-  is_adm: yup.boolean().notRequired().default(false),
   address: yup.object().shape({
     cep: yup.string().notRequired(),
     state: yup.string().notRequired(),
@@ -60,4 +47,22 @@ const UpdateUserSchema: any = yup.object().shape({
   }),
 });
 
-export { CreateUserSchema, UpdateUserSchema };
+const RequestPasswordRecoveryToken = yup.object().shape({
+  email: yup.string().required('Por favor insira o email cadastrado na plataforma').email('Deve ser um endereço de email válido')
+})
+
+const RequestPasswordChange = yup.object().shape({
+  password: yup
+    .string()
+    .required("Senha obrigatório")
+    .matches(/[a-z]/, "Deve conter ao menos 1 letra minúscula ")
+    .matches(/(\d)/, "Deve conter ao menos 1 número")
+    .matches(/(\W)|_/, "Deve conter ao menos 1 caracater especial")
+    .matches(/.{8,}/, "Deve conter no minimo 8 caracteres"),
+  passwordConfirmation: yup
+    .string()
+    .required("Confirmar senha obrigatório")
+    .oneOf([yup.ref("password")], "Senha não confere"),
+})
+
+export { CreateUserSchema, UpdateUserSchema, RequestPasswordRecoveryToken, RequestPasswordChange };

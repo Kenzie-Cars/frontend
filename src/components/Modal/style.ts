@@ -141,7 +141,14 @@ export const MainContainer = styled.div`
 
 export const HeaderTitle = styled.h3``;
 
-export const CloseButton = styled.div``;
+export const CloseButton = styled.div`
+  & > svg {
+    color: var(--grey4);
+    width: 30px;
+    height: 30px;
+    font-size: 1.5rem;
+  }
+`;
 
 //para usar no detalhamento do carro
 export const CarImg = styled.div``;

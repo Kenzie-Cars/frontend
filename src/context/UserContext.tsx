@@ -18,11 +18,11 @@ interface IUserContext {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   userRegister: (
     data: IUserRequest,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
   ) => void;
   userlogin: (
     userData: IUserLogin,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
   ) => void;
   userUpdateProfile: (userData: IUserUpdateRequest) => Promise<void>;
   userDeleteProfile: () => Promise<void>;
@@ -30,6 +30,9 @@ interface IUserContext {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setIsOpenMenu: React.Dispatch<React.SetStateAction<boolean>>;
   isOpenMenu: boolean;
+  isOpenAddress: boolean;
+  setIsOpenAddress: React.Dispatch<React.SetStateAction<boolean>>;
+  defineAcronym: (username: string) => string;
 }
 
 interface IUserProviderProps {
@@ -41,6 +44,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [isOpenAddress, setIsOpenAddress] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -65,9 +69,25 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     loadUser();
   }, []);
 
+  const defineAcronym = (username: string) => {
+    const acronym = username.includes(" ")
+      ? (
+          username.split(" ")[0][0] +
+          "" +
+          username.split(" ")[1][0]
+        ).toUpperCase()
+      : (
+          username.split(" ")[0][0] +
+          "" +
+          username.split(" ")[0][1]
+        ).toUpperCase();
+
+    return acronym;
+  };
+
   const userRegister = async (
     data: IUserRequest,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
   ) => {
     try {
       setLoading(true);
@@ -89,10 +109,13 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   const userlogin = async (userData: IUserLogin) => {
     try {
       setLoading(true);
+      console.log("data", userData);
       const res = await RequestApiKenzieKars.post("login", userData);
       toast.success("Login feito sucesso", {
         autoClose: 1500,
       });
+      console.log("res", res);
+
       localStorage.setItem("@userTokenKenzieKars", res.data.token);
       localStorage.setItem("@userIdKenzieKars", res.data.user.id);
       setUser(res.data.user);
@@ -118,24 +141,26 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
-      toast.success("Usuário atualizado com sucesso", {
+      toast.success("Dados atualizados com sucesso", {
         autoClose: 1500,
       });
-      setUser(res.data.user);
+      console.log(res.data);
+      setUser(res.data);
     } catch (error) {
       toast.error("Não foi possível alterar os dados", {
         autoClose: 1500,
       });
     } finally {
       setLoading(false);
+      setIsOpen(false);
     }
   };
   const userDeleteProfile = async () => {
     try {
       setLoading(true);
-      const res = await RequestApiKenzieKars.delete(`users/${userId}`, {
+      await RequestApiKenzieKars.delete(`users/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -147,7 +172,6 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       localStorage.removeItem("@userIdKenzieKars");
       setUser(null);
       setIsOpen(false);
-      setIsOpenMenu(false);
     } catch (error) {
       toast.error("Não foi possível deletar o perfil", {
         autoClose: 1500,
@@ -164,6 +188,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         setUser,
         loading,
         setLoading,
+        defineAcronym,
         userRegister,
         userlogin,
         userUpdateProfile,
@@ -171,6 +196,8 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         isOpen,
         setIsOpen,
         setIsOpenMenu,
+        isOpenAddress,
+        setIsOpenAddress,
         isOpenMenu,
       }}
     >

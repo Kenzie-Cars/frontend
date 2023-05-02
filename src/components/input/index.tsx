@@ -10,6 +10,7 @@ export const Input = ({
   disabled,
   register,
   value,
+  defaultValue,
   errors,
 }: InputInterface) => {
   return (
@@ -22,6 +23,7 @@ export const Input = ({
         type={String(type)}
         placeholder={placeholder}
         disabled={disabled}
+        defaultValue={defaultValue}
       />
       <span>{errors}</span>
     </StyledInput>
@@ -51,11 +53,13 @@ export const Textarea = ({
         maxLength={length}
         placeholder={placeHolder}
         value={value}
+        defaultValue={defaultValue}
         {...register(id)}
       />
       <p>
         {maxLength}/{length}
       </p>
+      <span>{errors}</span>
     </StyledTextarea>
   );
 };

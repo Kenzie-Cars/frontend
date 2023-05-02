@@ -9,6 +9,7 @@ import { Input } from "../../components/input";
 import { UserContext } from "../../context/UserContext";
 import { PageLoginStyled } from "./styled";
 import { IUserLogin } from "../../interfaces/user";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup.object({
   email: yup
@@ -31,6 +32,8 @@ export const Login = () => {
   } = useForm<IUserLogin>({
     resolver: yupResolver(schema),
   });
+
+  const navigate = useNavigate()
 
   const onSubmit = async (data: IUserLogin) => {
     userlogin(data, setLoading);
@@ -61,7 +64,7 @@ export const Login = () => {
               placeholder="Digitar senha"
             />
 
-            <p className="esqueci">Esqueci minha senha</p>
+            <p className="esqueci" onClick={() => navigate('/forgot-password')}>Esqueci minha senha</p>
             <Button
               background="brand1"
               size="5"
@@ -69,15 +72,6 @@ export const Login = () => {
               text="Entrar"
               border="none"
               color="grey8"
-            />
-            <p className="text2">Esqueci minha senha</p>
-            <Button
-              background="grey8"
-              size="5"
-              hover="hover2"
-              text="Entrar"
-              border="solid 2px var(--grey5)"
-              color="grey2"
             />
           </form>
         </section>

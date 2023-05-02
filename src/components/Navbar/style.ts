@@ -25,7 +25,7 @@ export const HeaderStyle = styled.header<IHeaderProps>`
   background-color: var(--grey10);
   border-bottom: ${(props) =>
     props.is_active ? "solid 2px var(--grey6)" : "solid 2px transparent"};
-  z-index: 4;
+  z-index: 100;
 
   & > div {
     position: fixed;
@@ -208,7 +208,7 @@ export const UlStyle = styled.ul<IUlProps>`
   border-left: solid 2px var(--grey6);
   border-bottom: solid 2px var(--grey6);
   background-color: var(--grey10);
-  z-index: 4;
+  z-index: 100;
 
   & > li {
     display: flex;
@@ -216,6 +216,7 @@ export const UlStyle = styled.ul<IUlProps>`
     padding: 15px 30px;
     color: var(--grey2);
     font: var(--body-1-400);
+    cursor: pointer;
   }
 
   @media (min-width: 768px) {

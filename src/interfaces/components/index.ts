@@ -13,6 +13,7 @@ export interface IButtonStyled {
   background: string;
   color?: string;
   border?: string;
+  padding?: string;
 }
 
 export interface InputInterface {

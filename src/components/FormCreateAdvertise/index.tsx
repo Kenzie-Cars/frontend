@@ -181,7 +181,7 @@ export const FormCreateAdvertise = ({ setIsOpen, isOpen }: Iprops) => {
           disabled={brandValue ? false : true}
         />
 
-        <div className="inputContainer">
+        <div className="selectContainer">
           <Select
             label="Ano"
             id="year"

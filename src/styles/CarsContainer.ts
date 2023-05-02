@@ -3,9 +3,9 @@ import styled from "styled-components";
 export const StyledCarsContainer = styled.ul`
   display: flex;
   overflow-x: auto;
-  gap: 10px;
+  gap: 50px;
   height: fit-content;
-  margin: 30px 0 50px 0;
+  margin: 50px 0;
 
   @media screen and (min-width: 400px) {
     overflow-x: unset;
@@ -26,9 +26,11 @@ export const StyledCard = styled.li`
   .imgContainer {
     width: 280px;
     background-color: var(--grey7);
+    
     img {
-      width: 260px;
-      height: 150px;
+      width: 280px;
+      height: 170px;
+      object-fit: contain;
     }
   }
   .cardDescription {

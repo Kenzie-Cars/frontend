@@ -7,11 +7,14 @@ import { carsInfo } from "../../data.mocks";
 import { StyledCarsContainer } from "../../styles/CarsContainer";
 import { Filter } from "./Filter";
 import { StyledBackgroundImg, StyledHomeContainer } from "./style";
+import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
+import { UserContext } from "../../context/UserContext";
 
 export const HomePage = () => {
   const [filter, setFilter] = useState(true);
   const [win, setWin] = useState(window.innerWidth <= 400 ? true : false);
-  const { advertisements } = useContext(AdvertisementContext);
+  const { advertisements, setAdvertisements } =
+    useContext(AdvertisementContext);
   const userId = localStorage.getItem("@userIdKenzieKars");
 
   useEffect(() => {
@@ -24,7 +27,6 @@ export const HomePage = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [window.innerWidth]);
-  
 
   return (
     <>
@@ -51,7 +53,14 @@ export const HomePage = () => {
               )}
             </StyledCarsContainer>
           </div>
-          {filter && <Filter carsInfo={carsInfo} setFilter={setFilter} />}
+          {filter && (
+            <Filter
+              advertisements={advertisements}
+              setAdvertisements={setAdvertisements}
+              carsInfo={carsInfo}
+              setFilter={setFilter}
+            />
+          )}
         </div>
 
         {win && <button onClick={() => setFilter(!filter)}>Filtros</button>}
