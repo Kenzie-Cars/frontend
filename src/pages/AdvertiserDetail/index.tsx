@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { createAdminProductCard } from "../../components/AdminProductCard";
 import { Footer } from "../../components/Footer";
 import { Navbar } from "../../components/Navbar";
-import { createProductCard, defineAcronym } from "../../components/ProductCard";
+import { createProductCard } from "../../components/ProductCard";
 import {
   StyledAdvertisementsContainer,
   StyledAdvertiserPageContainer,
@@ -127,4 +127,4 @@ export const AdvertiserPage = () => {
       );
     }
     return <h1>Loading...</h1>;
-  }
+}}
