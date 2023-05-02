@@ -7,6 +7,8 @@ export const StyledFilter = styled.div`
   width: 100vw;
   max-width: 400px;
   padding: 1rem;
+  
+
   .filterHeader {
     display: flex;
     padding: 10px;
@@ -25,11 +27,13 @@ export const StyledFilter = styled.div`
   
 
   .filterList {
-    padding: 1rem;
+    /* padding: 1rem; */
     display: flex;
     flex-direction: column;
-    align-items: left;
+    align-items: start;
     text-align-last: start;
+    /* background-color: aqua; */
+
     h3 {
       font: var(--Heading-4-600);
     }
@@ -69,10 +73,13 @@ export const StyledFilter = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    /* background-color: aqua; */
+    width: 300px;
     h3 {
-      margin-left: 1rem;
+      /* margin-left: 1rem; */
       align-self: flex-start;
       font: var(--Heading-4-600);
+      
     }
     .inputs {
       display: flex;

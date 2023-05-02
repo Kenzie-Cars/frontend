@@ -28,7 +28,7 @@ export const ProductCard = ({
   };
 
   const { defineAcronym } = useContext(UserContext);
-  
+
   return (
     <CardContainer
       is_active={is_active}
@@ -132,7 +132,7 @@ export function createProductCard(
       model={productData.model}
       description={productData.description}
       year={productData.year}
-      price={productData.price}
+      price={String(productData.price)}
       user={productData.user}
       km={productData.km}
       is_goodSale={productData.is_goodSale}
@@ -148,7 +148,7 @@ export function createProductCard(
       model={productData.model}
       description={productData.description}
       year={productData.year}
-      price={productData.price}
+      price={String(productData.price)}
       user={productData.user}
       km={productData.km}
       is_goodSale={productData.is_goodSale}
