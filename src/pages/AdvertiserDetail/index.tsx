@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { createAdminProductCard } from "../../components/AdminProductCard";
 import { Footer } from "../../components/Footer";
@@ -14,6 +14,7 @@ import Button from "../../components/button";
 import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
 import { FormCreateAdvertise } from "../../components/FormCreateAdvertise";
 import { IUserResponse } from "../../interfaces/user";
+import { UserContext } from "../../context/UserContext";
 
 export const AdvertiserPage = () => {
   const [loading, setLoading] = useState(true);

@@ -21,7 +21,7 @@ export const Advertise = () => {
 
   useEffect(() => {
     const getImages = advertisement?.images?.map((image) =>
-      Object.values(image).slice(1).flat(1)
+      Object.values(image).slice(1).flat(1),
     );
     setImages(getImages!);
   }, [advertisement]);
@@ -33,7 +33,7 @@ export const Advertise = () => {
     }
   };
 
-  const discreaseImages = () => {
+  const decreaseImages = () => {
     const newIndex = currentImg - 1;
     if (newIndex <= images[0].length) {
       setCurrentImg(newIndex);
@@ -101,7 +101,10 @@ export const Advertise = () => {
               <p>{advertisement?.user.description}</p>
               <a>
                 {" "}
-                <Link to={"/"} className="link1">
+                <Link
+                  to={`/profile/${advertisement?.user.id}`}
+                  className="link1"
+                >
                   ver todos os anuncios
                 </Link>{" "}
               </a>
@@ -141,7 +144,7 @@ export const Advertise = () => {
                   alt={advertisement?.model}
                 />
                 <div className="buttonBox">
-                  <button onClick={discreaseImages}>Anterior</button>
+                  <button onClick={decreaseImages}>Anterior</button>
                   <button onClick={increaseImages}>Próximo</button>
                 </div>
               </div>
