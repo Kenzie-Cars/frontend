@@ -16,21 +16,16 @@ interface IModal {
 }
 
 const Modal = ({ children, headerTitle, setIsOpen }: IModal) => {
-
-  const closeModal = () =>{
-    setIsOpen(false)
-  }
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
   return (
     <Overlay>
       <Container>
         <Header>
           <HeaderTitle>{headerTitle}</HeaderTitle>
-          <CloseButton
-            onClick={closeModal}
-          >
-            X
-          </CloseButton>
+          <CloseButton onClick={closeModal}>X</CloseButton>
         </Header>
         <MainContainer>{children}</MainContainer>
       </Container>

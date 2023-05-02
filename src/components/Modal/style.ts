@@ -99,9 +99,9 @@ export const MainContainer = styled.div`
 
   width: 100%;
   height: 90%;
-  /* outline: 1px red solid; */
   margin: 0 auto;
-
+  
+  
   /* > div, */
   > CarImg {
     background-color: var(--grey7);
@@ -115,6 +115,20 @@ export const MainContainer = styled.div`
       width: inherit;
       max-height: 100%;
       height: fit-content;
+    }
+  }
+
+  .buttonBox{
+    width: inherit;
+    height: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    > button {
+      text-align: center;
+      background-color: var(--brand1);
+      color: var(--whiteFixed);
+      height: inherit;
     }
   }
 
