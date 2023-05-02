@@ -175,6 +175,7 @@ export const AdvertiserCardContainer = styled(CardContainer) <{ is_active?: bool
         ${({ is_active }: ICardContainer) => {
     return css`
                 left: ${is_active ? '-37px' : '-47px'} ;
+                
             `;
   }}
 

@@ -142,7 +142,7 @@ export const AdvertiseContainer = styled.div`
       line-height: 28px;
       color: var(--grey2);
     }
-    button {
+    a {
       margin: 20px 0 10px 0;
       background-color: var(--grey0);
       border-radius: 4px;

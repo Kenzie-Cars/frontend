@@ -49,7 +49,7 @@ export const HomePage = () => {
           <div className="cardContainer">
             <StyledCarsContainer>
               {advertisements.map((product) =>
-                createProductCard(product, userId!),
+                product.is_active && createProductCard(product, userId!)
               )}
             </StyledCarsContainer>
           </div>
