@@ -82,7 +82,8 @@ export const AdvertiserProductCard = ({
     navigate(`/advertise/${id}`);
   };
   const { defineAcronym } = useContext(UserContext);
-
+  const userId = localStorage.getItem("@userIdKenzieKars");
+  const test = userId === user.id;
   return (
     <AdvertiserCardContainer
       discount={is_goodSale}
@@ -90,9 +91,11 @@ export const AdvertiserProductCard = ({
       onClick={() => advertise()}
     >
       <div className="img-container">
-        <small className="active-badge">
-          {is_active ? "Ativo" : "Inativo"}
-        </small>
+        {test && (
+          <small className="active-badge">
+            {is_active ? "Ativo" : "Inativo"}
+          </small>
+        )}
         <img src={cover_img} alt={model} />
         <small className="discount-badge">$</small>
       </div>
@@ -122,7 +125,7 @@ export const AdvertiserProductCard = ({
 
 export function createProductCard(
   productData: IAdvertisementResponse,
-  currentUserId: string
+  currentUserId: string,
 ) {
   return currentUserId === productData.user.id ? (
     <ProductCard

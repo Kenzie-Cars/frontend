@@ -161,6 +161,8 @@ export const FormCreateAdvertise = ({ setIsOpen, isOpen }: Iprops) => {
       toast.error("Não foi possível criar o anúncio", {
         autoClose: 1500,
       });
+    } finally {
+      window.location.reload();
     }
   };
 
