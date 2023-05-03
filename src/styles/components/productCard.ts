@@ -153,7 +153,7 @@ export const AdvertiserCardContainer = styled(CardContainer) <{ is_active?: bool
     .discount-badge{
         ${({ is_active }: ICardContainer) => {
         return css`
-                left: ${is_active ? '40px' : '50px'} ;
+                left: ${is_active ? '-40px' : '-50px'} ;
                 z-index: 1;
 
             `;
