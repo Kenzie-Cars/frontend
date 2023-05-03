@@ -9,6 +9,7 @@ import { IAdvertisementRequest } from "../../interfaces/advertisement";
 import { CreateAdvertiseSchema } from "../../schema/CreateAdvertiseSchema";
 import { RequestApiFIPE } from "../../Requests/RequestApiFIPE";
 import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
+import { toast } from "react-toastify";
 
 interface Iprops {
   isOpen: boolean;
@@ -152,9 +153,16 @@ export const FormCreateAdvertise = ({ setIsOpen, isOpen }: Iprops) => {
           Authorization: `Bearer ${token}`,
         },
       });
+      toast.success("Anúncio criado com sucesso", {
+        autoClose: 1500,
+      });
       setIsOpen(false);
     } catch (error) {
-      console.log(error);
+      toast.error("Não foi possível criar o anúncio", {
+        autoClose: 1500,
+      });
+    } finally {
+      window.location.reload();
     }
   };
 

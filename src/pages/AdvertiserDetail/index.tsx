@@ -13,15 +13,15 @@ import {
 import Button from "../../components/button";
 import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
 import { FormCreateAdvertise } from "../../components/FormCreateAdvertise";
-import { UserContext } from "../../context/UserContext";
 import { IUserResponse } from "../../interfaces/user";
+import { UserContext } from "../../context/UserContext";
 
 export const AdvertiserPage = () => {
   const [loading, setLoading] = useState(true);
   const [advertiser, setAdvertiser] = useState({} as IUserResponse);
   const [isOpen, setIsOpen] = useState(false);
 
-  const { defineAcronym } = useContext(UserContext);
+  const { defineAcronym, user } = useContext(UserContext);
 
   const { id } = useParams();
 
@@ -43,7 +43,7 @@ export const AdvertiserPage = () => {
 
   {
     if (!loading) {
-      return id !== advertiser?.id ? (
+      return id !== user?.id ? (
         <>
           <Navbar />
           <StyledBackgroundTop />

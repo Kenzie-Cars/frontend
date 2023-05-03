@@ -15,8 +15,8 @@ export const Filter = ({
   ///////////////////////////////////////
   const [kmMin, setKmMin] = useState("");
   const [kmMax, setKmMax] = useState("");
-  const [yearMin, setYearMin] = useState("");
-  const [yearMax, setYearMax] = useState("");
+  const [priceMin, setPriceMin] = useState("");
+  const [priceMax, setPriceMax] = useState("");
   ///////////////////////////////////////
   const [listBrands, setListBrands] = useState<Array<string>>([""]);
   const [models, setModels] = useState<string[]>([""]);
@@ -27,7 +27,7 @@ export const Filter = ({
   const getAdvertisements = async () => {
     try {
       const { data } = await RequestApiKenzieKars.get(
-        `advertisements?brand=${urlBrand}&model=${urlModel}&color=${urlColor}&year=${urlYear}&fuel=${urlFuel}&kmMin=${kmMin}&kmMax=${kmMax}&yearMin=${yearMin}&yearMax=${yearMax}`,
+        `advertisements?brand=${urlBrand}&model=${urlModel}&color=${urlColor}&year=${urlYear}&fuel=${urlFuel}&kmMin=${kmMin}&kmMax=${kmMax}&priceMin=${priceMin}&priceMax=${priceMax}`,
       );
       setAdvertisements(data);
     } catch (error) {
@@ -127,10 +127,11 @@ export const Filter = ({
 
   const cleanFilter = () => {
     setUrlBrand("");
-    setYearMin("");
-    setYearMax("");
+    setPriceMin("");
+    setPriceMax("");
     setKmMin("");
     setKmMax("");
+    setUrlBrand("")
   };
 
   const eventKey = (event: any) => {
@@ -231,15 +232,15 @@ export const Filter = ({
               />
             </div>
             <div className="range">
-              <h3>Year</h3>
+              <h3>Preço</h3>
               <div className="inputs">
                 <input
-                  onChange={(e) => setYearMin(e.target.value)}
+                  onChange={(e) => setPriceMin(e.target.value)}
                   type="number"
                   placeholder="Mínimo"
                 />
                 <input
-                  onChange={(e) => setYearMax(e.target.value)}
+                  onChange={(e) => setPriceMax(e.target.value)}
                   type="number"
                   placeholder="Máximo"
                 />
@@ -248,7 +249,7 @@ export const Filter = ({
           </div>
         </form>
       </div>
-      {urlBrand || kmMin || kmMax || yearMin || yearMax ? (
+      {urlBrand || kmMin || kmMax || priceMin || priceMax ? (
         <button onClick={() => cleanFilter()}>Limpar Filtro</button>
       ) : (
         <></>
