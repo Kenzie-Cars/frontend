@@ -9,7 +9,7 @@ import { Navbar } from "../../../components/Navbar";
 import { Footer } from "../../../components/Footer";
 import Button from "../../../components/button";
 import { toast } from "react-toastify";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const PasswordChangePage = () => {
 
@@ -20,13 +20,23 @@ export const PasswordChangePage = () => {
     } = useForm<IPasswordChange>({resolver: yupResolver(RequestPasswordChange)})
 
     const {token} = useParams()
+    const navigate = useNavigate()
 
     const sendData = async (data: IPasswordChange) => {
         console.log(data)
 
-        const response = await RequestApiKenzieKars.patch(`resetPassword/${token}`, data)
+        try {
+            const response = await RequestApiKenzieKars.patch(`resetPassword/${token}`, data)
 
-        toast.success(response.data.message)
+            toast.success(response.data.message)
+            
+        } catch (error) {
+            console.error(error)
+        } finally {
+            navigate('/login')
+        }
+
+        
     }
 
     return (

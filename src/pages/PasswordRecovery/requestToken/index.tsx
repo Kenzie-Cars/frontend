@@ -22,6 +22,16 @@ export const RequestPasswordChangePage = () => {
         const response = await RequestApiKenzieKars.post('forgotpassword/', data)
 
         toast.success(response.data.message)
+        
+        const CustomToastWithLink = () => (
+            <div>
+              <a href={response.data.link}>Clique aqui para acessar o email</a>
+            </div>
+        );
+
+        if(response.data.link){
+            toast.info(CustomToastWithLink)
+        }
     }
 
     return (
