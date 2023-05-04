@@ -204,7 +204,7 @@ const Register = () => {
 
             <div className="div--buttonSubmit">
               <Button
-                size={"5"}
+                size={"6"}
                 hover={"hover1"}
                 background={""}
                 color={""}
