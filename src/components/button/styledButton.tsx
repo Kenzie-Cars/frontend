@@ -125,6 +125,11 @@ ${({ padding }) => {
           min-height: 50px;
           width: 80%;
         `;
+      case "6":
+        return css`
+          min-height: 50px;
+          width: 100%;
+        `;
     }
   }}
 `;

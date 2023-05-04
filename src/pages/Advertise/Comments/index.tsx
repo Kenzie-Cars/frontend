@@ -1,3 +1,5 @@
+import { ICommentsResponse } from "../../../interfaces/comments";
+
 export const Comments = () => {
   return (
     <li>
@@ -6,9 +8,7 @@ export const Comments = () => {
         <h3>Samuel Leão</h3> <span> - há 1 dia</span>
       </div>
       <p className="commentBody">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam et
-        ipsa quam voluptates delectus rem error, iste at ducimus ab hic fugit
-        placeat a voluptatibus nihil temporibus provident odio ut.
+        {}
       </p>
     </li>
   );

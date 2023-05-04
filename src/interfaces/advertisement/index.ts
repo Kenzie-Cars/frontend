@@ -1,3 +1,4 @@
+import { ICommentsResponse } from "../comments";
 import { IUserResponse } from "../user";
 
 export interface IAdvertisementRequest {
@@ -31,6 +32,7 @@ export interface IAdvertisementResponse {
   cover_img: string;
   is_goodSale: boolean;
   images: string[];
+  userAdvertisements: ICommentsResponse
   is_active: boolean;
   created_at: Date;
   updated_at: Date;

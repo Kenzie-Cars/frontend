@@ -1,11 +1,10 @@
 export interface ICommnentsRequest {
-    id: string
-    content: string
+    comment: string
 }
 
-export interface ICommnetsResponse {
+export interface ICommentsResponse {
     id: string
-    content: string
+    comment: string
     created_at: Date
     updated_at: Date
     user_id: string
