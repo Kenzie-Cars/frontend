@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { ITextarea, InputInterface } from "../../interfaces/components";
 import { StyledInput, StyledSelect, StyledTextarea } from "./styledInput";
 
@@ -40,21 +40,27 @@ export const Textarea = ({
   value,
   defaultValue,
   errors,
+  onChange,
 }: ITextarea) => {
   const [maxLength, setLength] = useState(0);
+
+  const setOnchange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setLength(e.target.value.length);
+    onChange(e.target.value)
+  };
 
   return (
     <StyledTextarea>
       <label htmlFor={id}>{label}</label>
       <textarea
-        onChange={(event) => setLength(event.target.textLength)}
         id={id}
         rows={row}
         maxLength={length}
         placeholder={placeHolder}
         value={value}
-        defaultValue={defaultValue}
         {...register(id)}
+        defaultValue={defaultValue}
+        onChange={(e) => setOnchange(e)}
       />
       <p>
         {maxLength}/{length}

@@ -31,6 +31,7 @@ export const AdvProvider = ({ children }: IAdvProps) => {
     };
     getAdvertisements();
   }, []);
+  
 
   return (
     <AdvertisementContext.Provider

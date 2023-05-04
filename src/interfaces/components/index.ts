@@ -38,6 +38,7 @@ export interface ITextarea {
   errors?: string | undefined;
   value?: string;
   defaultValue?: string;
+  onChange?: any
 }
 
 export interface ISelect {

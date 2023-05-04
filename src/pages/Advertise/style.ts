@@ -194,18 +194,21 @@ export const AdvertiseContainer = styled.div`
       color: var(--grey3);
     }
   }
-  .newComment {
-    display: flex;
+
+
+    .newComment {
+      display: flex;
     flex-direction: column;
     margin-bottom: 2.5rem;
+    
 
-    textarea {
-      height: fit-content;
-      min-height: 120px;
-      border: 1px solid var(--grey7);
-      border-radius: 4px;
-    }
-    button {
+      textarea {
+        height: fit-content;
+        min-height: 120px;
+        border: 1px solid var(--grey7);
+        border-radius: 4px;
+      }
+      button {
       margin: 30px 0;
       width: fit-content;
       color: var(--whiteFixed);
@@ -215,6 +218,7 @@ export const AdvertiseContainer = styled.div`
       border-radius: 4px;
       background-color: var(--brand1);
     }
+  }
     .fastComment {
       display: flex;
       gap: 1rem;
@@ -227,8 +231,8 @@ export const AdvertiseContainer = styled.div`
         padding: 4px 10px;
         color: var(--grey3);
       }
-    }
-  }
+      }
+      
 
   @media screen and (min-width: 768px) {
     .container {
