@@ -15,6 +15,8 @@ import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
 import { FormCreateAdvertise } from "../../components/FormCreateAdvertise";
 import { IUserResponse } from "../../interfaces/user";
 import { UserContext } from "../../context/UserContext";
+import { DeleteCarModal } from '../../components/ModalDeleteCars'
+import { AdvertisementContext } from "../../context/AdvertisementContext";
 
 export const AdvertiserPage = () => {
   const [loading, setLoading] = useState(true);
@@ -22,6 +24,7 @@ export const AdvertiserPage = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const { defineAcronym, user } = useContext(UserContext);
+  const { advertisements } = useContext(AdvertisementContext);
 
   const { id } = useParams();
 
@@ -29,9 +32,10 @@ export const AdvertiserPage = () => {
     const fetchAdvertisements = async () => {
       const response = await RequestApiKenzieKars.get(`users/${id}`);
       setAdvertiser(response.data);
+      console.log('ok')
     };
     fetchAdvertisements();
-  }, []);
+  }, [advertisements]);
 
   useEffect(() => {
     setLoading(false);
@@ -40,6 +44,7 @@ export const AdvertiserPage = () => {
   const test = () => {
     setIsOpen(true);
   };
+
 
   {
     if (!loading) {
@@ -121,6 +126,7 @@ export const AdvertiserPage = () => {
             )}
           </StyledBackgroundBottom>
 
+          <DeleteCarModal />
           <Footer />
         </>
       );

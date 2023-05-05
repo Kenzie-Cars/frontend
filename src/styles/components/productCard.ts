@@ -21,8 +21,8 @@ export const CardContainer = styled.div`
   img {
     width: 100%;
     height: 170px;
-    /* position: relative; */
     object-fit: cover;
+    background-color: var(--grey7);
   }
 
   h3 {
@@ -159,7 +159,7 @@ export const AdvertiserCardContainer = styled(CardContainer) <{ is_active?: bool
 
     .discount-badge{
         ${({ is_active }: ICardContainer) => {
-        return css`
+    return css`
                 left: ${is_active ? '-40px' : '-50px'} ;
                 z-index: 1;
                 position: absolute;
@@ -175,6 +175,7 @@ export const AdvertiserCardContainer = styled(CardContainer) <{ is_active?: bool
         ${({ is_active }: ICardContainer) => {
     return css`
                 left: ${is_active ? '-37px' : '-47px'} ;
+                background-color: var(--grey7);
                 
             `;
   }}

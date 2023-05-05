@@ -7,6 +7,7 @@ import { UserContext } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import { AdvertisementContext } from "../../context/AdvertisementContext";
 
+
 export const AdminProductCard = ({
   cover_img,
   model,
@@ -22,11 +23,18 @@ export const AdminProductCard = ({
 }: IAdvertisementResponse) => {
   const { defineAcronym } = useContext(UserContext);
   // const {advertisements} = useContext(AdvertisementContext)
+  const { setStatusModalDelete, setCarDeleteId } = useContext(AdvertisementContext)
   const navigate = useNavigate();
 
   const test = () => {
     navigate(`/advertise/${id}`);
   };
+
+  const setCarDeleteFunction = () => {
+    setStatusModalDelete("modalOn")
+    setCarDeleteId(id)
+    console.log(id)
+  }
 
   return (
     <AdvertiserCardContainer is_active={is_active} discount={is_goodSale}>
@@ -65,6 +73,7 @@ export const AdminProductCard = ({
           hover="hover4"
           background="white"
           border="2px solid var(--grey1)"
+          onClick={setCarDeleteFunction}
         />
 
         <Button
