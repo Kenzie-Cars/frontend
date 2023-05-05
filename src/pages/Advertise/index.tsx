@@ -86,7 +86,6 @@ export const Advertise = () => {
         setLoading(false);
       }
     }
-
   };
 
   const sendComment = async (data: ICommnentsRequest) => {
@@ -133,20 +132,17 @@ export const Advertise = () => {
   const calcDate = (data: { created_at: Date }) => {
     const currentDate: any = new Date(data.created_at);
     const now: any | number | bigint = new Date();
+    const hours = now.getHours() - currentDate.getHours();
     const days = now.getDate() - currentDate.getDate();
     const months = now.getMonth() - currentDate.getMonth();
     const year = now.getFullYear() - currentDate.getFullYear();
 
     if (now - currentDate < 30 * 24 * 60 * 60 * 1000) {
       return `há ${days} dias`;
-    }
-
-    if (days == 1) {
-      return `há ${days} dia`;
-    }
-
-    if (days > 1) {
-      return `há ${days} dias`;
+    } else if (days == 1) {
+      return `há ${days} dia1`;
+    } else if (days > 1) {
+      return `há ${days} dias2`;
     }
 
     if (now - currentDate >= 30 * 24 * 60 * 60 * 1000 && months == 1) {
@@ -257,7 +253,7 @@ export const Advertise = () => {
                   type={"submit"}
                   hover={""}
                   background={""}
-                  disabled={!user ? false : true}
+                  // disabled={!user ? true : false}
                 />
               </form>
               <div className="fastComment">
