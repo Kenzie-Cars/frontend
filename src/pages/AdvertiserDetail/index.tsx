@@ -21,7 +21,7 @@ export const AdvertiserPage = () => {
   const [advertiser, setAdvertiser] = useState({} as IUserResponse);
   const [isOpen, setIsOpen] = useState(false);
 
-  const { defineAcronym } = useContext(UserContext);
+  const { defineAcronym, user } = useContext(UserContext);
 
   const { id } = useParams();
 
@@ -43,7 +43,7 @@ export const AdvertiserPage = () => {
 
   {
     if (!loading) {
-      return id !== advertiser?.id ? (
+      return id !== user?.id ? (
         <>
           <Navbar />
           <StyledBackgroundTop />
