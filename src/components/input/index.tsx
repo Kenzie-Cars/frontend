@@ -46,7 +46,9 @@ export const Textarea = ({
 
   const setOnchange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setLength(e.target.value.length);
-    onChange(e.target.value)
+    if (onChange) {
+      onChange(e.target.value)
+    }
   };
 
   return (
@@ -63,7 +65,7 @@ export const Textarea = ({
         onChange={(e) => setOnchange(e)}
       />
       <p>
-        {maxLength}/{length}
+        {value?.length || maxLength}/{length}
       </p>
       <span>{errors}</span>
     </StyledTextarea>
