@@ -1,7 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
 import { Footer } from "../../components/Footer";
@@ -29,6 +29,7 @@ export const Advertise = () => {
   const [currentImg, setCurrentImg] = useState(0);
   const [comments, setComments] = useState<ICommentsResponse[]>([]);
   const [valueComments, setValueComments] = useState("");
+  const navigate = useNavigate();
 
   const openModal = () => {
     setIsOpen(true);
@@ -49,7 +50,6 @@ export const Advertise = () => {
     };
     loadComments();
   }, []);
-
 
   const {
     register,
@@ -86,8 +86,8 @@ export const Advertise = () => {
         setLoading(false);
       }
     }
-  };
 
+  };
 
   const sendComment = async (data: ICommnentsRequest) => {
     createComment(data, setLoading);
@@ -107,7 +107,15 @@ export const Advertise = () => {
     }
   };
 
-  const acronym = advertisement?.user?.name.includes(" ")
+  const acronym = user?.name.includes(" ")
+    ? user?.name.split(" ")[0][0] + "" + user?.name.split(" ")[1][0]
+    : (
+        user?.name.split(" ")[0][0] +
+        "" +
+        user?.name.split(" ")[0][1]
+      ).toUpperCase();
+
+  const AdvAcronym = advertisement?.user?.name.includes(" ")
     ? advertisement?.user?.name.split(" ")[0][0] +
       "" +
       advertisement?.user?.name.split(" ")[1][0]
@@ -116,6 +124,43 @@ export const Advertise = () => {
         "" +
         advertisement?.user?.name.split(" ")[0][1]
       ).toUpperCase();
+
+  acronym ? acronym : "UN";
+
+  const noImg =
+    "https://img.freepik.com/vetores-gratis/carro-realista-coberto-com-seda-vermelha-isolado-no-fundo-branco_1441-2576.jpg";
+
+  const calcDate = (data: { created_at: Date }) => {
+    const currentDate: any = new Date(data.created_at);
+    const now: any | number | bigint = new Date();
+    const days = now.getDate() - currentDate.getDate();
+    const months = now.getMonth() - currentDate.getMonth();
+    const year = now.getFullYear() - currentDate.getFullYear();
+
+    if (now - currentDate < 30 * 24 * 60 * 60 * 1000) {
+      return `há ${days} dias`;
+    }
+
+    if (days == 1) {
+      return `há ${days} dia`;
+    }
+
+    if (days > 1) {
+      return `há ${days} dias`;
+    }
+
+    if (now - currentDate >= 30 * 24 * 60 * 60 * 1000 && months == 1) {
+      return `há ${months} mês`;
+    }
+
+    if (now - currentDate >= 30 * 24 * 60 * 60 * 1000 && months > 1) {
+      return `há ${months} meses`;
+    }
+
+    if (now - currentDate >= 12 * 30 * 24 * 60 * 60 * 1000) {
+      return `há ${year} anos`;
+    }
+  };
 
   return (
     <AdvertiseContainer>
@@ -149,14 +194,17 @@ export const Advertise = () => {
               <ul>
                 {images[0]?.map((image, index) => (
                   <li key={index} onClick={openModal}>
-                    <img src={image} alt={advertisement?.model} />
+                    <img
+                      src={image ? image : noImg}
+                      alt={advertisement?.model}
+                    />
                   </li>
                 ))}
               </ul>
             </div>
             <div className="default advertiserInfo">
               <div className="info">
-                <h2>{acronym}</h2>
+                <h2>{AdvAcronym}</h2>
                 <h3>{advertisement?.user.name}</h3>
               </div>
               <p>{advertisement?.user.description}</p>
@@ -176,8 +224,9 @@ export const Advertise = () => {
                 {comments.map((comment: ICommentsResponse) => (
                   <li>
                     <div className="userInfo">
-                      <p>{acronym}</p>
-                      <h3>{user?.name}</h3> <span> - {comment.created_at}</span>
+                      <p>{AdvAcronym}</p>
+                      <h3>{advertisement?.user?.name}</h3>{" "}
+                      <span> - {calcDate(comment)}</span>
                     </div>
                     <p className="commentBody">{comment.comment}</p>
                   </li>
@@ -187,7 +236,7 @@ export const Advertise = () => {
             <div className="default newComment">
               <div className="userInfo">
                 <p>{acronym}</p>
-                <h3>{user?.name}</h3>
+                <h3>{user ? user?.name : "Não logado"}</h3>
               </div>
               <form className="newComment" onSubmit={handleSubmit(sendComment)}>
                 <Textarea
@@ -208,6 +257,7 @@ export const Advertise = () => {
                   type={"submit"}
                   hover={""}
                   background={""}
+                  disabled={!user ? false : true}
                 />
               </form>
               <div className="fastComment">
@@ -224,10 +274,11 @@ export const Advertise = () => {
               isOpen={isOpen}
             >
               <div>
-                <img
-                  src={!images ? noImg : images[0][currentImg]}
-                  alt={advertisement?.model}
-                />
+                {images[0][currentImg] ? (
+                  <img src={images[0][currentImg]} alt={advertisement?.model} />
+                ) : (
+                  <img src={noImg} alt={advertisement?.model} />
+                )}
                 <div className="buttonBox">
                   <button onClick={decreaseImages}>Anterior</button>
                   <button onClick={increaseImages}>Próximo</button>

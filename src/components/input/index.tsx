@@ -34,6 +34,38 @@ export const Input = ({
   );
 };
 
+// export const Textarea = ({
+//   length,
+//   label,
+//   row,
+//   placeHolder,
+//   id,
+//   register,
+//   value,
+//   defaultValue,
+//   errors,
+// }: ITextarea) => {
+//   const [maxLength, setLength] = useState(0);
+
+//   return (
+//     <StyledTextarea>
+//       <label htmlFor={id}>{label}</label>
+//       <textarea
+//         onChange={(event) => setLength(event.target.textLength)}
+//         id={id}
+//         rows={row}
+//         maxLength={length}
+//         placeholder={placeHolder}
+//         value={value}
+//         {...register(id)}
+//       />
+//       <p>
+//         {maxLength}/{length}
+//       </p>
+//     </StyledTextarea>
+//   );
+// };
+
 export const Textarea = ({
   length,
   label,
@@ -49,10 +81,19 @@ export const Textarea = ({
 }: ITextarea) => {
   const [maxLength, setLength] = useState(0);
 
+<<<<<<< HEAD
   // const setOnchange = (e: ChangeEvent<HTMLTextAreaElement>) => {
   //   setLength(e.target.value.length);
   //   onChange(e.target.value)
   // };
+=======
+  const setOnchange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setLength(e.target.value.length);
+    if (onChange) {
+      onChange(e.target.value);
+    }
+  };
+>>>>>>> 43e3a879e8fdfa587fb924ef378b33256d24521f
 
   return (
     <StyledTextarea>
@@ -71,7 +112,7 @@ export const Textarea = ({
         }}
       />
       <p>
-        {maxLength}/{length}
+        {value?.length || maxLength}/{length}
       </p>
       <span>{errors}</span>
     </StyledTextarea>
