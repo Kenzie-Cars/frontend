@@ -68,7 +68,7 @@ export const Advertise = () => {
     if (token) {
       try {
         setLoading(true);
-        RequestApiKenzieKars.defaults.headers.common.Authorization = `Beareer ${token}`;
+        RequestApiKenzieKars.defaults.headers.common.Authorization = `Bearer ${token}`;
         const response = await RequestApiKenzieKars.post(
           `advertisements/comments/${id}`,
           valueComments
