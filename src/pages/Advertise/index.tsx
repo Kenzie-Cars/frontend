@@ -8,7 +8,7 @@ import { Footer } from "../../components/Footer";
 import Modal from "../../components/Modal";
 import { Navbar } from "../../components/Navbar";
 import Button from "../../components/button";
-import { CommentTextarea, Textarea } from "../../components/input";
+import { CommentTextarea } from "../../components/input";
 import { AdvertisementContext } from "../../context/AdvertisementContext";
 import { UserContext } from "../../context/UserContext";
 import {
@@ -114,7 +114,7 @@ export const Advertise = () => {
       ).toUpperCase();
 
   const calcDate = (data: { created_at: Date }) => {
-    const currentDate = new Date(data.created_at);
+    const currentDate: any = new Date(data.created_at);
     const now: any | number | bigint = new Date();
     const days = now.getDate() - currentDate.getDate();
     const months = now.getMonth() - currentDate.getMonth();
@@ -144,7 +144,6 @@ export const Advertise = () => {
       return `há ${year} anos`;
     }
   };
-
 
   return (
     <AdvertiseContainer>
