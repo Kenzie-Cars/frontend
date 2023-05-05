@@ -2,7 +2,10 @@
 
 - > ### Para visualizar o projeto no VSCode:
 
-  1- Deve ter instalado: - Npm ou Yarn - VSCode
+  1- Deve ter instalado:
+
+  - Npm ou Yarn
+  - VSCode
 
   2- Faça o clone do reposítório na sua máquina clicando no botão verde escrito <>Code e selecionando a opção de sua escolha e copie o conteúdo.
 
