@@ -4,6 +4,7 @@
 
   1- Deve ter instalado:
 
+  - NodeJs
   - Npm ou Yarn
   - VSCode
 
