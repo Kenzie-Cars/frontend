@@ -81,19 +81,10 @@ export const Textarea = ({
 }: ITextarea) => {
   const [maxLength, setLength] = useState(0);
 
-<<<<<<< HEAD
   // const setOnchange = (e: ChangeEvent<HTMLTextAreaElement>) => {
   //   setLength(e.target.value.length);
   //   onChange(e.target.value)
   // };
-=======
-  const setOnchange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setLength(e.target.value.length);
-    if (onChange) {
-      onChange(e.target.value);
-    }
-  };
->>>>>>> 43e3a879e8fdfa587fb924ef378b33256d24521f
 
   return (
     <StyledTextarea>
