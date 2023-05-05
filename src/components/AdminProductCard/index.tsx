@@ -10,6 +10,7 @@ import { FormUpdateAdvertisement } from "../FormUpdateAdvertise";
 import { useState } from "react";
 import { ProductCardContext } from "../../context/productCardContext";
 
+
 export const AdminProductCard = ({
   advertisementData,
   setUpdateModalOpen
@@ -18,11 +19,18 @@ export const AdminProductCard = ({
 
   const {setCurrentAdvertisement} = useContext(ProductCardContext)
   // const {advertisements} = useContext(AdvertisementContext)
+  const { setStatusModalDelete, setCarDeleteId } = useContext(AdvertisementContext)
   const navigate = useNavigate();
 
   const test = () => {
     navigate(`/advertise/${advertisementData.id}`);
   };
+
+  const setCarDeleteFunction = () => {
+    setStatusModalDelete("modalOn")
+    setCarDeleteId(advertisementData.id)
+    // console.log(id)
+  }
 
   return (
     <>

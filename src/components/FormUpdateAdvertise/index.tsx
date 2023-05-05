@@ -10,6 +10,8 @@ import { CreateAdvertiseSchema } from "../../schema/CreateAdvertiseSchema";
 import { RequestApiFIPE } from "../../Requests/RequestApiFIPE";
 import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
 import { toast } from "react-toastify";
+import { AdvertisementContext } from "../../context/AdvertisementContext";
+import { useContext } from "react";
 
 interface Iprops {
   isOpen: boolean;
@@ -18,6 +20,9 @@ interface Iprops {
 }
 
 export const FormUpdateAdvertisement = ({ setIsOpen, isOpen, advertisementData }: Iprops) => {
+
+  const [id, ...rest] = Object.values(advertisementData.images[0])
+
   const [brands, setBrands] = useState([""]);
   const [brandValue, setBrandValue] = useState("");
   const [models, setModels] = useState<string[]>([""]);
@@ -34,11 +39,17 @@ export const FormUpdateAdvertisement = ({ setIsOpen, isOpen, advertisementData }
   const [FIPE, setFIPE] = useState<number>();
   const [inputImage, setInputImage] = useState([1, 2]);
   const [isActive, setIsActive] = useState(advertisementData.is_active);
-  const [imageValueArray, setImageValueArray] = useState(Object.values(advertisementData.images[0]))
-
-  const [id, ...rest] = Object.values(advertisementData.images[0])
+  const [imageValueArray, setImageValueArray] = useState(rest)
 
   const imageValueArrayHandler = rest
+
+  const { setStatusModalDelete, setCarDeleteId } = useContext(AdvertisementContext)
+
+  const setCarDeleteFunction = () => {
+    setStatusModalDelete("modalOn")
+    setCarDeleteId(advertisementData.id)
+    // console.log(id)
+  }
 
   useEffect(() => {
     async function ApiFIPE() {
@@ -120,9 +131,6 @@ export const FormUpdateAdvertisement = ({ setIsOpen, isOpen, advertisementData }
 //     }
 
     useEffect(() => {
-
-        
-
         if(isOpen){
                 const fetchCurrentData = async () => {
             
@@ -130,12 +138,9 @@ export const FormUpdateAdvertisement = ({ setIsOpen, isOpen, advertisementData }
                 setModelValue(advertisementData.model)
                 setFuelValue(advertisementData.fuel)
                 setYearValue(advertisementData.year.toString())
-
             }
-
             fetchCurrentData()
         }
-        
     }, [isOpen])
 
   const submitForm = async (data: IAdvertisementRequest) => {
@@ -365,7 +370,7 @@ export const FormUpdateAdvertisement = ({ setIsOpen, isOpen, advertisementData }
             label={`${index + 1}ª Imagem da Galeria`}
             type="text"
             placeholder={"Ex.: https://image.com"}
-            defaultValue={imageValueArrayHandler[index - 1]}
+            defaultValue={imageValueArrayHandler[index]}
             setValue={(e) => {
                 imageValueArrayHandler[index] = e.currentTarget.value
                 setImageValueArray(imageValueArrayHandler)
@@ -387,20 +392,21 @@ export const FormUpdateAdvertisement = ({ setIsOpen, isOpen, advertisementData }
 
         <ButtonContainerStyle>
           <Button
-            size="1"
+            size="3"
             background="grey6"
             hover="hover2"
             text="Excluir Anúncio"
             color={"grey2"}
             onClick={() => {
-              setIsOpen(false);
+              setCarDeleteFunction()
+              setIsOpen(false)
             }}
             type="button"
           />
 
           <Button
             type="submit"
-            size="2"
+            size="3"
             background="brand3"
             hover="hover2"
             text="Salvar alterações"
