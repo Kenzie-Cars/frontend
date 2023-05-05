@@ -8,7 +8,7 @@ import { Footer } from "../../components/Footer";
 import Modal from "../../components/Modal";
 import { Navbar } from "../../components/Navbar";
 import Button from "../../components/button";
-import { Textarea } from "../../components/input";
+import { CommentTextarea } from "../../components/input";
 import { AdvertisementContext } from "../../context/AdvertisementContext";
 import { UserContext } from "../../context/UserContext";
 import {
@@ -50,7 +50,6 @@ export const Advertise = () => {
     loadComments();
   }, []);
 
-
   const {
     register,
     handleSubmit,
@@ -88,7 +87,6 @@ export const Advertise = () => {
     }
   };
 
-
   const sendComment = async (data: ICommnentsRequest) => {
     createComment(data, setLoading);
   };
@@ -107,15 +105,45 @@ export const Advertise = () => {
     }
   };
 
-  const acronym = advertisement?.user?.name.includes(" ")
-    ? advertisement?.user?.name.split(" ")[0][0] +
-      "" +
-      advertisement?.user?.name.split(" ")[1][0]
+  const acronym = user?.name.includes(" ")
+    ? user?.name.split(" ")[0][0] + "" + user?.name.split(" ")[1][0]
     : (
-        advertisement?.user?.name.split(" ")[0][0] +
+        user?.name.split(" ")[0][0] +
         "" +
-        advertisement?.user?.name.split(" ")[0][1]
+        user?.name.split(" ")[0][1]
       ).toUpperCase();
+
+  const calcDate = (data: { created_at: Date }) => {
+    const currentDate: any = new Date(data.created_at);
+    const now: any | number | bigint = new Date();
+    const days = now.getDate() - currentDate.getDate();
+    const months = now.getMonth() - currentDate.getMonth();
+    const year = now.getFullYear() - currentDate.getFullYear();
+
+    if (now - currentDate < 30 * 24 * 60 * 60 * 1000) {
+      return `há ${days} dias`;
+    }
+
+    if (days == 1) {
+      return `há ${days} dia`;
+    }
+
+    if (days > 1) {
+      return `há ${days} dias`;
+    }
+
+    if (now - currentDate >= 30 * 24 * 60 * 60 * 1000 && months == 1) {
+      return `há ${months} mês`;
+    }
+
+    if (now - currentDate >= 30 * 24 * 60 * 60 * 1000 && months > 1) {
+      return `há ${months} meses`;
+    }
+
+    if (now - currentDate >= 12 * 30 * 24 * 60 * 60 * 1000) {
+      return `há ${year} anos`;
+    }
+  };
 
   return (
     <AdvertiseContainer>
@@ -177,7 +205,7 @@ export const Advertise = () => {
                   <li>
                     <div className="userInfo">
                       <p>{acronym}</p>
-                      <h3>{user?.name}</h3> <span> - {comment.created_at}</span>
+                      <h3>{user?.name}</h3> <span> - {calcDate(comment)}</span>
                     </div>
                     <p className="commentBody">{comment.comment}</p>
                   </li>
@@ -190,7 +218,7 @@ export const Advertise = () => {
                 <h3>{user?.name}</h3>
               </div>
               <form className="newComment" onSubmit={handleSubmit(sendComment)}>
-                <Textarea
+                <CommentTextarea
                   id="comment"
                   placeHolder="Digite aqui seu comentário"
                   key={1}
