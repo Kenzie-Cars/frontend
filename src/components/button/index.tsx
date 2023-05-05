@@ -13,6 +13,7 @@ export interface IButton {
   value?: any;
   width?: string;
   padding?: string;
+  is_active?: string
 }
 
 const Button = ({
@@ -28,6 +29,7 @@ const Button = ({
   value,
   width,
   padding,
+  is_active
 }: IButton) => {
   return (
     <StyledButton
@@ -40,6 +42,7 @@ const Button = ({
       hover={hover}
       disabled={disabled}
       type={type}
+      is_active={is_active}
     >
       {text}
     </StyledButton>

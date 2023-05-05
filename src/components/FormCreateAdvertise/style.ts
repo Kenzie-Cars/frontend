@@ -7,7 +7,7 @@ export const FormRegisterAdvertiseStyle = styled.form`
   max-width: 90%;
   height: max-content;
   max-height: 750px;
-  padding-top: 15px;
+  padding-top: 30px;
   overflow-y: auto;
   gap: 0.5rem;
 

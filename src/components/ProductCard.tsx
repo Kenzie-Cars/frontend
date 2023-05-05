@@ -162,6 +162,7 @@ export function createProductCard(
       color={""}
       created_at={productData.created_at}
       updated_at={productData.updated_at}
+      userAdvertisements={productData.userAdvertisements}
     />
   );
 }

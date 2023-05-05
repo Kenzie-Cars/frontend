@@ -15,6 +15,8 @@ import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
 import { FormCreateAdvertise } from "../../components/FormCreateAdvertise";
 import { IUserResponse } from "../../interfaces/user";
 import { UserContext } from "../../context/UserContext";
+import { FormUpdateAdvertisement } from "../../components/FormUpdateAdvertise";
+import { ProductCardContext } from "../../context/productCardContext";
 import { DeleteCarModal } from '../../components/ModalDeleteCars'
 import { AdvertisementContext } from "../../context/AdvertisementContext";
 
@@ -22,6 +24,9 @@ export const AdvertiserPage = () => {
   const [loading, setLoading] = useState(true);
   const [advertiser, setAdvertiser] = useState({} as IUserResponse);
   const [isOpen, setIsOpen] = useState(false);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false)
+  
+  const {currentAdvertisement, setCurrentAdvertisement} = useContext(ProductCardContext)
 
   const { defineAcronym, user } = useContext(UserContext);
   const { advertisements } = useContext(AdvertisementContext);
@@ -116,13 +121,16 @@ export const AdvertiserPage = () => {
                 <h3>Anúncios</h3>
                 <div className="ProductCard-container">
                   {advertiser?.advertisements?.map((product) =>
-                    createAdminProductCard(product),
+                    createAdminProductCard(product, setIsUpdateModalOpen),
                   )}
                 </div>
               </StyledAdvertisementsContainer>
             </StyledAdvertiserPageContainer>
             {isOpen && (
               <FormCreateAdvertise setIsOpen={setIsOpen} isOpen={isOpen} />
+            )}
+            {isUpdateModalOpen && (
+              <FormUpdateAdvertisement setIsOpen={setIsUpdateModalOpen} isOpen={isUpdateModalOpen} advertisementData={currentAdvertisement}/>
             )}
           </StyledBackgroundBottom>
 
