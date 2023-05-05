@@ -4,7 +4,7 @@ export const StyledAdvertiserPageContainer = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
-
+    
     position: relative;
     bottom: 50px;
 

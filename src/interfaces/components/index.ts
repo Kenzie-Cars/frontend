@@ -8,7 +8,7 @@ export interface IButton {
 }
 
 export interface IButtonStyled {
-  size: "1" | "2" | "3" | "4" | "5";
+  size: "1" | "2" | "3" | "4" | "5" | "6";
   hover: string;
   background: string;
   color?: string;
