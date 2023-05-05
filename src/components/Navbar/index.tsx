@@ -6,6 +6,7 @@ import { UserContext } from "../../context/UserContext";
 import { FormUpdateUser } from "../FormEditUser";
 import { FormUpdateAdress } from "../FormUpdateAdress";
 import { HeaderStyle, LinkStyle, NavbarStyle, UlStyle } from "./style";
+import logoHeader from "../../assets/Logo Header.png";
 
 export const Navbar = () => {
   const [active, setActive] = useState(false);
@@ -67,7 +68,7 @@ export const Navbar = () => {
           <img
             className="navImage"
             onClick={() => home()}
-            src="http://127.0.0.1:5173/src/assets/Logo%20Header.png"
+            src={logoHeader}
             alt="Logo Motors Shop"
           />
           <GiHamburgerMenu

@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import { ITextarea, InputInterface } from "../../interfaces/components";
+import { ICommentTextarea, ITextarea, InputInterface } from "../../interfaces/components";
 import { StyledInput, StyledSelect, StyledTextarea } from "./styledInput";
 
 export const Input = ({
@@ -40,8 +40,40 @@ export const Textarea = ({
   value,
   defaultValue,
   errors,
-  onChange,
 }: ITextarea) => {
+  const [maxLength, setLength] = useState(0);
+
+  return (
+    <StyledTextarea>
+      <label htmlFor={id}>{label}</label>
+      <textarea
+        onChange={(event) => setLength(event.target.textLength)}
+        id={id}
+        rows={row}
+        maxLength={length}
+        placeholder={placeHolder}
+        value={value}
+        {...register(id)}
+      />
+      <p>
+        {maxLength}/{length}
+      </p>
+    </StyledTextarea>
+  );
+};
+
+export const CommentTextarea = ({
+  length,
+  label,
+  row,
+  placeHolder,
+  id,
+  register,
+  value,
+  defaultValue,
+  errors,
+  onChange,
+}: ICommentTextarea) => {
   const [maxLength, setLength] = useState(0);
 
   const setOnchange = (e: ChangeEvent<HTMLTextAreaElement>) => {
