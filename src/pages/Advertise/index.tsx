@@ -109,13 +109,13 @@ export const Advertise = () => {
 
   const acronym = advertisement?.user?.name.includes(" ")
     ? advertisement?.user?.name.split(" ")[0][0] +
-      "" +
-      advertisement?.user?.name.split(" ")[1][0]
+    "" +
+    advertisement?.user?.name.split(" ")[1][0]
     : (
-        advertisement?.user?.name.split(" ")[0][0] +
-        "" +
-        advertisement?.user?.name.split(" ")[0][1]
-      ).toUpperCase();
+      advertisement?.user?.name.split(" ")[0][0] +
+      "" +
+      advertisement?.user?.name.split(" ")[0][1]
+    ).toUpperCase();
 
   return (
     <AdvertiseContainer>

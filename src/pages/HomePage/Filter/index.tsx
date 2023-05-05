@@ -99,7 +99,7 @@ export const Filter = ({
     // if (urlBrand) {
     advertisements.map(
       (car: { model: string; color: string; year: string; fuel: string }) => {
-        if (urlBrand && !arryModels.includes(car.model)) {
+        if (!arryModels.includes(car.model)) {
           arryModels.push(car.model);
         }
         if (!arryColors.includes(car.color)) {
