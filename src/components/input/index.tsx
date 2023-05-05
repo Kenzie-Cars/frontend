@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import { ICommentTextarea, ITextarea, InputInterface } from "../../interfaces/components";
+import { ITextarea, InputInterface } from "../../interfaces/components";
 import { StyledInput, StyledSelect, StyledTextarea } from "./styledInput";
 
 export const Input = ({
@@ -30,6 +30,38 @@ export const Input = ({
   );
 };
 
+// export const Textarea = ({
+//   length,
+//   label,
+//   row,
+//   placeHolder,
+//   id,
+//   register,
+//   value,
+//   defaultValue,
+//   errors,
+// }: ITextarea) => {
+//   const [maxLength, setLength] = useState(0);
+
+//   return (
+//     <StyledTextarea>
+//       <label htmlFor={id}>{label}</label>
+//       <textarea
+//         onChange={(event) => setLength(event.target.textLength)}
+//         id={id}
+//         rows={row}
+//         maxLength={length}
+//         placeholder={placeHolder}
+//         value={value}
+//         {...register(id)}
+//       />
+//       <p>
+//         {maxLength}/{length}
+//       </p>
+//     </StyledTextarea>
+//   );
+// };
+
 export const Textarea = ({
   length,
   label,
@@ -40,45 +72,15 @@ export const Textarea = ({
   value,
   defaultValue,
   errors,
-}: ITextarea) => {
-  const [maxLength, setLength] = useState(0);
-
-  return (
-    <StyledTextarea>
-      <label htmlFor={id}>{label}</label>
-      <textarea
-        onChange={(event) => setLength(event.target.textLength)}
-        id={id}
-        rows={row}
-        maxLength={length}
-        placeholder={placeHolder}
-        value={value}
-        {...register(id)}
-      />
-      <p>
-        {maxLength}/{length}
-      </p>
-    </StyledTextarea>
-  );
-};
-
-export const CommentTextarea = ({
-  length,
-  label,
-  row,
-  placeHolder,
-  id,
-  register,
-  value,
-  defaultValue,
-  errors,
   onChange,
-}: ICommentTextarea) => {
+}: ITextarea) => {
   const [maxLength, setLength] = useState(0);
 
   const setOnchange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setLength(e.target.value.length);
-    onChange(e.target.value)
+    if (onChange) {
+      onChange(e.target.value);
+    }
   };
 
   return (
@@ -95,7 +97,7 @@ export const CommentTextarea = ({
         onChange={(e) => setOnchange(e)}
       />
       <p>
-        {maxLength}/{length}
+        {value?.length || maxLength}/{length}
       </p>
       <span>{errors}</span>
     </StyledTextarea>
