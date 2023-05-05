@@ -98,7 +98,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         navigate("/login");
       setUser(res.data);
     } catch (error) {
-      toast.error("Usuário já cadastrado", {
+      toast.error("Erro ao cadastrar", {
         autoClose: 1500,
       });
     } finally {
@@ -117,6 +117,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       localStorage.setItem("@userTokenKenzieKars", res.data.token);
       localStorage.setItem("@userIdKenzieKars", res.data.user.id);
       localStorage.setItem("@userKenzieKars", res.data.user.is_seller);
+
       setUser(res.data.user);
       navigate("/");
     } catch (error) {

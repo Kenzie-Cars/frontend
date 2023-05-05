@@ -100,6 +100,8 @@ export const MainContainer = styled.div`
   width: 100%;
   height: 90%;
   margin: 0 auto;
+
+
   
   
   /* > div, */
@@ -115,6 +117,7 @@ export const MainContainer = styled.div`
       width: inherit;
       max-height: 100%;
       height: fit-content;
+      
     }
   }
 
