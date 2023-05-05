@@ -38,18 +38,6 @@ export interface ITextarea {
   errors?: string | undefined;
   value?: string;
   defaultValue?: string;
-}
-
-export interface ICommentTextarea {
-  length: number;
-  label: string;
-  row: number;
-  placeHolder?: string;
-  id: string;
-  register: Function;
-  errors?: string | undefined;
-  value?: string;
-  defaultValue?: string;
   onChange?: any
 }
 
