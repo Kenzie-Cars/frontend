@@ -8,12 +8,17 @@ export interface IButton {
 }
 
 export interface IButtonStyled {
-  size: "1" | "2" | "3" | "4" | "5";
+  size: "1" | "2" | "3" | "4" | "5" | "6";
   hover: string;
   background: string;
   color?: string;
   border?: string;
   padding?: string;
+  is_active?: string
+}
+
+export interface OnChangeFunc{
+  (e: React.FormEvent<HTMLInputElement>): void
 }
 
 export interface InputInterface {
@@ -26,6 +31,8 @@ export interface InputInterface {
   errors?: string | undefined;
   value?: number | string;
   defaultValue?: number | string;
+  setValue?: OnChangeFunc
+  readOnly?: boolean
 }
 
 export interface ITextarea {
@@ -39,6 +46,7 @@ export interface ITextarea {
   value?: string;
   defaultValue?: string;
   onChange?: any
+  setValue?: any
 }
 
 export interface ISelect {

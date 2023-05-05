@@ -88,6 +88,16 @@ ${({ color }) => {
     }
   }}
 
+${({ is_active }: IButtonStyled) => {
+    return css`
+      &:active {
+        background-color: var(--${is_active});
+        color: var(--grey7)
+        transition: 5000s
+      }
+    `;
+  }}
+
 ${({ padding }) => {
     if (padding) {
       return css`

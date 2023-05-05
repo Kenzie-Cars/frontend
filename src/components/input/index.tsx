@@ -11,6 +11,8 @@ export const Input = ({
   register,
   value,
   defaultValue,
+  setValue,
+  readOnly,
   errors,
 }: InputInterface) => {
   return (
@@ -24,6 +26,8 @@ export const Input = ({
         placeholder={placeholder}
         disabled={disabled}
         defaultValue={defaultValue}
+        onChange={setValue}
+        readOnly={readOnly}
       />
       <span>{errors}</span>
     </StyledInput>
@@ -39,15 +43,16 @@ export const Textarea = ({
   register,
   value,
   defaultValue,
+  setValue,
   errors,
   onChange,
 }: ITextarea) => {
   const [maxLength, setLength] = useState(0);
 
-  const setOnchange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setLength(e.target.value.length);
-    onChange(e.target.value)
-  };
+  // const setOnchange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  //   setLength(e.target.value.length);
+  //   onChange(e.target.value)
+  // };
 
   return (
     <StyledTextarea>
@@ -60,7 +65,10 @@ export const Textarea = ({
         value={value}
         {...register(id)}
         defaultValue={defaultValue}
-        onChange={(e) => setOnchange(e)}
+        onChange={(e) => {
+          // setOnchange(e)
+          setValue(e.target.value) 
+        }}
       />
       <p>
         {maxLength}/{length}
@@ -139,6 +147,7 @@ interface iSelectProps {
   optionValues: string[];
   disabled?: boolean;
   value?: string;
+  selectedValue?: React.ComponentState
 }
 
 export const Select = ({
@@ -150,6 +159,7 @@ export const Select = ({
   optionValues,
   disabled,
   value,
+  selectedValue,
   ...rest
 }: iSelectProps) => {
   return (
@@ -161,6 +171,7 @@ export const Select = ({
         {...register(id)}
         disabled={disabled}
         onChange={(e) => setSelect(e.target.value)}
+        value={selectedValue}
       >
         <option key={label} value="">
           Selecione uma das opções

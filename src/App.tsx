@@ -5,6 +5,7 @@ import { AdvProvider } from "./context/AdvertisementContext";
 import { UserProvider } from "./context/UserContext";
 import { AllRoutes } from "./routes";
 import GlobalStyle from "./styles/GlobalStyle";
+import { CurrentProductCardProvider } from "./context/productCardContext";
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
       <BrowserRouter>
         <UserProvider>
           <AdvProvider>
-            <AllRoutes />
+            <CurrentProductCardProvider>
+              <AllRoutes />
+            </CurrentProductCardProvider>
           </AdvProvider>
         </UserProvider>
       </BrowserRouter>

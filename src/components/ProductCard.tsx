@@ -135,7 +135,7 @@ export function createProductCard(
       model={productData.model}
       description={productData.description}
       year={productData.year}
-      price={String(productData.price)}
+      price={productData.price}
       user={productData.user}
       km={productData.km}
       is_goodSale={productData.is_goodSale}
@@ -151,7 +151,7 @@ export function createProductCard(
       model={productData.model}
       description={productData.description}
       year={productData.year}
-      price={String(productData.price)}
+      price={productData.price}
       user={productData.user}
       km={productData.km}
       is_goodSale={productData.is_goodSale}
@@ -162,6 +162,7 @@ export function createProductCard(
       color={""}
       created_at={productData.created_at}
       updated_at={productData.updated_at}
+      userAdvertisements={productData.userAdvertisements}
     />
   );
 }
