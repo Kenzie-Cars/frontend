@@ -96,33 +96,33 @@ export const Filter = ({
     let arryColors: Array<string> = [];
     let arryYear: Array<string> = [];
     let arryFuel: Array<string> = [];
-    if (urlBrand) {
-      advertisements.map(
-        (car: { model: string; color: string; year: string; fuel: string }) => {
-          if (!arryModels.includes(car.model)) {
-            arryModels.push(car.model);
-          }
-          if (!arryColors.includes(car.color)) {
-            arryColors.push(car.color);
-          }
-          if (!arryYear.includes(car.year)) {
-            arryYear.push(car.year);
-          }
-          if (!arryFuel.includes(car.fuel)) {
-            arryFuel.push(car.fuel);
-          }
-        },
-      );
-      setModels(arryModels);
-      setColors(arryColors);
-      setYears(arryYear);
-      setFuel(arryFuel);
-    } else {
-      setModels([]);
-      setColors([]);
-      setYears([]);
-      setFuel([]);
-    }
+    // if (urlBrand) {
+    advertisements.map(
+      (car: { model: string; color: string; year: string; fuel: string }) => {
+        if (!arryModels.includes(car.model)) {
+          arryModels.push(car.model);
+        }
+        if (!arryColors.includes(car.color)) {
+          arryColors.push(car.color);
+        }
+        if (!arryYear.includes(car.year)) {
+          arryYear.push(car.year);
+        }
+        if (!arryFuel.includes(car.fuel)) {
+          arryFuel.push(car.fuel);
+        }
+      },
+    );
+    setModels(arryModels);
+    setColors(arryColors);
+    setYears(arryYear);
+    setFuel(arryFuel);
+    // } else {
+    //   setModels([]);
+    //   setColors([]);
+    //   setYears([]);
+    //   setFuel([]);
+    // }
   }, [urlBrand, advertisements]);
 
   const cleanFilter = () => {

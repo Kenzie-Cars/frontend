@@ -1,6 +1,7 @@
 import { AiOutlineUp } from "react-icons/ai";
 import { animateScroll as scroll } from "react-scroll";
 import { FooterStyle } from "./style";
+import logoFooter from "../../assets/Logo.png";
 
 export const Footer = () => {
   const scrollToTop = () => {
@@ -9,10 +10,7 @@ export const Footer = () => {
 
   return (
     <FooterStyle>
-      <img
-        src="http://127.0.0.1:5173/src/assets/Logo.png"
-        alt="Logo Motors shop"
-      />
+      <img src={logoFooter} alt="Logo Motors shop" />
       <p>© 2022 - Todos os direitos reservados.</p>
       <button onClick={scrollToTop} className="btnTop">
         <AiOutlineUp />

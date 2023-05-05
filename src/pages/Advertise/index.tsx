@@ -65,6 +65,7 @@ export const Advertise = () => {
     valueComments: string,
     setLoading: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
+
     const token = localStorage.getItem("@userTokenKenzieKars");
     if (token) {
       try {
@@ -109,20 +110,20 @@ export const Advertise = () => {
   const acronym = user?.name.includes(" ")
     ? user?.name.split(" ")[0][0] + "" + user?.name.split(" ")[1][0]
     : (
-        user?.name.split(" ")[0][0] +
-        "" +
-        user?.name.split(" ")[0][1]
-      ).toUpperCase();
+      advertisement?.user?.name.split(" ")[0][0] +
+      "" +
+      advertisement?.user?.name.split(" ")[0][1]
+    ).toUpperCase();
 
   const AdvAcronym = advertisement?.user?.name.includes(" ")
     ? advertisement?.user?.name.split(" ")[0][0] +
-      "" +
-      advertisement?.user?.name.split(" ")[1][0]
+    "" +
+    advertisement?.user?.name.split(" ")[1][0]
     : (
-        advertisement?.user?.name.split(" ")[0][0] +
-        "" +
-        advertisement?.user?.name.split(" ")[0][1]
-      ).toUpperCase();
+      advertisement?.user?.name.split(" ")[0][0] +
+      "" +
+      advertisement?.user?.name.split(" ")[0][1]
+    ).toUpperCase();
 
   acronym ? acronym : "UN";
 
@@ -253,7 +254,6 @@ export const Advertise = () => {
                   type={"submit"}
                   hover={""}
                   background={""}
-                  // disabled={!user ? true : false}
                 />
               </form>
               <div className="fastComment">
