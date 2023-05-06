@@ -18,7 +18,7 @@ interface IUserContext {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   userRegister: (
     data: IUserRequest,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
   ) => void;
   userlogin: (
     userData: IUserLogin,
@@ -87,7 +87,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
 
   const userRegister = async (
     data: IUserRequest,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
     try {
       setLoading(true);
@@ -141,7 +141,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        },
+        }
       );
       toast.success("Dados atualizados com sucesso", {
         autoClose: 1500,

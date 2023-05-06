@@ -56,7 +56,7 @@ export const Login = () => {
             />
 
             <Input
-              id="password"
+              id="userPassword"
               label="Senha"
               type="password"
               register={register}

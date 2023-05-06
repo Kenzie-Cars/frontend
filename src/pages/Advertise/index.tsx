@@ -11,10 +11,8 @@ import Button from "../../components/button";
 import { Textarea } from "../../components/input";
 import { AdvertisementContext } from "../../context/AdvertisementContext";
 import { UserContext } from "../../context/UserContext";
-import {
-  ICommentsResponse,
-  ICommnentsRequest,
-} from "../../interfaces/comments";
+import { ICommentsResponse } from "../../interfaces/comments";
+import { ICommnentsRequest } from "../../interfaces/comments/ICommnentsRequest";
 import { CreateCommentSchema } from "../../schema/CreateCommentSchema";
 import { AdvertiseContainer } from "./style";
 
@@ -137,23 +135,29 @@ export const Advertise = () => {
     const months = now.getMonth() - currentDate.getMonth();
     const year = now.getFullYear() - currentDate.getFullYear();
 
-    if (now - currentDate < 30 * 24 * 60 * 60 * 1000) {
-      return `há ${days} dias`;
-    } else if (days == 1) {
-      return `há ${days} dia1`;
-    } else if (days > 1) {
-      return `há ${days} dias2`;
-    }
-
-    if (now - currentDate >= 30 * 24 * 60 * 60 * 1000 && months == 1) {
-      return `há ${months} mês`;
-    }
-
-    if (now - currentDate >= 30 * 24 * 60 * 60 * 1000 && months > 1) {
-      return `há ${months} meses`;
-    }
-
-    if (now - currentDate >= 12 * 30 * 24 * 60 * 60 * 1000) {
+    if (now - currentDate < 24 * 60 * 60 * 1000) {
+      // menos de um dia
+      if (hours == 1) {
+        return `há ${hours} hora`;
+      } else {
+        return `há ${hours} horas`;
+      }
+    } else if (now - currentDate < 30 * 24 * 60 * 60 * 1000) {
+      // menos de um mês
+      if (days == 1) {
+        return `há ${days} dia`;
+      } else {
+        return `há ${days} dias`;
+      }
+    } else if (now - currentDate < 12 * 30 * 24 * 60 * 60 * 1000) {
+      // menos de um ano
+      if (months == 1) {
+        return `há ${months} mês`;
+      } else {
+        return `há ${months} meses`;
+      }
+    } else {
+      // mais de um ano
       return `há ${year} anos`;
     }
   };
@@ -253,7 +257,6 @@ export const Advertise = () => {
                   type={"submit"}
                   hover={""}
                   background={""}
-                  // disabled={!user ? true : false}
                 />
               </form>
               <div className="fastComment">
