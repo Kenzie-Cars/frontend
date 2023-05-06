@@ -16,7 +16,7 @@ const schema = yup.object({
     .string()
     .email("Deve ser um email valido")
     .required("Insira seu email"),
-  password: yup.string().required("Insira sua senha"),
+  userPassword: yup.string().required("Insira sua senha"),
 });
 
 export const Login = () => {
@@ -33,7 +33,7 @@ export const Login = () => {
     resolver: yupResolver(schema),
   });
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const onSubmit = async (data: IUserLogin) => {
     userlogin(data, setLoading);
@@ -56,7 +56,7 @@ export const Login = () => {
             />
 
             <Input
-              id="password"
+              id="userPassword"
               label="Senha"
               type="password"
               register={register}
@@ -64,7 +64,9 @@ export const Login = () => {
               placeholder="Digitar senha"
             />
 
-            <p className="esqueci" onClick={() => navigate('/forgot-password')}>Esqueci minha senha</p>
+            <p className="esqueci" onClick={() => navigate("/forgot-password")}>
+              Esqueci minha senha
+            </p>
             <Button
               background="brand1"
               size="5"
