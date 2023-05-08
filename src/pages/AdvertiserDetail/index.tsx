@@ -120,9 +120,12 @@ export const AdvertiserPage = () => {
               <StyledAdvertisementsContainer className="Advertisements-container">
                 <h3>Anúncios</h3>
                 <div className="ProductCard-container">
-                  {advertiser?.advertisements?.map((product) =>
+                  {advertiser?.advertisements[0]? 
+                    advertiser.advertisements.map((product) =>
                     createAdminProductCard(product, setIsUpdateModalOpen),
-                  )}
+                  ):
+                    <h3 className="no-advertisements-warning">Ops, parece que ainda não tem nenhum anúncio por aqui...</h3>
+                  }
                 </div>
               </StyledAdvertisementsContainer>
             </StyledAdvertiserPageContainer>

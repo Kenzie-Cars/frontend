@@ -7,6 +7,14 @@ export const StyledCarsContainer = styled.ul`
   height: fit-content;
   margin: 50px 0;
 
+  .no-advertisements-warning {
+    color: var(--grey4);
+    font: var(--Heading-3-600);
+    width: 70vw;
+    position: relative;
+    right: 77px;
+  }
+
   @media screen and (min-width: 400px) {
     overflow-x: unset;
     flex-wrap: wrap;

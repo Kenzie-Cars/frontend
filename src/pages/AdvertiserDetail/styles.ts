@@ -111,6 +111,13 @@ export const StyledAdvertisementsContainer = styled.section`
     margin-right: 10px;
   }
 
+  .no-advertisements-warning {
+    color: var(--grey4);
+    font: var(--Heading-3-600);
+    width: 82vw
+
+  }
+
   @media (min-width: 682px) {
     .ProductCard-container {
       display: grid;
