@@ -24,7 +24,7 @@ export const Advertise = () => {
   const [images, setImages] = useState<string[][]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const advertisement: IAdvertisementResponse | undefined = advertisements.find(
-    (car) => car.id === id
+    (car) => car.id === id,
   );
   const [currentImg, setCurrentImg] = useState(0);
   const [comments, setComments] = useState<ICommentsResponse[]>([]);
@@ -40,7 +40,7 @@ export const Advertise = () => {
 
   useEffect(() => {
     const getImages = advertisement?.images?.map((image) =>
-      Object.values(image).slice(1).flat(1)
+      Object.values(image).slice(1).flat(1),
     );
     setImages(getImages!);
   }, [advertisement]);
@@ -48,7 +48,7 @@ export const Advertise = () => {
   useEffect(() => {
     const loadComments = async () => {
       RequestApiKenzieKars.get(`advertisements/${id}`).then((res) =>
-        setComments(res.data.userAdvertisements)
+        setComments(res.data.userAdvertisements),
       );
     };
     loadComments();
@@ -66,9 +66,8 @@ export const Advertise = () => {
 
   const createComment = async (
     valueComments: ICommentRequest,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
   ) => {
-
     const token = localStorage.getItem("@userTokenKenzieKars");
     if (token) {
       try {
@@ -76,7 +75,7 @@ export const Advertise = () => {
         RequestApiKenzieKars.defaults.headers.common.Authorization = `Bearer ${token}`;
         const response = await RequestApiKenzieKars.post(
           `advertisements/comments/${id}`,
-          valueComments
+          valueComments,
         );
         toast.success("Comentário criado", {
           autoClose: 1500,
@@ -260,26 +259,19 @@ export const Advertise = () => {
                 />
 
                 <div className="fastComment">
-                  <button
-                    type="button"
-                    onClick={() => setValueComments("Gostei muito")}
-                  >
+                  <span onClick={() => setValueComments("Gostei muito")}>
                     Gostei muito
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setValueComments("Incrível")}
-                  >
+                  </span>
+                  <span onClick={() => setValueComments("Incrível")}>
                     Incrível
-                  </button>
-                  <button
-                    type="button"
+                  </span>
+                  <span
                     onClick={() =>
                       setValueComments("Recomendarei para meus amigos!")
                     }
                   >
                     Recomendarei para meus amigos!
-                  </button>
+                  </span>
                 </div>
               </form>
             </div>
