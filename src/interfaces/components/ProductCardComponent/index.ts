@@ -1,3 +1,4 @@
+import { ImagesInterface } from "../../advertisement"
 
 export interface IProductCard {
     id: string
@@ -15,5 +16,5 @@ export interface IProductCard {
     price: number
     is_goodSale: boolean
     is_active: boolean
-    images: string[]
+    images: ImagesInterface[]
 }

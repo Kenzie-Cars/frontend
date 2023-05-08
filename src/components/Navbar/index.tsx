@@ -7,6 +7,7 @@ import { FormUpdateUser } from "../FormEditUser";
 import { FormUpdateAdress } from "../FormUpdateAdress";
 import { HeaderStyle, LinkStyle, NavbarStyle, UlStyle } from "./style";
 import logoHeader from "../../assets/Logo Header.png";
+
 export const Navbar = () => {
   const [active, setActive] = useState(false);
 

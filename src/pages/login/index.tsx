@@ -8,8 +8,15 @@ import Button from "../../components/button";
 import { Input } from "../../components/input";
 import { UserContext } from "../../context/UserContext";
 import { IUserLogin } from "../../interfaces/user";
-import { PageLoginStyled } from "./styled";
-import { LoginSchema } from "../../schema/Users";
+import { useNavigate } from "react-router-dom";
+
+const schema = yup.object({
+  email: yup
+    .string()
+    .email("Deve ser um email valido")
+    .required("Insira seu email"),
+  userPassword: yup.string().required("Insira sua senha"),
+});
 
 export const Login = () => {
   const { userlogin } = useContext(UserContext);

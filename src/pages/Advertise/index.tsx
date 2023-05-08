@@ -68,6 +68,7 @@ export const Advertise = () => {
     valueComments: ICommentRequest,
     setLoading: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
+
     const token = localStorage.getItem("@userTokenKenzieKars");
     if (token) {
       try {

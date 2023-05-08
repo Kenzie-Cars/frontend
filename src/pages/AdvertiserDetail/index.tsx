@@ -15,13 +15,21 @@ import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
 import { FormCreateAdvertise } from "../../components/FormCreateAdvertise";
 import { IUserResponse } from "../../interfaces/user";
 import { UserContext } from "../../context/UserContext";
+import { FormUpdateAdvertisement } from "../../components/FormUpdateAdvertise";
+import { ProductCardContext } from "../../context/productCardContext";
+import { DeleteCarModal } from '../../components/ModalDeleteCars'
+import { AdvertisementContext } from "../../context/AdvertisementContext";
 
 export const AdvertiserPage = () => {
   const [loading, setLoading] = useState(true);
   const [advertiser, setAdvertiser] = useState({} as IUserResponse);
   const [isOpen, setIsOpen] = useState(false);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false)
+  
+  const {currentAdvertisement, setCurrentAdvertisement} = useContext(ProductCardContext)
 
   const { defineAcronym, user } = useContext(UserContext);
+  const { advertisements } = useContext(AdvertisementContext);
 
   const { id } = useParams();
 
@@ -29,9 +37,10 @@ export const AdvertiserPage = () => {
     const fetchAdvertisements = async () => {
       const response = await RequestApiKenzieKars.get(`users/${id}`);
       setAdvertiser(response.data);
+      console.log('ok')
     };
     fetchAdvertisements();
-  }, []);
+  }, [advertisements]);
 
   useEffect(() => {
     setLoading(false);
@@ -40,6 +49,7 @@ export const AdvertiserPage = () => {
   const test = () => {
     setIsOpen(true);
   };
+
 
   {
     if (!loading) {
@@ -111,7 +121,7 @@ export const AdvertiserPage = () => {
                 <h3>Anúncios</h3>
                 <div className="ProductCard-container">
                   {advertiser?.advertisements?.map((product) =>
-                    createAdminProductCard(product),
+                    createAdminProductCard(product, setIsUpdateModalOpen),
                   )}
                 </div>
               </StyledAdvertisementsContainer>
@@ -119,8 +129,12 @@ export const AdvertiserPage = () => {
             {isOpen && (
               <FormCreateAdvertise setIsOpen={setIsOpen} isOpen={isOpen} />
             )}
+            {isUpdateModalOpen && (
+              <FormUpdateAdvertisement setIsOpen={setIsUpdateModalOpen} isOpen={isUpdateModalOpen} advertisementData={currentAdvertisement}/>
+            )}
           </StyledBackgroundBottom>
 
+          <DeleteCarModal />
           <Footer />
         </>
       );
