@@ -8,8 +8,8 @@ import Button from "../../components/button";
 import { Input } from "../../components/input";
 import { UserContext } from "../../context/UserContext";
 import { IUserLogin } from "../../interfaces/user";
-import { PageLoginStyled } from "./styled";
 import { LoginSchema } from "../../schema/Users";
+import { PageLoginStyled } from "./styled";
 
 export const Login = () => {
   const { userlogin } = useContext(UserContext);

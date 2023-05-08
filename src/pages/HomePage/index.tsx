@@ -48,9 +48,13 @@ export const HomePage = () => {
         <div className="bodyContainer">
           <div className="cardContainer">
             <StyledCarsContainer>
-              {advertisements.map((product) =>
-                product.is_active && createProductCard(product, userId!)
-              )}
+              {
+                advertisements[0]?
+                advertisements.map((product) =>
+                  product.is_active && createProductCard(product, userId!)
+                ):
+                <h3 className="no-advertisements-warning">Ops, parece que ainda não tem nenhum anúncio por aqui...</h3>
+              }
             </StyledCarsContainer>
           </div>
           {filter && (
