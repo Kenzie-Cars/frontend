@@ -48,8 +48,11 @@ const UpdateUserSchema: any = yup.object().shape({
 });
 
 const RequestPasswordRecoveryToken = yup.object().shape({
-  email: yup.string().required('Por favor insira o email cadastrado na plataforma').email('Deve ser um endereço de email válido')
-})
+  email: yup
+    .string()
+    .required("Por favor insira o email cadastrado na plataforma")
+    .email("Deve ser um endereço de email válido"),
+});
 
 const RequestPasswordChange = yup.object().shape({
   password: yup
@@ -63,6 +66,20 @@ const RequestPasswordChange = yup.object().shape({
     .string()
     .required("Confirmar senha obrigatório")
     .oneOf([yup.ref("password")], "Senha não confere"),
-})
+});
 
-export { CreateUserSchema, UpdateUserSchema, RequestPasswordRecoveryToken, RequestPasswordChange };
+const LoginSchema = yup.object({
+  email: yup
+    .string()
+    .email("Deve ser um email valido")
+    .required("Insira seu email"),
+  userPassword: yup.string().required("Insira sua senha"),
+});
+
+export {
+  CreateUserSchema,
+  UpdateUserSchema,
+  RequestPasswordRecoveryToken,
+  RequestPasswordChange,
+  LoginSchema,
+};

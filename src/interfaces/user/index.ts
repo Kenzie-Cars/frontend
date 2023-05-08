@@ -1,6 +1,6 @@
 import {
-  IAddressResponse,
   IAddressRequest,
+  IAddressResponse,
   IAddressUpdateRequest,
 } from "../address";
 import { IAdvertisementResponse } from "../advertisement";
@@ -32,6 +32,13 @@ export interface IUserUpdateRequest {
   address: IAddressUpdateRequest;
 }
 
+export interface IUserAdvResponse {
+  id: string;
+  name: string;
+  description: string;
+
+}
+
 export interface IUserResponse {
   is_goodSale: boolean | undefined;
   cover_img: string;
@@ -54,7 +61,7 @@ export interface IUserResponse {
 
 export interface IUserLogin {
   email: string;
-  password: string;
+  userPassword: string;
 }
 
 export interface IPasswordRecovery {

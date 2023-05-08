@@ -29,17 +29,15 @@ export const AdvProvider = ({ children }: IAdvProps) => {
     IAdvertisementResponse[]
   >([] as IAdvertisementResponse[]);
 
-  const getAdvertisements = async () => {
-    try {
-      const { data } = await RequestApiKenzieKars.get('advertisements');
-      setAdvertisements(data);
-      console.log('ok')
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
+    const getAdvertisements = async () => {
+      try {
+        const { data } = await RequestApiKenzieKars.get("advertisements");
+        setAdvertisements(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
     getAdvertisements();
   }, []);
 

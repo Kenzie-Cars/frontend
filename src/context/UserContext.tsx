@@ -18,7 +18,7 @@ interface IUserContext {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   userRegister: (
     data: IUserRequest,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
   ) => void;
   userlogin: (
     userData: IUserLogin,
@@ -70,16 +70,16 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   }, []);
 
   const defineAcronym = (username: string) => {
-    const acronym = username.includes(" ")
+    const acronym = username?.includes(" ")
       ? (
-          username.split(" ")[0][0] +
+          username?.split(" ")[0][0] +
           "" +
-          username.split(" ")[1][0]
+          username?.split(" ")[1][0]
         ).toUpperCase()
       : (
-          username.split(" ")[0][0] +
+          username?.split(" ")[0][0] +
           "" +
-          username.split(" ")[0][1]
+          username?.split(" ")[0][1]
         ).toUpperCase();
 
     return acronym;
@@ -87,7 +87,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
 
   const userRegister = async (
     data: IUserRequest,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
     try {
       setLoading(true);
@@ -141,7 +141,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        },
+        }
       );
       toast.success("Dados atualizados com sucesso", {
         autoClose: 1500,

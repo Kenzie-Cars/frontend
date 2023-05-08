@@ -193,8 +193,8 @@ export const AdvertiseContainer = styled.div`
       font-size: 12px;
       color: var(--grey3);
     }
+    
   }
-
 
     .newComment {
       display: flex;
@@ -231,6 +231,10 @@ export const AdvertiseContainer = styled.div`
         padding: 4px 10px;
         color: var(--grey3);
       }
+      span:active{
+      background-color: var(--brand1);
+      color: var(--whiteFixed);
+    }
       }
       
 

@@ -112,7 +112,7 @@ export const Navbar = () => {
           <UlStyle is_open={isOpenMenu}>
             <li onClick={() => editProfile()}>Editar Perfil</li>
             <li onClick={() => editAddress()}>Editar Endereço</li>
-            {is_seller && <li onClick={() => myAdvertises()}>Meus Anúncios</li>}
+            {user?.is_seller && <li onClick={() => myAdvertises()}>Meus Anúncios</li>}
             <li onClick={() => logout()}>Sair</li>
           </UlStyle>
         </NavbarStyle>

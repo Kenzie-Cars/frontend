@@ -11,24 +11,27 @@ import Button from "../../components/button";
 import { Textarea } from "../../components/input";
 import { AdvertisementContext } from "../../context/AdvertisementContext";
 import { UserContext } from "../../context/UserContext";
-import {
-  ICommentsResponse,
-  ICommnentsRequest,
-} from "../../interfaces/comments";
+import { IAdvertisementResponse } from "../../interfaces/advertisement";
+import { ICommentRequest, ICommentsResponse } from "../../interfaces/comments";
 import { CreateCommentSchema } from "../../schema/CreateCommentSchema";
 import { AdvertiseContainer } from "./style";
 
 export const Advertise = () => {
-  const { user } = useContext(UserContext);
+  const { user, defineAcronym } = useContext(UserContext);
   const { advertisements } = useContext(AdvertisementContext);
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
   const [images, setImages] = useState<string[][]>([]);
   const [isOpen, setIsOpen] = useState(false);
-  const advertisement = advertisements.find((car) => car.id === id);
+  const advertisement: IAdvertisementResponse | undefined = advertisements.find(
+    (car) => car.id === id
+  );
   const [currentImg, setCurrentImg] = useState(0);
   const [comments, setComments] = useState<ICommentsResponse[]>([]);
   const [valueComments, setValueComments] = useState("");
+
+  // console.log(advertisement?.user.description);
+
   const navigate = useNavigate();
 
   const openModal = () => {
@@ -49,7 +52,7 @@ export const Advertise = () => {
       );
     };
     loadComments();
-  }, []);
+  }, [loading]);
 
   const {
     register,
@@ -57,12 +60,12 @@ export const Advertise = () => {
     formState: {
       errors: { comment },
     },
-  } = useForm<ICommnentsRequest>({
+  } = useForm<ICommentRequest>({
     resolver: yupResolver(CreateCommentSchema),
   });
 
   const createComment = async (
-    valueComments: string,
+    valueComments: ICommentRequest,
     setLoading: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
 
@@ -78,7 +81,7 @@ export const Advertise = () => {
         toast.success("Comentário criado", {
           autoClose: 1500,
         });
-        setComments([...comments, response.data]);
+        setComments([response.data]);
         setValueComments("");
       } catch (error) {
         toast.error("Erro ao comentar");
@@ -89,7 +92,7 @@ export const Advertise = () => {
     }
   };
 
-  const sendComment = async (data: ICommnentsRequest) => {
+  const sendComment = async (data: ICommentRequest) => {
     createComment(data, setLoading);
   };
 
@@ -107,54 +110,54 @@ export const Advertise = () => {
     }
   };
 
-  const acronym = user?.name.includes(" ")
-    ? user?.name.split(" ")[0][0] + "" + user?.name.split(" ")[1][0]
-    : (
-      advertisement?.user?.name.split(" ")[0][0] +
-      "" +
-      advertisement?.user?.name.split(" ")[0][1]
-    ).toUpperCase();
-
-  const AdvAcronym = advertisement?.user?.name.includes(" ")
-    ? advertisement?.user?.name.split(" ")[0][0] +
-    "" +
-    advertisement?.user?.name.split(" ")[1][0]
-    : (
-      advertisement?.user?.name.split(" ")[0][0] +
-      "" +
-      advertisement?.user?.name.split(" ")[0][1]
-    ).toUpperCase();
-
-  acronym ? acronym : "UN";
+  // const AdvAcronym = advertisement?.user?.name.includes(" ")
+  //   ? advertisement?.user?.name.split(" ")[0][0] +
+  //     "" +
+  //     advertisement?.user?.name.split(" ")[1][0]
+  //   : (
+  //       advertisement?.user?.name.split(" ")[0][0] +
+  //       "" +
+  //       advertisement?.user?.name.split(" ")[0][1]
+  //     ).toUpperCase();
 
   const noImg =
     "https://img.freepik.com/vetores-gratis/carro-realista-coberto-com-seda-vermelha-isolado-no-fundo-branco_1441-2576.jpg";
 
   const calcDate = (data: { created_at: Date }) => {
-    const currentDate: any = new Date(data.created_at);
+    const currentDate: any | number | bigint = new Date(data.created_at);
     const now: any | number | bigint = new Date();
-    const hours = now.getHours() - currentDate.getHours();
-    const days = now.getDate() - currentDate.getDate();
-    const months = now.getMonth() - currentDate.getMonth();
-    const year = now.getFullYear() - currentDate.getFullYear();
+    const minutes: any | number | bigint =
+      now.getMinutes() - currentDate.getMinutes();
+    const hours: any | number | bigint =
+      now.getHours() - currentDate.getHours();
+    const days: any | number | bigint = now.getDate() - currentDate.getDate();
+    const months: any | number | bigint =
+      now.getMonth() - currentDate.getMonth();
+    const year: any | number | bigint =
+      now.getFullYear() - currentDate.getFullYear();
 
-    if (now - currentDate < 30 * 24 * 60 * 60 * 1000) {
-      return `há ${days} dias`;
-    } else if (days == 1) {
-      return `há ${days} dia1`;
-    } else if (days > 1) {
-      return `há ${days} dias2`;
+    if (now - currentDate < 60 * 60 * 1000) {
+      return `há ${minutes} minutos`;
     }
-
-    if (now - currentDate >= 30 * 24 * 60 * 60 * 1000 && months == 1) {
-      return `há ${months} mês`;
-    }
-
-    if (now - currentDate >= 30 * 24 * 60 * 60 * 1000 && months > 1) {
-      return `há ${months} meses`;
-    }
-
-    if (now - currentDate >= 12 * 30 * 24 * 60 * 60 * 1000) {
+    if (now - currentDate < 24 * 60 * 60 * 1000) {
+      if (hours == 1) {
+        return `há ${hours} hora`;
+      } else {
+        return `há ${hours} horas`;
+      }
+    } else if (now - currentDate < 30 * 24 * 60 * 60 * 1000) {
+      if (days == 1) {
+        return `há ${days} dia`;
+      } else {
+        return `há ${days} dias`;
+      }
+    } else if (now - currentDate < 12 * 30 * 24 * 60 * 60 * 1000) {
+      if (months == 1) {
+        return `há ${months} mês`;
+      } else {
+        return `há ${months} meses`;
+      }
+    } else {
       return `há ${year} anos`;
     }
   };
@@ -201,10 +204,10 @@ export const Advertise = () => {
             </div>
             <div className="default advertiserInfo">
               <div className="info">
-                <h2>{AdvAcronym}</h2>
+                <h2>{defineAcronym(advertisement?.user?.name!)}</h2>
                 <h3>{advertisement?.user.name}</h3>
+                <p>{advertisement?.user.description}</p>
               </div>
-              <p>{advertisement?.user.description}</p>
               <a>
                 {" "}
                 <Link
@@ -218,11 +221,11 @@ export const Advertise = () => {
             <div className="default comments">
               <h3>Comentários</h3>
               <ul className="comments-list">
-                {comments.map((comment: ICommentsResponse) => (
-                  <li>
+                {comments?.map((comment: ICommentsResponse) => (
+                  <li key={comment.id}>
                     <div className="userInfo">
-                      <p>{AdvAcronym}</p>
-                      <h3>{advertisement?.user?.name}</h3>{" "}
+                      <p>{defineAcronym(comment.user?.name)}</p>
+                      <h3>{comment.user?.name}</h3>{" "}
                       <span> - {calcDate(comment)}</span>
                     </div>
                     <p className="commentBody">{comment.comment}</p>
@@ -232,7 +235,7 @@ export const Advertise = () => {
             </div>
             <div className="default newComment">
               <div className="userInfo">
-                <p>{acronym}</p>
+                <p>{defineAcronym(!user ? "UN" : user?.name)}</p>
                 <h3>{user ? user?.name : "Não logado"}</h3>
               </div>
               <form className="newComment" onSubmit={handleSubmit(sendComment)}>
@@ -255,12 +258,30 @@ export const Advertise = () => {
                   hover={""}
                   background={""}
                 />
+
+                <div className="fastComment">
+                  <button
+                    type="button"
+                    onClick={() => setValueComments("Gostei muito")}
+                  >
+                    Gostei muito
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setValueComments("Incrível")}
+                  >
+                    Incrível
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setValueComments("Recomendarei para meus amigos!")
+                    }
+                  >
+                    Recomendarei para meus amigos!
+                  </button>
+                </div>
               </form>
-              <div className="fastComment">
-                <span>Gostei muito</span>
-                <span>Incrível</span>
-                <span>Recomendarei para meus amigos!</span>
-              </div>
             </div>
           </div>
           {isOpen && (
@@ -290,6 +311,3 @@ export const Advertise = () => {
     </AdvertiseContainer>
   );
 };
-function loadComment() {
-  throw new Error("Function not implemented.");
-}

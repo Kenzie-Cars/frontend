@@ -1,13 +1,12 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
+import { useNavigate } from "react-router-dom";
 import { Footer } from "../../components/Footer";
 import { Navbar } from "../../components/Navbar";
 import Button from "../../components/button";
 import { Input } from "../../components/input";
 import { UserContext } from "../../context/UserContext";
-import { PageLoginStyled } from "./styled";
 import { IUserLogin } from "../../interfaces/user";
 import { useNavigate } from "react-router-dom";
 
@@ -27,10 +26,10 @@ export const Login = () => {
     register,
     handleSubmit,
     formState: {
-      errors: { email, password },
+      errors: { email, userPassword },
     },
   } = useForm<IUserLogin>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(LoginSchema),
   });
 
   const navigate = useNavigate();
@@ -60,7 +59,7 @@ export const Login = () => {
               label="Senha"
               type="password"
               register={register}
-              errors={password?.message}
+              errors={userPassword?.message}
               placeholder="Digitar senha"
             />
 

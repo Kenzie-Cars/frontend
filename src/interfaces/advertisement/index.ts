@@ -1,6 +1,6 @@
 import { SetStateAction } from "react";
 import { ICommentsResponse } from "../comments";
-import { IUserResponse } from "../user";
+import { IUserAdvResponse, IUserResponse } from "../user";
 
 export interface ImagesInterface {
   id: string
@@ -31,7 +31,7 @@ export interface IAdvertisementRequest {
 
 export interface IAdvertisementResponse {
   id: string;
-  user: IUserResponse;
+  user: IUserAdvResponse;
   brand: string;
   model: string;
   year: number;
