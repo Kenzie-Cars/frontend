@@ -70,16 +70,16 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   }, []);
 
   const defineAcronym = (username: string) => {
-    const acronym = username.includes(" ")
+    const acronym = username?.includes(" ")
       ? (
-          username.split(" ")[0][0] +
+          username?.split(" ")[0][0] +
           "" +
-          username.split(" ")[1][0]
+          username?.split(" ")[1][0]
         ).toUpperCase()
       : (
-          username.split(" ")[0][0] +
+          username?.split(" ")[0][0] +
           "" +
-          username.split(" ")[0][1]
+          username?.split(" ")[0][1]
         ).toUpperCase();
 
     return acronym;

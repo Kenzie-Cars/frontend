@@ -1,23 +1,15 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
+import { useNavigate } from "react-router-dom";
 import { Footer } from "../../components/Footer";
 import { Navbar } from "../../components/Navbar";
 import Button from "../../components/button";
 import { Input } from "../../components/input";
 import { UserContext } from "../../context/UserContext";
-import { PageLoginStyled } from "./styled";
 import { IUserLogin } from "../../interfaces/user";
-import { useNavigate } from "react-router-dom";
-
-const schema = yup.object({
-  email: yup
-    .string()
-    .email("Deve ser um email valido")
-    .required("Insira seu email"),
-  password: yup.string().required("Insira sua senha"),
-});
+import { PageLoginStyled } from "./styled";
+import { LoginSchema } from "../../schema/Users";
 
 export const Login = () => {
   const { userlogin } = useContext(UserContext);
@@ -27,13 +19,13 @@ export const Login = () => {
     register,
     handleSubmit,
     formState: {
-      errors: { email, password },
+      errors: { email, userPassword },
     },
   } = useForm<IUserLogin>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(LoginSchema),
   });
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const onSubmit = async (data: IUserLogin) => {
     userlogin(data, setLoading);
@@ -60,11 +52,13 @@ export const Login = () => {
               label="Senha"
               type="password"
               register={register}
-              errors={password?.message}
+              errors={userPassword?.message}
               placeholder="Digitar senha"
             />
 
-            <p className="esqueci" onClick={() => navigate('/forgot-password')}>Esqueci minha senha</p>
+            <p className="esqueci" onClick={() => navigate("/forgot-password")}>
+              Esqueci minha senha
+            </p>
             <Button
               background="brand1"
               size="5"

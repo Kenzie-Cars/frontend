@@ -1,5 +1,5 @@
 import { ICommentsResponse } from "../comments";
-import { IUserResponse } from "../user";
+import { IUserAdvResponse, IUserResponse } from "../user";
 
 export interface IAdvertisementRequest {
   user: any;
@@ -20,7 +20,7 @@ export interface IAdvertisementRequest {
 
 export interface IAdvertisementResponse {
   id: string;
-  user: IUserResponse;
+  user: IUserAdvResponse;
   brand: string;
   model: string;
   year: number;

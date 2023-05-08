@@ -193,8 +193,8 @@ export const AdvertiseContainer = styled.div`
       font-size: 12px;
       color: var(--grey3);
     }
+    
   }
-
 
     .newComment {
       display: flex;
@@ -223,7 +223,7 @@ export const AdvertiseContainer = styled.div`
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
-      span {
+      button {
         cursor: pointer;
         font: var(--body-2-500);
         border-radius: 24px;
@@ -231,6 +231,10 @@ export const AdvertiseContainer = styled.div`
         padding: 4px 10px;
         color: var(--grey3);
       }
+      button:active{
+      background-color: var(--brand1);
+      color: var(--whiteFixed);
+    }
       }
       
 
