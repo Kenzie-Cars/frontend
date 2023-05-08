@@ -17,16 +17,17 @@ import { IUserResponse } from "../../interfaces/user";
 import { UserContext } from "../../context/UserContext";
 import { FormUpdateAdvertisement } from "../../components/FormUpdateAdvertise";
 import { ProductCardContext } from "../../context/productCardContext";
-import { DeleteCarModal } from '../../components/ModalDeleteCars'
+import { DeleteCarModal } from "../../components/ModalDeleteCars";
 import { AdvertisementContext } from "../../context/AdvertisementContext";
 
 export const AdvertiserPage = () => {
   const [loading, setLoading] = useState(true);
   const [advertiser, setAdvertiser] = useState({} as IUserResponse);
   const [isOpen, setIsOpen] = useState(false);
-  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false)
-  
-  const {currentAdvertisement, setCurrentAdvertisement} = useContext(ProductCardContext)
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+
+  const { currentAdvertisement, setCurrentAdvertisement } =
+    useContext(ProductCardContext);
 
   const { defineAcronym, user } = useContext(UserContext);
   const { advertisements } = useContext(AdvertisementContext);
@@ -37,7 +38,6 @@ export const AdvertiserPage = () => {
     const fetchAdvertisements = async () => {
       const response = await RequestApiKenzieKars.get(`users/${id}`);
       setAdvertiser(response.data);
-      console.log('ok')
     };
     fetchAdvertisements();
   }, [advertisements]);
@@ -49,7 +49,6 @@ export const AdvertiserPage = () => {
   const test = () => {
     setIsOpen(true);
   };
-
 
   {
     if (!loading) {
@@ -120,12 +119,15 @@ export const AdvertiserPage = () => {
               <StyledAdvertisementsContainer className="Advertisements-container">
                 <h3>Anúncios</h3>
                 <div className="ProductCard-container">
-                  {advertiser?.advertisements[0]? 
+                  {advertiser?.advertisements?.[0] ? (
                     advertiser.advertisements.map((product) =>
-                    createAdminProductCard(product, setIsUpdateModalOpen),
-                  ):
-                    <h3 className="no-advertisements-warning">Ops, parece que ainda não tem nenhum anúncio por aqui...</h3>
-                  }
+                      createAdminProductCard(product, setIsUpdateModalOpen),
+                    )
+                  ) : (
+                    <h3 className="no-advertisements-warning">
+                      Ops, parece que ainda não tem nenhum anúncio por aqui...
+                    </h3>
+                  )}
                 </div>
               </StyledAdvertisementsContainer>
             </StyledAdvertiserPageContainer>
@@ -133,7 +135,11 @@ export const AdvertiserPage = () => {
               <FormCreateAdvertise setIsOpen={setIsOpen} isOpen={isOpen} />
             )}
             {isUpdateModalOpen && (
-              <FormUpdateAdvertisement setIsOpen={setIsUpdateModalOpen} isOpen={isUpdateModalOpen} advertisementData={currentAdvertisement}/>
+              <FormUpdateAdvertisement
+                setIsOpen={setIsUpdateModalOpen}
+                isOpen={isUpdateModalOpen}
+                advertisementData={currentAdvertisement}
+              />
             )}
           </StyledBackgroundBottom>
 
