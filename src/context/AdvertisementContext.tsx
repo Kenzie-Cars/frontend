@@ -33,7 +33,6 @@ export const AdvProvider = ({ children }: IAdvProps) => {
     const getAdvertisements = async () => {
       try {
         const { data } = await RequestApiKenzieKars.get("advertisements");
-       console.log(data)
         setAdvertisements(data);
       } catch (error) {
         console.log(error);
