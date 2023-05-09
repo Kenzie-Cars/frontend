@@ -62,7 +62,7 @@ export const HeaderStyle = styled.header<IHeaderProps>`
     justify-content: space-between;
     align-items: center;
     width: 100vw;
-    max-width: 100%;
+    max-width: 102%;
     border-bottom: solid 2px var(--grey6);
     padding-left: 30px;
 

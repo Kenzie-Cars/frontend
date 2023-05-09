@@ -20,22 +20,20 @@ import { BiTrash } from "react-icons/bi"
 export const Advertise = () => {
   const { user, defineAcronym } = useContext(UserContext);
   const { advertisements, deleteComments } = useContext(AdvertisementContext);
-  const [loading, setLoading] = useState(false);
   const { id } = useParams();
+  const [loading, setLoading] = useState(false);
   const [images, setImages] = useState<string[][]>([]);
   const [isOpen, setIsOpen] = useState(false);
-  const advertisement: IAdvertisementResponse | undefined = advertisements.find(
-    (car) => car.id === id,
-  );
   const [currentImg, setCurrentImg] = useState(0);
   const [comments, setComments] = useState<ICommentsResponse[]>([]);
   const [valueComments, setValueComments] = useState("");
 
   // console.log(advertisement?.user.description);
-  // console.log(advertisement?.user)
-
 
   const navigate = useNavigate();
+  const advertisement: IAdvertisementResponse | undefined = advertisements.find(
+    (car) => car.id === id
+  );
 
   const openModal = () => {
     setIsOpen(true);
@@ -43,7 +41,7 @@ export const Advertise = () => {
 
   useEffect(() => {
     const getImages = advertisement?.images?.map((image) =>
-      Object.values(image).slice(1).flat(1),
+      Object.values(image).slice(1).flat(1)
     );
     setImages(getImages!);
   }, [advertisement]);
@@ -71,7 +69,7 @@ export const Advertise = () => {
 
   const createComment = async (
     valueComments: ICommentRequest,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
     const token = localStorage.getItem("@userTokenKenzieKars");
     if (token) {
@@ -80,7 +78,7 @@ export const Advertise = () => {
         RequestApiKenzieKars.defaults.headers.common.Authorization = `Bearer ${token}`;
         const response = await RequestApiKenzieKars.post(
           `advertisements/comments/${id}`,
-          valueComments,
+          valueComments
         );
         toast.success("Comentário criado", {
           autoClose: 1500,
@@ -90,6 +88,7 @@ export const Advertise = () => {
       } catch (error) {
         toast.error("Erro ao comentar");
         console.log(error);
+        navigate("/login");
       } finally {
         setLoading(false);
       }
@@ -113,16 +112,6 @@ export const Advertise = () => {
       setCurrentImg(newIndex);
     }
   };
-
-  // const AdvAcronym = advertisement?.user?.name.includes(" ")
-  //   ? advertisement?.user?.name.split(" ")[0][0] +
-  //     "" +
-  //     advertisement?.user?.name.split(" ")[1][0]
-  //   : (
-  //       advertisement?.user?.name.split(" ")[0][0] +
-  //       "" +
-  //       advertisement?.user?.name.split(" ")[0][1]
-  //     ).toUpperCase();
 
   const noImg =
     "https://img.freepik.com/vetores-gratis/carro-realista-coberto-com-seda-vermelha-isolado-no-fundo-branco_1441-2576.jpg";
@@ -192,7 +181,16 @@ export const Advertise = () => {
                 </div>
                 <h3>R$ {advertisement?.price} </h3>
               </div>
-              <button>Comprar</button>
+              {user ? (
+                <a
+                  href={`https://api.whatsapp.com/send?phone=55${advertisement?.user.phone}&text=Ol%C3%A1%20gostaria%20de%20obter%20informa%C3%A7%C3%B5es%20sobre%20o%20an%C3%BAncio%20  ${advertisement?.model}%20`}
+                  target="blank"
+                >
+                  Comprar
+                </a>
+              ) : (
+                <a href={"/login"}>Comprar</a>
+              )}
             </div>
             <div className="default carDescription">
               <h3>Descrição</h3>
@@ -237,7 +235,7 @@ export const Advertise = () => {
                       <h3>{comment.user?.name}</h3>{" "}
                       <span> - {calcDate(comment)}</span>
 
-                      {user?.id == comment.user.id ? (<BiTrash onClick={() => deleteComment(comment.id)} />) : (<></>)}
+                      {user?.id == comment?.user?.id || user?.id == advertisement?.user?.id ? (<BiTrash onClick={() => deleteComment(comment.id)} />) : (<></>)}
                     </div>
                     <p className="commentBody">{comment.comment}</p>
                   </li>
@@ -246,8 +244,8 @@ export const Advertise = () => {
             </div>
             <div className="default newComment">
               <div className="userInfo">
-                <p>{defineAcronym(!user ? "UN" : user?.name)}</p>
-                <h3>{user ? user?.name : "Não logado"}</h3>
+                <p>{defineAcronym(!user ? "un" : user?.name)}</p>
+                <h3>{user && user?.name}</h3>
               </div>
               <form className="newComment" onSubmit={handleSubmit(sendComment)}>
                 <Textarea
@@ -261,14 +259,24 @@ export const Advertise = () => {
                   register={register}
                   onChange={setValueComments}
                 />
-
-                <Button
-                  size={"1"}
-                  text={"Comentar"}
-                  type={"submit"}
-                  hover={""}
-                  background={""}
-                />
+                {user ? (
+                  <Button
+                    size={"1"}
+                    text={"Comentar"}
+                    type={"submit"}
+                    hover={""}
+                    background={""}
+                  />
+                ) : (
+                  <Button
+                    size={"1"}
+                    text={"Comentar"}
+                    type={"button"}
+                    hover={""}
+                    background={"grey5"}
+                    onClick={() => navigate("/login")}
+                  />
+                )}
 
                 <div className="fastComment">
                   <span onClick={() => setValueComments("Gostei muito")}>
