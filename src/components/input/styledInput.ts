@@ -24,8 +24,7 @@ export const StyledInput = styled.div`
     /* max-width: fit-content; */
   }
 
-  input:hover,
-  :focus {
+  input:focus, input:hover {
     border-color: var(--brand2);
     background-color: var(--grey6);
   }
