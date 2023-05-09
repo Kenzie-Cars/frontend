@@ -5,6 +5,7 @@ export const AdvertiseContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  width: 100vw;
 
   .default {
     margin-top: 1rem;
@@ -199,16 +200,18 @@ export const AdvertiseContainer = styled.div`
 
     .newComment {
       display: flex;
-    flex-direction: column;
-    margin-bottom: 2.5rem;
-    
+      flex-direction: column;
+      margin-bottom: 2.5rem;
+      position: relative;
 
       textarea {
         height: fit-content;
         min-height: 120px;
         border: 1px solid var(--grey7);
         border-radius: 4px;
+        
       }
+      
       button {
       margin: 30px 0;
       width: fit-content;
@@ -217,7 +220,9 @@ export const AdvertiseContainer = styled.div`
       padding: 12px 20px;
       border: none;
       border-radius: 4px;
-      background-color: var(--brand1);
+      position: absolute;
+      top: 24%;
+      right: 2%;
     }
   }
     .fastComment {
@@ -281,6 +286,28 @@ export const AdvertiseContainer = styled.div`
     .carDescription,
     .newComment {
       grid-column: 1;
+
+      textarea {
+        height: fit-content;
+        min-height: 120px;
+        border: 1px solid var(--grey7);
+        border-radius: 4px;
+        
+      }
+      
+      button {
+      margin: 30px 0;
+      width: fit-content;
+      color: var(--whiteFixed);
+      font: var(--button-medium-text);
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      position: absolute;
+      top: 32%;
+      right: 2%;
+    }
+  
     }
   }
 `;
