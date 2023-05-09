@@ -82,6 +82,7 @@ export const AdvertiseContainer = styled.div`
         border: none;
         border-radius: 4px;
         background-color: var(--brand1);
+        width: 100px;
       }
     }
   .carDescription {
@@ -224,11 +225,13 @@ export const AdvertiseContainer = styled.div`
       top: 24%;
       right: 2%;
     }
+   
   }
     .fastComment {
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
+
       span {
         cursor: pointer;
         font: var(--body-2-500);
@@ -238,13 +241,42 @@ export const AdvertiseContainer = styled.div`
         color: var(--grey3);
       }
       span:active{
-      background-color: var(--brand1);
-      color: var(--whiteFixed);
-    }
+        background-color: var(--brand1);
+        color: var(--whiteFixed);
       }
+    }
       
 
-  @media screen and (min-width: 768px) {
+  @media (min-width: 768px) {
+    .carAdvertiseInfo {
+      .carInfo {
+        display: flex;
+        flex-direction: row;
+        div {
+          margin: 30px auto;
+          display: flex;
+          gap: 10px;
+          font: var(--body-2-500);
+          width: 50%;
+          p {
+            padding: 4px 8px;
+            border-radius: 4px;
+            color: var(--brand1);
+            background-color: var(--brand4);
+          }
+        }
+        h3 {
+          font: var(--Heading-7-500);
+          width: 50%;
+          text-align:end;
+          align-self: center;
+          
+        }
+      }
+      a {
+        margin-top: 0;
+      }
+    }    
     .container {
       display: grid;
       width: 95%;
