@@ -47,7 +47,6 @@ export const HeaderStyle = styled.header<IHeaderProps>`
     right: 16px;
   }
 
-
   .close {
     display: none;
   }
@@ -62,7 +61,7 @@ export const HeaderStyle = styled.header<IHeaderProps>`
     justify-content: space-between;
     align-items: center;
     width: 100vw;
-    max-width: 100%;
+    max-width: 102%;
     border-bottom: solid 2px var(--grey6);
     padding-left: 30px;
 
@@ -147,7 +146,7 @@ export const NavbarStyle = styled.nav<INavbarProps>`
     justify-content: center;
     margin-top: 0;
     height: 79px;
-    width: fit-content;
+    width: 300px;
     border-bottom: solid 1px var(--grey6);
     border-left: solid 2px var(--grey6);
     padding: 0 30px;
@@ -158,6 +157,9 @@ export const NavbarStyle = styled.nav<INavbarProps>`
     }
 
     .logged {
+      margin: 0;
+      padding: 0;
+      min-width: 200px;
       cursor: pointer;
     }
   }
@@ -203,7 +205,7 @@ export const UlStyle = styled.ul<IUlProps>`
   position: fixed;
   display: ${(props) => (props.is_open ? "flex" : "none")};
   flex-direction: column;
-  top: 145px;
+  top: 156px;
   width: max-content;
   border-left: solid 2px var(--grey6);
   border-bottom: solid 2px var(--grey6);
@@ -221,9 +223,13 @@ export const UlStyle = styled.ul<IUlProps>`
 
   @media (min-width: 768px) {
     top: 75px;
+    min-width: 302px;
+    padding: 0;
+    align-items: center;
 
     & > li {
-      width: 248px;
+      width: 100%;
+      padding-left: 90px;
       cursor: pointer;
 
       :hover {
