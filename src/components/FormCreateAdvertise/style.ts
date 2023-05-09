@@ -57,12 +57,13 @@ export const FormRegisterAdvertiseStyle = styled.form`
 
 export const ButtonContainerStyle = styled.div`
   display: flex;
-  justify-content: end;
+  justify-content: center;
   width: 100%;
   gap: 1rem;
   margin-top: 1rem;
 
   & > button {
+    width: 150px;
     margin: 0;
   }
 `;
