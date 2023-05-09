@@ -29,14 +29,10 @@ export const Advertise = () => {
   const [comments, setComments] = useState<ICommentsResponse[]>([]);
   const [valueComments, setValueComments] = useState("");
 
-  // console.log(advertisement?.user.description);
-
   const navigate = useNavigate();
   const advertisement: IAdvertisementResponse | undefined = advertisements.find(
     (car) => car.id === id
   );
-
-  console.log(comments);
 
   const openModal = () => {
     setIsOpen(true);
@@ -243,7 +239,7 @@ export const Advertise = () => {
                     </li>
                   ))
                 ) : (
-                  <p>O anuncio ainda não possui comentários</p>
+                  <p>O anúncio ainda não possui comentários</p>
                 )}
               </ul>
             </div>
