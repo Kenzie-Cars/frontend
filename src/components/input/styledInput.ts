@@ -27,6 +27,7 @@ export const StyledInput = styled.div`
   input:hover,
   :focus {
     border-color: var(--brand2);
+    background-color: var(--grey6);
   }
 `;
 
@@ -59,14 +60,28 @@ export const StyledTextarea = styled.div`
   :hover,
   :focus {
     border-color: var(--brand2);
+  justify-content: center;
+
   }
 
   p {
     position: absolute;
     bottom: 10px;
-    right: 10px;
     color: var(--grey1);
+    top: 69%;
+    right: 50%;
   }
+  
+  @media (min-width: 768px) {
+    p {
+      position: absolute;
+      bottom: 10px;
+      color: var(--grey1);
+      top: 69%;
+      right: 23%;
+    }
+  }
+
 `;
 
 // export const StyledSelect = styled.div`
@@ -185,6 +200,8 @@ export const StyledSelect = styled.div`
     :hover,
     :focus {
       border-color: var(--brand2);
+      justify-content: center;
+
     }
 
     & > option {

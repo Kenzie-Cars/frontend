@@ -19,25 +19,17 @@ import { AdvertiseContainer } from "./style";
 export const Advertise = () => {
   const { user, defineAcronym } = useContext(UserContext);
   const { advertisements } = useContext(AdvertisementContext);
-  const [loading, setLoading] = useState(false);
   const { id } = useParams();
+  const [loading, setLoading] = useState(false);
   const [images, setImages] = useState<string[][]>([]);
   const [isOpen, setIsOpen] = useState(false);
-  const advertisement: IAdvertisementResponse | undefined = advertisements.find(
-    (car) => car.id === id,
-  );
   const [currentImg, setCurrentImg] = useState(0);
   const [comments, setComments] = useState<ICommentsResponse[]>([]);
   const [valueComments, setValueComments] = useState("");
   const navigate = useNavigate();
-
-  const changeLink = () => {
-    const token = localStorage.getItem("@userTokenKenzieKars");
-    if (token) {
-      return `https://api.whatsapp.com/send?phone=55${advertisement?.user.phone}&text=Ol%C3%A1%20gostaria%20de%20obter%20informa%C3%A7%C3%B5es%20sobre%20o%20an%C3%BAncio%20  ${advertisement?.model}%20`;
-    }
-    return navigate("/login");
-  };
+  const advertisement: IAdvertisementResponse | undefined = advertisements.find(
+    (car) => car.id === id
+  );
 
   const openModal = () => {
     setIsOpen(true);
@@ -45,7 +37,7 @@ export const Advertise = () => {
 
   useEffect(() => {
     const getImages = advertisement?.images?.map((image) =>
-      Object.values(image).slice(1).flat(1),
+      Object.values(image).slice(1).flat(1)
     );
     setImages(getImages!);
   }, [advertisement]);
@@ -53,7 +45,7 @@ export const Advertise = () => {
   useEffect(() => {
     const loadComments = async () => {
       RequestApiKenzieKars.get(`advertisements/${id}`).then((res) =>
-        setComments(res.data.userAdvertisements),
+        setComments(res.data.userAdvertisements)
       );
     };
     loadComments();
@@ -71,7 +63,7 @@ export const Advertise = () => {
 
   const createComment = async (
     valueComments: ICommentRequest,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
     const token = localStorage.getItem("@userTokenKenzieKars");
     if (token) {
@@ -80,7 +72,7 @@ export const Advertise = () => {
         RequestApiKenzieKars.defaults.headers.common.Authorization = `Bearer ${token}`;
         const response = await RequestApiKenzieKars.post(
           `advertisements/comments/${id}`,
-          valueComments,
+          valueComments
         );
         toast.success("Comentário criado", {
           autoClose: 1500,
@@ -268,7 +260,7 @@ export const Advertise = () => {
                     text={"Comentar"}
                     type={"button"}
                     hover={""}
-                    background={""}
+                    background={"grey5"}
                     onClick={() => navigate("/login")}
                   />
                 )}
