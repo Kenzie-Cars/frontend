@@ -1,6 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { GrNext, GrPrevious } from "react-icons/gr";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
@@ -30,6 +31,8 @@ export const Advertise = () => {
   const advertisement: IAdvertisementResponse | undefined = advertisements.find(
     (car) => car.id === id
   );
+
+  console.log(comments);
 
   const openModal = () => {
     setIsOpen(true);
@@ -217,16 +220,20 @@ export const Advertise = () => {
             <div className="default comments">
               <h3>Comentários</h3>
               <ul className="comments-list">
-                {comments?.map((comment: ICommentsResponse) => (
-                  <li key={comment.id}>
-                    <div className="userInfo">
-                      <p>{defineAcronym(comment.user?.name)}</p>
-                      <h3>{comment.user?.name}</h3>{" "}
-                      <span> - {calcDate(comment)}</span>
-                    </div>
-                    <p className="commentBody">{comment.comment}</p>
-                  </li>
-                ))}
+                {comments.length > 0 ? (
+                  comments.map((comment: ICommentsResponse) => (
+                    <li key={comment.id}>
+                      <div className="userInfo">
+                        <p>{defineAcronym(comment.user?.name)}</p>
+                        <h3>{comment.user?.name}</h3>{" "}
+                        <span> - {calcDate(comment)}</span>
+                      </div>
+                      <p className="commentBody">{comment.comment}</p>
+                    </li>
+                  ))
+                ) : (
+                  <p>O anuncio ainda não possui comentários</p>
+                )}
               </ul>
             </div>
             <div className="default newComment">
@@ -289,15 +296,21 @@ export const Advertise = () => {
               setIsOpen={setIsOpen}
               isOpen={isOpen}
             >
-              <div>
+              <div className="CarImg">
                 {images[0][currentImg] ? (
                   <img src={images[0][currentImg]} alt={advertisement?.model} />
                 ) : (
                   <img src={noImg} alt={advertisement?.model} />
                 )}
                 <div className="buttonBox">
-                  <button onClick={decreaseImages}>Anterior</button>
-                  <button onClick={increaseImages}>Próximo</button>
+                  <button onClick={decreaseImages}>
+                    {" "}
+                    <GrPrevious />{" "}
+                  </button>
+                  <button onClick={increaseImages}>
+                    {" "}
+                    <GrNext />{" "}
+                  </button>
                 </div>
               </div>
             </Modal>

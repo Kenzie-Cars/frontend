@@ -74,6 +74,8 @@ export const Header = styled.div`
     font: var(--button-medium-text);
   }
 
+  
+
   > h3,
   > HeaderTitle {
     color: var(--grey1);
@@ -105,23 +107,35 @@ export const MainContainer = styled.div`
   
   
   /* > div, */
-  > CarImg {
-    background-color: var(--grey7);
+  .CarImg {
+    /* background-color: var(--grey7); */
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     width: 90%;
     height: 85%;
-
+    gap: 15px;
+    
     img {
+      align-self: center;
       width: inherit;
       max-height: 100%;
-      height: fit-content;
+      height: 200px;
       
     }
   }
+  
+  @media (min-width: 768px) {
+     .CarImg{ 
+    img {
+      height: 300px;
+    }
+  }
+  }
 
   .buttonBox{
+    /* outline: 1px solid red; */
     width: inherit;
     height: 25px;
     display: flex;
@@ -129,9 +143,11 @@ export const MainContainer = styled.div`
     justify-content: space-between;
     > button {
       text-align: center;
-      background-color: var(--brand1);
-      color: var(--whiteFixed);
+      background-color: var(--whiteFixed);
+      color: var(--grey0);
       height: inherit;
+      border: none;
+      font: var(--Heading-4-600);
     }
   }
 
