@@ -16,10 +16,12 @@ import { ICommentRequest, ICommentsResponse } from "../../interfaces/comments";
 import { CreateCommentSchema } from "../../schema/CreateCommentSchema";
 import { AdvertiseContainer } from "./style";
 import { BiTrash } from "react-icons/bi"
+import { AiFillEdit } from "react-icons/ai"
+import { UpdateCommentModal } from "../../components/UpdateCommentModal"
 
 export const Advertise = () => {
   const { user, defineAcronym } = useContext(UserContext);
-  const { advertisements, deleteComments } = useContext(AdvertisementContext);
+  const { advertisements, deleteComments, setCommentId, setStatusCommentsModal, setValueComment } = useContext(AdvertisementContext);
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const [images, setImages] = useState<string[][]>([]);
@@ -160,6 +162,12 @@ export const Advertise = () => {
     await loadComments()
   }
 
+  const updateComment = (commentId: string, valueComment: string) => {
+    setCommentId(commentId)
+    setValueComment(valueComment)
+    setStatusCommentsModal('modalOn')
+  }
+
   return (
     <AdvertiseContainer>
       <Navbar />
@@ -235,7 +243,10 @@ export const Advertise = () => {
                       <h3>{comment.user?.name}</h3>{" "}
                       <span> - {calcDate(comment)}</span>
 
-                      {user?.id == comment?.user?.id || user?.id == advertisement?.user?.id ? (<BiTrash onClick={() => deleteComment(comment.id)} />) : (<></>)}
+                      <div className="commentButton">
+                        {user?.id == comment?.user?.id || user?.id == advertisement?.user?.id ? (<BiTrash className="icons" onClick={() => deleteComment(comment.id)} />) : (<></>)}
+                        {user?.id == comment?.user?.id ? (<AiFillEdit className="icons" onClick={() => updateComment(comment.id, comment.comment)} />) : (<></>)}
+                      </div>
                     </div>
                     <p className="commentBody">{comment.comment}</p>
                   </li>
@@ -319,6 +330,7 @@ export const Advertise = () => {
       ) : (
         <h1>loading</h1>
       )}
+      <UpdateCommentModal loadComments={loadComments} />
       <Footer />
     </AdvertiseContainer>
   );
