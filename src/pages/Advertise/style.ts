@@ -72,7 +72,8 @@ export const AdvertiseContainer = styled.div`
           font: var(--Heading-7-500);
         }
       }
-      button {
+      a {
+        text-align: center;
         margin-top: 30px;
         color: var(--whiteFixed);
         font: var(--button-medium-text);
