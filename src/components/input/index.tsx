@@ -17,7 +17,7 @@ export const Input = ({
 }: InputInterface) => {
   return (
     <StyledInput>
-      <label htmlFor={id}> {label} </label>
+      <label htmlFor={id}> {label[0].toUpperCase() + label.slice(1)} </label>
       <input
         {...register(id)}
         value={value}
@@ -84,15 +84,15 @@ export const Textarea = ({
   const setOnchange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setLength(e.target.value.length);
     if (onChange) {
-      onChange(e.target.value)
+      onChange(e.target.value);
     }
   };
 
   useEffect(() => {
     if (value?.length == 0) {
-      setLength(0)
-    };
-  }, [value])
+      setLength(0);
+    }
+  }, [value]);
 
   return (
     <StyledTextarea>
@@ -106,7 +106,7 @@ export const Textarea = ({
         {...register(id)}
         defaultValue={defaultValue}
         onChange={(e) => {
-          setOnchange(e)
+          setOnchange(e);
         }}
       />
       <p>
@@ -186,7 +186,7 @@ interface iSelectProps {
   optionValues: string[];
   disabled?: boolean;
   value?: string;
-  selectedValue?: React.ComponentState
+  selectedValue?: React.ComponentState;
 }
 
 export const Select = ({
