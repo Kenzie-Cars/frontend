@@ -162,12 +162,41 @@ export const AdvertiseContainer = styled.div`
     h3 {
       font: var(--Heading-6-600);
       margin-bottom: 1rem;
+      
     }
     .commentBody {
       margin-bottom: 1.5rem;
       text-align: justify;
       font: var(--body-2-400);
       color: var(--grey2);
+      position: relative;
+      margin-top: 10px;
+    }
+
+    .comments-list li {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 32px;
+    }
+
+    .commentButton {
+      position: absolute;
+      right: 10px;
+      top: 15px;
+      display: flex;
+      gap: 16px;
+    
+    .icons {
+      font-size: 18px;
+      color: var(--grey2);
+
+      &:hover {
+        transform: scale(1.2);
+        color: var(--brand2);
+      }
+    }
     }
   }
   .userInfo {
@@ -182,9 +211,12 @@ export const AdvertiseContainer = styled.div`
       padding: 4px;
       color: var(--whiteFixed);
       border-radius: 50%;
-      height: 30px;
-      width: 30px;
+      height: 40px;
+      width: 40px;
       text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     h3 {
       font: var(--body-2-500);

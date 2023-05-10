@@ -2,11 +2,11 @@ import { useContext, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GrFormClose } from "react-icons/gr";
 import { Link, useNavigate } from "react-router-dom";
+import logoHeader from "../../assets/Logo Header.png";
 import { UserContext } from "../../context/UserContext";
 import { FormUpdateUser } from "../FormEditUser";
 import { FormUpdateAdress } from "../FormUpdateAdress";
 import { HeaderStyle, LinkStyle, NavbarStyle, UlStyle } from "./style";
-import logoHeader from "../../assets/Logo Header.png";
 
 export const Navbar = () => {
   const [active, setActive] = useState(false);
@@ -23,7 +23,6 @@ export const Navbar = () => {
   } = useContext(UserContext);
 
   const token = localStorage.getItem("@userTokenKenzieKars");
-  const is_seller = localStorage.getItem("@userKenzieKars");
 
   const navigate = useNavigate();
 
@@ -112,7 +111,9 @@ export const Navbar = () => {
           <UlStyle is_open={isOpenMenu}>
             <li onClick={() => editProfile()}>Editar Perfil</li>
             <li onClick={() => editAddress()}>Editar Endereço</li>
-            {is_seller && <li onClick={() => myAdvertises()}>Meus Anúncios</li>}
+            {user?.is_seller && (
+              <li onClick={() => myAdvertises()}>Meus Anúncios</li>
+            )}
             <li onClick={() => logout()}>Sair</li>
           </UlStyle>
         </NavbarStyle>
