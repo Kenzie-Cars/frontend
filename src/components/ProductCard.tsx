@@ -88,9 +88,8 @@ export const AdvertiserProductCard = ({
     <AdvertiserCardContainer
       discount={is_goodSale}
       is_active={is_active}
-      onClick={() => advertise()}
     >
-      <div className="img-container">
+      <div className="img-container" onClick={advertise}>
         {test && (
           <small className="active-badge">
             {is_active ? "Ativo" : "Inativo"}

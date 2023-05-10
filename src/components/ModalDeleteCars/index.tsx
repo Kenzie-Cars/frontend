@@ -24,7 +24,7 @@ export const DeleteCarModal = () => {
                     <b>Tem certeza que deseja remover este anúncio?</b>
                     <p>
                         Essa ação não pode ser desfeita.
-                        Isso excluirá permanentemente sua conta e removerá seus dados de nossos servidores.
+                        Isso excluirá permanentemente o anúncio e o removerá de nossos servidores.
                     </p>
                 </div>
                 <div className='buttons'>

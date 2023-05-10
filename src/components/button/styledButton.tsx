@@ -54,7 +54,6 @@ const StyledButton = styled.button`
   color: var(--whiteFixed);
   font-size: 1rem;
   font-weight: 600;
-  margin: 0 auto;
   border-radius: 4px;
   border: none;
 

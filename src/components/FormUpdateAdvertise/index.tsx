@@ -325,12 +325,12 @@ export const FormUpdateAdvertisement = ({ setIsOpen, isOpen, advertisementData }
           <Button
             size={"2"}
             hover={"hover2"}
-            background={"whiteFixed"}
-            color={"grey0"}
+            background={isActive? "var(--brand1)" : "whiteFixed" }
+            color={isActive? "whiteFixed" : "grey0" }
             onClick={() => {
               setIsActive(true);
             }}
-            border={"2px solid var(--grey0)"}
+            border={`2px solid ${isActive? "var(--brand1)": "var(--grey0)"}`}
             type={"button"}
             text="Sim"
             is_active={"brand1"}
@@ -338,10 +338,10 @@ export const FormUpdateAdvertisement = ({ setIsOpen, isOpen, advertisementData }
 
           <Button
             size={"2"}
-            hover={"hover1"}
-            background={"whiteFixed"}
-            color={"grey0"}
-            border={"2px solid var(--grey0)"}
+            hover={"hover2"}
+            background={!isActive? "var(--brand1)" : "whiteFixed" }
+            color={!isActive? "whiteFixed" : "grey0"}
+            border={`2px solid ${!isActive? "var(--brand1)": "var(--grey0)"}`}
             onClick={() => {
               setIsActive(false);
             }}
