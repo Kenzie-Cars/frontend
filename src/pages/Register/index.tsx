@@ -211,7 +211,7 @@ const Register = () => {
                 border={""}
                 type={"submit"}
                 disabled={loading}
-                text={loading ? "Cadastrando..." : "Cadastrar"}
+                text={loading ? "Cadastrando..." : "Finalizar cadastro"}
               />
             </div>
           </form>

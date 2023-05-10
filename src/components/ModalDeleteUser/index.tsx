@@ -24,7 +24,7 @@ export const DeleteUserModal = ({ setIsOpenConfirm }: IProps) => {
 
   return (
     <DeleteProfileModalStyled>
-      <div className="container">
+      <div className="containerDeleteModal">
         <div className="containerHeader">
           <h4>Excluir dados</h4>
           <button onClick={() => closeModalConfirm()}>

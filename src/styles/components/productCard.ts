@@ -16,8 +16,6 @@ export const CardContainer = styled.div`
 
   box-sizing: border-box;
 
-  
-
   img {
     width: 100%;
     height: 170px;
@@ -34,7 +32,6 @@ export const CardContainer = styled.div`
     display: -webkit-box;
     -webkit-line-clamp: 1; /* number of lines to show */
     line-clamp: 1;
-    /* -webkit-box-orient: vertical; */
   }
 
   .description {
@@ -43,27 +40,28 @@ export const CardContainer = styled.div`
     font-weight: 400;
     margin-bottom: 16px;
     line-height: 24px;
-    
+
     text-overflow: ellipsis;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2; /* numero máximo de linhas */
     line-clamp: 2;
     text-align: start;
-    /* -webkit-box-orient: vertical; */
   }
 
   .img-container {
     position: relative;
     width: 100%;
-    /* background-color: var(--grey7); */
     height: fit-content;
     min-height: 156px;
     margin-bottom: 16px;
     display: flex;
     border: 3px solid transparent;
     transition: 0.42s;
-    
+  }
+
+  .img-container > img {
+    min-width: 100%;
   }
 
   .img-container:hover {
@@ -92,7 +90,7 @@ export const CardContainer = styled.div`
   .advertiser-info p {
     display: flex;
     align-items: center;
-    
+
     margin-bottom: 0px;
   }
 
@@ -113,72 +111,77 @@ export const CardContainer = styled.div`
     margin-right: 12px;
   }
 
-    .discount-badge{
-        ${({ discount }: ICardContainer) => {
-    return css`
-                display: ${discount ? 'flex' : 'none'};
-                z-index: 1;
-
+  .discount-badge {
+    ${({ discount }: ICardContainer) => {
+      return css`
+        display: ${discount ? "flex" : "none"};
+        z-index: 1;
+      `;
+    }}
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    height: 27px;
+    width: 15px;
+    background-color: var(--random7);
+    position: relative;
+    right: 13px;
+    top: 0px;
+    padding: 0px 2px;
+  }
 `;
-  }}
-        align-items: center;
-        justify-content: center;
-        font-size: 14px;
-        font-weight: 500;
-        color: white;
-        height: 27px;
-        width: 15px;
-        background-color: var(--random7);
-        position: absolute;
-        /* left: 24px; */
-        right: 0px;
-        top: 0px;
-        padding: 0px 2px;
-    }
-`
 
-export const AdvertiserCardContainer = styled(CardContainer) <{ is_active?: boolean }>`
-    .active-badge{
-        position: absolute;
-        height: 24px;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        ${({ is_active }: ICardContainer) => {
-    return css`
-                background-color: var(--${is_active ? 'brand1' : 'grey4'}) ;
-                z-index: 1;
-            `;
-  }}
+export const AdvertiserCardContainer = styled(CardContainer)<{
+  is_active?: boolean;
+}>`
+  .active-badge {
+    position: absolute;
+    height: 24px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    ${({ is_active }: ICardContainer) => {
+      return css`
+        background-color: var(--${is_active ? "brand1" : "grey4"});
+        z-index: 1;
+      `;
+    }}
 
-        padding: 0px 8px;
-        top: 10px;
-        left: 10px;
-    }
+    padding: 0px 8px;
+    top: 10px;
+    left: 10px;
+  }
 
-    .discount-badge{
-        ${({ is_active }: ICardContainer) => {
-    return css`
-                left: ${is_active ? '-40px' : '-50px'} ;
-                z-index: 1;
-                position: absolute;
-                right: 0px;
+  .discount-badge {
+    ${({ discount }: ICardContainer) => {
+      return css`
+        display: ${discount ? "flex" : "none"};
+        z-index: 1;
+      `;
+    }}
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    height: 27px;
+    width: 15px;
+    background-color: var(--random7);
+    position: relative;
+    right: 13px;
+    top: 0;
+    padding: 0px 2px;
+  }
 
-                top: 0px;
-            `;
-  }}
-        min-width: 15px;
-    }
-
-    img {
-        ${({ is_active }: ICardContainer) => {
-    return css`
-                left: ${is_active ? '-37px' : '-47px'} ;
-                background-color: var(--grey7);
-                
-            `;
-  }}
-
-    }
-`
+  img {
+    ${({ is_active }: ICardContainer) => {
+      return css`
+        left: ${is_active ? "-37px" : "-47px"};
+        background-color: var(--grey7);
+      `;
+    }}
+  }
+`;
