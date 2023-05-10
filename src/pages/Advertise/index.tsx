@@ -235,21 +235,30 @@ export const Advertise = () => {
             <div className="default comments">
               <h3>Comentários</h3>
               <ul className="comments-list">
-                {comments?.map((comment: ICommentsResponse) => (
-                  <li key={comment.id}>
-                    <div className="userInfo">
-                      <p>{defineAcronym(comment.user?.name)}</p>
-                      <h3>{comment.user?.name}</h3>{" "}
-                      <span> - {calcDate(comment)}</span>
+                {
+                  comments.length > 0 ?
+                    (
+                      comments?.map((comment: ICommentsResponse) => (
+                        <li key={comment.id}>
+                          <div className="userInfo">
+                            <p>{defineAcronym(comment.user?.name)}</p>
+                            <h3>{comment.user?.name}</h3>{" "}
+                            <span> - {calcDate(comment)}</span>
 
-                      <div className="commentButton">
-                        {user?.id == comment?.user?.id || user?.id == advertisement?.user?.id ? (<BiTrash className="icons" onClick={() => deleteComment(comment.id)} />) : (<></>)}
-                        {user?.id == comment?.user?.id ? (<AiFillEdit className="icons" onClick={() => updateComment(comment.id, comment.comment)} />) : (<></>)}
-                      </div>
-                    </div>
-                    <p className="commentBody">{comment.comment}</p>
-                  </li>
-                ))}
+                            <div className="commentButton">
+                              {user?.id == comment?.user?.id || user?.id == advertisement?.user?.id ? (<BiTrash className="icons" onClick={() => deleteComment(comment.id)} />) : (<></>)}
+                              {user?.id == comment?.user?.id ? (<AiFillEdit className="icons" onClick={() => updateComment(comment.id, comment.comment)} />) : (<></>)}
+                            </div>
+                          </div>
+                          <p className="commentBody">{comment.comment}</p>
+                        </li>
+                      ))
+                    )
+                    :
+                    (
+                      <p>O anúncio ainda não possui comentários</p>
+                    )
+                }
               </ul>
             </div>
             <div className="default newComment">
