@@ -61,11 +61,24 @@ export const Login = () => {
             </p>
             <Button
               background="brand1"
-              size="5"
+              size="6"
               hover="hover1"
               text="Entrar"
               border="none"
               color="grey8"
+            />
+            <span onClick={() => navigate("/register")}>
+              Ainda não possui conta?
+            </span>
+            <Button
+              background="whiteFixed"
+              size="6"
+              hover="hover1"
+              text="Cadatrar"
+              border="2px solid var(--grey0)"
+              color="grey0"
+              type="button"
+              onClick={() => navigate("/register")}
             />
           </form>
         </section>

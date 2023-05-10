@@ -1,6 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { GrNext, GrPrevious } from "react-icons/gr";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
@@ -15,11 +16,19 @@ import { IAdvertisementResponse } from "../../interfaces/advertisement";
 import { ICommentRequest, ICommentsResponse } from "../../interfaces/comments";
 import { CreateCommentSchema } from "../../schema/CreateCommentSchema";
 import { AdvertiseContainer } from "./style";
-import { BiTrash } from "react-icons/bi"
+import { BiTrash } from "react-icons/bi";
+import { AiFillEdit } from "react-icons/ai";
+import { UpdateCommentModal } from "../../components/UpdateCommentModal";
 
 export const Advertise = () => {
   const { user, defineAcronym } = useContext(UserContext);
-  const { advertisements, deleteComments } = useContext(AdvertisementContext);
+  const {
+    advertisements,
+    deleteComments,
+    setCommentId,
+    setStatusCommentsModal,
+    setValueComment,
+  } = useContext(AdvertisementContext);
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const [images, setImages] = useState<string[][]>([]);
@@ -27,8 +36,6 @@ export const Advertise = () => {
   const [currentImg, setCurrentImg] = useState(0);
   const [comments, setComments] = useState<ICommentsResponse[]>([]);
   const [valueComments, setValueComments] = useState("");
-
-  // console.log(advertisement?.user.description);
 
   const navigate = useNavigate();
   const advertisement: IAdvertisementResponse | undefined = advertisements.find(
@@ -48,12 +55,11 @@ export const Advertise = () => {
 
   const loadComments = async () => {
     RequestApiKenzieKars.get(`advertisements/${id}`).then((res) =>
-      setComments(res.data.userAdvertisements),
+      setComments(res.data.userAdvertisements)
     );
   };
 
   useEffect(() => {
-
     loadComments();
   }, [loading]);
 
@@ -156,9 +162,15 @@ export const Advertise = () => {
   };
 
   const deleteComment = async (commentId: string) => {
-    await deleteComments(commentId)
-    await loadComments()
-  }
+    await deleteComments(commentId);
+    await loadComments();
+  };
+
+  const updateComment = (commentId: string, valueComment: string) => {
+    setCommentId(commentId);
+    setValueComment(valueComment);
+    setStatusCommentsModal("modalOn");
+  };
 
   return (
     <AdvertiseContainer>
@@ -228,18 +240,41 @@ export const Advertise = () => {
             <div className="default comments">
               <h3>Comentários</h3>
               <ul className="comments-list">
-                {comments?.map((comment: ICommentsResponse) => (
-                  <li key={comment.id}>
-                    <div className="userInfo">
-                      <p>{defineAcronym(comment.user?.name)}</p>
-                      <h3>{comment.user?.name}</h3>{" "}
-                      <span> - {calcDate(comment)}</span>
-
-                      {user?.id == comment?.user?.id || user?.id == advertisement?.user?.id ? (<BiTrash onClick={() => deleteComment(comment.id)} />) : (<></>)}
-                    </div>
-                    <p className="commentBody">{comment.comment}</p>
-                  </li>
-                ))}
+                {comments.length > 0 ? (
+                  comments?.map((comment: ICommentsResponse) => (
+                    <li key={comment.id}>
+                      <div className="userInfo">
+                        <p>{defineAcronym(comment.user?.name)}</p>
+                        <h3>{comment.user?.name}</h3>{" "}
+                        <span> - {calcDate(comment)}</span>
+                        <div className="commentButton">
+                          {user?.id == comment?.user?.id ||
+                          user?.id == advertisement?.user?.id ? (
+                            <BiTrash
+                              className="icons"
+                              onClick={() => deleteComment(comment.id)}
+                            />
+                          ) : (
+                            <></>
+                          )}
+                          {user?.id == comment?.user?.id ? (
+                            <AiFillEdit
+                              className="icons"
+                              onClick={() =>
+                                updateComment(comment.id, comment.comment)
+                              }
+                            />
+                          ) : (
+                            <></>
+                          )}
+                        </div>
+                      </div>
+                      <p className="commentBody">{comment.comment}</p>
+                    </li>
+                  ))
+                ) : (
+                  <p>O anúncio ainda não possui comentários</p>
+                )}
               </ul>
             </div>
             <div className="default newComment">
@@ -302,15 +337,21 @@ export const Advertise = () => {
               setIsOpen={setIsOpen}
               isOpen={isOpen}
             >
-              <div>
+              <div className="CarImg">
                 {images[0][currentImg] ? (
                   <img src={images[0][currentImg]} alt={advertisement?.model} />
                 ) : (
                   <img src={noImg} alt={advertisement?.model} />
                 )}
                 <div className="buttonBox">
-                  <button onClick={decreaseImages}>Anterior</button>
-                  <button onClick={increaseImages}>Próximo</button>
+                  <button onClick={decreaseImages}>
+                    {" "}
+                    <GrPrevious />{" "}
+                  </button>
+                  <button onClick={increaseImages}>
+                    {" "}
+                    <GrNext />{" "}
+                  </button>
                 </div>
               </div>
             </Modal>
@@ -319,6 +360,7 @@ export const Advertise = () => {
       ) : (
         <h1>loading</h1>
       )}
+      <UpdateCommentModal loadComments={loadComments} />
       <Footer />
     </AdvertiseContainer>
   );
