@@ -29,7 +29,7 @@ export const PageRegisterStyled = styled.main`
     flex-direction: column;
     gap: 24px;
     justify-content: center;
-    padding: 70px 5%;
+    padding: 40px 5%;
 
     .input {
       width: 100%;
