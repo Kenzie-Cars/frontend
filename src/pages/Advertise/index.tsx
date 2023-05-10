@@ -1,6 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { GrNext, GrPrevious } from "react-icons/gr";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
@@ -29,8 +30,6 @@ export const Advertise = () => {
   const [currentImg, setCurrentImg] = useState(0);
   const [comments, setComments] = useState<ICommentsResponse[]>([]);
   const [valueComments, setValueComments] = useState("");
-
-  // console.log(advertisement?.user.description);
 
   const navigate = useNavigate();
   const advertisement: IAdvertisementResponse | undefined = advertisements.find(
@@ -313,15 +312,21 @@ export const Advertise = () => {
               setIsOpen={setIsOpen}
               isOpen={isOpen}
             >
-              <div>
+              <div className="CarImg">
                 {images[0][currentImg] ? (
                   <img src={images[0][currentImg]} alt={advertisement?.model} />
                 ) : (
                   <img src={noImg} alt={advertisement?.model} />
                 )}
                 <div className="buttonBox">
-                  <button onClick={decreaseImages}>Anterior</button>
-                  <button onClick={increaseImages}>Próximo</button>
+                  <button onClick={decreaseImages}>
+                    {" "}
+                    <GrPrevious />{" "}
+                  </button>
+                  <button onClick={increaseImages}>
+                    {" "}
+                    <GrNext />{" "}
+                  </button>
                 </div>
               </div>
             </Modal>
