@@ -184,7 +184,7 @@ export const AdvertiseContainer = styled.div`
     .commentButton {
       position: absolute;
       right: 10px;
-      bottom: 10px;
+      top: 15px;
       display: flex;
       gap: 16px;
     

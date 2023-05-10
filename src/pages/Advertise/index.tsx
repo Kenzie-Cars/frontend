@@ -8,7 +8,6 @@ import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
 import { Footer } from "../../components/Footer";
 import Modal from "../../components/Modal";
 import { Navbar } from "../../components/Navbar";
-import { UpdateCommentModal } from "../../components/UpdateCommentModal";
 import Button from "../../components/button";
 import { Textarea } from "../../components/input";
 import { AdvertisementContext } from "../../context/AdvertisementContext";
@@ -17,6 +16,9 @@ import { IAdvertisementResponse } from "../../interfaces/advertisement";
 import { ICommentRequest, ICommentsResponse } from "../../interfaces/comments";
 import { CreateCommentSchema } from "../../schema/CreateCommentSchema";
 import { AdvertiseContainer } from "./style";
+import { BiTrash } from "react-icons/bi";
+import { AiFillEdit } from "react-icons/ai";
+import { UpdateCommentModal } from "../../components/UpdateCommentModal";
 
 export const Advertise = () => {
   const { user, defineAcronym } = useContext(UserContext);
@@ -239,18 +241,39 @@ export const Advertise = () => {
               <h3>Comentários</h3>
               <ul className="comments-list">
                 {comments.length > 0 ? (
-                  comments.map((comment: ICommentsResponse) => (
+                  comments?.map((comment: ICommentsResponse) => (
                     <li key={comment.id}>
                       <div className="userInfo">
                         <p>{defineAcronym(comment.user?.name)}</p>
                         <h3>{comment.user?.name}</h3>{" "}
                         <span> - {calcDate(comment)}</span>
+                        <div className="commentButton">
+                          {user?.id == comment?.user?.id ||
+                          user?.id == advertisement?.user?.id ? (
+                            <BiTrash
+                              className="icons"
+                              onClick={() => deleteComment(comment.id)}
+                            />
+                          ) : (
+                            <></>
+                          )}
+                          {user?.id == comment?.user?.id ? (
+                            <AiFillEdit
+                              className="icons"
+                              onClick={() =>
+                                updateComment(comment.id, comment.comment)
+                              }
+                            />
+                          ) : (
+                            <></>
+                          )}
+                        </div>
                       </div>
                       <p className="commentBody">{comment.comment}</p>
                     </li>
                   ))
                 ) : (
-                  <p>O anuncio ainda não possui comentários</p>
+                  <p>O anúncio ainda não possui comentários</p>
                 )}
               </ul>
             </div>
