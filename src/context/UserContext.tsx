@@ -18,7 +18,7 @@ interface IUserContext {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   userRegister: (
     data: IUserRequest,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
   ) => void;
   userlogin: (
     userData: IUserLogin,
@@ -32,6 +32,8 @@ interface IUserContext {
   isOpenMenu: boolean;
   isOpenAddress: boolean;
   setIsOpenAddress: React.Dispatch<React.SetStateAction<boolean>>;
+  isOpenConfirm: boolean;
+  setIsOpenConfirm: React.Dispatch<React.SetStateAction<boolean>>;
   defineAcronym: (username: string) => string;
 }
 
@@ -45,6 +47,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [isOpenAddress, setIsOpenAddress] = useState(false);
+  const [isOpenConfirm, setIsOpenConfirm] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -87,7 +90,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
 
   const userRegister = async (
     data: IUserRequest,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
   ) => {
     try {
       setLoading(true);
@@ -141,7 +144,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       toast.success("Dados atualizados com sucesso", {
         autoClose: 1500,
@@ -199,6 +202,8 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         isOpenAddress,
         setIsOpenAddress,
         isOpenMenu,
+        isOpenConfirm,
+        setIsOpenConfirm,
       }}
     >
       {children}
