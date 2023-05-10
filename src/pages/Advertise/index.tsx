@@ -16,13 +16,19 @@ import { IAdvertisementResponse } from "../../interfaces/advertisement";
 import { ICommentRequest, ICommentsResponse } from "../../interfaces/comments";
 import { CreateCommentSchema } from "../../schema/CreateCommentSchema";
 import { AdvertiseContainer } from "./style";
-import { BiTrash } from "react-icons/bi"
-import { AiFillEdit } from "react-icons/ai"
-import { UpdateCommentModal } from "../../components/UpdateCommentModal"
+import { BiTrash } from "react-icons/bi";
+import { AiFillEdit } from "react-icons/ai";
+import { UpdateCommentModal } from "../../components/UpdateCommentModal";
 
 export const Advertise = () => {
   const { user, defineAcronym } = useContext(UserContext);
-  const { advertisements, deleteComments, setCommentId, setStatusCommentsModal, setValueComment } = useContext(AdvertisementContext);
+  const {
+    advertisements,
+    deleteComments,
+    setCommentId,
+    setStatusCommentsModal,
+    setValueComment,
+  } = useContext(AdvertisementContext);
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const [images, setImages] = useState<string[][]>([]);
@@ -49,12 +55,11 @@ export const Advertise = () => {
 
   const loadComments = async () => {
     RequestApiKenzieKars.get(`advertisements/${id}`).then((res) =>
-      setComments(res.data.userAdvertisements),
+      setComments(res.data.userAdvertisements)
     );
   };
 
   useEffect(() => {
-
     loadComments();
   }, [loading]);
 
@@ -157,15 +162,15 @@ export const Advertise = () => {
   };
 
   const deleteComment = async (commentId: string) => {
-    await deleteComments(commentId)
-    await loadComments()
-  }
+    await deleteComments(commentId);
+    await loadComments();
+  };
 
   const updateComment = (commentId: string, valueComment: string) => {
-    setCommentId(commentId)
-    setValueComment(valueComment)
-    setStatusCommentsModal('modalOn')
-  }
+    setCommentId(commentId);
+    setValueComment(valueComment);
+    setStatusCommentsModal("modalOn");
+  };
 
   return (
     <AdvertiseContainer>
@@ -235,30 +240,41 @@ export const Advertise = () => {
             <div className="default comments">
               <h3>Comentários</h3>
               <ul className="comments-list">
-                {
-                  comments.length > 0 ?
-                    (
-                      comments?.map((comment: ICommentsResponse) => (
-                        <li key={comment.id}>
-                          <div className="userInfo">
-                            <p>{defineAcronym(comment.user?.name)}</p>
-                            <h3>{comment.user?.name}</h3>{" "}
-                            <span> - {calcDate(comment)}</span>
-
-                            <div className="commentButton">
-                              {user?.id == comment?.user?.id || user?.id == advertisement?.user?.id ? (<BiTrash className="icons" onClick={() => deleteComment(comment.id)} />) : (<></>)}
-                              {user?.id == comment?.user?.id ? (<AiFillEdit className="icons" onClick={() => updateComment(comment.id, comment.comment)} />) : (<></>)}
-                            </div>
-                          </div>
-                          <p className="commentBody">{comment.comment}</p>
-                        </li>
-                      ))
-                    )
-                    :
-                    (
-                      <p>O anúncio ainda não possui comentários</p>
-                    )
-                }
+                {comments.length > 0 ? (
+                  comments?.map((comment: ICommentsResponse) => (
+                    <li key={comment.id}>
+                      <div className="userInfo">
+                        <p>{defineAcronym(comment.user?.name)}</p>
+                        <h3>{comment.user?.name}</h3>{" "}
+                        <span> - {calcDate(comment)}</span>
+                        <div className="commentButton">
+                          {user?.id == comment?.user?.id ||
+                          user?.id == advertisement?.user?.id ? (
+                            <BiTrash
+                              className="icons"
+                              onClick={() => deleteComment(comment.id)}
+                            />
+                          ) : (
+                            <></>
+                          )}
+                          {user?.id == comment?.user?.id ? (
+                            <AiFillEdit
+                              className="icons"
+                              onClick={() =>
+                                updateComment(comment.id, comment.comment)
+                              }
+                            />
+                          ) : (
+                            <></>
+                          )}
+                        </div>
+                      </div>
+                      <p className="commentBody">{comment.comment}</p>
+                    </li>
+                  ))
+                ) : (
+                  <p>O anúncio ainda não possui comentários</p>
+                )}
               </ul>
             </div>
             <div className="default newComment">
