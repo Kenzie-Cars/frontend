@@ -1,7 +1,6 @@
-import { DeleteCarModalStyled } from "./styled";
+import { DeleteProfileModalStyled } from "./styled";
 import Button from "../button";
-import { useContext, useState } from "react";
-import { AdvertisementContext } from "../../context/AdvertisementContext";
+import { useContext } from "react";
 import { IoIosClose } from "react-icons/io";
 import { UserContext } from "../../context/UserContext";
 
@@ -24,10 +23,10 @@ export const DeleteUserModal = ({ setIsOpenConfirm }: IProps) => {
   };
 
   return (
-    <DeleteCarModalStyled>
+    <DeleteProfileModalStyled>
       <div className="container">
         <div className="containerHeader">
-          <h4>Excluir anúncio</h4>
+          <h4>Excluir dados</h4>
           <button onClick={() => closeModalConfirm()}>
             <IoIosClose />
           </button>
@@ -62,6 +61,6 @@ export const DeleteUserModal = ({ setIsOpenConfirm }: IProps) => {
           />
         </div>
       </div>
-    </DeleteCarModalStyled>
+    </DeleteProfileModalStyled>
   );
 };

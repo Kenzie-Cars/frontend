@@ -2,6 +2,7 @@ import { DeleteCarModalStyled } from "./styled";
 import Button from "../button";
 import { useContext } from "react";
 import { AdvertisementContext } from "../../context/AdvertisementContext";
+import { IoIosClose } from "react-icons/io";
 
 export const DeleteCarModal = () => {
   const {
@@ -21,7 +22,9 @@ export const DeleteCarModal = () => {
       <div className="container">
         <div className="containerHeader">
           <h4>Excluir anúncio</h4>
-          <button onClick={() => setStatusModalDelete("modalOff")}>X</button>
+          <button onClick={() => setStatusModalDelete("modalOff")}>
+            <IoIosClose />
+          </button>
         </div>
         <div className="text">
           <b>Tem certeza que deseja remover este anúncio?</b>
