@@ -15,7 +15,7 @@ export const StyledCarsContainer = styled.ul`
     right: 77px;
   }
 
-  @media screen and (min-width: 400px) {
+  @media screen and (min-width: 768px) {
     overflow-x: unset;
     flex-wrap: wrap;
   }

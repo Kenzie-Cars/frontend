@@ -9,13 +9,16 @@ export const StyledFilter = styled.div`
   padding: 1rem;
   
 
+
   .filterHeader {
     display: flex;
     padding: 10px;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
+    z-index: 100;
     font: var(--Heading-7-500);
+    
     .close {
       width: fit-content;
       height: fit-content;
@@ -53,20 +56,27 @@ export const StyledFilter = styled.div`
         justify-content: start;
         text-align: start;
       }
-
-    ${({ brand, color, year }: { year: string, color: string, brand: string }) => {
+      
+      ${({ brand, model, color, year, fuel }): any => {
     return css`
           #${brand}{
+            color: var(--brand2);
+          }
+          #${model}{
             color: var(--brand2);
           }
           #${color}{
             color: var(--brand2);
           }
-          #${year}{
+          #${`year${year}`}{
             color: var(--brand2);
           }
-        
-        `}}
+          #${fuel}{
+            color: var(--brand2);
+          }
+        `
+  }}
+
     }
   }
   .range {
@@ -105,7 +115,7 @@ export const StyledFilter = styled.div`
     margin-bottom: 10px;
   }
 
-  @media screen and (min-width: 400px) {
+  @media screen and (min-width: 768px) {
     background-color: var(--whiteFixed);
     position: inherit;
     width: 300px;
@@ -115,7 +125,35 @@ export const StyledFilter = styled.div`
       }
       
   .filterHeader {
-      display:none
+      /* display:none */
   }
+  }
+
+  @media (max-width: 768px) {
+    /* width: 100vw; */
+    max-width: 100vw;
+    height: 100vh;
+    
+    top: 80px;
+    /* bottom: -20px; */
+    left: 0px;
+    z-index: 20;
+    /* background-color: bisque; */
+    /* margin-bottom: 300px; */
+    overflow-y: auto;
+    position: fixed;
+    padding: 20px 15px 90px 15px;
+
+    .filterButtons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    ${({ statusFilter }: { statusFilter: boolean }) => {
+    if (statusFilter) {
+      return css` display: none;`
+    }
+  }}
   }
 `;
