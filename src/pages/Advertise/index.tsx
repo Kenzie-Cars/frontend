@@ -8,6 +8,7 @@ import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
 import { Footer } from "../../components/Footer";
 import Modal from "../../components/Modal";
 import { Navbar } from "../../components/Navbar";
+import { UpdateCommentModal } from "../../components/UpdateCommentModal";
 import Button from "../../components/button";
 import { Textarea } from "../../components/input";
 import { AdvertisementContext } from "../../context/AdvertisementContext";
@@ -16,11 +17,16 @@ import { IAdvertisementResponse } from "../../interfaces/advertisement";
 import { ICommentRequest, ICommentsResponse } from "../../interfaces/comments";
 import { CreateCommentSchema } from "../../schema/CreateCommentSchema";
 import { AdvertiseContainer } from "./style";
-import { BiTrash } from "react-icons/bi"
 
 export const Advertise = () => {
   const { user, defineAcronym } = useContext(UserContext);
-  const { advertisements, deleteComments } = useContext(AdvertisementContext);
+  const {
+    advertisements,
+    deleteComments,
+    setCommentId,
+    setStatusCommentsModal,
+    setValueComment,
+  } = useContext(AdvertisementContext);
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const [images, setImages] = useState<string[][]>([]);
@@ -29,14 +35,10 @@ export const Advertise = () => {
   const [comments, setComments] = useState<ICommentsResponse[]>([]);
   const [valueComments, setValueComments] = useState("");
 
-  // console.log(advertisement?.user.description);
-
   const navigate = useNavigate();
   const advertisement: IAdvertisementResponse | undefined = advertisements.find(
     (car) => car.id === id
   );
-
-  console.log(comments);
 
   const openModal = () => {
     setIsOpen(true);
@@ -51,12 +53,11 @@ export const Advertise = () => {
 
   const loadComments = async () => {
     RequestApiKenzieKars.get(`advertisements/${id}`).then((res) =>
-      setComments(res.data.userAdvertisements),
+      setComments(res.data.userAdvertisements)
     );
   };
 
   useEffect(() => {
-
     loadComments();
   }, [loading]);
 
@@ -159,9 +160,15 @@ export const Advertise = () => {
   };
 
   const deleteComment = async (commentId: string) => {
-    await deleteComments(commentId)
-    await loadComments()
-  }
+    await deleteComments(commentId);
+    await loadComments();
+  };
+
+  const updateComment = (commentId: string, valueComment: string) => {
+    setCommentId(commentId);
+    setValueComment(valueComment);
+    setStatusCommentsModal("modalOn");
+  };
 
   return (
     <AdvertiseContainer>
@@ -330,6 +337,7 @@ export const Advertise = () => {
       ) : (
         <h1>loading</h1>
       )}
+      <UpdateCommentModal loadComments={loadComments} />
       <Footer />
     </AdvertiseContainer>
   );
