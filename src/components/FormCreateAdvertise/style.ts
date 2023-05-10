@@ -63,6 +63,7 @@ export const ButtonContainerStyle = styled.div`
   margin-top: 1rem;
 
   & > button {
+    width: 150px;
     margin: 0;
   }
 `;

@@ -29,7 +29,8 @@ export const AdvertiserPage = () => {
   const { currentAdvertisement, setCurrentAdvertisement } =
     useContext(ProductCardContext);
 
-  const { defineAcronym, user } = useContext(UserContext);
+  const { defineAcronym, user, isOpenConfirm, setIsOpenConfirm } =
+    useContext(UserContext);
   const { advertisements } = useContext(AdvertisementContext);
 
   const { id } = useParams();

@@ -7,6 +7,7 @@ import { UserContext } from "../../context/UserContext";
 import { FormUpdateUser } from "../FormEditUser";
 import { FormUpdateAdress } from "../FormUpdateAdress";
 import { HeaderStyle, LinkStyle, NavbarStyle, UlStyle } from "./style";
+import { DeleteUserModal } from "../ModalDeleteUser";
 
 export const Navbar = () => {
   const [active, setActive] = useState(false);
@@ -20,6 +21,8 @@ export const Navbar = () => {
     isOpenAddress,
     setIsOpenAddress,
     defineAcronym,
+    isOpenConfirm,
+    setIsOpenConfirm,
   } = useContext(UserContext);
 
   const token = localStorage.getItem("@userTokenKenzieKars");
@@ -124,6 +127,12 @@ export const Navbar = () => {
           setIsOpen={setIsOpen}
           isOpen={isOpen}
           setIsOpenAddress={setIsOpenAddress}
+        />
+      )}
+      {isOpenConfirm && (
+        <DeleteUserModal
+          isOpenConfirm={isOpenConfirm}
+          setIsOpenConfirm={setIsOpenConfirm}
         />
       )}
     </>
