@@ -57,7 +57,7 @@ export const FormRegisterAdvertiseStyle = styled.form`
 
 export const ButtonContainerStyle = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: end;
   width: 100%;
   gap: 1rem;
   margin-top: 1rem;
