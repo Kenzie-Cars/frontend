@@ -23,7 +23,6 @@ export const Navbar = () => {
   } = useContext(UserContext);
 
   const token = localStorage.getItem("@userTokenKenzieKars");
-  const is_seller = localStorage.getItem("@userKenzieKars");
 
   const navigate = useNavigate();
 
@@ -112,7 +111,7 @@ export const Navbar = () => {
           <UlStyle is_open={isOpenMenu}>
             <li onClick={() => editProfile()}>Editar Perfil</li>
             <li onClick={() => editAddress()}>Editar Endereço</li>
-            {is_seller && user?.is_seller && (
+            {user?.is_seller && (
               <li onClick={() => myAdvertises()}>Meus Anúncios</li>
             )}
             <li onClick={() => logout()}>Sair</li>

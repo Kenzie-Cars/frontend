@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import Modal from "../Modal";
-import { Input, Select, Textarea } from "../input";
-import { ButtonContainerStyle, FormRegisterAdvertiseStyle } from "./style";
-import Button from "../button";
-import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { IAdvertisementRequest } from "../../interfaces/advertisement";
-import { CreateAdvertiseSchema } from "../../schema/CreateAdvertiseSchema";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import { RequestApiFIPE } from "../../Requests/RequestApiFIPE";
 import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
-import { toast } from "react-toastify";
+import { IAdvertisementRequest } from "../../interfaces/advertisement";
+import { CreateAdvertiseSchema } from "../../schema/CreateAdvertiseSchema";
+import Modal from "../Modal";
+import Button from "../button";
+import { Input, Select, Textarea } from "../input";
+import { ButtonContainerStyle, FormRegisterAdvertiseStyle } from "./style";
 
 interface Iprops {
   isOpen: boolean;
@@ -61,7 +61,7 @@ export const FormCreateAdvertise = ({ setIsOpen, isOpen }: Iprops) => {
       const findYears = async () => {
         try {
           const { data } = await RequestApiFIPE.get(
-            `cars/?brand=${brandValue}`,
+            `cars/?brand=${brandValue}`
           );
 
           const model = data.filter((car: any) => {
@@ -123,7 +123,7 @@ export const FormCreateAdvertise = ({ setIsOpen, isOpen }: Iprops) => {
 
     is_active = isActive;
 
-    if (FIPE_price > price) {
+    if (price < (FIPE_price / 100) * 95) {
       is_goodSale = true;
     } else {
       is_goodSale = false;

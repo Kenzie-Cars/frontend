@@ -15,6 +15,7 @@ interface IAdvContext {
   statusModalDelete: string;
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  deleteComments: (commentId: string) => Promise<void>
 }
 
 interface IAdvProps {
@@ -55,6 +56,18 @@ export const AdvProvider = ({ children }: IAdvProps) => {
     }
   };
 
+  const deleteComments = async (commentId: string) => {
+    try {
+      setLoading(true);
+      await RequestApiKenzieKars.delete(`advertisements/comments/${commentId}`);
+      // setStatusModalDelete("modalOff");
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <AdvertisementContext.Provider
       value={{
@@ -66,6 +79,7 @@ export const AdvProvider = ({ children }: IAdvProps) => {
         statusModalDelete,
         loading,
         setLoading,
+        deleteComments
       }}
     >
       {children}

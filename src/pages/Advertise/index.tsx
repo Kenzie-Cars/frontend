@@ -16,10 +16,11 @@ import { IAdvertisementResponse } from "../../interfaces/advertisement";
 import { ICommentRequest, ICommentsResponse } from "../../interfaces/comments";
 import { CreateCommentSchema } from "../../schema/CreateCommentSchema";
 import { AdvertiseContainer } from "./style";
+import { BiTrash } from "react-icons/bi"
 
 export const Advertise = () => {
   const { user, defineAcronym } = useContext(UserContext);
-  const { advertisements } = useContext(AdvertisementContext);
+  const { advertisements, deleteComments } = useContext(AdvertisementContext);
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const [images, setImages] = useState<string[][]>([]);
@@ -27,6 +28,9 @@ export const Advertise = () => {
   const [currentImg, setCurrentImg] = useState(0);
   const [comments, setComments] = useState<ICommentsResponse[]>([]);
   const [valueComments, setValueComments] = useState("");
+
+  // console.log(advertisement?.user.description);
+
   const navigate = useNavigate();
   const advertisement: IAdvertisementResponse | undefined = advertisements.find(
     (car) => car.id === id
@@ -45,12 +49,14 @@ export const Advertise = () => {
     setImages(getImages!);
   }, [advertisement]);
 
+  const loadComments = async () => {
+    RequestApiKenzieKars.get(`advertisements/${id}`).then((res) =>
+      setComments(res.data.userAdvertisements),
+    );
+  };
+
   useEffect(() => {
-    const loadComments = async () => {
-      RequestApiKenzieKars.get(`advertisements/${id}`).then((res) =>
-        setComments(res.data.userAdvertisements)
-      );
-    };
+
     loadComments();
   }, [loading]);
 
@@ -151,6 +157,11 @@ export const Advertise = () => {
       return `há ${year} anos`;
     }
   };
+
+  const deleteComment = async (commentId: string) => {
+    await deleteComments(commentId)
+    await loadComments()
+  }
 
   return (
     <AdvertiseContainer>

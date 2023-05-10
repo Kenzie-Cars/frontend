@@ -1,27 +1,35 @@
-import { useEffect, useState } from "react";
-import Modal from "../Modal";
-import { Input, Select, Textarea } from "../input";
-import { ButtonContainerStyle, FormRegisterAdvertiseStyle } from "../FormCreateAdvertise/style";
-import Button from "../button";
-import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { IAdvertisementRequest, IAdvertisementResponse } from "../../interfaces/advertisement";
-import { CreateAdvertiseSchema } from "../../schema/CreateAdvertiseSchema";
+import { useContext, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import { RequestApiFIPE } from "../../Requests/RequestApiFIPE";
 import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
-import { toast } from "react-toastify";
 import { AdvertisementContext } from "../../context/AdvertisementContext";
-import { useContext } from "react";
+import {
+  IAdvertisementRequest,
+  IAdvertisementResponse,
+} from "../../interfaces/advertisement";
+import { CreateAdvertiseSchema } from "../../schema/CreateAdvertiseSchema";
+import {
+  ButtonContainerStyle,
+  FormRegisterAdvertiseStyle,
+} from "../FormCreateAdvertise/style";
+import Modal from "../Modal";
+import Button from "../button";
+import { Input, Select, Textarea } from "../input";
 
 interface Iprops {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  advertisementData: IAdvertisementResponse
+  advertisementData: IAdvertisementResponse;
 }
 
-export const FormUpdateAdvertisement = ({ setIsOpen, isOpen, advertisementData }: Iprops) => {
-
-  const [id, ...rest] = Object.values(advertisementData.images[0])
+export const FormUpdateAdvertisement = ({
+  setIsOpen,
+  isOpen,
+  advertisementData,
+}: Iprops) => {
+  const [id, ...rest] = Object.values(advertisementData.images[0]);
 
   const [brands, setBrands] = useState([""]);
   const [brandValue, setBrandValue] = useState("");
@@ -31,25 +39,26 @@ export const FormUpdateAdvertisement = ({ setIsOpen, isOpen, advertisementData }
   const [yearValue, setYearValue] = useState("");
   const [fuel, setFuel] = useState([""]);
   const [fuelValue, setFuelValue] = useState("");
-  const [kmValue, setkmValue] = useState(advertisementData.km)
-  const [colorValue, setColorValue] = useState(advertisementData.color)
-  const [priceValue, setPriceValue] = useState(advertisementData.price)
-  const [descValue, setDescValue] = useState(advertisementData.description)
-  const [coverValue, setCoverValue] = useState(advertisementData.cover_img)
+  const [kmValue, setkmValue] = useState(advertisementData.km);
+  const [colorValue, setColorValue] = useState(advertisementData.color);
+  const [priceValue, setPriceValue] = useState(advertisementData.price);
+  const [descValue, setDescValue] = useState(advertisementData.description);
+  const [coverValue, setCoverValue] = useState(advertisementData.cover_img);
   const [FIPE, setFIPE] = useState<number>();
   const [inputImage, setInputImage] = useState([1, 2]);
   const [isActive, setIsActive] = useState(advertisementData.is_active);
-  const [imageValueArray, setImageValueArray] = useState(rest)
+  const [imageValueArray, setImageValueArray] = useState(rest);
 
-  const imageValueArrayHandler = rest
+  const imageValueArrayHandler = rest;
 
-  const { setStatusModalDelete, setCarDeleteId } = useContext(AdvertisementContext)
+  const { setStatusModalDelete, setCarDeleteId } =
+    useContext(AdvertisementContext);
 
   const setCarDeleteFunction = () => {
-    setStatusModalDelete("modalOn")
-    setCarDeleteId(advertisementData.id)
+    setStatusModalDelete("modalOn");
+    setCarDeleteId(advertisementData.id);
     // console.log(id)
-  }
+  };
 
   useEffect(() => {
     async function ApiFIPE() {
@@ -83,7 +92,7 @@ export const FormUpdateAdvertisement = ({ setIsOpen, isOpen, advertisementData }
       const findYears = async () => {
         try {
           const { data } = await RequestApiFIPE.get(
-            `cars/?brand=${brandValue}`,
+            `cars/?brand=${brandValue}`
           );
 
           const model = data.filter((car: any) => {
@@ -123,25 +132,24 @@ export const FormUpdateAdvertisement = ({ setIsOpen, isOpen, advertisementData }
     }
   };
 
-//   for (let value of Object.values(advertisementData.images[0])){
+  //   for (let value of Object.values(advertisementData.images[0])){
 
-//         if(value.length > 2){
-//             addInputImage()
-//         }
-//     }
+  //         if(value.length > 2){
+  //             addInputImage()
+  //         }
+  //     }
 
-    useEffect(() => {
-        if(isOpen){
-                const fetchCurrentData = async () => {
-            
-                setBrandValue(advertisementData.brand)
-                setModelValue(advertisementData.model)
-                setFuelValue(advertisementData.fuel)
-                setYearValue(advertisementData.year.toString())
-            }
-            fetchCurrentData()
-        }
-    }, [isOpen])
+  useEffect(() => {
+    if (isOpen) {
+      const fetchCurrentData = async () => {
+        setBrandValue(advertisementData.brand);
+        setModelValue(advertisementData.model);
+        setFuelValue(advertisementData.fuel);
+        setYearValue(advertisementData.year.toString());
+      };
+      fetchCurrentData();
+    }
+  }, [isOpen]);
 
   const submitForm = async (data: IAdvertisementRequest) => {
     const token = localStorage.getItem("@userTokenKenzieKars");
@@ -165,7 +173,7 @@ export const FormUpdateAdvertisement = ({ setIsOpen, isOpen, advertisementData }
 
     is_active = isActive;
 
-    if (FIPE_price > price) {
+    if (price < (FIPE_price / 100) * 95) {
       is_goodSale = true;
     } else {
       is_goodSale = false;
@@ -189,14 +197,18 @@ export const FormUpdateAdvertisement = ({ setIsOpen, isOpen, advertisementData }
       is_active,
     };
 
-    console.log(advertisement)
+    console.log(advertisement);
 
     try {
-      await RequestApiKenzieKars.patch(`advertisements/${advertisementData.id}`, advertisement, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await RequestApiKenzieKars.patch(
+        `advertisements/${advertisementData.id}`,
+        advertisement,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       toast.success("Anúncio editado com sucesso", {
         autoClose: 1500,
       });
@@ -208,7 +220,7 @@ export const FormUpdateAdvertisement = ({ setIsOpen, isOpen, advertisementData }
     } finally {
       window.location.reload();
     }
-};
+  };
 
   return (
     <Modal headerTitle="Editar anúncio" setIsOpen={setIsOpen} isOpen={isOpen}>
@@ -372,8 +384,8 @@ export const FormUpdateAdvertisement = ({ setIsOpen, isOpen, advertisementData }
             placeholder={"Ex.: https://image.com"}
             defaultValue={imageValueArrayHandler[index]}
             setValue={(e) => {
-                imageValueArrayHandler[index] = e.currentTarget.value
-                setImageValueArray(imageValueArrayHandler)
+              imageValueArrayHandler[index] = e.currentTarget.value;
+              setImageValueArray(imageValueArrayHandler);
             }}
             errors={errors?.images?.message}
           />
@@ -398,8 +410,8 @@ export const FormUpdateAdvertisement = ({ setIsOpen, isOpen, advertisementData }
             text="Excluir Anúncio"
             color={"grey2"}
             onClick={() => {
-              setCarDeleteFunction()
-              setIsOpen(false)
+              setCarDeleteFunction();
+              setIsOpen(false);
             }}
             type="button"
           />
