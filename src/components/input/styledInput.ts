@@ -77,7 +77,7 @@ export const StyledTextarea = styled.div`
       bottom: 10px;
       color: var(--grey1);
       top: 69%;
-      right: 23%;
+      left: 15px;
     }
   }
 
