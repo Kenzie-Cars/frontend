@@ -26,7 +26,7 @@ export const StyledInput = styled.div`
 
   input:focus, input:hover {
     border-color: var(--brand2);
-    background-color: var(--grey6);
+    background-color: var(--grey8);
   }
 `;
 
@@ -56,10 +56,11 @@ export const StyledTextarea = styled.div`
     font: var(--body-2-500);
   }
 
-  :hover,
-  :focus {
+  textarea:hover,
+  textarea:focus {
     border-color: var(--brand2);
   justify-content: center;
+  background-color: var(--grey7);
 
   }
 

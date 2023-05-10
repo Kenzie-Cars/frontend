@@ -175,7 +175,7 @@ const Register = () => {
                 hover={"hover1"}
                 background={"whiteFixed"}
                 color={"grey0"}
-                border={"1px solid grey7"}
+                border={"2px solid var(--grey0)"}
                 onClick={() => {
                   setIs_seller(true);
                 }}
