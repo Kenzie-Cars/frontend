@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { UserContext } from "../../context/UserContext";
 import { IUserUpdateRequest } from "../../interfaces/user";
@@ -15,12 +15,17 @@ interface Iprops {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export const FormUpdateUser = ({ setIsOpen, isOpen }: Iprops) => {
-  const { userUpdateProfile, userDeleteProfile, loading, user } =
+  const { userUpdateProfile, loading, user, setIsOpenConfirm } =
     useContext(UserContext);
 
   const { handleSubmit, register } = useForm<IUserUpdateRequest>({
     resolver: yupResolver(UpdateUserSchema),
   });
+
+  const openModalConfirm = () => {
+    setIsOpenConfirm(true);
+    setIsOpen(false);
+  };
 
   return (
     <Modal headerTitle="Editar de perfil" setIsOpen={setIsOpen} isOpen={isOpen}>
@@ -90,7 +95,7 @@ export const FormUpdateUser = ({ setIsOpen, isOpen }: Iprops) => {
               background={"alert2"}
               color={"alert1"}
               onClick={() => {
-                userDeleteProfile();
+                openModalConfirm();
               }}
               border={"none"}
               type={"button"}

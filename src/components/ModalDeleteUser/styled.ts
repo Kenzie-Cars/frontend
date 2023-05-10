@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const DeleteCarModalStyled = styled.div`
+export const DeleteProfileModalStyled = styled.div`
   height: 100vh;
   width: 100vw;
   position: fixed;
@@ -9,11 +9,8 @@ export const DeleteCarModalStyled = styled.div`
   justify-content: center;
   background-color: rgb(0, 0, 0, 0.4);
   top: 0px;
+  left: 0;
   z-index: 100;
-
-  &.modalOff {
-    display: none;
-  }
 
   .container {
     width: 90%;
@@ -69,8 +66,6 @@ export const DeleteCarModalStyled = styled.div`
       align-self: flex-end;
       width: 100%;
       max-width: 350px;
-      /* min-width: 320px; */
-      /* margin-left: 20%; */
     }
   }
 `;
