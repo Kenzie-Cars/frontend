@@ -113,5 +113,9 @@ export const StyledFilter = styled.div`
       .filterModal {
         display: none;
       }
+      
+  .filterHeader {
+      display:none
+  }
   }
 `;
