@@ -12,7 +12,7 @@ export const DeleteProfileModalStyled = styled.div`
   left: 0;
   z-index: 100;
 
-  .container {
+  .containerDeleteModal {
     width: 90%;
     max-width: 500px;
     background-color: var(--grey10);

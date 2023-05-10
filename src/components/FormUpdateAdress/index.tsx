@@ -67,16 +67,16 @@ export const FormUpdateAdress = ({
           />
         </div>
 
-        <div className="inputContainer">
-          <Input
-            label={"Rua"}
-            type={"text"}
-            id={"address.street"}
-            placeholder="Digite o nome da rua"
-            register={register}
-            defaultValue={user?.address?.street}
-          />
+        <Input
+          label={"Rua"}
+          type={"text"}
+          id={"address.street"}
+          placeholder="Digite o nome da rua"
+          register={register}
+          defaultValue={user?.address?.street}
+        />
 
+        <div className="inputContainer">
           <Input
             label={"Número"}
             type={"text"}
@@ -85,16 +85,17 @@ export const FormUpdateAdress = ({
             register={register}
             defaultValue={user?.address?.number}
           />
+
+          <Input
+            label={"Complemento"}
+            type={"text"}
+            id={"address.complement"}
+            placeholder="Digite o complemento"
+            register={register}
+            defaultValue={user?.address?.complement}
+          />
         </div>
 
-        <Input
-          label={"Complemento"}
-          type={"text"}
-          id={"address.complement"}
-          placeholder="Digite o complemento"
-          register={register}
-          defaultValue={user?.address?.complement}
-        />
         <ButtonContainerStyle>
           <Button
             size="3"
