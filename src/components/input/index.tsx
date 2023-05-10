@@ -109,9 +109,9 @@ export const Textarea = ({
           setOnchange(e);
         }}
       />
-      <p>
+      {/* <p>
         {maxLength}/{length}
-      </p>
+      </p> */}
       <span>{errors}</span>
     </StyledTextarea>
   );

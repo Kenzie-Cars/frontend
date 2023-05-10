@@ -14,18 +14,20 @@ export const StyledHomeContainer = styled.div`
   }
 
   .bodyContainer {
-      /* background-color: aqua; */
-      /* width: 95%; */
       padding: 0px 20px;
       gap: 100px;
     }
 
 
-  @media screen and (min-width: 400px) {
+  @media screen and (min-width: 768px) {
     .bodyContainer {
       display: flex;
       flex-direction: row-reverse;
       justify-content: start;
+    }
+
+    .openFilter {
+      display: none;
     }
 
     .cardContainer {

@@ -118,7 +118,7 @@ export const StyledAdvertisementsContainer = styled.section`
 
   }
 
-  @media (min-width: 682px) {
+  @media (min-width: 768px) {
     .ProductCard-container {
       display: grid;
 
