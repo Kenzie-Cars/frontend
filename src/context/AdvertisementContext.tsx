@@ -1,4 +1,11 @@
-import { Dispatch, ReactNode, SetStateAction, createContext, useEffect, useState } from "react";
+import {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  createContext,
+  useEffect,
+  useState,
+} from "react";
 import { RequestApiKenzieKars } from "../Requests/RequestApiKenzieKars";
 import { IAdvertisementResponse } from "../interfaces/advertisement";
 
@@ -15,13 +22,13 @@ interface IAdvContext {
   statusModalDelete: string;
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  deleteComments: (id?: string) => Promise<number | undefined>
-  setCommentId: Dispatch<SetStateAction<string>>
-  statusCommentsModal: string
-  setStatusCommentsModal: Dispatch<SetStateAction<string>>
-  updateComments: (commentData: string) => Promise<number | undefined>
-  valueComment: string
-  setValueComment: Dispatch<SetStateAction<string>>
+  deleteComments: (id?: string) => Promise<number | undefined>;
+  setCommentId: Dispatch<SetStateAction<string>>;
+  statusCommentsModal: string;
+  setStatusCommentsModal: Dispatch<SetStateAction<string>>;
+  updateComments: (commentData: string) => Promise<number | undefined>;
+  valueComment: string;
+  setValueComment: Dispatch<SetStateAction<string>>;
 }
 
 interface IAdvProps {
@@ -38,9 +45,10 @@ export const AdvProvider = ({ children }: IAdvProps) => {
   >([] as IAdvertisementResponse[]);
   const [loading, setLoading] = useState(false);
 
-  const [commentId, setCommentId] = useState<string>("")
-  const [statusCommentsModal, setStatusCommentsModal] = useState<string>('modalOff')
-  const [valueComment, setValueComment] = useState<string>('')
+  const [commentId, setCommentId] = useState<string>("");
+  const [statusCommentsModal, setStatusCommentsModal] =
+    useState<string>("modalOff");
+  const [valueComment, setValueComment] = useState<string>("");
 
   useEffect(() => {
     const getAdvertisements = async () => {
@@ -69,31 +77,35 @@ export const AdvProvider = ({ children }: IAdvProps) => {
   const deleteComments = async (id?: string) => {
     try {
       setLoading(true);
-      const response = await RequestApiKenzieKars.delete(`advertisements/comments/${commentId || id}`);
-      setStatusCommentsModal('modalOff')
-      setCommentId('')
-      return response.status
+      const response = await RequestApiKenzieKars.delete(
+        `advertisements/comments/${commentId || id}`,
+      );
+      setStatusCommentsModal("modalOff");
+      setCommentId("");
+      return response.status;
     } catch (error) {
       console.log(error);
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   const updateComments = async (commentData: string) => {
     try {
-      console.log(commentData)
       setLoading(true);
-      const response = await RequestApiKenzieKars.patch(`advertisements/comments/${commentId}`, commentData);
-      setStatusCommentsModal('modalOff')
-      setCommentId('')
-      return response.status
+      const response = await RequestApiKenzieKars.patch(
+        `advertisements/comments/${commentId}`,
+        commentData,
+      );
+      setStatusCommentsModal("modalOff");
+      setCommentId("");
+      return response.status;
     } catch (error) {
       console.log(error);
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   return (
     <AdvertisementContext.Provider
@@ -112,7 +124,7 @@ export const AdvProvider = ({ children }: IAdvProps) => {
         setStatusCommentsModal,
         updateComments,
         setValueComment,
-        valueComment
+        valueComment,
       }}
     >
       {children}

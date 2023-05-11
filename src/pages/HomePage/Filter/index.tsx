@@ -6,7 +6,7 @@ export const Filter = ({
   setFilter,
   setAdvertisements,
   advertisements,
-  statusFilter
+  statusFilter,
 }: any) => {
   const [urlBrand, setUrlBrand] = useState("");
   const [urlModel, setUrlModel] = useState("");
@@ -14,12 +14,12 @@ export const Filter = ({
   const [urlColor, setUrlColor] = useState("");
   const [urlYear, setUrlYear] = useState("");
   const [urlFuel, setUrlFuel] = useState("");
-  ///////////////////////////////////////
+
   const [kmMin, setKmMin] = useState("");
   const [kmMax, setKmMax] = useState("");
   const [priceMin, setPriceMin] = useState("");
   const [priceMax, setPriceMax] = useState("");
-  ///////////////////////////////////////
+
   const [listBrands, setListBrands] = useState<Array<string>>([""]);
   const [models, setModels] = useState<string[]>([""]);
   const [colors, setColors] = useState<string[]>([""]);
@@ -49,15 +49,13 @@ export const Filter = ({
     }
   };
 
-  const setModelFunction = (model: string, index: number) => {
+  const setModelFunction = (model: string) => {
     if (urlModel == model) {
       setUrlModel("");
-      setFocusModel("")
-      // setModel('')
+      setFocusModel("");
     } else {
       setUrlModel(model);
-      setFocusModel(model.replaceAll(' ', '').replaceAll('.', ''))
-      console.log(focusModel)
+      setFocusModel(model.replaceAll(" ", "").replaceAll(".", ""));
     }
   };
 
@@ -87,7 +85,7 @@ export const Filter = ({
 
   useEffect(() => {
     let listBrands2: Array<string> = [];
-    advertisements.map((car: { brand: string, is_active: boolean }) => {
+    advertisements.map((car: { brand: string; is_active: boolean }) => {
       if (car.is_active && !listBrands2.includes(car.brand)) {
         listBrands2.push(car.brand);
       }
@@ -102,7 +100,13 @@ export const Filter = ({
     let arryYear: Array<string> = [];
     let arryFuel: Array<string> = [];
     advertisements.map(
-      (car: { model: string; color: string; year: string; fuel: string; is_active: boolean; }) => {
+      (car: {
+        model: string;
+        color: string;
+        year: string;
+        fuel: string;
+        is_active: boolean;
+      }) => {
         if (car.is_active && !arryModels.includes(car.model)) {
           arryModels.push(car.model);
         }
@@ -121,7 +125,6 @@ export const Filter = ({
     setColors(arryColors);
     setYears(arryYear);
     setFuel(arryFuel);
-
   }, [urlBrand, advertisements]);
 
   const cleanFilter = () => {
@@ -130,11 +133,11 @@ export const Filter = ({
     setPriceMax("");
     setKmMin("");
     setKmMax("");
-    setUrlColor("")
-    setUrlFuel("")
-    setUrlModel("")
-    setUrlYear("")
-    setFocusModel("")
+    setUrlColor("");
+    setUrlFuel("");
+    setUrlModel("");
+    setUrlYear("");
+    setFocusModel("");
   };
 
   const eventKey = (event: any) => {
@@ -147,17 +150,21 @@ export const Filter = ({
     if (kmMin == "" && kmMax == "" && priceMax == "" && priceMax == "") {
       getAdvertisements();
     }
-
   }, [kmMin, kmMax, priceMin, priceMax]);
-
 
   useEffect(() => {
     getAdvertisements();
-
   }, [urlBrand, urlModel, urlColor, urlYear, urlFuel]);
 
   return (
-    <StyledFilter brand={urlBrand} model={focusModel} color={urlColor} year={urlYear} fuel={urlFuel} statusFilter={statusFilter}>
+    <StyledFilter
+      brand={urlBrand}
+      model={focusModel}
+      color={urlColor}
+      year={urlYear}
+      fuel={urlFuel}
+      statusFilter={statusFilter}
+    >
       <div className="filterHeader">
         <p>Filtro</p>
         <button onClick={() => setFilter(true)} className="close">
@@ -186,7 +193,11 @@ export const Filter = ({
             <h3>Modelo</h3>
             <ul className="lists">
               {models?.map((model: any, index: number) => (
-                <li onClick={() => setModelFunction(model, index)} id={model.replaceAll(' ', '').replaceAll('.', '')} key={index}>
+                <li
+                  onClick={() => setModelFunction(model)}
+                  id={model.replaceAll(" ", "").replaceAll(".", "")}
+                  key={index}
+                >
                   {model}
                 </li>
               ))}
@@ -210,7 +221,11 @@ export const Filter = ({
             <h3>Ano</h3>
             <ul className="lists">
               {years.map((year: string, index: number) => (
-                <li onClick={() => setYearFunction(year)} id={`year${year}`} key={index}>
+                <li
+                  onClick={() => setYearFunction(year)}
+                  id={`year${year}`}
+                  key={index}
+                >
                   {year}
                 </li>
               ))}
@@ -231,7 +246,6 @@ export const Filter = ({
           <div className="range">
             <h3>Km</h3>
             <div className="inputs">
-              {/* <input onChange={(e) => setKmMin(e.target.value)} type="number" placeholder="Mínima" /> */}
               <input
                 onChange={(e) => setKmMin(e.target.value)}
                 type="number"
@@ -253,7 +267,6 @@ export const Filter = ({
                   type="number"
                   placeholder="Mínimo"
                   value={priceMin}
-
                 />
                 <input
                   onChange={(e) => setPriceMax(e.target.value)}
@@ -267,7 +280,15 @@ export const Filter = ({
         </form>
       </div>
       <div className="filterButtons">
-        {urlBrand || urlColor || urlFuel || urlYear || urlModel || kmMin || kmMax || priceMin || priceMax ? (
+        {urlBrand ||
+        urlColor ||
+        urlFuel ||
+        urlYear ||
+        urlModel ||
+        kmMin ||
+        kmMax ||
+        priceMin ||
+        priceMax ? (
           <button onClick={() => cleanFilter()}>Limpar Filtro</button>
         ) : (
           <></>

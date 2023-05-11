@@ -20,10 +20,7 @@ interface IUserContext {
     data: IUserRequest,
     setLoading: React.Dispatch<React.SetStateAction<boolean>>,
   ) => void;
-  userlogin: (
-    userData: IUserLogin,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
-  ) => void;
+  userlogin: (userData: IUserLogin) => void;
   userUpdateProfile: (userData: IUserUpdateRequest) => Promise<void>;
   userDeleteProfile: () => Promise<void>;
   isOpen: boolean;
@@ -149,7 +146,6 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       toast.success("Dados atualizados com sucesso", {
         autoClose: 1500,
       });
-      console.log(res.data);
       setUser(res.data);
     } catch (error) {
       toast.error("Não foi possível alterar os dados", {

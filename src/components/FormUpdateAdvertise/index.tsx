@@ -123,7 +123,7 @@ export const FormUpdateAdvertisement = ({
     handleSubmit,
     register,
     formState: { errors },
-    reset
+    reset,
   } = useForm<IAdvertisementRequest>({
     resolver: yupResolver(CreateAdvertiseSchema),
   });
@@ -133,13 +133,6 @@ export const FormUpdateAdvertisement = ({
       setInputImage([...inputImage, inputImage.length + 1]);
     }
   };
-
-  //   for (let value of Object.values(advertisementData.images[0])){
-
-  //         if(value.length > 2){
-  //             addInputImage()
-  //         }
-  //     }
 
   useEffect(() => {
     if (isOpen) {
@@ -377,8 +370,7 @@ export const FormUpdateAdvertisement = ({
           setValue={(e) => setCoverValue(e.currentTarget.value)}
         />
 
-        {imageValueArrayHandler.map(function (image:string, index) {
-
+        {imageValueArrayHandler.map(function (image: string, index) {
           if (image) {
             return (
               <Input
@@ -395,9 +387,8 @@ export const FormUpdateAdvertisement = ({
                 }}
                 errors={errors?.images?.message}
               />
-            )
+            );
           }
-              
         })}
 
         <Button

@@ -77,7 +77,7 @@ export const AdvertiserPage = () => {
                 <div className="ProductCard-container">
                   {advertiser?.id &&
                     advertiser?.advertisements?.map((product) =>
-                      createProductCard(product, advertiser?.id)
+                      createProductCard(product, advertiser?.id),
                     )}
                 </div>
               </StyledAdvertisementsContainer>
@@ -121,7 +121,11 @@ export const AdvertiserPage = () => {
                 <div className="ProductCard-container">
                   {advertiser?.advertisements?.[0] ? (
                     advertiser.advertisements.map((product) =>
-                      createAdminProductCard(product, setIsUpdateModalOpen, advertiser.userColor),
+                      createAdminProductCard(
+                        product,
+                        setIsUpdateModalOpen,
+                        advertiser.userColor,
+                      ),
                     )
                   ) : (
                     <h3 className="no-advertisements-warning">

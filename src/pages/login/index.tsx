@@ -13,7 +13,6 @@ import { PageLoginStyled } from "./styled";
 
 export const Login = () => {
   const { userlogin } = useContext(UserContext);
-  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -28,7 +27,7 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (data: IUserLogin) => {
-    userlogin(data, setLoading);
+    userlogin(data);
   };
 
   return (
