@@ -1,5 +1,22 @@
 > # **Motors Shop**
 
+- **O Motors Shop é um projeto de final de módulo realizado apenas com finalidades acadêmicas, sem nenhum fim comercial**
+
+> ## Tecnologias e bibliotecas utilizadas:
+
+- React
+- Typescript
+- Axios
+- Styled-components
+- React-icons
+- React-hook-form, @hookform/resolvers, yup
+- React-router-dom
+- React-toastify
+- React-scroll
+- Yup
+- Vite
+  <br></br>
+
 - > ### Para visualizar o projeto no VSCode:
 
   1- Deve ter instalado:
@@ -54,6 +71,10 @@
 - Se você estiver logado na plataforma, poderá comentar sobre o veículo e até mesmo clicar em "comprar" para iniciar o processo de compra.
 
 - Se você não estiver logado, será necessário criar uma conta ou fazer login antes de poder comprar ou comentar.
+
+- O anunciante pode excluir qualquer comentário do seu anúncio, mas pode editar apenas o seu próprio comentário.
+
+- Se o usuário logado não for o anunciante pode apenas excluir ou editar seu próprio comentário.
 
 </br>
 
@@ -153,3 +174,11 @@
 
 - #### **Footer**:
   - No Footer ao clicar no ícone ^ ele volta para o topo da página.
+
+> ## Equipe de desenvolvimento:
+
+- Dreic Leal - [LinkedIn](https://www.linkedin.com/in/dreicleal/) / [Github](https://github.com/DreicLeal)
+- Elton Luiz Scholze - [LinkedIn](https://www.linkedin.com/in/eltonlscholze/) / [Github](https://github.com/Elton-Luiz-Scholze)
+- Francisco Trancoso - [LinkedIn](https://www.linkedin.com/in/francisco-trancoso-191811227/) / [Github](https://github.com/f-trancoso)
+- Matheus Rocha - [LinkedIn](https://www.linkedin.com/in/matheus-rocha-577162240/) / [Github](https://github.com/MathheusRP)
+- Raphael Damasceno - [LinkedIn](https://www.linkedin.com/in/raphael-damasceno07/) / [Github](https://github.com/raphaeldamasceno1852)
