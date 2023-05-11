@@ -1,24 +1,24 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
 import { createAdminProductCard } from "../../components/AdminProductCard";
 import { Footer } from "../../components/Footer";
+import { FormCreateAdvertise } from "../../components/FormCreateAdvertise";
+import { FormUpdateAdvertisement } from "../../components/FormUpdateAdvertise";
+import { DeleteCarModal } from "../../components/ModalDeleteCars";
 import { Navbar } from "../../components/Navbar";
 import { createProductCard } from "../../components/ProductCard";
+import Button from "../../components/button";
+import { AdvertisementContext } from "../../context/AdvertisementContext";
+import { UserContext } from "../../context/UserContext";
+import { ProductCardContext } from "../../context/productCardContext";
+import { IUserResponse } from "../../interfaces/user";
 import {
   StyledAdvertisementsContainer,
   StyledAdvertiserPageContainer,
   StyledBackgroundBottom,
   StyledBackgroundTop,
 } from "./styles";
-import Button from "../../components/button";
-import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
-import { FormCreateAdvertise } from "../../components/FormCreateAdvertise";
-import { IUserResponse } from "../../interfaces/user";
-import { UserContext } from "../../context/UserContext";
-import { FormUpdateAdvertisement } from "../../components/FormUpdateAdvertise";
-import { ProductCardContext } from "../../context/productCardContext";
-import { DeleteCarModal } from "../../components/ModalDeleteCars";
-import { AdvertisementContext } from "../../context/AdvertisementContext";
 
 export const AdvertiserPage = () => {
   const [advertiser, setAdvertiser] = useState({} as IUserResponse);
@@ -77,7 +77,7 @@ export const AdvertiserPage = () => {
                 <div className="ProductCard-container">
                   {advertiser?.id &&
                     advertiser?.advertisements?.map((product) =>
-                      createProductCard(product, advertiser?.id),
+                      createProductCard(product, advertiser?.id)
                     )}
                 </div>
               </StyledAdvertisementsContainer>
@@ -121,8 +121,12 @@ export const AdvertiserPage = () => {
                 <div className="ProductCard-container">
                   {advertiser?.advertisements?.[0] ? (
                     advertiser.advertisements.map((product) =>
+<<<<<<< HEAD
                       createAdminProductCard(product, setIsUpdateModalOpen, advertiser.userColor),
 
+=======
+                      createAdminProductCard(product, setIsUpdateModalOpen)
+>>>>>>> d992c0ec37cf36a0b21f6e823cfe92845e337054
                     )
                   ) : (
                     <h3 className="no-advertisements-warning">

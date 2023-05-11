@@ -1,7 +1,7 @@
 import StyledButton from "./styledButton";
 
 export interface IButton {
-  size: "1" | "2" | "3" | "4" | "5" | "6";
+  size: "1" | "2" | "3" | "4" | "5" | "6" | "7";
   hover: string;
   background: string;
   color?: string;
@@ -13,7 +13,7 @@ export interface IButton {
   value?: any;
   width?: string;
   padding?: string;
-  is_active?: string
+  is_active?: string;
 }
 
 const Button = ({
@@ -29,7 +29,7 @@ const Button = ({
   value,
   width,
   padding,
-  is_active
+  is_active,
 }: IButton) => {
   return (
     <StyledButton
