@@ -266,12 +266,13 @@ export const FormCreateAdvertise = ({ setIsOpen, isOpen }: Iprops) => {
           <Button
             size={"2"}
             hover={"hover2"}
-            background={""}
-            color={""}
+            background={isActive? "var(--brand1)" : "whiteFixed" }
+            color={isActive? "whiteFixed" : "grey0"}
+            border={`2px solid ${isActive? "var(--brand1)": "var(--grey0)"}`}
             onClick={() => {
               setIsActive(true);
             }}
-            border={"none"}
+            
             type={"button"}
             text="Sim"
           />
@@ -279,9 +280,9 @@ export const FormCreateAdvertise = ({ setIsOpen, isOpen }: Iprops) => {
           <Button
             size={"2"}
             hover={"hover1"}
-            background={"whiteFixed"}
-            color={"grey0"}
-            border={"1px solid grey7"}
+            background={!isActive? "var(--brand1)" : "whiteFixed" }
+            color={!isActive? "whiteFixed" : "grey0"}
+            border={`2px solid ${!isActive? "var(--brand1)": "var(--grey0)"}`}
             onClick={() => {
               setIsActive(false);
             }}

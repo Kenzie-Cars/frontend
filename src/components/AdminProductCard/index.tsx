@@ -35,7 +35,7 @@ export const AdminProductCard = ({
   return (
     <>
       <AdvertiserCardContainer is_active={advertisementData.is_active} discount={advertisementData.is_goodSale}>
-        <div className="img-container">
+        <div className="img-container" onClick={test}>
           <small className="active-badge">
             {advertisementData.is_active ? "Ativo" : "Inativo"}
           </small>
@@ -83,7 +83,7 @@ export const AdminProductCard = ({
             hover="hover4"
             background="white"
             border="2px solid var(--grey1)"
-            onClick={() => test()}
+            onClick={test}
           />
         </div>
       </AdvertiserCardContainer>

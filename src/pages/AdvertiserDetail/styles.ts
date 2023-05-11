@@ -115,7 +115,6 @@ export const StyledAdvertisementsContainer = styled.section`
     color: var(--grey4);
     font: var(--Heading-3-600);
     width: 82vw
-
   }
 
   @media (min-width: 768px) {

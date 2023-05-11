@@ -51,6 +51,11 @@ export const FormRegisterAdvertiseStyle = styled.form`
     & > h3 {
       margin-bottom: 5px;
       font: var(--body-2-500);
+      margin-right: 10px
+    }
+
+    button{
+      margin-right: 10px;
     }
   }
 `;
@@ -65,5 +70,10 @@ export const ButtonContainerStyle = styled.div`
   & > button {
     width: 150px;
     margin: 0;
+    margin-right: 10px;
+  }
+
+  button {
+    margin-right: 10px !important;
   }
 `;
