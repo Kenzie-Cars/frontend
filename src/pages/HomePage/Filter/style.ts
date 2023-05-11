@@ -1,6 +1,15 @@
 import styled, { css } from "styled-components";
 
-export const StyledFilter = styled.div`
+interface ISelectFilter {
+  brand: string | undefined
+  model: string | undefined
+  color: string | undefined
+  year: string | undefined
+  fuel: string | undefined
+  statusFilter: boolean
+}
+
+export const StyledFilter = styled.div<ISelectFilter>`
   position: absolute;
   background-color: var(--whiteFixed);
   top: 55px;
@@ -55,7 +64,7 @@ export const StyledFilter = styled.div`
         text-align: start;
       }
       
-      ${({ brand, model, color, year, fuel }): any => {
+      ${({ brand, model, color, year, fuel }) => {
     return css`
           #${brand}{
             color: var(--brand2);
@@ -144,7 +153,7 @@ export const StyledFilter = styled.div`
       align-items: center;
     }
 
-    ${({ statusFilter }: { statusFilter: boolean }) => {
+    ${({ statusFilter }) => {
     if (statusFilter) {
       return css` display: none;`
     }

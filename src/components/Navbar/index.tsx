@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GrFormClose } from "react-icons/gr";
 import { Link, useNavigate } from "react-router-dom";
@@ -63,6 +63,13 @@ export const Navbar = () => {
     navigate("/");
   };
 
+  const [userColor, setUserColor] = useState<string | undefined>('')
+
+  useEffect(() => {
+    setUserColor(user?.userColor)
+    console.log(user?.userColor)
+  }, [user?.userColor])
+
   return (
     <>
       <HeaderStyle id="header" is_active={active}>
@@ -82,7 +89,7 @@ export const Navbar = () => {
             onClick={() => hidden()}
           />
         </div>
-        <NavbarStyle is_active={active} is_token={token}>
+        <NavbarStyle background={user?.userColor} is_active={active} is_token={token}>
           {token ? (
             <>
               <div
