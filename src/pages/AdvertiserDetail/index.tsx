@@ -89,9 +89,9 @@ export const AdvertiserPage = () => {
       ) : (
         <>
           <Navbar />
-          <StyledBackgroundTop />
+          <StyledBackgroundTop background={user?.userColor} />
           <StyledBackgroundBottom>
-            <StyledAdvertiserPageContainer>
+            <StyledAdvertiserPageContainer background={user?.userColor}>
               <div className="AdvertiserInfo-container">
                 <span className="AdvertiserIcon">
                   {advertiser?.name && defineAcronym(advertiser?.name)}
@@ -121,7 +121,8 @@ export const AdvertiserPage = () => {
                 <div className="ProductCard-container">
                   {advertiser?.advertisements?.[0] ? (
                     advertiser.advertisements.map((product) =>
-                      createAdminProductCard(product, setIsUpdateModalOpen),
+                      createAdminProductCard(product, setIsUpdateModalOpen, advertiser.userColor),
+
                     )
                   ) : (
                     <h3 className="no-advertisements-warning">

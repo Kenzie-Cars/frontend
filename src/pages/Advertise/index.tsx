@@ -173,7 +173,7 @@ export const Advertise = () => {
   };
 
   return (
-    <AdvertiseContainer>
+    <AdvertiseContainer background={user?.userColor}>
       <Navbar />
       {images ? (
         <>
@@ -249,7 +249,7 @@ export const Advertise = () => {
                         <span> - {calcDate(comment)}</span>
                         <div className="commentButton">
                           {user?.id == comment?.user?.id ||
-                          user?.id == advertisement?.user?.id ? (
+                            user?.id == advertisement?.user?.id ? (
                             <BiTrash
                               className="icons"
                               onClick={() => deleteComment(comment.id)}

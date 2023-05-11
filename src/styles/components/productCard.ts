@@ -3,7 +3,9 @@ import styled, { css } from "styled-components";
 interface ICardContainer {
   discount: boolean;
   is_active: boolean;
+  background?: string
 }
+
 
 export const CardContainer = styled.div`
   display: flex;
@@ -81,6 +83,12 @@ export const CardContainer = styled.div`
     align-items: center;
     border-radius: 50%;
     background-color: var(--brand1);
+
+    ${({ background }) => {
+    return css`
+        background-color: var(--random${background});
+      `
+  }}
     color: white;
     font-size: 14px;
     margin-right: 8px;
@@ -113,11 +121,11 @@ export const CardContainer = styled.div`
 
   .discount-badge {
     ${({ discount }: ICardContainer) => {
-      return css`
+    return css`
         display: ${discount ? "flex" : "none"};
         z-index: 1;
       `;
-    }}
+  }}
     align-items: center;
     justify-content: center;
     font-size: 14px;
@@ -133,7 +141,7 @@ export const CardContainer = styled.div`
   }
 `;
 
-export const AdvertiserCardContainer = styled(CardContainer)<{
+export const AdvertiserCardContainer = styled(CardContainer) <{
   is_active?: boolean;
 }>`
   .active-badge {
@@ -144,11 +152,11 @@ export const AdvertiserCardContainer = styled(CardContainer)<{
     align-items: center;
     justify-content: center;
     ${({ is_active }: ICardContainer) => {
-      return css`
+    return css`
         background-color: var(--${is_active ? "brand1" : "grey4"});
         z-index: 1;
       `;
-    }}
+  }}
 
     padding: 0px 8px;
     top: 10px;
@@ -157,11 +165,11 @@ export const AdvertiserCardContainer = styled(CardContainer)<{
 
   .discount-badge {
     ${({ discount }: ICardContainer) => {
-      return css`
+    return css`
         display: ${discount ? "flex" : "none"};
         z-index: 1;
       `;
-    }}
+  }}
     align-items: center;
     justify-content: center;
     font-size: 14px;
@@ -178,10 +186,10 @@ export const AdvertiserCardContainer = styled(CardContainer)<{
 
   img {
     ${({ is_active }: ICardContainer) => {
-      return css`
+    return css`
         left: ${is_active ? "-37px" : "-47px"};
         background-color: var(--grey7);
       `;
-    }}
+  }}
   }
 `;
