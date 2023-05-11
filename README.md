@@ -174,3 +174,11 @@
 
 - #### **Footer**:
   - No Footer ao clicar no ícone ^ ele volta para o topo da página.
+
+> ## Equipe de desenvolvimento:
+
+- Dreic Leal - [LinkedIn](https://www.linkedin.com/in/dreicleal/) / [Github](https://github.com/DreicLeal)
+- Elton Luiz Scholze - [LinkedIn](https://www.linkedin.com/in/eltonlscholze/) / [Github](https://github.com/Elton-Luiz-Scholze)
+- Francisco Trancoso - [LinkedIn](https://www.linkedin.com/in/francisco-trancoso-191811227/) / [Github](https://github.com/f-trancoso)
+- Matheus Rocha - [LinkedIn](https://www.linkedin.com/in/matheus-rocha-577162240/) / [Github](https://github.com/MathheusRP)
+- Raphael Damasceno - [LinkedIn](https://www.linkedin.com/in/raphael-damasceno07/) / [Github](https://github.com/raphaeldamasceno1852)
