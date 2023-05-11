@@ -113,30 +113,35 @@ export const StyledAdvertisementsContainer = styled.section`
 
   .no-advertisements-warning {
     color: var(--grey4);
-    font: var(--Heading-3-600);
+    font: var(--Heading-6-600);
     width: 82vw
   }
-
+  
   @media (min-width: 768px) {
     .ProductCard-container {
       display: grid;
-
+      
       grid-template-columns: 312px 312px;
-
+      
       grid-auto-rows: auto;
-
+      
       justify-content: space-around;
-
+      
       height: fit-content;
     }
-
+    
     .ProductCard-container div {
       margin-right: 0px !important;
-
+      
       margin-bottom: 13px;
     }
+    .no-advertisements-warning {
+      color: var(--grey4);
+      font: var(--Heading-3-600);
+      width: 82vw
+    }
   }
-
+  
   @media (min-width: 1050px) {
     .ProductCard-container {
       grid-template-columns: 312px 312px 312px;
