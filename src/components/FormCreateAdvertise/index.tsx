@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { RequestApiFIPE } from "../../Requests/RequestApiFIPE";
@@ -10,6 +10,7 @@ import Modal from "../Modal";
 import Button from "../button";
 import { Input, Select, Textarea } from "../input";
 import { ButtonContainerStyle, FormRegisterAdvertiseStyle } from "./style";
+import { UserContext } from "../../context/UserContext";
 
 interface Iprops {
   isOpen: boolean;
@@ -28,6 +29,7 @@ export const FormCreateAdvertise = ({ setIsOpen, isOpen }: Iprops) => {
   const [FIPE, setFIPE] = useState<number>();
   const [inputImage, setInputImage] = useState([1, 2]);
   const [isActive, setIsActive] = useState(true);
+  const { setLoading } = useContext(UserContext);
 
   useEffect(() => {
     async function ApiFIPE() {
@@ -61,7 +63,7 @@ export const FormCreateAdvertise = ({ setIsOpen, isOpen }: Iprops) => {
       const findYears = async () => {
         try {
           const { data } = await RequestApiFIPE.get(
-            `cars/?brand=${brandValue}`
+            `cars/?brand=${brandValue}`,
           );
 
           const model = data.filter((car: any) => {
@@ -148,6 +150,7 @@ export const FormCreateAdvertise = ({ setIsOpen, isOpen }: Iprops) => {
     };
 
     try {
+      setLoading(true);
       await RequestApiKenzieKars.post("advertisements", advertisement, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -162,7 +165,7 @@ export const FormCreateAdvertise = ({ setIsOpen, isOpen }: Iprops) => {
         autoClose: 1500,
       });
     } finally {
-      window.location.reload();
+      setLoading(false);
     }
   };
 
@@ -266,13 +269,12 @@ export const FormCreateAdvertise = ({ setIsOpen, isOpen }: Iprops) => {
           <Button
             size={"2"}
             hover={"hover2"}
-            background={isActive? "var(--brand1)" : "whiteFixed" }
-            color={isActive? "whiteFixed" : "grey0"}
-            border={`2px solid ${isActive? "var(--brand1)": "var(--grey0)"}`}
+            background={isActive ? "var(--brand1)" : "whiteFixed"}
+            color={isActive ? "whiteFixed" : "grey0"}
+            border={`2px solid ${isActive ? "var(--brand1)" : "var(--grey0)"}`}
             onClick={() => {
               setIsActive(true);
             }}
-            
             type={"button"}
             text="Sim"
           />
@@ -280,9 +282,9 @@ export const FormCreateAdvertise = ({ setIsOpen, isOpen }: Iprops) => {
           <Button
             size={"2"}
             hover={"hover1"}
-            background={!isActive? "var(--brand1)" : "whiteFixed" }
-            color={!isActive? "whiteFixed" : "grey0"}
-            border={`2px solid ${!isActive? "var(--brand1)": "var(--grey0)"}`}
+            background={!isActive ? "var(--brand1)" : "whiteFixed"}
+            color={!isActive ? "whiteFixed" : "grey0"}
+            border={`2px solid ${!isActive ? "var(--brand1)" : "var(--grey0)"}`}
             onClick={() => {
               setIsActive(false);
             }}

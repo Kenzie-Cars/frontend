@@ -17,6 +17,7 @@ import {
 import Modal from "../Modal";
 import Button from "../button";
 import { Input, Select, Textarea } from "../input";
+import { UserContext } from "../../context/UserContext";
 
 interface Iprops {
   isOpen: boolean;
@@ -32,13 +33,13 @@ export const FormUpdateAdvertisement = ({
   const [id, ...rest] = Object.values(advertisementData.images[0]);
 
   const [brands, setBrands] = useState([""]);
-  const [brandValue, setBrandValue] = useState("");
+  const [brandValue, setBrandValue] = useState(advertisementData.brand);
   const [models, setModels] = useState<string[]>([""]);
-  const [modelValue, setModelValue] = useState("");
+  const [modelValue, setModelValue] = useState(advertisementData.model);
   const [years, setYears] = useState<string[]>([""]);
-  const [yearValue, setYearValue] = useState("");
+  const [yearValue, setYearValue] = useState(advertisementData.year);
   const [fuel, setFuel] = useState([""]);
-  const [fuelValue, setFuelValue] = useState("");
+  const [fuelValue, setFuelValue] = useState(advertisementData.fuel);
   const [kmValue, setkmValue] = useState(advertisementData.km);
   const [colorValue, setColorValue] = useState(advertisementData.color);
   const [priceValue, setPriceValue] = useState(advertisementData.price);
@@ -48,6 +49,7 @@ export const FormUpdateAdvertisement = ({
   const [inputImage, setInputImage] = useState([1, 2]);
   const [isActive, setIsActive] = useState(advertisementData.is_active);
   const [imageValueArray, setImageValueArray] = useState(rest);
+  const { setLoading } = useContext(UserContext);
 
   const imageValueArrayHandler = rest;
 
@@ -57,7 +59,6 @@ export const FormUpdateAdvertisement = ({
   const setCarDeleteFunction = () => {
     setStatusModalDelete("modalOn");
     setCarDeleteId(advertisementData.id);
-    // console.log(id)
   };
 
   useEffect(() => {
@@ -92,7 +93,7 @@ export const FormUpdateAdvertisement = ({
       const findYears = async () => {
         try {
           const { data } = await RequestApiFIPE.get(
-            `cars/?brand=${brandValue}`
+            `cars/?brand=${brandValue}`,
           );
 
           const model = data.filter((car: any) => {
@@ -122,6 +123,7 @@ export const FormUpdateAdvertisement = ({
     handleSubmit,
     register,
     formState: { errors },
+    reset
   } = useForm<IAdvertisementRequest>({
     resolver: yupResolver(CreateAdvertiseSchema),
   });
@@ -145,7 +147,7 @@ export const FormUpdateAdvertisement = ({
         setBrandValue(advertisementData.brand);
         setModelValue(advertisementData.model);
         setFuelValue(advertisementData.fuel);
-        setYearValue(advertisementData.year.toString());
+        setYearValue(advertisementData.year);
       };
       fetchCurrentData();
     }
@@ -197,9 +199,8 @@ export const FormUpdateAdvertisement = ({
       is_active,
     };
 
-    console.log(advertisement);
-
     try {
+      setLoading(true);
       await RequestApiKenzieKars.patch(
         `advertisements/${advertisementData.id}`,
         advertisement,
@@ -207,7 +208,7 @@ export const FormUpdateAdvertisement = ({
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       toast.success("Anúncio editado com sucesso", {
         autoClose: 1500,
@@ -218,7 +219,7 @@ export const FormUpdateAdvertisement = ({
         autoClose: 1500,
       });
     } finally {
-      window.location.reload();
+      setLoading(false);
     }
   };
 
@@ -233,7 +234,7 @@ export const FormUpdateAdvertisement = ({
           errors={errors?.brand?.message}
           setSelect={setBrandValue}
           optionValues={brands}
-          value={brandValue}
+          value={brandValue!}
           selectedValue={brandValue}
         />
 
@@ -245,7 +246,7 @@ export const FormUpdateAdvertisement = ({
           setSelect={setModelValue}
           optionValues={models}
           disabled={brandValue ? false : true}
-          value={modelValue}
+          value={modelValue!}
           selectedValue={modelValue}
         />
 
@@ -258,6 +259,7 @@ export const FormUpdateAdvertisement = ({
             setSelect={setYearValue}
             optionValues={years}
             disabled={brandValue && modelValue ? false : true}
+            value={yearValue!.toString()}
             selectedValue={yearValue}
           />
 
@@ -269,6 +271,7 @@ export const FormUpdateAdvertisement = ({
             setSelect={setFuelValue}
             optionValues={fuel}
             disabled={brandValue && modelValue && yearValue ? false : true}
+            value={fuelValue!}
             selectedValue={fuelValue}
           />
         </div>
@@ -337,12 +340,12 @@ export const FormUpdateAdvertisement = ({
           <Button
             size={"2"}
             hover={"hover2"}
-            background={isActive? "var(--brand1)" : "whiteFixed" }
-            color={isActive? "whiteFixed" : "grey0" }
+            background={isActive ? "var(--brand1)" : "whiteFixed"}
+            color={isActive ? "whiteFixed" : "grey0"}
             onClick={() => {
               setIsActive(true);
             }}
-            border={`2px solid ${isActive? "var(--brand1)": "var(--grey0)"}`}
+            border={`2px solid ${isActive ? "var(--brand1)" : "var(--grey0)"}`}
             type={"button"}
             text="Sim"
             is_active={"brand1"}
@@ -351,9 +354,9 @@ export const FormUpdateAdvertisement = ({
           <Button
             size={"2"}
             hover={"hover2"}
-            background={!isActive? "var(--brand1)" : "whiteFixed" }
-            color={!isActive? "whiteFixed" : "grey0"}
-            border={`2px solid ${!isActive? "var(--brand1)": "var(--grey0)"}`}
+            background={!isActive ? "var(--brand1)" : "whiteFixed"}
+            color={!isActive ? "whiteFixed" : "grey0"}
+            border={`2px solid ${!isActive ? "var(--brand1)" : "var(--grey0)"}`}
             onClick={() => {
               setIsActive(false);
             }}
@@ -374,22 +377,28 @@ export const FormUpdateAdvertisement = ({
           setValue={(e) => setCoverValue(e.currentTarget.value)}
         />
 
-        {imageValueArrayHandler.map((image, index) => (
-          <Input
-            register={register}
-            key={index}
-            id={`image${index}`}
-            label={`${index + 1}ª Imagem da Galeria`}
-            type="text"
-            placeholder={"Ex.: https://image.com"}
-            defaultValue={imageValueArrayHandler[index]}
-            setValue={(e) => {
-              imageValueArrayHandler[index] = e.currentTarget.value;
-              setImageValueArray(imageValueArrayHandler);
-            }}
-            errors={errors?.images?.message}
-          />
-        ))}
+        {imageValueArrayHandler.map(function (image:string, index) {
+
+          if (image) {
+            return (
+              <Input
+                register={register}
+                key={index}
+                id={`image${index}`}
+                label={`${index + 1}ª Imagem da Galeria`}
+                type="text"
+                placeholder={"Ex.: https://image.com"}
+                defaultValue={imageValueArrayHandler[index]}
+                setValue={(e) => {
+                  imageValueArrayHandler[index] = e.currentTarget.value;
+                  setImageValueArray(imageValueArrayHandler);
+                }}
+                errors={errors?.images?.message}
+              />
+            )
+          }
+              
+        })}
 
         <Button
           onClick={addInputImage}

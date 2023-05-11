@@ -9,6 +9,7 @@ import { AdvertisementContext } from "../../context/AdvertisementContext";
 import { FormUpdateAdvertisement } from "../FormUpdateAdvertise";
 import { useState } from "react";
 import { ProductCardContext } from "../../context/productCardContext";
+import {formatPrice} from '../ProductCard'
 
 
 export const AdminProductCard = ({
@@ -59,7 +60,7 @@ export const AdminProductCard = ({
             <span>{advertisementData.year}</span>
           </div>
 
-          <h4>R$ {advertisementData.price}</h4>
+          <h4>R$ {formatPrice(advertisementData.price)}</h4>
         </section>
 
         <div>

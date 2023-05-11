@@ -21,16 +21,15 @@ import { DeleteCarModal } from "../../components/ModalDeleteCars";
 import { AdvertisementContext } from "../../context/AdvertisementContext";
 
 export const AdvertiserPage = () => {
-  const [loading, setLoading] = useState(true);
   const [advertiser, setAdvertiser] = useState({} as IUserResponse);
   const [isOpen, setIsOpen] = useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const { loading, setLoading } = useContext(UserContext);
 
   const { currentAdvertisement, setCurrentAdvertisement } =
     useContext(ProductCardContext);
 
-  const { defineAcronym, user, isOpenConfirm, setIsOpenConfirm } =
-    useContext(UserContext);
+  const { defineAcronym, user } = useContext(UserContext);
   const { advertisements } = useContext(AdvertisementContext);
 
   const { id } = useParams();
@@ -41,7 +40,7 @@ export const AdvertiserPage = () => {
       setAdvertiser(response.data);
     };
     fetchAdvertisements();
-  }, [advertisements]);
+  }, [advertisements, loading]);
 
   useEffect(() => {
     setLoading(false);
