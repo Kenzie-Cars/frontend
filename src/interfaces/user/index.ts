@@ -17,6 +17,7 @@ export interface IUserRequest {
   is_seller?: boolean;
   is_adm?: boolean;
   address: IAddressRequest;
+  userColor: string
 }
 export interface IUserUpdateRequest {
   name?: string;
@@ -54,6 +55,7 @@ export interface IUserResponse {
   is_adm: boolean;
   is_active: boolean;
   is_seller: boolean;
+  userColor: string
   created_at: Date;
   updated_at: Date;
   advertisements: IAdvertisementResponse[]

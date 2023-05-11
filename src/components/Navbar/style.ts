@@ -1,12 +1,14 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 interface IHeaderProps {
   is_active: boolean;
+
 }
 
 interface INavbarProps {
   is_active: boolean;
   is_token: string | null;
+  background: string | undefined
 }
 
 interface IUlProps {
@@ -119,6 +121,13 @@ export const NavbarStyle = styled.nav<INavbarProps>`
 
   .acronym {
     background-color: var(--brand2);
+    ${({ background }) => {
+
+    return css` 
+      background-color: var(--random${background});
+      `
+
+  }}
     padding: 10px;
     border-radius: 200px;
 

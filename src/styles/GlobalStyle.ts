@@ -45,6 +45,13 @@ export default createGlobalStyle`
     --random11:#5700E3;
     --random12:#30007D;
 
+    --yellow: #D1BC28;
+    --green: #72C763;
+    --blue: #4356C7;
+    --red: #C72E33;
+    --orange: #D16D23;
+    --purple: #D159C1;
+
     /* Typography */
     
     --Heading-1-700: 700 44px 'Lexend';

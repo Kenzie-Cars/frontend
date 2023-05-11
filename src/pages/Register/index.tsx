@@ -35,9 +35,13 @@ const Register = () => {
     resolver: yupResolver(CreateUserSchema),
   });
 
+  const color = ['blue', 'red', 'green', 'yellow', 'orange', 'purple']
+
   const sendData = async (data: IUserRequest) => {
     data.is_seller = is_seller;
     data.is_adm = false;
+    // data.userColor = color[Math.floor(Math.random() * color.length)]
+    data.userColor = `${Math.floor(Math.random() * 12)}`
     userRegister(data, setLoading);
   };
 
