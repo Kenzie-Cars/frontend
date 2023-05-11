@@ -8,6 +8,12 @@ import {
 } from "../styles/components/productCard";
 import { UserContext } from "../context/UserContext";
 
+export const formatPrice = (price: number) => {
+  var parts = price.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return parts.join(".");
+}
+
 export const ProductCard = ({
   id,
   cover_img,
@@ -57,7 +63,7 @@ export const ProductCard = ({
           <span>{year}</span>
         </div>
 
-        <h4>R$ {price}</h4>
+        <h4>R$ {formatPrice(price)}</h4>
       </section>
     </CardContainer>
   );
@@ -116,7 +122,7 @@ export const AdvertiserProductCard = ({
           <span>{year}</span>
         </div>
 
-        <h4>R$ {price}</h4>
+        <h4>R$ {formatPrice(price)}</h4>
       </section>
     </AdvertiserCardContainer>
   );
