@@ -1,5 +1,22 @@
 > # **Motors Shop**
 
+- **O Motors Shop é um projeto de final de módulo realizado apenas com finalidades acadêmicas, sem nenhum fim comercial**
+
+> ## Tecnologias e bibliotecas utilizadas:
+
+- React
+- Typescript
+- Axios
+- Styled-components
+- React-icons
+- React-hook-form, @hookform/resolvers, yup
+- React-router-dom
+- React-toastify
+- React-scroll
+- Yup
+- Vite
+  <br></br>
+
 - > ### Para visualizar o projeto no VSCode:
 
   1- Deve ter instalado:
@@ -54,6 +71,10 @@
 - Se você estiver logado na plataforma, poderá comentar sobre o veículo e até mesmo clicar em "comprar" para iniciar o processo de compra.
 
 - Se você não estiver logado, será necessário criar uma conta ou fazer login antes de poder comprar ou comentar.
+
+- O anunciante pode excluir qualquer comentário do seu anúncio, mas pode editar apenas o seu próprio comentário.
+
+- Se o usuário logado não for o anunciante pode apenas excluir ou editar seu próprio comentário.
 
 </br>
 
