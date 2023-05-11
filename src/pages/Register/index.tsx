@@ -12,7 +12,6 @@ import { PageRegisterStyled } from "./style";
 
 const Register = () => {
   const { userRegister } = useContext(UserContext);
-
   const [is_seller, setIs_seller] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -158,24 +157,28 @@ const Register = () => {
             />
             <div className="div--buttons">
               <Button
-                size={"2"}
+                size={"5"}
                 hover={"hover2"}
-                background={""}
-                color={""}
+                background={!is_seller ? "var(--brand1)" : "whiteFixed"}
+                color={!is_seller ? "whiteFixed" : "grey0"}
+                border={`2px solid ${
+                  !is_seller ? "var(--brand1)" : "var(--grey0)"
+                }`}
                 onClick={() => {
                   setIs_seller(false);
                 }}
-                border={"none"}
                 type={"button"}
                 text={"Comprador"}
               />
 
               <Button
-                size={"2"}
-                hover={"hover1"}
-                background={"whiteFixed"}
-                color={"grey0"}
-                border={"2px solid var(--grey0)"}
+                size={"5"}
+                hover={"hover2"}
+                background={is_seller ? "var(--brand1)" : "whiteFixed"}
+                color={is_seller ? "whiteFixed" : "grey0"}
+                border={`2px solid ${
+                  is_seller ? "var(--brand1)" : "var(--grey0)"
+                }`}
                 onClick={() => {
                   setIs_seller(true);
                 }}

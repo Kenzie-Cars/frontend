@@ -8,7 +8,7 @@ export interface IButton {
 }
 
 export interface IButtonStyled {
-  size: "1" | "2" | "3" | "4" | "5" | "6";
+  size: "1" | "2" | "3" | "4" | "5" | "6" | "7";
   hover: string;
   background: string;
   color?: string;
@@ -17,7 +17,7 @@ export interface IButtonStyled {
   is_active?: string
 }
 
-export interface OnChangeFunc{
+export interface OnChangeFunc {
   (e: React.FormEvent<HTMLInputElement>): void
 }
 

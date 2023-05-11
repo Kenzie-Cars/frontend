@@ -27,8 +27,6 @@ export const StyledFilter = styled.div`
     }
   }
 
-  
-
   .filterList {
     /* padding: 1rem; */
     display: flex;
@@ -119,27 +117,23 @@ export const StyledFilter = styled.div`
     background-color: var(--whiteFixed);
     position: inherit;
     width: 300px;
-    padding: 1rem;
+    padding: 50px 1rem 1rem 1rem;
       .filterModal {
         display: none;
       }
       
-  .filterHeader {
-      /* display:none */
-  }
+      .filterHeader {
+        display:none; 
+    }
   }
 
   @media (max-width: 768px) {
-    /* width: 100vw; */
     max-width: 100vw;
     height: 100vh;
     
     top: 80px;
-    /* bottom: -20px; */
     left: 0px;
     z-index: 20;
-    /* background-color: bisque; */
-    /* margin-bottom: 300px; */
     overflow-y: auto;
     position: fixed;
     padding: 20px 15px 90px 15px;

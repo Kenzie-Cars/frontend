@@ -51,7 +51,10 @@ export const PageRegisterStyled = styled.main`
     }
 
     .div--buttons {
+      width: 100%;
       display: flex;
+      justify-content: center;
+      gap: 24px;
     }
 
     @media (max-height: 800px) {
