@@ -32,13 +32,13 @@ export const FormUpdateAdvertisement = ({
   const [id, ...rest] = Object.values(advertisementData.images[0]);
 
   const [brands, setBrands] = useState([""]);
-  const [brandValue, setBrandValue] = useState("");
+  const [brandValue, setBrandValue] = useState(advertisementData.brand);
   const [models, setModels] = useState<string[]>([""]);
-  const [modelValue, setModelValue] = useState("");
+  const [modelValue, setModelValue] = useState(advertisementData.model);
   const [years, setYears] = useState<string[]>([""]);
-  const [yearValue, setYearValue] = useState("");
+  const [yearValue, setYearValue] = useState(advertisementData.year);
   const [fuel, setFuel] = useState([""]);
-  const [fuelValue, setFuelValue] = useState("");
+  const [fuelValue, setFuelValue] = useState(advertisementData.fuel);
   const [kmValue, setkmValue] = useState(advertisementData.km);
   const [colorValue, setColorValue] = useState(advertisementData.color);
   const [priceValue, setPriceValue] = useState(advertisementData.price);
@@ -122,6 +122,7 @@ export const FormUpdateAdvertisement = ({
     handleSubmit,
     register,
     formState: { errors },
+    reset
   } = useForm<IAdvertisementRequest>({
     resolver: yupResolver(CreateAdvertiseSchema),
   });
@@ -145,7 +146,7 @@ export const FormUpdateAdvertisement = ({
         setBrandValue(advertisementData.brand);
         setModelValue(advertisementData.model);
         setFuelValue(advertisementData.fuel);
-        setYearValue(advertisementData.year.toString());
+        setYearValue(advertisementData.year);
       };
       fetchCurrentData();
     }
@@ -233,7 +234,7 @@ export const FormUpdateAdvertisement = ({
           errors={errors?.brand?.message}
           setSelect={setBrandValue}
           optionValues={brands}
-          value={brandValue}
+          value={brandValue!}
           selectedValue={brandValue}
         />
 
@@ -245,7 +246,7 @@ export const FormUpdateAdvertisement = ({
           setSelect={setModelValue}
           optionValues={models}
           disabled={brandValue ? false : true}
-          value={modelValue}
+          value={modelValue!}
           selectedValue={modelValue}
         />
 
@@ -258,6 +259,7 @@ export const FormUpdateAdvertisement = ({
             setSelect={setYearValue}
             optionValues={years}
             disabled={brandValue && modelValue ? false : true}
+            value={yearValue!.toString()}
             selectedValue={yearValue}
           />
 
@@ -269,6 +271,7 @@ export const FormUpdateAdvertisement = ({
             setSelect={setFuelValue}
             optionValues={fuel}
             disabled={brandValue && modelValue && yearValue ? false : true}
+            value={fuelValue!}
             selectedValue={fuelValue}
           />
         </div>
@@ -374,22 +377,28 @@ export const FormUpdateAdvertisement = ({
           setValue={(e) => setCoverValue(e.currentTarget.value)}
         />
 
-        {imageValueArrayHandler.map((image, index) => (
-          <Input
-            register={register}
-            key={index}
-            id={`image${index}`}
-            label={`${index + 1}ª Imagem da Galeria`}
-            type="text"
-            placeholder={"Ex.: https://image.com"}
-            defaultValue={imageValueArrayHandler[index]}
-            setValue={(e) => {
-              imageValueArrayHandler[index] = e.currentTarget.value;
-              setImageValueArray(imageValueArrayHandler);
-            }}
-            errors={errors?.images?.message}
-          />
-        ))}
+        {imageValueArrayHandler.map(function (image:string, index) {
+
+          if (image) {
+            return (
+              <Input
+                register={register}
+                key={index}
+                id={`image${index}`}
+                label={`${index + 1}ª Imagem da Galeria`}
+                type="text"
+                placeholder={"Ex.: https://image.com"}
+                defaultValue={imageValueArrayHandler[index]}
+                setValue={(e) => {
+                  imageValueArrayHandler[index] = e.currentTarget.value;
+                  setImageValueArray(imageValueArrayHandler);
+                }}
+                errors={errors?.images?.message}
+              />
+            )
+          }
+              
+        })}
 
         <Button
           onClick={addInputImage}
