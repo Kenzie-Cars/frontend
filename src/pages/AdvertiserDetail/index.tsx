@@ -121,12 +121,7 @@ export const AdvertiserPage = () => {
                 <div className="ProductCard-container">
                   {advertiser?.advertisements?.[0] ? (
                     advertiser.advertisements.map((product) =>
-<<<<<<< HEAD
                       createAdminProductCard(product, setIsUpdateModalOpen, advertiser.userColor),
-
-=======
-                      createAdminProductCard(product, setIsUpdateModalOpen)
->>>>>>> d992c0ec37cf36a0b21f6e823cfe92845e337054
                     )
                   ) : (
                     <h3 className="no-advertisements-warning">
