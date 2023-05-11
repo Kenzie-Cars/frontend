@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const StyledAdvertiserPageContainer = styled.div`
+export const StyledAdvertiserPageContainer = styled.div<{ background?: string }>`
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -19,6 +19,12 @@ export const StyledAdvertiserPageContainer = styled.div`
     width: 104px;
 
     background-color: var(--brand1);
+
+    ${({ background }): any => {
+    return css`
+        background-color: var(--random${background});
+      `
+  }}
     border-radius: 50%;
 
     color: white;
@@ -163,8 +169,15 @@ export const StyledAdvertisementsContainer = styled.section`
   }
 `;
 
-export const StyledBackgroundTop = styled.div`
+export const StyledBackgroundTop = styled.div<{ background?: string }>`
   background-color: var(--brand1);
+
+  ${({ background }) => {
+    return css`
+        background-color: var(--random${background});
+      `
+  }}
+  
   height: 250px;
 `;
 

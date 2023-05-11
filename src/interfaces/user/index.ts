@@ -34,6 +34,7 @@ export interface IUserUpdateRequest {
 }
 
 export interface IUserAdvResponse {
+  userColor: string | undefined;
   id: string;
   name: string;
   description: string;
