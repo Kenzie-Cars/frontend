@@ -40,6 +40,7 @@ export interface IAdvertisementResponse {
   color: string;
   price: number;
   description: string;
+  userColor?: string,
   cover_img: string;
   is_goodSale: boolean;
   images: ImagesInterface[];
@@ -49,7 +50,8 @@ export interface IAdvertisementResponse {
   updated_at: Date;
 }
 
-export interface IAdminProductCardProps{
+export interface IAdminProductCardProps {
   advertisementData: IAdvertisementResponse
   setUpdateModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+  userColor: string | undefined
 }

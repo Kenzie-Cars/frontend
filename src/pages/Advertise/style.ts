@@ -1,6 +1,10 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const AdvertiseContainer = styled.div`
+interface IColor {
+  background?: string
+}
+
+export const AdvertiseContainer = styled.div<IColor>`
   background-color: var(--grey7);
   display: flex;
   align-items: center;
@@ -123,7 +127,14 @@ export const AdvertiseContainer = styled.div`
         font-weight: 500;
         font-size: 2rem;
         margin: 0 auto;
-        background-color: var(--brand2);
+        background-color: var(--brand1);
+        
+        ${({ background }) => {
+    return css`
+        background-color: var(--random${background});
+      `
+  }}
+
         display: flex;
         justify-content: center;
         align-items: center;
@@ -206,6 +217,12 @@ export const AdvertiseContainer = styled.div`
     height: 20px;
     p {
       background-color: var(--brand2);
+
+      ${({ background }) => {
+    return css`
+        background-color: var(--random${background});
+        `
+  }}
       padding: 4px;
       color: var(--whiteFixed);
       border-radius: 50%;

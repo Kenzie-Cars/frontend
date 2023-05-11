@@ -9,16 +9,17 @@ import { AdvertisementContext } from "../../context/AdvertisementContext";
 import { FormUpdateAdvertisement } from "../FormUpdateAdvertise";
 import { useState } from "react";
 import { ProductCardContext } from "../../context/productCardContext";
-import {formatPrice} from '../ProductCard'
+import { formatPrice } from '../ProductCard'
 
 
 export const AdminProductCard = ({
   advertisementData,
-  setUpdateModalOpen
+  setUpdateModalOpen,
+  userColor
 }: IAdminProductCardProps) => {
   const { defineAcronym } = useContext(UserContext);
 
-  const {setCurrentAdvertisement} = useContext(ProductCardContext)
+  const { setCurrentAdvertisement } = useContext(ProductCardContext)
   // const {advertisements} = useContext(AdvertisementContext)
   const { setStatusModalDelete, setCarDeleteId } = useContext(AdvertisementContext)
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ export const AdminProductCard = ({
 
   return (
     <>
-      <AdvertiserCardContainer is_active={advertisementData.is_active} discount={advertisementData.is_goodSale}>
+      <AdvertiserCardContainer background={userColor} is_active={advertisementData.is_active} discount={advertisementData.is_goodSale}>
         <div className="img-container" onClick={test}>
           <small className="active-badge">
             {advertisementData.is_active ? "Ativo" : "Inativo"}
@@ -89,16 +90,17 @@ export const AdminProductCard = ({
         </div>
       </AdvertiserCardContainer>
     </>
-    
+
   );
 };
 
-export const createAdminProductCard = (productData: IAdvertisementResponse, openUpdateModal: React.Dispatch<React.SetStateAction<boolean>>) => {
+export const createAdminProductCard = (productData: IAdvertisementResponse, openUpdateModal: React.Dispatch<React.SetStateAction<boolean>>, userColor: string) => {
   return (
     <AdminProductCard
       key={productData.id}
       advertisementData={productData}
       setUpdateModalOpen={openUpdateModal}
+      userColor={userColor}
     />
   );
 };

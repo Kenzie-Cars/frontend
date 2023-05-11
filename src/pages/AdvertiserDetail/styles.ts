@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const StyledAdvertiserPageContainer = styled.div`
+export const StyledAdvertiserPageContainer = styled.div<{ background?: string }>`
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -19,6 +19,12 @@ export const StyledAdvertiserPageContainer = styled.div`
     width: 104px;
 
     background-color: var(--brand1);
+
+    ${({ background }): any => {
+    return css`
+        background-color: var(--random${background});
+      `
+  }}
     border-radius: 50%;
 
     color: white;
@@ -113,30 +119,35 @@ export const StyledAdvertisementsContainer = styled.section`
 
   .no-advertisements-warning {
     color: var(--grey4);
-    font: var(--Heading-3-600);
+    font: var(--Heading-6-600);
     width: 82vw
   }
-
+  
   @media (min-width: 768px) {
     .ProductCard-container {
       display: grid;
-
+      
       grid-template-columns: 312px 312px;
-
+      
       grid-auto-rows: auto;
-
+      
       justify-content: space-around;
-
+      
       height: fit-content;
     }
-
+    
     .ProductCard-container div {
       margin-right: 0px !important;
-
+      
       margin-bottom: 13px;
     }
+    .no-advertisements-warning {
+      color: var(--grey4);
+      font: var(--Heading-3-600);
+      width: 82vw
+    }
   }
-
+  
   @media (min-width: 1050px) {
     .ProductCard-container {
       grid-template-columns: 312px 312px 312px;
@@ -158,8 +169,15 @@ export const StyledAdvertisementsContainer = styled.section`
   }
 `;
 
-export const StyledBackgroundTop = styled.div`
+export const StyledBackgroundTop = styled.div<{ background?: string }>`
   background-color: var(--brand1);
+
+  ${({ background }) => {
+    return css`
+        background-color: var(--random${background});
+      `
+  }}
+  
   height: 250px;
 `;
 

@@ -17,4 +17,5 @@ export interface IProductCard {
     is_goodSale: boolean
     is_active: boolean
     images: ImagesInterface[]
+    userColor?: string
 }

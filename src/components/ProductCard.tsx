@@ -10,8 +10,8 @@ import { UserContext } from "../context/UserContext";
 
 export const formatPrice = (price: number) => {
   var parts = price.toString().split(".");
-    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    return parts.join(".");
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  return parts.join(".");
 }
 
 export const ProductCard = ({
@@ -26,6 +26,7 @@ export const ProductCard = ({
   price,
   is_goodSale,
   is_active,
+  userColor
 }: IProductCard) => {
   const navigate = useNavigate();
 
@@ -40,6 +41,7 @@ export const ProductCard = ({
       is_active={is_active}
       discount={is_goodSale}
       onClick={() => advertise()}
+      background={userColor}
     >
       <div className="img-container">
         <img src={cover_img} alt={model} />
@@ -81,6 +83,7 @@ export const AdvertiserProductCard = ({
   is_active,
   brand,
   id,
+  userColor
 }: IAdvertisementResponse) => {
   const navigate = useNavigate();
 
@@ -94,6 +97,7 @@ export const AdvertiserProductCard = ({
     <AdvertiserCardContainer
       discount={is_goodSale}
       is_active={is_active}
+      background={userColor}
     >
       <div className="img-container" onClick={advertise}>
         {test && (
@@ -147,6 +151,8 @@ export function createProductCard(
       is_active={productData.is_active}
       brand={productData.brand}
       images={productData.images}
+      userColor={productData.user.userColor}
+
     />
   ) : (
     <AdvertiserProductCard
@@ -168,6 +174,7 @@ export function createProductCard(
       created_at={productData.created_at}
       updated_at={productData.updated_at}
       userAdvertisements={productData.userAdvertisements}
+      userColor={productData.userColor}
     />
   );
 }

@@ -1,6 +1,8 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { AiFillEdit } from "react-icons/ai";
+import { BiTrash } from "react-icons/bi";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -8,6 +10,7 @@ import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
 import { Footer } from "../../components/Footer";
 import Modal from "../../components/Modal";
 import { Navbar } from "../../components/Navbar";
+import { UpdateCommentModal } from "../../components/UpdateCommentModal";
 import Button from "../../components/button";
 import { Textarea } from "../../components/input";
 import { AdvertisementContext } from "../../context/AdvertisementContext";
@@ -16,9 +19,6 @@ import { IAdvertisementResponse } from "../../interfaces/advertisement";
 import { ICommentRequest, ICommentsResponse } from "../../interfaces/comments";
 import { CreateCommentSchema } from "../../schema/CreateCommentSchema";
 import { AdvertiseContainer } from "./style";
-import { BiTrash } from "react-icons/bi";
-import { AiFillEdit } from "react-icons/ai";
-import { UpdateCommentModal } from "../../components/UpdateCommentModal";
 
 export const Advertise = () => {
   const { user, defineAcronym } = useContext(UserContext);
@@ -173,11 +173,11 @@ export const Advertise = () => {
   };
 
   return (
-    <AdvertiseContainer>
+    <AdvertiseContainer background={user?.userColor}>
       <Navbar />
       {images ? (
         <>
-          <div className="background"></div>
+          <div className="background" ></div>
           <div className="container">
             <div className="default imgContainer">
               <img src={advertisement?.cover_img} alt={advertisement?.model} />
@@ -249,7 +249,7 @@ export const Advertise = () => {
                         <span> - {calcDate(comment)}</span>
                         <div className="commentButton">
                           {user?.id == comment?.user?.id ||
-                          user?.id == advertisement?.user?.id ? (
+                            user?.id == advertisement?.user?.id ? (
                             <BiTrash
                               className="icons"
                               onClick={() => deleteComment(comment.id)}
