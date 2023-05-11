@@ -74,8 +74,6 @@ export const Header = styled.div`
     font: var(--button-medium-text);
   }
 
-  
-
   > h3,
   > HeaderTitle {
     color: var(--grey1);
@@ -103,12 +101,7 @@ export const MainContainer = styled.div`
   height: 90%;
   margin: 0 auto;
 
-
-  
-  
-  /* > div, */
   .CarImg {
-    /* background-color: var(--grey7); */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -116,26 +109,24 @@ export const MainContainer = styled.div`
     width: 90%;
     height: 85%;
     gap: 15px;
-    
+
     img {
       align-self: center;
       width: inherit;
       max-height: 100%;
       height: 200px;
-      
     }
-  }
-  
-  @media (min-width: 768px) {
-     .CarImg{ 
-    img {
-      height: 300px;
-    }
-  }
   }
 
-  .buttonBox{
-    /* outline: 1px solid red; */
+  @media (min-width: 768px) {
+    .CarImg {
+      img {
+        height: 300px;
+      }
+    }
+  }
+
+  .buttonBox {
     width: inherit;
     height: 25px;
     display: flex;
@@ -169,5 +160,4 @@ export const CloseButton = styled.div`
   }
 `;
 
-//para usar no detalhamento do carro
 export const CarImg = styled.div``;

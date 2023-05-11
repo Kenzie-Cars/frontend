@@ -3,12 +3,12 @@ import { Footer } from "../../components/Footer";
 import { Navbar } from "../../components/Navbar";
 import { createProductCard } from "../../components/ProductCard";
 import { AdvertisementContext } from "../../context/AdvertisementContext";
-import { carsInfo } from "../../data.mocks";
-import { StyledCarsContainer } from "../../styles/CarsContainer";
 import { Filter } from "./Filter";
-import { StyledBackgroundImg, StyledHomeContainer } from "./style";
-import { RequestApiKenzieKars } from "../../Requests/RequestApiKenzieKars";
-import { UserContext } from "../../context/UserContext";
+import {
+  StyledBackgroundImg,
+  StyledHomeContainer,
+  StyledCarsContainer,
+} from "./style";
 
 export const HomePage = () => {
   const [filter, setFilter] = useState(true);
@@ -48,25 +48,31 @@ export const HomePage = () => {
         <div className="bodyContainer">
           <div className="cardContainer">
             <StyledCarsContainer>
-              {
-                advertisements[0] ?
-                  advertisements.map((product) =>
-                    product.is_active && createProductCard(product, userId!)
-                  ) :
-                  <h3 className="no-advertisements-warning">Ops, parece que ainda não tem nenhum anúncio por aqui...</h3>
-              }
+              {advertisements[0] ? (
+                advertisements.map(
+                  (product) =>
+                    product.is_active && createProductCard(product, userId!),
+                )
+              ) : (
+                <h3 className="no-advertisements-warning">
+                  Ops, parece que ainda não tem nenhum anúncio por aqui...
+                </h3>
+              )}
             </StyledCarsContainer>
           </div>
           <Filter
             advertisements={advertisements}
             setAdvertisements={setAdvertisements}
-            carsInfo={carsInfo}
             setFilter={setFilter}
             statusFilter={filter}
           />
         </div>
 
-        {filter && <button className="openFilter" onClick={() => setFilter(!filter)}>Filtros</button>}
+        {filter && (
+          <button className="openFilter" onClick={() => setFilter(!filter)}>
+            Filtros
+          </button>
+        )}
       </StyledHomeContainer>
       <Footer />
     </>

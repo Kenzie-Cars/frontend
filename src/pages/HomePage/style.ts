@@ -14,10 +14,9 @@ export const StyledHomeContainer = styled.div`
   }
 
   .bodyContainer {
-      padding: 0px 20px;
-      gap: 100px;
-    }
-
+    padding: 0px 20px;
+    gap: 100px;
+  }
 
   @media screen and (min-width: 768px) {
     .bodyContainer {
@@ -66,5 +65,32 @@ export const StyledBackgroundImg = styled.div`
   & > img {
     padding-top: 30px;
     max-height: 400px;
+  }
+`;
+
+export const StyledCarsContainer = styled.ul`
+  display: flex;
+  overflow-x: auto;
+  gap: 50px;
+  height: fit-content;
+  margin: 50px 0;
+
+  .no-advertisements-warning {
+    color: var(--grey4);
+    font: var(--Heading-3-600);
+    width: 70vw;
+    position: relative;
+  }
+
+  @media screen and (min-width: 768px) {
+    overflow-x: unset;
+    flex-wrap: wrap;
+    .no-advertisements-warning {
+      color: var(--grey4);
+      font: var(--Heading-3-600);
+      width: 70vw;
+      position: relative;
+      right: 120px;
+    }
   }
 `;

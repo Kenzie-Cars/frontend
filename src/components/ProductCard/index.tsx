@@ -1,18 +1,15 @@
 import { useNavigate } from "react-router-dom";
-import { IAdvertisementResponse } from "../interfaces/advertisement";
+import { IAdvertisementResponse } from "../../interfaces/advertisement";
 import { useContext } from "react";
-import { IProductCard } from "../interfaces/components/ProductCardComponent";
-import {
-  AdvertiserCardContainer,
-  CardContainer,
-} from "../styles/components/productCard";
-import { UserContext } from "../context/UserContext";
+import { IProductCard } from "../../interfaces/components";
+import { AdvertiserCardContainer, CardContainer } from "./style";
+import { UserContext } from "../../context/UserContext";
 
 export const formatPrice = (price: number) => {
   var parts = price.toString().split(".");
   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   return parts.join(".");
-}
+};
 
 export const ProductCard = ({
   id,
@@ -26,7 +23,7 @@ export const ProductCard = ({
   price,
   is_goodSale,
   is_active,
-  userColor
+  userColor,
 }: IProductCard) => {
   const navigate = useNavigate();
 
@@ -83,7 +80,7 @@ export const AdvertiserProductCard = ({
   is_active,
   brand,
   id,
-  userColor
+  userColor,
 }: IAdvertisementResponse) => {
   const navigate = useNavigate();
 
@@ -152,7 +149,6 @@ export function createProductCard(
       brand={productData.brand}
       images={productData.images}
       userColor={productData.user.userColor}
-
     />
   ) : (
     <AdvertiserProductCard

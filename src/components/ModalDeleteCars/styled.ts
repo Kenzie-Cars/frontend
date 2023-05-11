@@ -69,8 +69,6 @@ export const DeleteCarModalStyled = styled.div`
       align-self: flex-end;
       width: 100%;
       max-width: 350px;
-      /* min-width: 320px; */
-      /* margin-left: 20%; */
     }
   }
 `;

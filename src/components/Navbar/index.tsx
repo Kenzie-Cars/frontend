@@ -63,12 +63,11 @@ export const Navbar = () => {
     navigate("/");
   };
 
-  const [userColor, setUserColor] = useState<string | undefined>('')
+  const [userColor, setUserColor] = useState<string | undefined>("");
 
   useEffect(() => {
-    setUserColor(user?.userColor)
-    console.log(user?.userColor)
-  }, [user?.userColor])
+    setUserColor(user?.userColor);
+  }, [user?.userColor]);
 
   return (
     <>
@@ -89,7 +88,11 @@ export const Navbar = () => {
             onClick={() => hidden()}
           />
         </div>
-        <NavbarStyle background={user?.userColor} is_active={active} is_token={token}>
+        <NavbarStyle
+          background={user?.userColor}
+          is_active={active}
+          is_token={token}
+        >
           {token ? (
             <>
               <div

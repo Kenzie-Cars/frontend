@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const PageLoginStyled = styled.main`
-  /* width: 100%; */
   display: flex;
   background-color: var(--grey7);
   justify-content: center;

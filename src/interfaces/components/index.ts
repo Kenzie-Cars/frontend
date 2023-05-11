@@ -1,3 +1,5 @@
+import { ImagesInterface } from "../advertisement";
+
 export interface IButton {
   size: "1" | "2" | "3" | "4" | "5";
   hover: string;
@@ -14,11 +16,11 @@ export interface IButtonStyled {
   color?: string;
   border?: string;
   padding?: string;
-  is_active?: string
+  is_active?: string;
 }
 
 export interface OnChangeFunc {
-  (e: React.FormEvent<HTMLInputElement>): void
+  (e: React.FormEvent<HTMLInputElement>): void;
 }
 
 export interface InputInterface {
@@ -31,8 +33,8 @@ export interface InputInterface {
   errors?: string | undefined;
   value?: number | string;
   defaultValue?: number | string;
-  setValue?: OnChangeFunc
-  readOnly?: boolean
+  setValue?: OnChangeFunc;
+  readOnly?: boolean;
 }
 
 export interface ITextarea {
@@ -45,14 +47,38 @@ export interface ITextarea {
   errors?: string | undefined;
   value?: string;
   defaultValue?: string;
-  onChange?: any
-  setValue?: any
+  onChange?: any;
+  setValue?: any;
 }
 
-export interface ISelect {
-  options: Array<string>;
+export interface iSelectProps {
   id: string;
   label: string;
-  errors?: string | undefined;
   register: Function;
+  errors?: string;
+  setSelect?: any;
+  optionValues: string[];
+  disabled?: boolean;
+  value?: string;
+  selectedValue?: React.ComponentState;
+}
+
+export interface IProductCard {
+  id: string;
+  cover_img: string;
+  user: {
+    name: string;
+    id: string;
+    description: string;
+  };
+  model: string;
+  description: string;
+  year: number;
+  km: number;
+  brand: string;
+  price: number;
+  is_goodSale: boolean;
+  is_active: boolean;
+  images: ImagesInterface[];
+  userColor?: string;
 }
