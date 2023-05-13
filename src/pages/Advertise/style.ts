@@ -216,13 +216,13 @@ export const AdvertiseContainer = styled.div<IColor>`
     margin-bottom: 1rem;
     height: 20px;
     p {
-      background-color: var(--brand2);
+      /* background-color: var(--brand2); */
 
-      ${({ background }) => {
+      /* ${({ background }) => {
     return css`
         background-color: var(--random${background});
         `
-  }}
+  }} */
       padding: 4px;
       color: var(--whiteFixed);
       border-radius: 50%;

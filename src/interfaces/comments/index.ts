@@ -6,6 +6,7 @@ export interface ICommentObj {
     id: string,
     name: string,
     description: string
+    userColor: string
 }
 
 export interface ICommentsResponse {

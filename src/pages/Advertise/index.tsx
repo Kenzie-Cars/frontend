@@ -244,9 +244,9 @@ export const Advertise = () => {
                   comments?.map((comment: ICommentsResponse) => (
                     <li key={comment.id}>
                       <div className="userInfo">
-                        <p>{defineAcronym(comment.user?.name)}</p>
-                        <h3>{comment.user?.name}</h3>{" "}
-                        <span> - {calcDate(comment)}</span>
+                        <p style={{ backgroundColor: `var(--random${comment.user.userColor})` }}>{defineAcronym(comment.user?.name)}</p>
+                        <h3 >{comment.user?.name}</h3>{" "}
+                        <span onClick={() => console.log(comment)}> - {calcDate(comment)}</span>
                         <div className="commentButton">
                           {user?.id == comment?.user?.id ||
                             user?.id == advertisement?.user?.id ? (
