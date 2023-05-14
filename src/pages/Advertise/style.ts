@@ -250,6 +250,7 @@ export const AdvertiseContainer = styled.div<IColor>`
     flex-direction: column;
     margin-bottom: 2.5rem;
     position: relative;
+    gap: 10px;
 
     textarea {
       height: fit-content;
