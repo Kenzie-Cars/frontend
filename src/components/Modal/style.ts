@@ -115,6 +115,7 @@ export const MainContainer = styled.div`
       width: inherit;
       max-height: 100%;
       height: 200px;
+      object-fit: contain;
     }
   }
 

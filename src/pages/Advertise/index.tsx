@@ -223,7 +223,7 @@ export const Advertise = () => {
             </div>
             <div className="default advertiserInfo">
               <div className="info">
-                <h2>{defineAcronym(advertisement?.user?.name!)}</h2>
+                <h2 style={{ backgroundColor: `var(--random${advertisement?.user.userColor})` }}>{defineAcronym(advertisement?.user?.name!)}</h2>
                 <h3>{advertisement?.user.name}</h3>
                 <p>{advertisement?.user.description}</p>
               </div>
@@ -279,7 +279,7 @@ export const Advertise = () => {
             </div>
             <div className="default newComment">
               <div className="userInfo">
-                <p>{defineAcronym(!user ? "un" : user?.name)}</p>
+                <p style={{ backgroundColor: `var(--random${user?.userColor})` }}>{defineAcronym(!user ? "un" : user?.name)}</p>
                 <h3>{user && user?.name}</h3>
               </div>
               <form className="newComment" onSubmit={handleSubmit(sendComment)}>
