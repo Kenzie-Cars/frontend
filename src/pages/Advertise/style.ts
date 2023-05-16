@@ -218,9 +218,9 @@ export const AdvertiseContainer = styled.div<IColor>`
 
       /* ${({ background }) => {
         return css`
-          background-color: var(--random ${background});
-        `;
-      }} */
+        background-color: var(--random${background});
+        `
+  }} */
       padding: 4px;
       color: var(--whiteFixed);
       border-radius: 50%;

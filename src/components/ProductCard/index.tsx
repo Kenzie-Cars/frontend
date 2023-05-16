@@ -135,7 +135,6 @@ export function createProductCard(
 ) {
   return currentUserId === productData.user.id ? (
     <>
-      {console.log(productData.user)}
       <ProductCard
         id={productData.id}
         key={productData.id}
