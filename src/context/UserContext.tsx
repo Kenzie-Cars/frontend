@@ -31,6 +31,8 @@ interface IUserContext {
   setIsOpenAddress: React.Dispatch<React.SetStateAction<boolean>>;
   isOpenConfirm: boolean;
   setIsOpenConfirm: React.Dispatch<React.SetStateAction<boolean>>;
+  advertiser: IUserResponse;
+  setAdvertiser: React.Dispatch<React.SetStateAction<IUserResponse>>;
   defineAcronym: (username: string) => string;
 }
 
@@ -45,6 +47,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [isOpenAddress, setIsOpenAddress] = useState(false);
   const [isOpenConfirm, setIsOpenConfirm] = useState(false);
+  const [advertiser, setAdvertiser] = useState({} as IUserResponse);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -200,6 +203,8 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         isOpenMenu,
         isOpenConfirm,
         setIsOpenConfirm,
+        advertiser,
+        setAdvertiser,
       }}
     >
       {children}

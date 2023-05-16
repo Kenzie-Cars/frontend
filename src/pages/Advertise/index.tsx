@@ -39,7 +39,7 @@ export const Advertise = () => {
 
   const navigate = useNavigate();
   const advertisement: IAdvertisementResponse | undefined = advertisements.find(
-    (car) => car.id === id
+    (car) => car.id === id,
   );
 
   const openModal = () => {
@@ -48,14 +48,14 @@ export const Advertise = () => {
 
   useEffect(() => {
     const getImages = advertisement?.images?.map((image) =>
-      Object.values(image).slice(1).flat(1)
+      Object.values(image).slice(1).flat(1),
     );
     setImages(getImages!);
   }, [advertisement]);
 
   const loadComments = async () => {
     RequestApiKenzieKars.get(`advertisements/${id}`).then((res) =>
-      setComments(res.data.userAdvertisements)
+      setComments(res.data.userAdvertisements),
     );
   };
 
@@ -75,7 +75,7 @@ export const Advertise = () => {
 
   const createComment = async (
     valueComments: ICommentRequest,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
   ) => {
     const token = localStorage.getItem("@userTokenKenzieKars");
     if (token) {
@@ -84,7 +84,7 @@ export const Advertise = () => {
         RequestApiKenzieKars.defaults.headers.common.Authorization = `Bearer ${token}`;
         const response = await RequestApiKenzieKars.post(
           `advertisements/comments/${id}`,
-          valueComments
+          valueComments,
         );
         toast.success("Comentário criado", {
           autoClose: 1500,
@@ -173,11 +173,11 @@ export const Advertise = () => {
   };
 
   return (
-    <AdvertiseContainer background={user?.userColor}>
+    <AdvertiseContainer background={advertisement?.user?.userColor}>
       <Navbar />
       {images ? (
         <>
-          <div className="background" ></div>
+          <div className="background"></div>
           <div className="container">
             <div className="default imgContainer">
               <img src={advertisement?.cover_img} alt={advertisement?.model} />
@@ -223,7 +223,13 @@ export const Advertise = () => {
             </div>
             <div className="default advertiserInfo">
               <div className="info">
-                <h2>{defineAcronym(advertisement?.user?.name!)}</h2>
+                <h2
+                  style={{
+                    backgroundColor: `var(--random${advertisement?.user.userColor})`,
+                  }}
+                >
+                  {defineAcronym(advertisement?.user?.name!)}
+                </h2>
                 <h3>{advertisement?.user.name}</h3>
                 <p>{advertisement?.user.description}</p>
               </div>
@@ -244,12 +250,21 @@ export const Advertise = () => {
                   comments?.map((comment: ICommentsResponse) => (
                     <li key={comment.id}>
                       <div className="userInfo">
-                        <p>{defineAcronym(comment.user?.name)}</p>
+                        <p
+                          style={{
+                            backgroundColor: `var(--random${comment.user.userColor})`,
+                          }}
+                        >
+                          {defineAcronym(comment.user?.name)}
+                        </p>
                         <h3>{comment.user?.name}</h3>{" "}
-                        <span> - {calcDate(comment)}</span>
+                        <span onClick={() => console.log(comment)}>
+                          {" "}
+                          - {calcDate(comment)}
+                        </span>
                         <div className="commentButton">
                           {user?.id == comment?.user?.id ||
-                            user?.id == advertisement?.user?.id ? (
+                          user?.id == advertisement?.user?.id ? (
                             <BiTrash
                               className="icons"
                               onClick={() => deleteComment(comment.id)}
@@ -279,7 +294,11 @@ export const Advertise = () => {
             </div>
             <div className="default newComment">
               <div className="userInfo">
-                <p>{defineAcronym(!user ? "un" : user?.name)}</p>
+                <p
+                  style={{ backgroundColor: `var(--random${user?.userColor})` }}
+                >
+                  {defineAcronym(!user ? "un" : user?.name)}
+                </p>
                 <h3>{user && user?.name}</h3>
               </div>
               <form className="newComment" onSubmit={handleSubmit(sendComment)}>
