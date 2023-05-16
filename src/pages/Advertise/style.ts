@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 interface IColor {
-  background?: string
+  background?: string;
 }
 
 export const AdvertiseContainer = styled.div<IColor>`
@@ -24,7 +24,9 @@ export const AdvertiseContainer = styled.div<IColor>`
   .background {
     width: 100vw;
     height: 420px;
-    background-color: var(--brand1);
+    background-color: ${(props) => {
+      return `var(--random${props.background})`;
+    }};
     position: absolute;
   }
   .container {
@@ -127,13 +129,9 @@ export const AdvertiseContainer = styled.div<IColor>`
         font-weight: 500;
         font-size: 2rem;
         margin: 0 auto;
-        background-color: var(--brand1);
-        
-        ${({ background }) => {
-    return css`
-        background-color: var(--random${background});
-      `
-  }}
+        background-color: ${(props) => {
+          return `var(--random${props.background})`;
+        }};
 
         display: flex;
         justify-content: center;
@@ -219,7 +217,7 @@ export const AdvertiseContainer = styled.div<IColor>`
       /* background-color: var(--brand2); */
 
       /* ${({ background }) => {
-    return css`
+        return css`
         background-color: var(--random${background});
         `
   }} */

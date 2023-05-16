@@ -12,7 +12,6 @@ import Button from "../../components/button";
 import { AdvertisementContext } from "../../context/AdvertisementContext";
 import { UserContext } from "../../context/UserContext";
 import { ProductCardContext } from "../../context/productCardContext";
-import { IUserResponse } from "../../interfaces/user";
 import {
   StyledAdvertisementsContainer,
   StyledAdvertiserPageContainer,
@@ -21,10 +20,10 @@ import {
 } from "./styles";
 
 export const AdvertiserPage = () => {
-  const [advertiser, setAdvertiser] = useState({} as IUserResponse);
   const [isOpen, setIsOpen] = useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
-  const { loading, setLoading } = useContext(UserContext);
+  const { loading, setLoading, advertiser, setAdvertiser } =
+    useContext(UserContext);
 
   const { currentAdvertisement, setCurrentAdvertisement } =
     useContext(ProductCardContext);
@@ -55,9 +54,9 @@ export const AdvertiserPage = () => {
       return id !== user?.id ? (
         <>
           <Navbar />
-          <StyledBackgroundTop />
+          <StyledBackgroundTop background={advertiser?.userColor} />
           <StyledBackgroundBottom>
-            <StyledAdvertiserPageContainer>
+            <StyledAdvertiserPageContainer background={advertiser?.userColor}>
               <div className="AdvertiserInfo-container">
                 <span className="AdvertiserIcon">
                   {advertiser?.name && defineAcronym(advertiser?.name)}
