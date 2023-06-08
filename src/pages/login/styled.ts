@@ -78,6 +78,18 @@ export const PageLoginStyled = styled.main`
       justify-content: center;
       padding: 0px 5%;
       margin-top: 38px;
+
+      .showPassDiv {
+        position: relative;
+        > button {
+          position: absolute;
+          top: 52%;
+          right: 2%;
+          border: none;
+          height: 20px;
+          padding: inherit;
+        }
+      }
     }
   }
 `;

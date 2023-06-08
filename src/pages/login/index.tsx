@@ -10,9 +10,14 @@ import { UserContext } from "../../context/UserContext";
 import { IUserLogin } from "../../interfaces/user";
 import { LoginSchema } from "../../schema/Users";
 import { PageLoginStyled } from "./styled";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 export const Login = () => {
   const { userlogin } = useContext(UserContext);
+  const [showPassword, setShowPasssword] = useState(false)
+  const togglePassword = () => {
+    setShowPasssword(!showPassword)
+  }
 
   const {
     register,
@@ -45,15 +50,19 @@ export const Login = () => {
               errors={email?.message}
               placeholder="Digitar email"
             />
-
-            <Input
-              id="userPassword"
-              label="Senha"
-              type="password"
-              register={register}
-              errors={userPassword?.message}
-              placeholder="Digitar senha"
-            />
+            <div className="showPassDiv">
+              <Input
+                id="userPassword"
+                label="Senha"
+                type={showPassword? "text": "password"}
+                register={register}
+                errors={userPassword?.message}
+                placeholder="Digitar senha"
+              />
+              <button onClick={togglePassword}>
+                {showPassword ? <AiOutlineEye/> : <AiOutlineEyeInvisible/>}
+              </button>
+            </div>
 
             <p className="esqueci" onClick={() => navigate("/forgot-password")}>
               Esqueci minha senha
